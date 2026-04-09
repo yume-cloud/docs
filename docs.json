@@ -141,13 +141,12 @@
   "thumbnails": {
     "background": "/logo/light.svg"
   },
-  "api": {
-    "playground": {
-      "proxy": true
-    }
+  "banner": {
+    "content": "**Зарегистрируйтесь** в системе и начните использовать _Yume Cloud_",
+    "dismissible": true
   },
   "interaction": {
-    "drilldown": false
+    "drilldown": true
   },
   "footer": {
     "socials": {
