@@ -8,6 +8,12 @@
     "light": "#EDE8FB",
     "dark": "#151324"
   },
+  "logo": {
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png",
+    "href": "https://yume.cloud"
+  },
+  "favicon": "/favicon.ico",
   "navbar": {
     "primary": {
       "type": "github",
