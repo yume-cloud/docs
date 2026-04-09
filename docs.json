@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "Yume Cloud",
+  "name": "Yume",
   "theme": "aspen",
   "openapi": "api-reference/yume-cloud-openapi.yaml",
   "colors": {
@@ -16,18 +16,14 @@
   "favicon": "/favicon.svg",
   "navbar": {
     "primary": {
-      "type": "github",
-      "href": "https://github.com/yume-cloud"
+      "type": "button",
+      "label": "Зарегистрироваться",
+      "href": "https://account.yume.cloud/auth/register"
     },
     "links": [
       {
-        "label": "Войти в систему",
+        "label": "Войти",
         "href": "https://account.yume.cloud/auth"
-      },
-      {
-        "label": "Зарегистрироваться",
-        "href": "https://account.yume.cloud/auth/register",
-        "variant": "primary"
       }
     ]
   },
