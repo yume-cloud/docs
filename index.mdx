@@ -1,82 +1,96 @@
 ---
-title: "Документация Yume"
+title: "Главная страница"
+description: "Портал документации Yume Cloud: обзор платформы и навигация по разделам."
 ---
 
-**Что такое [yume.cloud](http://yume.cloud)**
+**[yume.cloud](http://yume.cloud)** — платформа для арендного бизнеса в разных нишах: backend-ядро с бизнес-логикой, данными клиентов и интеграциями. Фокус — масштабируемость, изоляция тенантов и подключение новых интеграций без переписывания ядра.
 
-[yume.cloud](http://yume.cloud) — это платформа, предназначенная для работы с арендным бизнесом в разных нишах. Платформа выступает в роли backend-ядра, которое агрегирует бизнес-логику, хранит данные клиентов и обеспечивает взаимодействие с внешними интеграциями.
+**Возможности:** мультитенантность, CRM и инвентарь, биллинг и аналитика, GPS и телематика, интеграции (SMS, OKAuto, Wazzup и др.), склад, воронка продаж и заявок.
 
-Основной фокус системы — масштабируемость, изоляция клиентов (tenants) и возможность быстро подключать новые интеграции без изменения ядра платформы.
+<Tip>
+  Откройте **поиск по документации** (**⌘K** на Mac или **Ctrl+K** на Windows и Linux) и введите название раздела или эндпоинта — как в вики.
+</Tip>
 
-**Ключевые задачи платформы**
+## Популярные разделы
 
-- Управление несколькими клиентами (tenants) в рамках одной системы
-- Централизованная бизнес-логика для автоматизации таксопарков
-- Интеграция с внешними сервисами (SMSС, OKAuto, Wazzup, и т.д.)
-- Аналитика (журнал доходности, окупаемость, эффективность, амортизация и другие)
-- Инвентаризация склада
-- Разделение задач между сотрудниками
-- Настройка воронки продаж и заявок
-
-<CardGroup cols={2}>
+<CardGroup cols={4}>
   <Card title="Быстрый старт" icon="rocket" href="/quickstart">
-    Первый запрос к API за несколько минут
+    Первый запрос к API
   </Card>
-
   <Card title="Аутентификация" icon="lock" href="/authentication">
-    Как передавать токен в запросах
+    JWT и заголовки запросов
   </Card>
-
   <Card title="Справочник API" icon="code" href="/api-reference/overview">
     Эндпоинты и OpenAPI
   </Card>
-
-  <Card title="Руководства" icon="book-open" href="/guides/managing-rentals">
-    Пошаговые сценарии
+  <Card title="Введение" icon="book-open" href="/introduction">
+    Обзор платформы и API
   </Card>
 </CardGroup>
 
-## Как это устроено
+## Каталог по темам
+
+<Columns cols={2}>
+  <Column>
+
+  ### Начало работы
+
+  - [Введение](/introduction) — обзор платформы и сценариев
+  - [Аутентификация](/authentication) — логин, access и refresh
+  - [Быстрый старт](/quickstart) — пример входа и запроса
+
+  ### Основные понятия
+
+  - [Аренда](/concepts/rentals) — жизненный цикл проката
+  - [Транзакции](/concepts/transactions) — платежи и записи
+  - [Биллинг](/concepts/billing) — счета и оплата
+
+  ### Руководства
+
+  - [Управление арендой](/guides/managing-rentals)
+  - [Обработка платежей](/guides/processing-payments)
+  - [GPS и трекинг](/guides/gps-tracking)
+  - [Интеграции](/guides/integrations)
+
+  </Column>
+  <Column>
+
+  ### Настройка
+
+  - [Настройки](/configuration/settings)
+  - [Права доступа](/configuration/access-rights)
+  - [Уведомления](/configuration/notifications)
+
+  ### Справочник API — обзор
+
+  - [Обзор API](/api-reference/overview) — базовый URL, ошибки, пагинация
+  - [Аутентификация в API](/api-reference/authentication)
+
+  ### Справочник API — ресурсы
+
+  - [Аренда](/api-reference/rentals) · [Продажи](/api-reference/sales) · [Транзакции](/api-reference/transactions)
+  - [Аналитика](/api-reference/analytics) · [Биллинг](/api-reference/billing)
+  - [Документы](/api-reference/documents) · [Вложения](/api-reference/attachments)
+  - [GPS](/api-reference/gps) · [Уведомления](/api-reference/notifications)
+  - [Мастерская](/api-reference/workshop) · [Склад](/api-reference/store)
+  - [Интеграции](/api-reference/integrations) · [Права доступа](/api-reference/access-rights)
+
+  </Column>
+</Columns>
+
+## Краткий путь к API
 
 <Steps>
   <Step title="Получите JWT">
     Вызовите `POST /v1/auth/login/` с логином и паролем и сохраните `access` (и при необходимости `refresh`).
   </Step>
   <Step title="Добавьте заголовок Authorization">
-    Передавайте заголовок `Authorization: Bearer` и ваш access-токен во всех защищённых запросах.
+    Передавайте `Authorization: Bearer` и ваш access-токен во всех защищённых запросах.
   </Step>
   <Step title="Работайте с CRM и биллингом">
-    Клиенты, инвентарь, группы, сделки и счета доступны под префиксом `/v1/` — см. полную спецификацию OpenAPI.
+    Клиенты, инвентарь, группы, сделки и счета — префикс `/v1/`; детали в OpenAPI.
   </Step>
   <Step title="Подключайте интеграции">
-    Телефония, мессенджеры, Wialon и другие сервисы — раздел `/v1/crm/integrations/...`.
+    Телефония, мессенджеры, Wialon и другие — раздел `/v1/crm/integrations/...`.
   </Step>
 </Steps>
-
-## Разделы
-
-<CardGroup cols={3}>
-  <Card title="Аренда" icon="key" href="/concepts/rentals">
-    Жизненный цикл проката
-  </Card>
-
-  <Card title="Транзакции" icon="credit-card" href="/concepts/transactions">
-    Платежи и записи
-  </Card>
-
-  <Card title="Биллинг" icon="receipt" href="/concepts/billing">
-    Счета и оплата
-  </Card>
-
-  <Card title="GPS" icon="location-dot" href="/guides/gps-tracking">
-    Местоположение активов
-  </Card>
-
-  <Card title="Аналитика" icon="chart-bar" href="/api-reference/analytics">
-    Отчёты и метрики
-  </Card>
-
-  <Card title="Интеграции" icon="plug" href="/guides/integrations">
-    Внешние сервисы
-  </Card>
-</CardGroup>

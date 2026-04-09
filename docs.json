@@ -21,6 +21,30 @@
     }
   },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Telegram",
+          "icon": "send",
+          "href": "https://t.me/yumecloud"
+        },
+        {
+          "anchor": "WhatsApp",
+          "icon": "message-circle",
+          "href": "https://wa.me/77077121500"
+        },
+        {
+          "anchor": "App Store",
+          "icon": "apple",
+          "href": "https://apps.apple.com/kz/app/yume-cloud/id6749707587"
+        },
+        {
+          "anchor": "Google Play",
+          "icon": "play",
+          "href": "https://play.google.com/store/apps/details?id=com.kazbekovv.yumeweb"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Документация",
