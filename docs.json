@@ -23,6 +23,11 @@
       {
         "label": "Войти в систему",
         "href": "https://account.yume.cloud/auth"
+      },
+      {
+        "label": "Зарегистрироваться",
+        "href": "https://account.yume.cloud/auth/register",
+        "variant": "primary"
       }
     ]
   },
