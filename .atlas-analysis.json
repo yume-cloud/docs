@@ -1,18 +1,18 @@
 {
   "projectType": "api-service",
   "projectName": "Yume Cloud",
-  "projectDescription": "Yume Cloud is a cloud-based rental and sales management platform with a REST API for managing rentals, transactions, billing, GPS tracking, and integrations.",
-  "theme": "luma",
-  "primaryColor": "#6C3CE1",
+  "projectDescription": "Yume Cloud — платформа для управления арендой и продажами с REST API для работы с арендой, транзакциями, биллингом, GPS-трекерами и интеграциями.",
+  "theme": "aspen",
+  "primaryColor": "#A165FD",
   "lightColor": "#EDE8FB",
-  "darkColor": "#3B1FA8",
+  "darkColor": "#151324",
   "navigation": {
     "tabs": [
       {
-        "tab": "Documentation",
+        "tab": "Документация",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Начало работы",
             "pages": [
               "introduction",
               "authentication",
@@ -20,7 +20,7 @@
             ]
           },
           {
-            "group": "Core Concepts",
+            "group": "Основные понятия",
             "pages": [
               "concepts/rentals",
               "concepts/transactions",
@@ -28,7 +28,7 @@
             ]
           },
           {
-            "group": "Guides",
+            "group": "Руководства",
             "pages": [
               "guides/managing-rentals",
               "guides/processing-payments",
@@ -37,7 +37,7 @@
             ]
           },
           {
-            "group": "Configuration",
+            "group": "Настройка",
             "pages": [
               "configuration/settings",
               "configuration/access-rights",
@@ -47,17 +47,17 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Справочник API",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Обзор",
             "pages": [
               "api-reference/overview",
               "api-reference/authentication"
             ]
           },
           {
-            "group": "Resources",
+            "group": "Ресурсы",
             "pages": [
               "api-reference/rentals",
               "api-reference/sales",
@@ -76,40 +76,42 @@
           }
         ]
       }
-    ]
+    ],
+    "language": "ru"
   },
   "keyFeatures": [
-    "Rental management with full lifecycle tracking",
-    "Sales and point-of-sale operations",
-    "Transaction and billing management",
-    "GPS and location tracking",
-    "Analytics and reporting",
-    "Workshop and inventory management",
-    "Document generation and management",
-    "Integration with third-party services",
-    "Role-based access control",
-    "Notifications and alerts"
+    "Управление арендой с отслеживанием полного жизненного цикла",
+    "Операции продаж и точек продаж",
+    "Управление транзакциями и биллингом",
+    "GPS и отслеживание местоположения",
+    "Аналитика и отчётность",
+    "Управление мастерской и инвентарём",
+    "Генерация и управление документами",
+    "Интеграция со сторонними сервисами",
+    "Ролевая модель доступа",
+    "Уведомления и оповещения"
   ],
   "publicApiSurface": [
-    "POST /auth/login",
-    "GET /rentals",
-    "POST /rentals",
-    "GET /rentals/{id}",
-    "PUT /rentals/{id}",
-    "GET /transactions",
-    "POST /transactions",
-    "GET /analytics",
-    "GET /billing",
-    "POST /billing/payments",
-    "GET /gps/locations",
-    "GET /notifications",
-    "POST /integrations",
-    "GET /documents",
-    "POST /attachments",
-    "GET /sales",
-    "POST /sales",
-    "GET /access-rights",
-    "GET /workshop",
-    "GET /store"
+    "POST /v1/auth/login/",
+    "POST /v1/auth/refresh/",
+    "GET /v1/rentals/",
+    "POST /v1/rentals/",
+    "GET /v1/rentals/{id}/",
+    "PUT /v1/rentals/{id}/",
+    "GET /v1/transactions/",
+    "POST /v1/transactions/",
+    "GET /v1/analytics/",
+    "GET /v1/billing/",
+    "POST /v1/billing/payments/",
+    "GET /v1/gps/locations/",
+    "GET /v1/notifications/",
+    "POST /v1/integrations/",
+    "GET /v1/documents/",
+    "POST /v1/attachments/",
+    "GET /v1/sales/",
+    "POST /v1/sales/",
+    "GET /v1/access-rights/",
+    "GET /v1/workshop/",
+    "GET /v1/store/"
   ]
 }
