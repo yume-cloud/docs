@@ -18,7 +18,13 @@
     "primary": {
       "type": "github",
       "href": "https://github.com/yume-cloud"
-    }
+    },
+    "links": [
+      {
+        "label": "wiki",
+        "href": "/wiki"
+      }
+    ]
   },
   "navigation": {
     "global": {
@@ -129,5 +135,23 @@
         ]
       }
     ]
+  },
+  "thumbnails": {
+    "background": "/logo/light.svg"
+  },
+  "api": {
+    "playground": {
+      "proxy": true
+    }
+  },
+  "interaction": {
+    "drilldown": false
+  },
+  "footer": {
+    "socials": {
+      "website": "https://yume.cloud",
+      "instagram": "https://www.instagram.com/yumecloudx",
+      "telegram": "https://t.me/beximiliano15"
+    }
   }
 }
