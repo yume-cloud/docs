@@ -106,33 +106,7 @@
           },
           {
             "tab": "Справочник API",
-            "groups": [
-              {
-                "group": "Обзор",
-                "pages": [
-                  "ru/api-reference/overview",
-                  "ru/api-reference/authentication"
-                ]
-              },
-              {
-                "group": "Ресурсы",
-                "pages": [
-                  "ru/api-reference/rentals",
-                  "ru/api-reference/sales",
-                  "ru/api-reference/transactions",
-                  "ru/api-reference/analytics",
-                  "ru/api-reference/billing",
-                  "ru/api-reference/documents",
-                  "ru/api-reference/attachments",
-                  "ru/api-reference/gps",
-                  "ru/api-reference/notifications",
-                  "ru/api-reference/workshop",
-                  "ru/api-reference/store",
-                  "ru/api-reference/integrations",
-                  "ru/api-reference/access-rights"
-                ]
-              }
-            ]
+            "openapi": "api/open-api.json"
           }
         ]
       }
