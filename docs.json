@@ -13,7 +13,10 @@
     "dark": "/logo/dark.svg",
     "href": "https://yume.cloud"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/favicon.svg",
+    "dark": "/favicon.svg"
+  },
   "navbar": {
     "primary": {
       "type": "button",
@@ -67,7 +70,7 @@
         "tabs": [
           {
             "tab": "Документация",
-            "groups": [
+            "pages": [
               {
                 "group": "Начало работы",
                 "pages": [
@@ -80,25 +83,24 @@
               {
                 "group": "Основные понятия",
                 "pages": [
-                  "ru/concepts/rentals",
-                  "ru/concepts/transactions",
-                  "ru/concepts/billing"
-                ]
-              },
-              {
-                "group": "Руководства",
-                "pages": [
-                  "ru/guides/managing-rentals",
-                  "ru/guides/processing-payments",
-                  "ru/guides/gps-tracking",
-                  "ru/guides/integrations"
+                  "ru/concepts/rent",
+                  "ru/concepts/client",
+                  "ru/concepts/rental-point",
+                  "ru/concepts/category",
+                  "ru/concepts/inventory",
+                  "ru/concepts/service",
+                  "ru/concepts/product",
+                  "ru/concepts/set",
+                  "ru/concepts/custom-fields"
                 ]
               },
               {
                 "group": "Настройка",
                 "pages": [
-                  "ru/configuration/settings",
-                  "ru/configuration/access-rights",
+                  "ru/configuration/tenant",
+                  "ru/configuration/rent-status",
+                  "ru/configuration/labels",
+                  "ru/configuration/access",
                   "ru/configuration/notifications"
                 ]
               }

@@ -1,26 +1,4 @@
 ---
-title: "Уведомления"
-description: "Каналы и статусы уведомлений."
+title: 'Уведомления'
 ---
 
-В спецификации объявлены ресурсы **`/v1/notifications/`** и связанные пути:
-
-- `/v1/notifications/` — список и операции
-- `/v1/notifications/read/` — отметка прочитанным
-- `/v1/notifications/count/` — счётчики
-- `/v1/notifications/mobile/` — мобильные подписки
-- `/v1/notifications/telegram/` — Telegram
-
-## Пример
-
-```bash
-curl --request GET \
-  --url 'https://api.yume.cloud/v1/notifications/?page=1&pageSize=20' \
-  --header 'Authorization: Bearer <access>'
-```
-
-Параметры пагинации и фильтры — в OpenAPI для каждого метода.
-
-<Note>
-  Тексты и типы событий зависят от конфигурации тенанта.
-</Note>
