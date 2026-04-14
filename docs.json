@@ -71,6 +71,7 @@
           {
             "tab": "Документация",
             "pages": [
+              "ru/obschee",
               "ru",
               "ru/main",
               {
@@ -95,8 +96,7 @@
                   "ru/configuration/access",
                   "ru/configuration/notifications"
                 ]
-              },
-              "ru/obschee"
+              }
             ]
           },
           {
