@@ -73,10 +73,11 @@
             "icon": "file-doc",
             "pages": [
               "ru/obschee",
-              "ru",
               "ru/main",
+              "ru",
               {
                 "group": "Основные понятия",
+                "hidden": true,
                 "pages": [
                   "ru/concepts/client",
                   "ru/concepts/rental-point",
@@ -90,6 +91,7 @@
               },
               {
                 "group": "Настройка",
+                "icon": "gear",
                 "pages": [
                   "ru/configuration/tenant",
                   "ru/configuration/rent-status",
@@ -97,7 +99,8 @@
                   "ru/configuration/access",
                   "ru/configuration/notifications"
                 ]
-              }
+              },
+              "ru/concepts/market"
             ]
           },
           {
@@ -105,26 +108,37 @@
             "icon": "compress",
             "pages": [
               {
-                "group": "Аренды",
+                "group": "Модули Инвентари",
                 "icon": "laptop-arrow-down",
                 "pages": [
                   "ru/modules/arendy-inventari",
-                  "ru/modules/arendy",
-                  "ru/modules/rent"
+                  "klient",
+                  "ru/modules/katalog",
+                  "ru/modules/analitika",
+                  "ru/modules/finansy",
+                  "ru/modules/proverka-kontragenta",
+                  "ru/modules/untitled-page",
+                  "ru/modules/untitled-page-1",
+                  "ru/modules/untitled-page-2",
+                  "ru/modules/untitled-page-3",
+                  "ru/modules/dostavka"
                 ]
               },
               {
-                "group": "Аренда инвентарей",
-                "hidden": true,
-                "pages": []
+                "group": "Модули Транспорт",
+                "icon": "car",
+                "pages": [
+                  "ru/modules/arendy"
+                ]
               },
               {
-                "group": "Аренда транспорта",
-                "hidden": true,
+                "group": "Интеграции",
+                "icon": "object-intersect",
                 "pages": []
               },
               {
                 "group": "Продажа",
+                "hidden": true,
                 "pages": [
                   "sklad",
                   "oprikhodyvanie",
@@ -133,12 +147,15 @@
               },
               {
                 "group": "Документы",
+                "hidden": true,
                 "pages": []
-              }
+              },
+              "ru/modules/rent"
             ]
           },
           {
             "tab": "Гайды",
+            "hidden": true,
             "pages": [
               "ru/guides/integrations",
               "ru/guides/client",
