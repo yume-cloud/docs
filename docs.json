@@ -92,6 +92,7 @@
               {
                 "group": "Настройка",
                 "icon": "gear",
+                "hidden": true,
                 "pages": [
                   "ru/configuration/tenant",
                   "ru/configuration/rent-status",
@@ -121,7 +122,8 @@
                   "ru/modules/untitled-page-1",
                   "ru/modules/untitled-page-2",
                   "ru/modules/untitled-page-3",
-                  "ru/modules/dostavka"
+                  "ru/modules/dostavka",
+                  "ru/modules/nastroyki"
                 ]
               },
               {
@@ -137,7 +139,8 @@
                   "ru/modules/untitled-page-copied-1",
                   "ru/modules/proverka-kontragenta-copied-1",
                   "ru/modules/untitled-page-2-copied-1",
-                  "ru/modules/dostavka-copied-1"
+                  "ru/modules/dostavka-copied-1",
+                  "ru/modules/nastroyki-copied-2"
                 ]
               },
               {
