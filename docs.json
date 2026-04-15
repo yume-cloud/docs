@@ -69,52 +69,16 @@
         "default": true,
         "tabs": [
           {
-            "tab": "Документация",
-            "icon": "file-doc",
-            "pages": [
-              "ru/obschee",
-              "ru/main",
-              "ru",
-              {
-                "group": "Основные понятия",
-                "hidden": true,
-                "pages": [
-                  "ru/concepts/client",
-                  "ru/concepts/rental-point",
-                  "ru/concepts/category",
-                  "ru/concepts/inventory",
-                  "ru/concepts/service",
-                  "ru/concepts/product",
-                  "ru/concepts/set",
-                  "ru/concepts/custom-fields"
-                ]
-              },
-              {
-                "group": "Настройка",
-                "icon": "gear",
-                "hidden": true,
-                "pages": [
-                  "ru/configuration/tenant",
-                  "ru/configuration/rent-status",
-                  "ru/configuration/labels",
-                  "ru/configuration/access",
-                  "ru/configuration/notifications"
-                ]
-              },
-              "ru/concepts/market"
-            ]
-          },
-          {
-            "tab": "Модули и Интеграции",
+            "tab": "Онбординг",
             "icon": "compress",
             "pages": [
               {
-                "group": "Модули Инвентари",
+                "group": "Управление арендами - Инвентари",
                 "icon": "laptop-arrow-down",
                 "pages": [
                   "ru/modules/arendy-inventari",
-                  "klient",
                   "ru/modules/katalog",
+                  "ru/modules/klient",
                   "ru/modules/analitika",
                   "ru/modules/finansy",
                   "ru/modules/proverka-kontragenta",
@@ -127,12 +91,12 @@
                 ]
               },
               {
-                "group": "Модули Транспорт",
+                "group": "Управление арендами -  Транспорт",
                 "icon": "car",
                 "pages": [
                   "ru/modules/arendy",
                   "ru/modules/untitled-page-5",
-                  "klient-copied-1",
+                  "drivers",
                   "ru/modules/analitika-copied-1",
                   "ru/modules/masterskaya",
                   "ru/modules/finansy-copied-1",
@@ -171,6 +135,48 @@
             ]
           },
           {
+            "tab": "Q/A",
+            "pages": [
+              "index"
+            ]
+          },
+          {
+            "tab": "Документация",
+            "icon": "file-doc",
+            "pages": [
+              "ru/obschee",
+              "ru/main",
+              "ru",
+              {
+                "group": "Основные понятия",
+                "hidden": true,
+                "pages": [
+                  "ru/concepts/client",
+                  "ru/concepts/rental-point",
+                  "ru/concepts/category",
+                  "ru/concepts/inventory",
+                  "ru/concepts/service",
+                  "ru/concepts/product",
+                  "ru/concepts/set",
+                  "ru/concepts/custom-fields"
+                ]
+              },
+              {
+                "group": "Настройка",
+                "icon": "gear",
+                "hidden": true,
+                "pages": [
+                  "ru/configuration/tenant",
+                  "ru/configuration/rent-status",
+                  "ru/configuration/labels",
+                  "ru/configuration/access",
+                  "ru/configuration/notifications"
+                ]
+              },
+              "ru/concepts/market"
+            ]
+          },
+          {
             "tab": "Гайды",
             "hidden": true,
             "pages": [
@@ -178,12 +184,6 @@
               "ru/guides/client",
               "ru/guides/product",
               "ru/guides/rent"
-            ]
-          },
-          {
-            "tab": "Q/A",
-            "pages": [
-              "index"
             ]
           },
           {
