@@ -96,7 +96,13 @@
                   "ru/modules/nastroyki-copied-2"
                 ]
               },
-              "ru/concepts/market",
+              {
+                "group": "Маркет",
+                "icon": "store",
+                "pages": [
+                  "ru/concepts/market"
+                ]
+              },
               {
                 "group": "Интеграции",
                 "icon": "object-intersect",
