@@ -128,7 +128,9 @@
                 "group": "Модули Транспорт",
                 "icon": "car",
                 "pages": [
-                  "ru/modules/arendy"
+                  "ru/modules/arendy",
+                  "klient-copied-1",
+                  "ru/modules/finansy-copied-1"
                 ]
               },
               {
