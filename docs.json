@@ -109,7 +109,15 @@
           {
             "tab": "Q/A",
             "pages": [
-              "ru/qa/index"
+              "ru/qa/nachalo-raboty",
+              "ru/qa/arendy-i-zayavki",
+              "ru/qa/inventar-i-transport",
+              "ru/qa/untitled-page",
+              "ru/qa/oplaty-i-finansy",
+              "ru/qa/analitika",
+              "ru/qa/polzovateli-i-dostupy",
+              "ru/qa/nastroyki-i-kastomizatsiya",
+              "ru/qa/integratsiya"
             ]
           },
           {
