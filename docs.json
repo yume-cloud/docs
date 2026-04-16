@@ -40,11 +40,11 @@
             "tab": "Онбординг",
             "icon": "person-chalkboard",
             "pages": [
-              "ru/obschee",
               {
                 "group": "Управление арендами - Инвентари",
                 "icon": "laptop-arrow-down",
                 "pages": [
+                  "ru/obschee",
                   "ru/modules/arendy-inventari",
                   "ru/modules/katalog",
                   "ru/modules/klient",
@@ -68,7 +68,27 @@
                 "group": "Маркет",
                 "icon": "store",
                 "pages": [
-                  "ru/concepts/market"
+                  "ru/concepts/market",
+                  "ru/modules/finansy-copied-1",
+                  "ru/modules/untitled-page-3",
+                  "ru/modules/untitled-page-copied-1",
+                  "ru/modules/dostavka-copied-1",
+                  "ru/modules/untitled-page-2-copied-1",
+                  "ru/modules/proverka-kontragenta-copied-1",
+                  {
+                    "group": "Продажа",
+                    "hidden": true,
+                    "pages": [
+                      "sklad",
+                      "oprikhodyvanie",
+                      "analitika"
+                    ]
+                  },
+                  {
+                    "group": "Документы",
+                    "hidden": true,
+                    "pages": []
+                  }
                 ]
               },
               {
@@ -76,30 +96,10 @@
                 "icon": "object-intersect",
                 "pages": [
                   "wazzup",
-                  "ru/modules/proverka-kontragenta-copied-1",
-                  "ru/modules/finansy-copied-1",
-                  "ru/modules/untitled-page-copied-1",
                   "ringostat",
-                  "ru/modules/untitled-page-3",
-                  "ru/modules/untitled-page-2-copied-1",
-                  "ru/modules/dostavka-copied-1",
-                  "kaspi-platezhi",
-                  "wialon"
+                  "wialon",
+                  "kaspi-platezhi"
                 ]
-              },
-              {
-                "group": "Продажа",
-                "hidden": true,
-                "pages": [
-                  "sklad",
-                  "oprikhodyvanie",
-                  "analitika"
-                ]
-              },
-              {
-                "group": "Документы",
-                "hidden": true,
-                "pages": []
               },
               "ru/modules/rent"
             ]
