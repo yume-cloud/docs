@@ -40,6 +40,7 @@
             "tab": "Онбординг",
             "icon": "person-chalkboard",
             "pages": [
+              "ru/modules/chto-takoe-yume",
               {
                 "group": "Управление арендами - Инвентари",
                 "icon": "laptop-arrow-down",
@@ -56,10 +57,10 @@
                 "group": "Управление арендами -  Транспорт",
                 "icon": "car",
                 "pages": [
+                  "ru/modules/obschee",
                   "ru/modules/arendy",
                   "ru/modules/untitled-page-5",
                   "drivers",
-                  "ru/modules/masterskaya",
                   "ru/modules/analitika-copied-1",
                   "ru/modules/nastroyki-copied-2"
                 ]
@@ -71,6 +72,7 @@
                   "ru/concepts/market",
                   "ru/modules/finansy-copied-1",
                   "ru/modules/untitled-page-3",
+                  "ru/modules/masterskaya",
                   "ru/modules/untitled-page-copied-1",
                   "ru/modules/dostavka-copied-1",
                   "ru/modules/untitled-page-2-copied-1",
