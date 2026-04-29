@@ -17,19 +17,6 @@
     "light": "/favicon.svg",
     "dark": "/favicon.svg"
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Зарегистрироваться",
-      "href": "https://account.yume.cloud/auth/register"
-    },
-    "links": [
-      {
-        "label": "Войти",
-        "href": "https://account.yume.cloud/auth"
-      }
-    ]
-  },
   "navigation": {
     "languages": [
       {
@@ -190,10 +177,6 @@
   },
   "thumbnails": {
     "background": "/logo/light.svg"
-  },
-  "banner": {
-    "content": "[**Зарегистрируйтесь**](https://account.yume.cloud/auth/register) и начните использовать Yume **бесплатно**",
-    "dismissible": false
   },
   "interaction": {
     "drilldown": true
