@@ -39,74 +39,88 @@
           {
             "tab": "Онбординг",
             "icon": "person-chalkboard",
-            "pages": [
-              "ru/modules/chto-takoe-yume",
+            "groups": [
               {
-                "group": "Управление арендами - Инвентари",
-                "icon": "laptop-arrow-down",
-                "expanded": false,
+                "group": "Онбординг",
+                "root": "ru/modules/chto-takoe-yume",
+                "directory": "accordion",
                 "pages": [
-                  "ru/obschee",
-                  "ru/modules/arendy-inventari",
-                  "ru/modules/katalog",
-                  "ru/modules/klient",
-                  "ru/modules/analitika",
-                  "ru/modules/nastroyki"
-                ]
-              },
-              {
-                "group": "Управление арендами -  Транспорт",
-                "icon": "car",
-                "expanded": false,
-                "pages": [
-                  "ru/modules/obschee",
-                  "ru/modules/arendy",
-                  "ru/modules/garazh",
-                  "ru/models/drivers",
-                  "ru/modules/analitika-copied-1",
-                  "ru/modules/nastroyki-copied-2"
-                ]
-              },
-              {
-                "group": "Маркет",
-                "icon": "store",
-                "expanded": false,
-                "pages": [
-                  "ru/concepts/market",
-                  "ru/modules/finansy-copied-1",
-                  "ru/modules/untitled-page-3",
-                  "ru/modules/masterskaya",
-                  "ru/modules/untitled-page-copied-1",
-                  "ru/modules/dostavka-copied-1",
-                  "ru/modules/untitled-page-2-copied-1",
-                  "ru/modules/proverka-kontragenta-copied-1",
                   {
-                    "group": "Продажа",
-                    "hidden": true,
+                    "group": "Управление арендами - Инвентари",
+                    "root": "ru/obschee",
+                    "directory": "accordion",
                     "pages": [
-                      "sklad",
-                      "oprikhodyvanie",
-                      "analitika"
+                      "ru/obschee",
+                      "ru/modules/arendy-inventari",
+                      "ru/modules/katalog",
+                      "ru/modules/klient",
+                      "ru/modules/analitika",
+                      "ru/modules/nastroyki"
                     ]
                   },
                   {
-                    "group": "Документы",
-                    "hidden": true,
-                    "pages": []
+                    "group": "Управление арендами - Транспорт",
+                    "root": "ru/modules/obschee",
+                    "directory": "accordion",
+                    "pages": [
+                      "ru/modules/obschee",
+                      "ru/modules/arendy",
+                      "ru/modules/garazh",
+                      "ru/models/drivers",
+                      "ru/modules/analitika-copied-1",
+                      "ru/modules/nastroyki-copied-2"
+                    ]
+                  },
+                  {
+                    "group": "Маркет",
+                    "root": "ru/concepts/market",
+                    "directory": "accordion",
+                    "pages": [
+                      "ru/concepts/market",
+                      "ru/modules/finansy-copied-1",
+                      "ru/modules/untitled-page-3",
+                      "ru/modules/masterskaya",
+                      "ru/modules/untitled-page-copied-1",
+                      "ru/modules/dostavka-copied-1",
+                      "ru/modules/untitled-page-2-copied-1",
+                      "ru/modules/proverka-kontragenta-copied-1",
+                      {
+                        "group": "Продажа",
+                        "hidden": true,
+                        "pages": [
+                          "sklad",
+                          "oprikhodyvanie",
+                          "analitika"
+                        ]
+                      },
+                      {
+                        "group": "Документы",
+                        "hidden": true,
+                        "pages": []
+                      }
+                    ]
+                  },
+                  {
+                    "group": "Интеграции",
+                    "root": "wazzup",
+                    "directory": "none",
+                    "pages": [
+                      "wazzup",
+                      "ringostat",
+                      "wialon",
+                      "kaspi-platezhi"
+                    ]
+                  },
+                  {
+                    "group": "Аренда",
+                    "root": "ru/modules/rent",
+                    "directory": "none",
+                    "pages": [
+                      "ru/modules/rent"
+                    ]
                   }
                 ]
-              },
-              {
-                "group": "Интеграции",
-                "icon": "object-intersect",
-                "pages": [
-                  "wazzup",
-                  "ringostat",
-                  "wialon",
-                  "kaspi-platezhi"
-                ]
-              },
-              "ru/modules/rent"
+              }
             ]
           },
           {
