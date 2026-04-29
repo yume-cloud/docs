@@ -44,6 +44,7 @@
               {
                 "group": "Управление арендами - Инвентари",
                 "icon": "laptop-arrow-down",
+                "expanded": true,
                 "pages": [
                   "ru/obschee",
                   "ru/modules/arendy-inventari",
@@ -56,6 +57,7 @@
               {
                 "group": "Управление арендами -  Транспорт",
                 "icon": "car",
+                "expanded": true,
                 "pages": [
                   "ru/modules/obschee",
                   "ru/modules/arendy",
