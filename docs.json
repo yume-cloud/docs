@@ -29,48 +29,48 @@
             "groups": [
               {
                 "group": " Что такое Yume ?",
-                "root": "ru/modules/chto-takoe-yume",
+                "root": "ru/modules/what-is-yume",
                 "pages": [
                   {
                     "group": "Управление арендами - Инвентари",
-                    "root": "ru/obschee",
+                    "root": "ru/inventory-overview",
                     "pages": [
-                      "ru/modules/arendy-inventari",
-                      "ru/modules/katalog",
-                      "ru/modules/klient",
-                      "ru/modules/analitika",
-                      "ru/modules/nastroyki"
+                      "ru/modules/inventory-rentals",
+                      "ru/modules/catalog",
+                      "ru/modules/clients",
+                      "ru/modules/inventory-analytics",
+                      "ru/modules/inventory-settings"
                     ]
                   },
                   {
                     "group": "Управление арендами - Транспорт",
-                    "root": "ru/modules/obschee",
+                    "root": "ru/modules/transport-overview",
                     "pages": [
-                      "ru/modules/arendy",
-                      "ru/modules/garazh",
+                      "ru/modules/transport-rentals",
+                      "ru/modules/garage",
                       "ru/models/drivers",
-                      "ru/modules/analitika-copied-1",
-                      "ru/modules/nastroyki-copied-2"
+                      "ru/modules/transport-analytics",
+                      "ru/modules/transport-settings"
                     ]
                   },
                   {
                     "group": "Маркет",
                     "root": "ru/concepts/market",
                     "pages": [
-                      "ru/modules/finansy-copied-1",
-                      "ru/modules/untitled-page-3",
-                      "ru/modules/masterskaya",
-                      "ru/modules/untitled-page-copied-1",
-                      "ru/modules/dostavka-copied-1",
-                      "ru/modules/untitled-page-2-copied-1",
-                      "ru/modules/proverka-kontragenta-copied-1",
+                      "ru/modules/finance",
+                      "ru/modules/store",
+                      "ru/modules/workshop",
+                      "ru/modules/sms-center",
+                      "ru/modules/delivery",
+                      "ru/modules/sales-funnel",
+                      "ru/modules/counterparty-check",
                       {
                         "group": "Продажа",
                         "hidden": true,
                         "pages": [
-                          "sklad",
-                          "oprikhodyvanie",
-                          "analitika"
+                          "warehouse",
+                          "goods-receipt",
+                          "analytics"
                         ]
                       },
                       {
@@ -86,7 +86,7 @@
                     "pages": [
                       "ringostat",
                       "wialon",
-                      "kaspi-platezhi"
+                      "kaspi-payments"
                     ]
                   },
                   {
@@ -101,22 +101,22 @@
           {
             "tab": "Q/A",
             "pages": [
-              "ru/qa/obschie-voprosy",
-              "ru/qa/nachalo-raboty",
-              "ru/qa/arendy-i-zayavki",
-              "ru/qa/inventar-i-transport",
-              "ru/qa/untitled-page",
-              "ru/qa/oplaty-i-finansy",
-              "ru/qa/analitika",
-              "ru/qa/polzovateli-i-dostupy",
-              "ru/qa/nastroyki-i-kastomizatsiya",
-              "ru/qa/magazin",
-              "ru/qa/integratsiya"
+              "ru/qa/general-questions",
+              "ru/qa/getting-started",
+              "ru/qa/rentals-and-orders",
+              "ru/qa/inventory-and-transport",
+              "ru/qa/workshop-and-maintenance",
+              "ru/qa/payments-and-finance",
+              "ru/qa/analytics",
+              "ru/qa/users-and-access",
+              "ru/qa/settings-and-customization",
+              "ru/qa/store",
+              "ru/qa/integrations"
             ]
           },
           {
             "tab": "Документация",
-            "icon": "file-doc",
+            "icon": "file-lines",
             "hidden": true,
             "pages": [
               "ru/main",
@@ -169,6 +169,13 @@
             "icon": "phone",
             "pages": [
               "contact"
+            ]
+          },
+          {
+            "tab": "История изменений",
+            "icon": "clock-rotate-left",
+            "pages": [
+              "changelog"
             ]
           }
         ]
