@@ -1,7 +1,7 @@
 {
   "projectType": "api-service",
-  "projectName": "Yume Cloud",
-  "projectDescription": "Yume Cloud — платформа для управления арендой и продажами с REST API для работы с арендой, транзакциями, биллингом, GPS-трекерами и интеграциями.",
+  "projectName": "Yume",
+  "projectDescription": "Yume — платформа для управления арендой и продажами.",
   "theme": "aspen",
   "primaryColor": "#A165FD",
   "lightColor": "#EDE8FB",

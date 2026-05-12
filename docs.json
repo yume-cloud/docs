@@ -175,6 +175,7 @@
             "tab": "История изменений",
             "icon": "clock-rotate-left",
             "pages": [
+              "roadmap",
               "changelog"
             ]
           }
@@ -187,6 +188,13 @@
   },
   "interaction": {
     "drilldown": true
+  },
+  "errors": {
+    "404": {
+      "redirect": false,
+      "title": "Страница не найдена",
+      "description": "Такой страницы здесь больше нет или вы ошиблись адресом."
+    }
   },
   "footer": {
     "socials": {

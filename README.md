@@ -1,4 +1,4 @@
-# Документация Yume Cloud (Mintlify)
+# Документация Yume (Mintlify)
 
 Контент сайта на **русском языке**. Интерактивная спецификация OpenAPI подключается в `docs.json` (`openapi`: `api-reference/yume-cloud-openapi.yaml`).
 
