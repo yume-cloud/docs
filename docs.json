@@ -175,7 +175,6 @@
             "tab": "История изменений",
             "icon": "clock-rotate-left",
             "pages": [
-              "roadmap",
               "changelog"
             ]
           }
