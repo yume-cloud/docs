@@ -73,11 +73,7 @@
                           "analytics"
                         ]
                       },
-                      {
-                        "group": "Документы",
-                        "hidden": true,
-                        "pages": []
-                      }
+                      "ru/modules/dokumenty"
                     ]
                   },
                   {
@@ -92,7 +88,8 @@
                   {
                     "group": "Аренда",
                     "root": "ru/modules/rent",
-                    "pages": []
+                    "pages": [],
+                    "hidden": true
                   }
                 ]
               }
