@@ -2,7 +2,6 @@
   "$schema": "https://mintlify.com/docs.json",
   "name": "Yume",
   "theme": "aspen",
-  "openapi": "api-reference/yume-cloud-openapi.yaml",
   "colors": {
     "primary": "#A165FD",
     "light": "#EDE8FB",
@@ -157,11 +156,6 @@
             ]
           },
           {
-            "tab": "Справочник API",
-            "hidden": true,
-            "openapi": "api/open-api.json"
-          },
-          {
             "tab": "Контакты",
             "icon": "phone",
             "pages": [
@@ -173,6 +167,45 @@
             "icon": "clock-rotate-left",
             "pages": [
               "changelog"
+            ]
+          },
+          {
+            "tab": "Справочник API",
+            "icon": "code",
+            "groups": [
+              {
+                "group": "Разделы",
+                "pages": [
+                  { "group": "Аутентификация", "icon": "lock", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/auth.json" },
+                  { "group": "Конфигурация", "icon": "sliders", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/config.json" },
+                  { "group": "Настройки", "icon": "sliders-horizontal", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/settings.json" },
+                  { "group": "Основное", "icon": "briefcase", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/main.json" },
+                  { "group": "Аренда", "icon": "clipboard-list", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/orders.json" },
+                  { "group": "Транзакции", "icon": "credit-card", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/finances.json" },
+                  { "group": "Аналитика", "icon": "chart-bar", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/metrics.json" },
+                  { "group": "Дашборд", "icon": "gauge", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/dashboard.json" },
+                  { "group": "Права доступа", "icon": "shield-halved", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/permissions.json" },
+                  { "group": "Биллинг", "icon": "receipt", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/billing.json" },
+                  { "group": "Уведомления", "icon": "bell", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/notification.json" },
+                  { "group": "GPS", "icon": "location-dot", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/geolocation.json" },
+                  { "group": "Продажи", "icon": "cash-register", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/sales.json" },
+                  { "group": "Мастерская", "icon": "wrench", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/workshop.json" },
+                  { "group": "Магазин", "icon": "store", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/shop.json" },
+                  { "group": "Документы", "icon": "file-lines", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/document.json" },
+                  { "group": "Интеграции", "icon": "plug", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/integrations.json" },
+                  { "group": "Вложения", "icon": "paperclip", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/attachments.json" },
+                  { "group": "Компании", "icon": "building", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/tenant.json" },
+                  { "group": "Новости", "icon": "newspaper", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/news.json" },
+                  { "group": "Каталог", "icon": "boxes-stacked", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/shared.json" },
+                  { "group": "Plus", "icon": "puzzle-piece", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/plus.json" },
+                  { "group": "Автопарк", "icon": "truck", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/fleet.json" },
+                  { "group": "OkAuto", "icon": "car", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/cars.json" },
+                  { "group": "Apple/Google Wallet", "icon": "wallet", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/wallet.json" },
+                  { "group": "SMS", "icon": "message", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/sms.json" },
+                  { "group": "Чёрный список", "icon": "ban", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/blacklist.json" },
+                  { "group": "AI Ассистент", "icon": "robot", "expanded": false, "openapi": "https://api.yume.cloud/v1/docs/openapi/assistant.json" }
+                ]
+              }
             ]
           }
         ]
