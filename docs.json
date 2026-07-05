@@ -30,6 +30,7 @@
               {
                 "group": " Что такое Yume ?",
                 "root": "ru/modules/what-is-yume",
+                "public": true,
                 "pages": [
                   {
                     "group": "Управление арендами - Инвентари",
@@ -96,19 +97,174 @@
             ]
           },
           {
+            "tab": "Логика системы",
+            "icon": "diagram-project",
+            "groups": [
+              {
+                "group": "Обзор",
+                "pages": [
+                  "ru/logic/overview"
+                ]
+              },
+              {
+                "group": "Аренда и расчёты",
+                "pages": [
+                  "ru/logic/rent-lifecycle",
+                  "ru/logic/tariffs-pricing",
+                  "ru/logic/discounts",
+                  "ru/logic/deposits-penalties"
+                ]
+              },
+              {
+                "group": "Финансы и оплаты",
+                "pages": [
+                  "ru/logic/finances",
+                  "ru/logic/finances-payments",
+                  "ru/logic/finances-accounts",
+                  "ru/logic/finances-distribution",
+                  "ru/logic/finances-transfers-refunds",
+                  "ru/logic/finances-schedule",
+                  "ru/logic/finances-kaspi",
+                  "ru/logic/finances-rentlink"
+                ]
+              },
+              {
+                "group": "Инвентарь и каталог",
+                "pages": [
+                  "ru/logic/inventory",
+                  "ru/logic/inventory-groups",
+                  "ru/logic/inventory-sets"
+                ]
+              },
+              {
+                "group": "Клиенты и аналитика",
+                "pages": [
+                  "ru/logic/clients-loyalty",
+                  "ru/logic/profit-payback",
+                  "ru/logic/metrics"
+                ]
+              },
+              {
+                "group": "Документы и подписание",
+                "pages": [
+                  "ru/logic/documents",
+                  "ru/logic/documents-crud",
+                  "ru/logic/documents-templates",
+                  "ru/logic/documents-generation",
+                  "ru/logic/documents-placeholders",
+                  "ru/logic/documents-signing",
+                  "ru/logic/documents-packages"
+                ]
+              },
+              {
+                "group": "Вложения",
+                "pages": [
+                  "ru/logic/attachments",
+                  "ru/logic/attachments-comments",
+                  "ru/logic/attachments-images",
+                  "ru/logic/attachments-files",
+                  "ru/logic/attachments-multipart",
+                  "ru/logic/attachments-links"
+                ]
+              },
+              {
+                "group": "Инфраструктура",
+                "pages": [
+                  "ru/logic/background-tasks",
+                  "ru/logic/feature-flags",
+                  "ru/logic/disable-archiving"
+                ]
+              },
+              {
+                "group": "Известные особенности и ограничения",
+                "pages": [
+                  "ru/logic/known-issues"
+                ]
+              },
+              {
+                "group": "Уведомления",
+                "pages": [
+                  "ru/logic/notifications",
+                  "ru/logic/notifications-feed",
+                  "ru/logic/notifications-push",
+                  "ru/logic/notifications-telegram",
+                  "ru/logic/notifications-access"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Глоссарии",
+            "icon": "book",
+            "groups": [
+              {
+                "group": "Финансы и оплаты",
+                "pages": [
+                  "ru/logic/finances-payments-glossary",
+                  "ru/logic/finances-accounts-glossary",
+                  "ru/logic/finances-distribution-glossary",
+                  "ru/logic/finances-transfers-refunds-glossary",
+                  "ru/logic/finances-schedule-glossary",
+                  "ru/logic/finances-kaspi-glossary",
+                  "ru/logic/finances-rentlink-glossary"
+                ]
+              },
+              {
+                "group": "Документы и подписание",
+                "pages": [
+                  "ru/logic/documents-crud-glossary",
+                  "ru/logic/documents-templates-glossary",
+                  "ru/logic/documents-placeholders-glossary",
+                  "ru/logic/documents-signing-glossary",
+                  "ru/logic/documents-packages-glossary"
+                ]
+              },
+              {
+                "group": "Вложения",
+                "pages": [
+                  "ru/logic/attachments-comments-glossary",
+                  "ru/logic/attachments-images-glossary",
+                  "ru/logic/attachments-files-glossary",
+                  "ru/logic/attachments-links-glossary"
+                ]
+              },
+              {
+                "group": "Инфраструктура",
+                "pages": [
+                  "ru/logic/disable-archiving-glossary"
+                ]
+              },
+              {
+                "group": "Уведомления",
+                "pages": [
+                  "ru/logic/notifications-feed-glossary",
+                  "ru/logic/notifications-push-glossary",
+                  "ru/logic/notifications-telegram-glossary",
+                  "ru/logic/notifications-access-glossary"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "Q/A",
-            "pages": [
-              "ru/qa/general-questions",
-              "ru/qa/getting-started",
-              "ru/qa/rentals-and-orders",
-              "ru/qa/inventory-and-transport",
-              "ru/qa/workshop-and-maintenance",
-              "ru/qa/payments-and-finance",
-              "ru/qa/analytics",
-              "ru/qa/users-and-access",
-              "ru/qa/settings-and-customization",
-              "ru/qa/store",
-              "ru/qa/integrations"
+            "groups": [
+              {
+                "group": " ",
+                "public": true,
+                "pages": [
+                  "ru/qa/general-questions",
+                  "ru/qa/getting-started",
+                  "ru/qa/rentals-and-orders",
+                  "ru/qa/inventory-and-transport",
+                  "ru/qa/workshop-and-maintenance",
+                  "ru/qa/payments-and-finance",
+                  "ru/qa/analytics",
+                  "ru/qa/users-and-access",
+                  "ru/qa/settings-and-customization",
+                  "ru/qa/store",
+                  "ru/qa/integrations"
+                ]
+              }
             ]
           },
           {
@@ -116,11 +272,18 @@
             "icon": "file-lines",
             "hidden": true,
             "pages": [
-              "ru/main",
-              "ru",
+              {
+                "group": " ",
+                "public": true,
+                "pages": [
+                  "ru/main",
+                  "ru"
+                ]
+              },
               {
                 "group": "Основные понятия",
                 "hidden": true,
+                "public": true,
                 "pages": [
                   "ru/concepts/client",
                   "ru/concepts/rental-point",
@@ -136,6 +299,7 @@
                 "group": "Настройка",
                 "icon": "gear",
                 "hidden": true,
+                "public": true,
                 "pages": [
                   "ru/configuration/tenant",
                   "ru/configuration/rent-status",
@@ -149,11 +313,17 @@
           {
             "tab": "Гайды",
             "hidden": true,
-            "pages": [
-              "ru/guides/integrations",
-              "ru/guides/client",
-              "ru/guides/product",
-              "ru/guides/rent"
+            "groups": [
+              {
+                "group": " ",
+                "public": true,
+                "pages": [
+                  "ru/guides/integrations",
+                  "ru/guides/client",
+                  "ru/guides/product",
+                  "ru/guides/rent"
+                ]
+              }
             ]
           },
           {
@@ -164,15 +334,27 @@
           {
             "tab": "Контакты",
             "icon": "phone",
-            "pages": [
-              "contact"
+            "groups": [
+              {
+                "group": " ",
+                "public": true,
+                "pages": [
+                  "contact"
+                ]
+              }
             ]
           },
           {
             "tab": "История изменений",
             "icon": "clock-rotate-left",
-            "pages": [
-              "changelog"
+            "groups": [
+              {
+                "group": " ",
+                "public": true,
+                "pages": [
+                  "changelog"
+                ]
+              }
             ]
           }
         ]
@@ -185,6 +367,20 @@
   "interaction": {
     "drilldown": true
   },
+  "redirects": [
+    {
+      "source": "/ru/logic/inventory-groups-sets",
+      "destination": "/ru/logic/inventory-groups"
+    },
+    {
+      "source": "/ru/logic/finances-transactions",
+      "destination": "/ru/logic/finances"
+    },
+    {
+      "source": "/ru/logic/finances-glossary",
+      "destination": "/ru/logic/finances-payments-glossary"
+    }
+  ],
   "errors": {
     "404": {
       "redirect": false,
