@@ -99,15 +99,18 @@
           {
             "tab": "Логика системы",
             "icon": "diagram-project",
+            "hidden": true,
             "groups": [
               {
                 "group": "Обзор",
+                "public": true,
                 "pages": [
                   "ru/logic/overview"
                 ]
               },
               {
                 "group": "Аренда и расчёты",
+                "public": true,
                 "pages": [
                   "ru/logic/rent-lifecycle",
                   "ru/logic/tariffs-pricing",
@@ -117,6 +120,7 @@
               },
               {
                 "group": "Финансы и оплаты",
+                "public": true,
                 "pages": [
                   "ru/logic/finances",
                   "ru/logic/finances-payments",
@@ -130,6 +134,7 @@
               },
               {
                 "group": "Инвентарь и каталог",
+                "public": true,
                 "pages": [
                   "ru/logic/inventory",
                   "ru/logic/inventory-groups",
@@ -138,6 +143,7 @@
               },
               {
                 "group": "Клиенты и аналитика",
+                "public": true,
                 "pages": [
                   "ru/logic/clients-loyalty",
                   "ru/logic/profit-payback",
@@ -146,6 +152,7 @@
               },
               {
                 "group": "Документы и подписание",
+                "public": true,
                 "pages": [
                   "ru/logic/documents",
                   "ru/logic/documents-crud",
@@ -158,6 +165,7 @@
               },
               {
                 "group": "Вложения",
+                "public": true,
                 "pages": [
                   "ru/logic/attachments",
                   "ru/logic/attachments-comments",
@@ -169,6 +177,7 @@
               },
               {
                 "group": "Инфраструктура",
+                "public": true,
                 "pages": [
                   "ru/logic/background-tasks",
                   "ru/logic/feature-flags",
@@ -177,12 +186,14 @@
               },
               {
                 "group": "Известные особенности и ограничения",
+                "public": true,
                 "pages": [
                   "ru/logic/known-issues"
                 ]
               },
               {
                 "group": "Уведомления",
+                "public": true,
                 "pages": [
                   "ru/logic/notifications",
                   "ru/logic/notifications-feed",
@@ -196,9 +207,11 @@
           {
             "tab": "Глоссарии",
             "icon": "book",
+            "hidden": true,
             "groups": [
               {
                 "group": "Финансы и оплаты",
+                "public": true,
                 "pages": [
                   "ru/logic/finances-payments-glossary",
                   "ru/logic/finances-accounts-glossary",
@@ -211,6 +224,7 @@
               },
               {
                 "group": "Документы и подписание",
+                "public": true,
                 "pages": [
                   "ru/logic/documents-crud-glossary",
                   "ru/logic/documents-templates-glossary",
@@ -221,6 +235,7 @@
               },
               {
                 "group": "Вложения",
+                "public": true,
                 "pages": [
                   "ru/logic/attachments-comments-glossary",
                   "ru/logic/attachments-images-glossary",
@@ -230,12 +245,14 @@
               },
               {
                 "group": "Инфраструктура",
+                "public": true,
                 "pages": [
                   "ru/logic/disable-archiving-glossary"
                 ]
               },
               {
                 "group": "Уведомления",
+                "public": true,
                 "pages": [
                   "ru/logic/notifications-feed-glossary",
                   "ru/logic/notifications-push-glossary",
