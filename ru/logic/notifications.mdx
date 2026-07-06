@@ -16,17 +16,17 @@ description: "Единый шлюз оповещений Yume: события к
 ## Разделы
 
 <CardGroup cols={2}>
-  <Card title="Лента уведомлений и рассылка" icon="inbox" href="/ru/logic/notifications-feed">
+  <Card title="Лента уведомлений и рассылка" icon="inbox" href="/ru/logic/notifications/feed">
     Единая модель события, персональные пометки «прочитано»/«в архиве» и то, как уведомление превращается в
     рассылку по каналам.
   </Card>
-  <Card title="Push-уведомления" icon="mobile-screen" href="/ru/logic/notifications-push">
+  <Card title="Push-уведомления" icon="mobile-screen" href="/ru/logic/notifications/push">
     Регистрация push-токенов устройств, отправка через Expo и автоматическая деактивация нерабочих токенов.
   </Card>
-  <Card title="Telegram-уведомления" icon="paper-plane" href="/ru/logic/notifications-telegram">
+  <Card title="Telegram-уведомления" icon="paper-plane" href="/ru/logic/notifications/telegram">
     Привязка Telegram-аккаунта по коду подтверждения и отправка сообщений через бота.
   </Card>
-  <Card title="Доступ и темы уведомлений" icon="sliders" href="/ru/logic/notifications-access">
+  <Card title="Доступ и темы уведомлений" icon="sliders" href="/ru/logic/notifications/access">
     Каким каналам и темам разрешено слать уведомления конкретному сотруднику, и как заполняется полная матрица
     настроек.
   </Card>
@@ -48,9 +48,9 @@ Telegram- или веб-сообщения.
 
 <Note>
 Общая лента и фактическая рассылка — два независимых механизма. Ленту в разделе [«Лента уведомлений и
-рассылка»](/ru/logic/notifications-feed) видят все сотрудники компании одинаково, вне зависимости от явных
+рассылка»](/ru/logic/notifications/feed) видят все сотрудники компании одинаково, вне зависимости от явных
 получателей события. А то, кому реально придёт push, Telegram-сообщение или веб-уведомление, решает персональная
-матрица настроек из раздела [«Доступ и темы уведомлений»](/ru/logic/notifications-access) — это последний, чисто
+матрица настроек из раздела [«Доступ и темы уведомлений»](/ru/logic/notifications/access) — это последний, чисто
 личный фильтр в цепочке рассылки.
 </Note>
 

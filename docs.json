@@ -123,13 +123,13 @@
                 "public": true,
                 "pages": [
                   "ru/logic/finances",
-                  "ru/logic/finances-payments",
-                  "ru/logic/finances-accounts",
-                  "ru/logic/finances-distribution",
-                  "ru/logic/finances-transfers-refunds",
-                  "ru/logic/finances-schedule",
-                  "ru/logic/finances-kaspi",
-                  "ru/logic/finances-rentlink"
+                  "ru/logic/finances/payments",
+                  "ru/logic/finances/accounts",
+                  "ru/logic/finances/distribution",
+                  "ru/logic/finances/transfers-refunds",
+                  "ru/logic/finances/schedule",
+                  "ru/logic/finances/kaspi",
+                  "ru/logic/finances/rentlink"
                 ]
               },
               {
@@ -142,12 +142,36 @@
                 ]
               },
               {
-                "group": "Клиенты и аналитика",
+                "group": "Клиенты",
                 "public": true,
                 "pages": [
                   "ru/logic/clients-loyalty",
+                  "ru/logic/clients-loyalty/client",
+                  "ru/logic/clients-loyalty/bonuses",
+                  "ru/logic/clients-loyalty/loyalty-program",
+                  "ru/logic/clients-loyalty/referrals"
+                ]
+              },
+              {
+                "group": "Метрики и аналитика",
+                "public": true,
+                "pages": [
+                  "ru/logic/metrics",
                   "ru/logic/profit-payback",
-                  "ru/logic/metrics"
+                  "ru/logic/metrics/overview",
+                  "ru/logic/metrics/finances",
+                  "ru/logic/metrics/transactions",
+                  "ru/logic/metrics/penalties",
+                  "ru/logic/metrics/discounts",
+                  "ru/logic/metrics/deposits",
+                  "ru/logic/metrics/services",
+                  "ru/logic/metrics/salaries-sublease",
+                  "ru/logic/metrics/depreciation-payback",
+                  "ru/logic/metrics/efficiency",
+                  "ru/logic/metrics/referrals-clients",
+                  "ru/logic/metrics/workshifts",
+                  "ru/logic/metrics/modules",
+                  "ru/logic/metrics/bonuses"
                 ]
               },
               {
@@ -155,12 +179,12 @@
                 "public": true,
                 "pages": [
                   "ru/logic/documents",
-                  "ru/logic/documents-crud",
-                  "ru/logic/documents-templates",
-                  "ru/logic/documents-generation",
-                  "ru/logic/documents-placeholders",
-                  "ru/logic/documents-signing",
-                  "ru/logic/documents-packages"
+                  "ru/logic/documents/crud",
+                  "ru/logic/documents/templates",
+                  "ru/logic/documents/generation",
+                  "ru/logic/documents/placeholders",
+                  "ru/logic/documents/signing",
+                  "ru/logic/documents/packages"
                 ]
               },
               {
@@ -168,27 +192,11 @@
                 "public": true,
                 "pages": [
                   "ru/logic/attachments",
-                  "ru/logic/attachments-comments",
-                  "ru/logic/attachments-images",
-                  "ru/logic/attachments-files",
-                  "ru/logic/attachments-multipart",
-                  "ru/logic/attachments-links"
-                ]
-              },
-              {
-                "group": "Инфраструктура",
-                "public": true,
-                "pages": [
-                  "ru/logic/background-tasks",
-                  "ru/logic/feature-flags",
-                  "ru/logic/disable-archiving"
-                ]
-              },
-              {
-                "group": "Известные особенности и ограничения",
-                "public": true,
-                "pages": [
-                  "ru/logic/known-issues"
+                  "ru/logic/attachments/comments",
+                  "ru/logic/attachments/images",
+                  "ru/logic/attachments/files",
+                  "ru/logic/attachments/multipart",
+                  "ru/logic/attachments/links"
                 ]
               },
               {
@@ -196,10 +204,32 @@
                 "public": true,
                 "pages": [
                   "ru/logic/notifications",
-                  "ru/logic/notifications-feed",
-                  "ru/logic/notifications-push",
-                  "ru/logic/notifications-telegram",
-                  "ru/logic/notifications-access"
+                  "ru/logic/notifications/feed",
+                  "ru/logic/notifications/push",
+                  "ru/logic/notifications/telegram",
+                  "ru/logic/notifications/access"
+                ]
+              },
+              {
+                "group": "Архив",
+                "public": true,
+                "pages": [
+                  "ru/logic/disable-archiving"
+                ]
+              },
+              {
+                "group": "Инфраструктура",
+                "public": true,
+                "pages": [
+                  "ru/logic/background-tasks",
+                  "ru/logic/feature-flags"
+                ]
+              },
+              {
+                "group": "Известные особенности и ограничения",
+                "public": true,
+                "pages": [
+                  "ru/logic/known-issues"
                 ]
               }
             ]
@@ -213,38 +243,38 @@
                 "group": "Финансы и оплаты",
                 "public": true,
                 "pages": [
-                  "ru/logic/finances-payments-glossary",
-                  "ru/logic/finances-accounts-glossary",
-                  "ru/logic/finances-distribution-glossary",
-                  "ru/logic/finances-transfers-refunds-glossary",
-                  "ru/logic/finances-schedule-glossary",
-                  "ru/logic/finances-kaspi-glossary",
-                  "ru/logic/finances-rentlink-glossary"
+                  "ru/logic/finances/payments-glossary",
+                  "ru/logic/finances/accounts-glossary",
+                  "ru/logic/finances/distribution-glossary",
+                  "ru/logic/finances/transfers-refunds-glossary",
+                  "ru/logic/finances/schedule-glossary",
+                  "ru/logic/finances/kaspi-glossary",
+                  "ru/logic/finances/rentlink-glossary"
                 ]
               },
               {
                 "group": "Документы и подписание",
                 "public": true,
                 "pages": [
-                  "ru/logic/documents-crud-glossary",
-                  "ru/logic/documents-templates-glossary",
-                  "ru/logic/documents-placeholders-glossary",
-                  "ru/logic/documents-signing-glossary",
-                  "ru/logic/documents-packages-glossary"
+                  "ru/logic/documents/crud-glossary",
+                  "ru/logic/documents/templates-glossary",
+                  "ru/logic/documents/placeholders-glossary",
+                  "ru/logic/documents/signing-glossary",
+                  "ru/logic/documents/packages-glossary"
                 ]
               },
               {
                 "group": "Вложения",
                 "public": true,
                 "pages": [
-                  "ru/logic/attachments-comments-glossary",
-                  "ru/logic/attachments-images-glossary",
-                  "ru/logic/attachments-files-glossary",
-                  "ru/logic/attachments-links-glossary"
+                  "ru/logic/attachments/comments-glossary",
+                  "ru/logic/attachments/images-glossary",
+                  "ru/logic/attachments/files-glossary",
+                  "ru/logic/attachments/links-glossary"
                 ]
               },
               {
-                "group": "Инфраструктура",
+                "group": "Архив",
                 "public": true,
                 "pages": [
                   "ru/logic/disable-archiving-glossary"
@@ -254,10 +284,30 @@
                 "group": "Уведомления",
                 "public": true,
                 "pages": [
-                  "ru/logic/notifications-feed-glossary",
-                  "ru/logic/notifications-push-glossary",
-                  "ru/logic/notifications-telegram-glossary",
-                  "ru/logic/notifications-access-glossary"
+                  "ru/logic/notifications/feed-glossary",
+                  "ru/logic/notifications/push-glossary",
+                  "ru/logic/notifications/telegram-glossary",
+                  "ru/logic/notifications/access-glossary"
+                ]
+              },
+              {
+                "group": "Метрики и аналитика",
+                "public": true,
+                "pages": [
+                  "ru/logic/metrics/overview-glossary",
+                  "ru/logic/metrics/finances-glossary",
+                  "ru/logic/metrics/transactions-glossary",
+                  "ru/logic/metrics/penalties-glossary",
+                  "ru/logic/metrics/discounts-glossary",
+                  "ru/logic/metrics/deposits-glossary",
+                  "ru/logic/metrics/services-glossary",
+                  "ru/logic/metrics/salaries-sublease-glossary",
+                  "ru/logic/metrics/depreciation-payback-glossary",
+                  "ru/logic/metrics/efficiency-glossary",
+                  "ru/logic/metrics/referrals-clients-glossary",
+                  "ru/logic/metrics/workshifts-glossary",
+                  "ru/logic/metrics/modules-glossary",
+                  "ru/logic/metrics/bonuses-glossary"
                 ]
               }
             ]
@@ -395,7 +445,7 @@
     },
     {
       "source": "/ru/logic/finances-glossary",
-      "destination": "/ru/logic/finances-payments-glossary"
+      "destination": "/ru/logic/finances/payments-glossary"
     }
   ],
   "errors": {

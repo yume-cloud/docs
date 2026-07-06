@@ -18,23 +18,23 @@ Kaspi. Каждая оплата при сохранении и удалении
 ## Разделы
 
 <CardGroup cols={2}>
-  <Card title="Оплата: модель, знак и проверки" icon="receipt" href="/ru/logic/finances-payments">
+  <Card title="Оплата: модель, знак и проверки" icon="receipt" href="/ru/logic/finances/payments">
     Центральная сущность модуля: поля оплаты, нормализация знака суммы, подбор счёта, проверки при создании, уведомления и
     граница «оплата → прибыль».
   </Card>
-  <Card title="Счета, виды оплаты и статьи" icon="cash-register" href="/ru/logic/finances-accounts">
+  <Card title="Счета, виды оплаты и статьи" icon="cash-register" href="/ru/logic/finances/accounts">
     Справочники, вокруг которых строятся операции, и автоматический пересчёт баланса счёта.
   </Card>
-  <Card title="Распределение, назначение платежа и контрагенты" icon="table-list" href="/ru/logic/finances-distribution">
+  <Card title="Распределение, назначение платежа и контрагенты" icon="table-list" href="/ru/logic/finances/distribution">
     Разметка платежа по позициям заказа, назначение платежа и справочник сторон сделки.
   </Card>
-  <Card title="Переводы между счетами и возвраты" icon="right-left" href="/ru/logic/finances-transfers-refunds">
+  <Card title="Переводы между счетами и возвраты" icon="right-left" href="/ru/logic/finances/transfers-refunds">
     Встречные операции: обмен между кассами и оформление возврата денег клиенту.
   </Card>
-  <Card title="Графики платежей" icon="calendar-days" href="/ru/logic/finances-schedule">
+  <Card title="Графики платежей" icon="calendar-days" href="/ru/logic/finances/schedule">
     Разбивка стоимости аренды на ежедневные плановые платежи и их автоматический пересчёт.
   </Card>
-  <Card title="Интеграция с Kaspi" icon="qrcode" href="/ru/logic/finances-kaspi">
+  <Card title="Интеграция с Kaspi" icon="qrcode" href="/ru/logic/finances/kaspi">
     Оплата через платёжный сервис Kaspi (QR-код или счёт на телефон).
   </Card>
 </CardGroup>
@@ -54,7 +54,7 @@ Kaspi. Каждая оплата при сохранении и удалении
 Оплата **не пишет прибыль напрямую**. При сохранении или удалении оплаты пересчитывается оплаченность заказа, а затем
 отложенно, в фоне, — дневная прибыль своим отдельным алгоритмом. Подробности раскладки по дням и расчёта окупаемости — на
 странице [«Прибыль и окупаемость»](/ru/logic/profit-payback); граница между оплатой и прибылью описана в разделе
-[«Оплата: модель, знак и проверки»](/ru/logic/finances-payments).
+[«Оплата: модель, знак и проверки»](/ru/logic/finances/payments).
 </Note>
 
 Полный перечень моделей и полей — в глоссариях соответствующих разделов.
