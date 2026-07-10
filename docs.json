@@ -195,7 +195,7 @@
                   "ru/logic/attachments/comments",
                   "ru/logic/attachments/images",
                   "ru/logic/attachments/files",
-                  "ru/logic/attachments/multipart",
+                  "ru/logic/attachments/direct-upload",
                   "ru/logic/attachments/links"
                 ]
               },
