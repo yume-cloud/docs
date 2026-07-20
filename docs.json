@@ -70,7 +70,6 @@
                         "hidden": true,
                         "pages": [
                           "warehouse",
-                          "goods-receipt",
                           "analytics"
                         ]
                       },
@@ -112,10 +111,16 @@
                 "group": "Аренда и расчёты",
                 "public": true,
                 "pages": [
-                  "ru/logic/rent-lifecycle",
-                  "ru/logic/tariffs-pricing",
-                  "ru/logic/discounts",
-                  "ru/logic/deposits-penalties"
+                  "ru/logic/rent",
+                  "ru/logic/rent/lifecycle",
+                  "ru/logic/rent/actions",
+                  "ru/logic/rent/inventory-lines",
+                  "ru/logic/rent/services-delivery",
+                  "ru/logic/rent/pricing",
+                  "ru/logic/rent/deposits-penalties",
+                  "ru/logic/rent/schedule",
+                  "ru/logic/rent/triggers",
+                  "ru/logic/rent/issues"
                 ]
               },
               {
@@ -137,8 +142,16 @@
                 "public": true,
                 "pages": [
                   "ru/logic/inventory",
-                  "ru/logic/inventory-groups",
-                  "ru/logic/inventory-sets"
+                  "ru/logic/inventory/inventory-items",
+                  "ru/logic/inventory/inventory-groups",
+                  "ru/logic/inventory/inventory-sets",
+                  "ru/logic/inventory/tariffs",
+                  "ru/logic/inventory/availability",
+                  "ru/logic/inventory/sublease",
+                  "ru/logic/inventory/services",
+                  "ru/logic/inventory/maintenance",
+                  "ru/logic/inventory/inventorization",
+                  "ru/logic/inventory/issues"
                 ]
               },
               {
@@ -221,6 +234,15 @@
                 "group": "Инфраструктура",
                 "public": true,
                 "pages": [
+                  "ru/logic/infrastructure",
+                  "ru/logic/infrastructure/schema-isolation",
+                  "ru/logic/infrastructure/databases-cache",
+                  "ru/logic/infrastructure/celery",
+                  "ru/logic/infrastructure/storage",
+                  "ru/logic/infrastructure/routing-docs",
+                  "ru/logic/infrastructure/observability",
+                  "ru/logic/infrastructure/conventions",
+                  "ru/logic/infrastructure/issues",
                   "ru/logic/background-tasks",
                   "ru/logic/feature-flags"
                 ]
@@ -230,6 +252,81 @@
                 "public": true,
                 "pages": [
                   "ru/logic/known-issues"
+                ]
+              },
+              {
+                "group": "Мастерская",
+                "pages": [
+                  "ru/logic/workshop",
+                  "ru/logic/workshop/pipeline",
+                  "ru/logic/workshop/resources",
+                  "ru/logic/workshop/services",
+                  "ru/logic/workshop/pricing",
+                  "ru/logic/workshop/profit",
+                  "ru/logic/workshop/inventory-state",
+                  "ru/logic/workshop/issues"
+                ]
+              },
+              {
+                "group": "Продажи и воронки",
+                "pages": [
+                  "ru/logic/sales",
+                  "ru/logic/sales/funnels-stages",
+                  "ru/logic/sales/leads",
+                  "ru/logic/sales/lead-tasks",
+                  "ru/logic/sales/triggers",
+                  "ru/logic/sales/logs-bulk",
+                  "ru/logic/sales/webhook-sync",
+                  "ru/logic/sales/issues"
+                ]
+              },
+              {
+                "group": "Пользователи и доступ",
+                "pages": [
+                  "ru/logic/user",
+                  "ru/logic/user/model",
+                  "ru/logic/user/backend-login",
+                  "ru/logic/user/jwt",
+                  "ru/logic/user/tenant-middleware",
+                  "ru/logic/user/profile",
+                  "ru/logic/user/password-reset",
+                  "ru/logic/user/google-oauth",
+                  "ru/logic/user/loyalty",
+                  "ru/logic/user/issues"
+                ]
+              },
+              {
+                "group": "Кошельки и карты",
+                "pages": [
+                  "ru/logic/wallet",
+                  "ru/logic/wallet/model",
+                  "ru/logic/wallet/issue",
+                  "ru/logic/wallet/apple-pkpass",
+                  "ru/logic/wallet/google",
+                  "ru/logic/wallet/passkit",
+                  "ru/logic/wallet/apns-push",
+                  "ru/logic/wallet/change-dispatch",
+                  "ru/logic/wallet/issues"
+                ]
+              },
+              {
+                "group": "Компании и биллинг",
+                "pages": [
+                  "ru/logic/tenant-billing",
+                  "ru/logic/tenant-billing/provisioning",
+                  "ru/logic/tenant-billing/invoices",
+                  "ru/logic/tenant-billing/cards",
+                  "ru/logic/tenant-billing/gateways",
+                  "ru/logic/tenant-billing/limits",
+                  "ru/logic/tenant-billing/onboarding-news-stats",
+                  "ru/logic/tenant-billing/issues"
+                ]
+              },
+              {
+                "group": "Продажа товаров",
+                "pages": [
+                  "ru/logic/order-sale",
+                  "ru/logic/order-sale/issues"
                 ]
               }
             ]
@@ -308,6 +405,109 @@
                   "ru/logic/metrics/workshifts-glossary",
                   "ru/logic/metrics/modules-glossary",
                   "ru/logic/metrics/bonuses-glossary"
+                ]
+              },
+              {
+                "group": "Мастерская",
+                "pages": [
+                  "ru/logic/workshop/pipeline-glossary",
+                  "ru/logic/workshop/resources-glossary",
+                  "ru/logic/workshop/services-glossary",
+                  "ru/logic/workshop/pricing-glossary",
+                  "ru/logic/workshop/profit-glossary",
+                  "ru/logic/workshop/inventory-state-glossary"
+                ]
+              },
+              {
+                "group": "Продажи и воронки",
+                "pages": [
+                  "ru/logic/sales/funnels-stages-glossary",
+                  "ru/logic/sales/leads-glossary",
+                  "ru/logic/sales/lead-tasks-glossary",
+                  "ru/logic/sales/triggers-glossary",
+                  "ru/logic/sales/logs-bulk-glossary",
+                  "ru/logic/sales/webhook-sync-glossary"
+                ]
+              },
+              {
+                "group": "Пользователи и доступ",
+                "pages": [
+                  "ru/logic/user/model-glossary",
+                  "ru/logic/user/backend-login-glossary",
+                  "ru/logic/user/jwt-glossary",
+                  "ru/logic/user/tenant-middleware-glossary",
+                  "ru/logic/user/profile-glossary",
+                  "ru/logic/user/password-reset-glossary",
+                  "ru/logic/user/google-oauth-glossary",
+                  "ru/logic/user/loyalty-glossary"
+                ]
+              },
+              {
+                "group": "Кошельки и карты",
+                "pages": [
+                  "ru/logic/wallet/model-glossary",
+                  "ru/logic/wallet/issue-glossary",
+                  "ru/logic/wallet/apple-pkpass-glossary",
+                  "ru/logic/wallet/google-glossary",
+                  "ru/logic/wallet/passkit-glossary",
+                  "ru/logic/wallet/apns-push-glossary",
+                  "ru/logic/wallet/change-dispatch-glossary"
+                ]
+              },
+              {
+                "group": "Компании и биллинг",
+                "pages": [
+                  "ru/logic/tenant-billing/provisioning-glossary",
+                  "ru/logic/tenant-billing/invoices-glossary",
+                  "ru/logic/tenant-billing/cards-glossary",
+                  "ru/logic/tenant-billing/gateways-glossary",
+                  "ru/logic/tenant-billing/limits-glossary",
+                  "ru/logic/tenant-billing/onboarding-news-stats-glossary"
+                ]
+              },
+              {
+                "group": "Инвентарь и каталог",
+                "pages": [
+                  "ru/logic/inventory/inventory-items-glossary",
+                  "ru/logic/inventory/inventory-groups-glossary",
+                  "ru/logic/inventory/inventory-sets-glossary",
+                  "ru/logic/inventory/tariffs-glossary",
+                  "ru/logic/inventory/availability-glossary",
+                  "ru/logic/inventory/sublease-glossary",
+                  "ru/logic/inventory/services-glossary",
+                  "ru/logic/inventory/maintenance-glossary",
+                  "ru/logic/inventory/inventorization-glossary"
+                ]
+              },
+              {
+                "group": "Аренда и расчёты",
+                "pages": [
+                  "ru/logic/rent/lifecycle-glossary",
+                  "ru/logic/rent/actions-glossary",
+                  "ru/logic/rent/inventory-lines-glossary",
+                  "ru/logic/rent/services-delivery-glossary",
+                  "ru/logic/rent/pricing-glossary",
+                  "ru/logic/rent/deposits-penalties-glossary",
+                  "ru/logic/rent/schedule-glossary",
+                  "ru/logic/rent/triggers-glossary"
+                ]
+              },
+              {
+                "group": "Продажа товаров",
+                "pages": [
+                  "ru/logic/order-sale/glossary"
+                ]
+              },
+              {
+                "group": "Инфраструктура",
+                "pages": [
+                  "ru/logic/infrastructure/schema-isolation-glossary",
+                  "ru/logic/infrastructure/databases-cache-glossary",
+                  "ru/logic/infrastructure/celery-glossary",
+                  "ru/logic/infrastructure/storage-glossary",
+                  "ru/logic/infrastructure/routing-docs-glossary",
+                  "ru/logic/infrastructure/observability-glossary",
+                  "ru/logic/infrastructure/conventions-glossary"
                 ]
               }
             ]
@@ -436,8 +636,20 @@
   },
   "redirects": [
     {
+      "source": "/ru/logic/rent-lifecycle",
+      "destination": "/ru/logic/rent/lifecycle"
+    },
+    {
       "source": "/ru/logic/inventory-groups-sets",
-      "destination": "/ru/logic/inventory-groups"
+      "destination": "/ru/logic/inventory/inventory-groups"
+    },
+    {
+      "source": "/ru/logic/inventory-groups",
+      "destination": "/ru/logic/inventory/inventory-groups"
+    },
+    {
+      "source": "/ru/logic/inventory-sets",
+      "destination": "/ru/logic/inventory/inventory-sets"
     },
     {
       "source": "/ru/logic/finances-transactions",
@@ -446,6 +658,26 @@
     {
       "source": "/ru/logic/finances-glossary",
       "destination": "/ru/logic/finances/payments-glossary"
+    },
+    {
+      "source": "/ru/logic/order-sale-glossary",
+      "destination": "/ru/logic/order-sale/glossary"
+    },
+    {
+      "source": "/ru/logic/order-sale-issues",
+      "destination": "/ru/logic/order-sale/issues"
+    },
+    {
+      "source": "/ru/logic/tariffs-pricing",
+      "destination": "/ru/logic/rent/pricing"
+    },
+    {
+      "source": "/ru/logic/discounts",
+      "destination": "/ru/logic/rent/pricing"
+    },
+    {
+      "source": "/ru/logic/deposits-penalties",
+      "destination": "/ru/logic/rent/deposits-penalties"
     }
   ],
   "errors": {
