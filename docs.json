@@ -217,10 +217,13 @@
                 "public": true,
                 "pages": [
                   "ru/logic/notifications",
-                  "ru/logic/notifications/feed",
-                  "ru/logic/notifications/push",
-                  "ru/logic/notifications/telegram",
-                  "ru/logic/notifications/access"
+                  "ru/logic/notifications/model-dispatch",
+                  "ru/logic/notifications/creation-grouping",
+                  "ru/logic/notifications/delivery-channels",
+                  "ru/logic/notifications/read-archive",
+                  "ru/logic/notifications/push-tokens",
+                  "ru/logic/notifications/telegram-link",
+                  "ru/logic/notifications/access-settings"
                 ]
               },
               {
@@ -328,6 +331,16 @@
                   "ru/logic/order-sale",
                   "ru/logic/order-sale/issues"
                 ]
+              },
+              {
+                "group": "Интеграции",
+                "pages": [
+                  "ru/logic/auto-penalties",
+                  "ru/logic/auto-penalties/models",
+                  "ru/logic/auto-penalties/car-sync",
+                  "ru/logic/auto-penalties/tenant-api",
+                  "ru/logic/auto-penalties/notifications"
+                ]
               }
             ]
           },
@@ -381,10 +394,13 @@
                 "group": "Уведомления",
                 "public": true,
                 "pages": [
-                  "ru/logic/notifications/feed-glossary",
-                  "ru/logic/notifications/push-glossary",
-                  "ru/logic/notifications/telegram-glossary",
-                  "ru/logic/notifications/access-glossary"
+                  "ru/logic/notifications/model-dispatch-glossary",
+                  "ru/logic/notifications/creation-grouping-glossary",
+                  "ru/logic/notifications/delivery-channels-glossary",
+                  "ru/logic/notifications/read-archive-glossary",
+                  "ru/logic/notifications/push-tokens-glossary",
+                  "ru/logic/notifications/telegram-link-glossary",
+                  "ru/logic/notifications/access-settings-glossary"
                 ]
               },
               {
@@ -508,6 +524,15 @@
                   "ru/logic/infrastructure/routing-docs-glossary",
                   "ru/logic/infrastructure/observability-glossary",
                   "ru/logic/infrastructure/conventions-glossary"
+                ]
+              },
+              {
+                "group": "Интеграции",
+                "pages": [
+                  "ru/logic/auto-penalties/models-glossary",
+                  "ru/logic/auto-penalties/car-sync-glossary",
+                  "ru/logic/auto-penalties/tenant-api-glossary",
+                  "ru/logic/auto-penalties/notifications-glossary"
                 ]
               }
             ]
