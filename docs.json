@@ -318,6 +318,7 @@
                   "ru/logic/tenant-billing",
                   "ru/logic/tenant-billing/provisioning",
                   "ru/logic/tenant-billing/invoices",
+                  "ru/logic/tenant-billing/pricing",
                   "ru/logic/tenant-billing/cards",
                   "ru/logic/tenant-billing/gateways",
                   "ru/logic/tenant-billing/limits",
@@ -475,6 +476,7 @@
                 "pages": [
                   "ru/logic/tenant-billing/provisioning-glossary",
                   "ru/logic/tenant-billing/invoices-glossary",
+                  "ru/logic/tenant-billing/pricing-glossary",
                   "ru/logic/tenant-billing/cards-glossary",
                   "ru/logic/tenant-billing/gateways-glossary",
                   "ru/logic/tenant-billing/limits-glossary",
