@@ -180,20 +180,20 @@ description: "Единая корневая таблица маршрутов: �
   <Card title="Инфраструктура платформы (мультитенантность, Celery, БД, хранилище)" icon="server" href="/ru/logic/infrastructure">
     Обзорная страница модуля инфраструктуры со всеми его разделами.
   </Card>
-  <Card title="Мультитенантность и изоляция схем" icon="layer-group" href="/ru/logic/infrastructure/schema-isolation">
-    Как компании изолированы по схемам PostgreSQL и как переключается схема соединения.
+  <Card title="Изоляция данных компаний (RLS)" icon="layer-group" href="/ru/logic/infrastructure/schema-isolation">
+    Как компании изолированы через RLS и как выставляется RLS-контекст соединения.
   </Card>
   <Card title="Базы данных, роутинг и кэш" icon="database" href="/ru/logic/infrastructure/databases-cache">
-    Две базы данных, роутер запросов, кастомный движок PostgreSQL и Redis-кэш с ключами по схемам.
+    Две базы данных, роутер запросов, кастомный движок PostgreSQL и Redis-кэш с ключами по компаниям.
   </Card>
   <Card title="Tenant-aware Celery и расписание" icon="gears" href="/ru/logic/infrastructure/celery">
-    Прокидывание схемы компании в фоновые задачи и периодические задачи по расписанию.
+    Прокидывание контекста компании в фоновые задачи и периодические задачи по расписанию.
   </Card>
   <Card title="Файловое хранилище и статика" icon="box-archive" href="/ru/logic/infrastructure/storage">
-    S3-хранилище с префиксом схемы компании, публичный бакет и раздача статики.
+    S3-хранилище с префиксом идентификатора компании, публичный бакет и раздача статики.
   </Card>
   <Card title="Логи, трассировка и мониторинг" icon="chart-line" href="/ru/logic/infrastructure/observability">
-    Структурные JSON-логи с идентификатором запроса и схемой компании, аудит, Sentry и Prometheus.
+    Структурные JSON-логи с идентификатором запроса и активной компанией, аудит, Sentry и Prometheus.
   </Card>
   <Card title="Соглашения по моделям и правам доступа" icon="ruler-combined" href="/ru/logic/infrastructure/conventions">
     Сквозные базовые классы моделей и классы прав доступа для вьюсетов и staff-эндпоинтов.
