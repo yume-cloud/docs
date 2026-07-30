@@ -4,7 +4,7 @@ icon: "calculator"
 description: "Единое ядро расчёта цены подписки: два режима тарификации (по периодам и продление до даты), правила для интеграций, модулей и лимитов, пропорциональная доплата, автоподбор тарифного периода и защита от подорожания, округление, детализация расчёта, а также регистрация офлайн-оплаты администратором."
 ---
 
-Полный перечень терминов и полей расчёта — в [глоссарии](/ru/logic/tenant-billing/pricing-glossary).
+Полный перечень терминов и полей расчёта — в [глоссарии](/ru/logic/company-billing/pricing-glossary).
 
 Эта страница описывает, как в Yume считается стоимость подписки: по каким правилам оценивается каждая позиция, чем отличаются два режима тарификации, как ведёт себя расчёт при увеличении и уменьшении лимитов, и как администратор регистрирует оплату, пришедшую не через платёжный шлюз (перевод на счёт, наличные).
 
@@ -208,22 +208,19 @@ description: "Единое ядро расчёта цены подписки: д
 ## Связанные страницы
 
 <CardGroup cols={2}>
-  <Card title="Глоссарий: расчёт стоимости" icon="book" href="/ru/logic/tenant-billing/pricing-glossary">
+  <Card title="Глоссарий: расчёт стоимости" icon="book" href="/ru/logic/company-billing/pricing-glossary">
     Термины расчёта, режимы, поля строк детализации и данных ручной оплаты.
   </Card>
-  <Card title="Инвойсы и платежи" icon="file-invoice-dollar" href="/ru/logic/tenant-billing/invoices">
+  <Card title="Инвойсы и платежи" icon="file-invoice-dollar" href="/ru/logic/company-billing/invoices">
     Жизненный цикл счёта, оплата через шлюз, вебхуки и провижининг по подтверждению.
   </Card>
-  <Card title="Лимиты и тарификация" icon="gauge-high" href="/ru/logic/tenant-billing/limits">
+  <Card title="Лимиты и тарификация" icon="gauge-high" href="/ru/logic/company-billing/limits">
     Модель лимита, прайс по периодам, срок действия лимита и пересчёт потребления.
   </Card>
-  <Card title="Платёжные шлюзы" icon="money-bill-transfer" href="/ru/logic/tenant-billing/gateways">
+  <Card title="Платёжные шлюзы" icon="money-bill-transfer" href="/ru/logic/company-billing/gateways">
     FreedomPay: подпись запросов, проверка входящих колбэков, списание и возврат.
   </Card>
-  <Card title="Проблемы и логические ошибки" icon="bug" href="/ru/logic/tenant-billing/issues">
-    Известные дефекты расчёта и провижининга, включая пограничные случаи целевой даты.
-  </Card>
-  <Card title="Компании и биллинг" icon="building" href="/ru/logic/tenant-billing">
+  <Card title="Компании и биллинг" icon="building" href="/ru/logic/company-billing">
     Обзор всего модуля компаний, подписок и платежей.
   </Card>
 </CardGroup>

@@ -1,7 +1,9 @@
 ---
 title: "Проблемы и логические ошибки"
+sidebarTitle: "Компании и биллинг"
 icon: "bug"
 description: "Сводный список известных багов, рисков безопасности и логических ошибок модуля «Компании и биллинг» (подписки, платежи) — с указанием места в коде и последствий."
+noindex: true
 ---
 
 Эта страница собирает в одном месте все известные **проблемы, риски безопасности и логические ошибки** модуля компаний и биллинга: где поведение расходится с ожидаемым, к чему это приводит и где искать причину в коде. Разделы упорядочены по серьёзности — от платёжной безопасности до незначительных нюансов.
@@ -89,19 +91,19 @@ description: "Сводный список известных багов, рис�
 ## Связанные страницы
 
 <CardGroup cols={2}>
-  <Card title="Компании и биллинг" icon="building" href="/ru/logic/tenant-billing">
+  <Card title="Компании и биллинг" icon="building" href="/ru/logic/company-billing">
     Вернуться к обзору модуля и списку разделов.
   </Card>
-  <Card title="Расчёт стоимости и регистрация оплаты" icon="calculator" href="/ru/logic/tenant-billing/pricing">
+  <Card title="Расчёт стоимости и регистрация оплаты" icon="calculator" href="/ru/logic/company-billing/pricing">
     Штатные правила расчёта — контекст для дефектов тарификации и целевой даты.
   </Card>
-  <Card title="Инвойсы и платежи" icon="file-invoice-dollar" href="/ru/logic/tenant-billing/invoices">
+  <Card title="Инвойсы и платежи" icon="file-invoice-dollar" href="/ru/logic/company-billing/invoices">
     Жизненный цикл счёта и вебхуки — контекст для платёжной безопасности.
   </Card>
-  <Card title="Платёжные шлюзы" icon="money-check-dollar" href="/ru/logic/tenant-billing/gateways">
+  <Card title="Платёжные шлюзы" icon="money-check-dollar" href="/ru/logic/company-billing/gateways">
     FreedomPay — контекст для проверки подписи входящих колбэков.
   </Card>
-  <Card title="Лимиты и тарификация" icon="gauge" href="/ru/logic/tenant-billing/limits">
+  <Card title="Лимиты и тарификация" icon="gauge" href="/ru/logic/company-billing/limits">
     Лимиты и цены — контекст для проблем сроков и пересчёта.
   </Card>
 </CardGroup>

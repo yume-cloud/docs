@@ -96,9 +96,8 @@
             ]
           },
           {
-            "tab": "Логика системы",
+            "tab": "Как это работает",
             "icon": "diagram-project",
-            "hidden": true,
             "groups": [
               {
                 "group": "Обзор",
@@ -119,8 +118,7 @@
                   "ru/logic/rent/pricing",
                   "ru/logic/rent/deposits-penalties",
                   "ru/logic/rent/schedule",
-                  "ru/logic/rent/triggers",
-                  "ru/logic/rent/issues"
+                  "ru/logic/rent/triggers"
                 ]
               },
               {
@@ -150,8 +148,7 @@
                   "ru/logic/inventory/sublease",
                   "ru/logic/inventory/services",
                   "ru/logic/inventory/maintenance",
-                  "ru/logic/inventory/inventorization",
-                  "ru/logic/inventory/issues"
+                  "ru/logic/inventory/inventorization"
                 ]
               },
               {
@@ -238,23 +235,7 @@
                 "public": true,
                 "pages": [
                   "ru/logic/infrastructure",
-                  "ru/logic/infrastructure/schema-isolation",
-                  "ru/logic/infrastructure/databases-cache",
-                  "ru/logic/infrastructure/celery",
-                  "ru/logic/infrastructure/storage",
-                  "ru/logic/infrastructure/routing-docs",
-                  "ru/logic/infrastructure/observability",
-                  "ru/logic/infrastructure/conventions",
-                  "ru/logic/infrastructure/issues",
-                  "ru/logic/background-tasks",
-                  "ru/logic/feature-flags"
-                ]
-              },
-              {
-                "group": "Известные особенности и ограничения",
-                "public": true,
-                "pages": [
-                  "ru/logic/known-issues"
+                  "ru/logic/background-tasks"
                 ]
               },
               {
@@ -266,8 +247,7 @@
                   "ru/logic/workshop/services",
                   "ru/logic/workshop/pricing",
                   "ru/logic/workshop/profit",
-                  "ru/logic/workshop/inventory-state",
-                  "ru/logic/workshop/issues"
+                  "ru/logic/workshop/inventory-state"
                 ]
               },
               {
@@ -279,8 +259,7 @@
                   "ru/logic/sales/lead-tasks",
                   "ru/logic/sales/triggers",
                   "ru/logic/sales/logs-bulk",
-                  "ru/logic/sales/webhook-sync",
-                  "ru/logic/sales/issues"
+                  "ru/logic/sales/lead-intake"
                 ]
               },
               {
@@ -288,14 +267,13 @@
                 "pages": [
                   "ru/logic/user",
                   "ru/logic/user/model",
-                  "ru/logic/user/backend-login",
-                  "ru/logic/user/jwt",
-                  "ru/logic/user/tenant-middleware",
+                  "ru/logic/user/login",
+                  "ru/logic/user/sessions",
+                  "ru/logic/user/active-company",
                   "ru/logic/user/profile",
                   "ru/logic/user/password-reset",
-                  "ru/logic/user/google-oauth",
-                  "ru/logic/user/loyalty",
-                  "ru/logic/user/issues"
+                  "ru/logic/user/google-login",
+                  "ru/logic/user/loyalty"
                 ]
               },
               {
@@ -304,33 +282,30 @@
                   "ru/logic/wallet",
                   "ru/logic/wallet/model",
                   "ru/logic/wallet/issue",
-                  "ru/logic/wallet/apple-pkpass",
+                  "ru/logic/wallet/apple-card",
                   "ru/logic/wallet/google",
-                  "ru/logic/wallet/passkit",
-                  "ru/logic/wallet/apns-push",
-                  "ru/logic/wallet/change-dispatch",
-                  "ru/logic/wallet/issues"
+                  "ru/logic/wallet/card-refresh",
+                  "ru/logic/wallet/card-updates",
+                  "ru/logic/wallet/change-dispatch"
                 ]
               },
               {
                 "group": "Компании и биллинг",
                 "pages": [
-                  "ru/logic/tenant-billing",
-                  "ru/logic/tenant-billing/provisioning",
-                  "ru/logic/tenant-billing/invoices",
-                  "ru/logic/tenant-billing/pricing",
-                  "ru/logic/tenant-billing/cards",
-                  "ru/logic/tenant-billing/gateways",
-                  "ru/logic/tenant-billing/limits",
-                  "ru/logic/tenant-billing/onboarding-news-stats",
-                  "ru/logic/tenant-billing/issues"
+                  "ru/logic/company-billing",
+                  "ru/logic/company-billing/setup",
+                  "ru/logic/company-billing/invoices",
+                  "ru/logic/company-billing/pricing",
+                  "ru/logic/company-billing/cards",
+                  "ru/logic/company-billing/gateways",
+                  "ru/logic/company-billing/limits",
+                  "ru/logic/company-billing/onboarding-news-stats"
                 ]
               },
               {
                 "group": "Продажа товаров",
                 "pages": [
-                  "ru/logic/order-sale",
-                  "ru/logic/order-sale/issues"
+                  "ru/logic/order-sale"
                 ]
               },
               {
@@ -339,8 +314,30 @@
                   "ru/logic/auto-penalties",
                   "ru/logic/auto-penalties/models",
                   "ru/logic/auto-penalties/car-sync",
-                  "ru/logic/auto-penalties/tenant-api",
+                  "ru/logic/auto-penalties/company-api",
                   "ru/logic/auto-penalties/notifications"
+                ]
+              },
+              {
+                "group": "Известные особенности и ограничения",
+                "hidden": true,
+                "pages": [
+                  "ru/logic/known-issues",
+                  "ru/logic/rent/issues",
+                  "ru/logic/finances/issues",
+                  "ru/logic/inventory/issues",
+                  "ru/logic/metrics/issues",
+                  "ru/logic/documents/issues",
+                  "ru/logic/attachments/issues",
+                  "ru/logic/notifications/issues",
+                  "ru/logic/infrastructure/issues",
+                  "ru/logic/workshop/issues",
+                  "ru/logic/sales/issues",
+                  "ru/logic/user/issues",
+                  "ru/logic/wallet/issues",
+                  "ru/logic/company-billing/issues",
+                  "ru/logic/order-sale/issues",
+                  "ru/logic/auto-penalties/issues"
                 ]
               }
             ]
@@ -348,7 +345,6 @@
           {
             "tab": "Глоссарии",
             "icon": "book",
-            "hidden": true,
             "groups": [
               {
                 "group": "Финансы и оплаты",
@@ -443,19 +439,19 @@
                   "ru/logic/sales/lead-tasks-glossary",
                   "ru/logic/sales/triggers-glossary",
                   "ru/logic/sales/logs-bulk-glossary",
-                  "ru/logic/sales/webhook-sync-glossary"
+                  "ru/logic/sales/lead-intake-glossary"
                 ]
               },
               {
                 "group": "Пользователи и доступ",
                 "pages": [
                   "ru/logic/user/model-glossary",
-                  "ru/logic/user/backend-login-glossary",
-                  "ru/logic/user/jwt-glossary",
-                  "ru/logic/user/tenant-middleware-glossary",
+                  "ru/logic/user/login-glossary",
+                  "ru/logic/user/sessions-glossary",
+                  "ru/logic/user/active-company-glossary",
                   "ru/logic/user/profile-glossary",
                   "ru/logic/user/password-reset-glossary",
-                  "ru/logic/user/google-oauth-glossary",
+                  "ru/logic/user/google-login-glossary",
                   "ru/logic/user/loyalty-glossary"
                 ]
               },
@@ -464,23 +460,23 @@
                 "pages": [
                   "ru/logic/wallet/model-glossary",
                   "ru/logic/wallet/issue-glossary",
-                  "ru/logic/wallet/apple-pkpass-glossary",
+                  "ru/logic/wallet/apple-card-glossary",
                   "ru/logic/wallet/google-glossary",
-                  "ru/logic/wallet/passkit-glossary",
-                  "ru/logic/wallet/apns-push-glossary",
+                  "ru/logic/wallet/card-refresh-glossary",
+                  "ru/logic/wallet/card-updates-glossary",
                   "ru/logic/wallet/change-dispatch-glossary"
                 ]
               },
               {
                 "group": "Компании и биллинг",
                 "pages": [
-                  "ru/logic/tenant-billing/provisioning-glossary",
-                  "ru/logic/tenant-billing/invoices-glossary",
-                  "ru/logic/tenant-billing/pricing-glossary",
-                  "ru/logic/tenant-billing/cards-glossary",
-                  "ru/logic/tenant-billing/gateways-glossary",
-                  "ru/logic/tenant-billing/limits-glossary",
-                  "ru/logic/tenant-billing/onboarding-news-stats-glossary"
+                  "ru/logic/company-billing/setup-glossary",
+                  "ru/logic/company-billing/invoices-glossary",
+                  "ru/logic/company-billing/pricing-glossary",
+                  "ru/logic/company-billing/cards-glossary",
+                  "ru/logic/company-billing/gateways-glossary",
+                  "ru/logic/company-billing/limits-glossary",
+                  "ru/logic/company-billing/onboarding-news-stats-glossary"
                 ]
               },
               {
@@ -517,23 +513,11 @@
                 ]
               },
               {
-                "group": "Инфраструктура",
-                "pages": [
-                  "ru/logic/infrastructure/schema-isolation-glossary",
-                  "ru/logic/infrastructure/databases-cache-glossary",
-                  "ru/logic/infrastructure/celery-glossary",
-                  "ru/logic/infrastructure/storage-glossary",
-                  "ru/logic/infrastructure/routing-docs-glossary",
-                  "ru/logic/infrastructure/observability-glossary",
-                  "ru/logic/infrastructure/conventions-glossary"
-                ]
-              },
-              {
                 "group": "Интеграции",
                 "pages": [
                   "ru/logic/auto-penalties/models-glossary",
                   "ru/logic/auto-penalties/car-sync-glossary",
-                  "ru/logic/auto-penalties/tenant-api-glossary",
+                  "ru/logic/auto-penalties/company-api-glossary",
                   "ru/logic/auto-penalties/notifications-glossary"
                 ]
               }
@@ -595,7 +579,7 @@
                 "hidden": true,
                 "public": true,
                 "pages": [
-                  "ru/configuration/tenant",
+                  "ru/configuration/company",
                   "ru/configuration/rent-status",
                   "ru/configuration/labels",
                   "ru/configuration/access",
@@ -656,7 +640,7 @@
     ]
   },
   "thumbnails": {
-    "background": "/logo/light.svg"
+    "background": "/logo/bg.webp"
   },
   "interaction": {
     "drilldown": true
@@ -705,6 +689,154 @@
     {
       "source": "/ru/logic/deposits-penalties",
       "destination": "/ru/logic/rent/deposits-penalties"
+    },
+    {
+      "source": "/ru/logic/feature-flags",
+      "destination": "/ru/configuration/company"
+    },
+    {
+      "source": "/ru/logic/infrastructure/celery",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/celery-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/conventions",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/conventions-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/databases-cache",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/databases-cache-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/observability",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/observability-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/routing-docs",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/routing-docs-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/schema-isolation",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/schema-isolation-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/storage",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/infrastructure/storage-glossary",
+      "destination": "/ru/logic/infrastructure"
+    },
+    {
+      "source": "/ru/logic/tenant-billing",
+      "destination": "/ru/logic/company-billing"
+    },
+    {
+      "source": "/ru/configuration/tenant",
+      "destination": "/ru/configuration/company"
+    },
+    {
+      "source": "/ru/logic/user/tenant-middleware",
+      "destination": "/ru/logic/user/active-company"
+    },
+    {
+      "source": "/ru/logic/user/tenant-middleware-glossary",
+      "destination": "/ru/logic/user/active-company-glossary"
+    },
+    {
+      "source": "/ru/logic/user/jwt",
+      "destination": "/ru/logic/user/sessions"
+    },
+    {
+      "source": "/ru/logic/user/jwt-glossary",
+      "destination": "/ru/logic/user/sessions-glossary"
+    },
+    {
+      "source": "/ru/logic/user/backend-login",
+      "destination": "/ru/logic/user/login"
+    },
+    {
+      "source": "/ru/logic/user/backend-login-glossary",
+      "destination": "/ru/logic/user/login-glossary"
+    },
+    {
+      "source": "/ru/logic/user/google-oauth",
+      "destination": "/ru/logic/user/google-login"
+    },
+    {
+      "source": "/ru/logic/user/google-oauth-glossary",
+      "destination": "/ru/logic/user/google-login-glossary"
+    },
+    {
+      "source": "/ru/logic/wallet/apns-push",
+      "destination": "/ru/logic/wallet/card-updates"
+    },
+    {
+      "source": "/ru/logic/wallet/apns-push-glossary",
+      "destination": "/ru/logic/wallet/card-updates-glossary"
+    },
+    {
+      "source": "/ru/logic/wallet/passkit",
+      "destination": "/ru/logic/wallet/card-refresh"
+    },
+    {
+      "source": "/ru/logic/wallet/passkit-glossary",
+      "destination": "/ru/logic/wallet/card-refresh-glossary"
+    },
+    {
+      "source": "/ru/logic/wallet/apple-pkpass",
+      "destination": "/ru/logic/wallet/apple-card"
+    },
+    {
+      "source": "/ru/logic/wallet/apple-pkpass-glossary",
+      "destination": "/ru/logic/wallet/apple-card-glossary"
+    },
+    {
+      "source": "/ru/logic/sales/webhook-sync",
+      "destination": "/ru/logic/sales/lead-intake"
+    },
+    {
+      "source": "/ru/logic/sales/webhook-sync-glossary",
+      "destination": "/ru/logic/sales/lead-intake-glossary"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/tenant-api",
+      "destination": "/ru/logic/auto-penalties/company-api"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/tenant-api-glossary",
+      "destination": "/ru/logic/auto-penalties/company-api-glossary"
+    },
+    {
+      "source": "/ru/logic/tenant-billing/provisioning",
+      "destination": "/ru/logic/company-billing/setup"
+    },
+    {
+      "source": "/ru/logic/tenant-billing/provisioning-glossary",
+      "destination": "/ru/logic/company-billing/setup-glossary"
     }
   ],
   "errors": {

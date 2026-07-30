@@ -1,32 +1,34 @@
 ---
 title: "Главная страница"
-description: "Портал документации Yume: обзор платформы и навигация по разделам."
+description: "Портал документации Yume: обзор возможностей и навигация по разделам."
 mode: "wide"
 icon: "sitemap"
 hidden: true
 ---
 
-[**yume.cloud**](http://yume.cloud) — платформа для арендного бизнеса в разных нишах: backend-ядро с бизнес-логикой, данными клиентов и интеграциями. Фокус — масштабируемость, изоляция тенантов и подключение новых интеграций без переписывания ядра.
+[**yume.cloud**](http://yume.cloud) — платформа для арендного бизнеса в разных нишах. Она закрывает весь цикл: заявка и бронирование, выдача и приёмка, расчёт стоимости, оплаты и документы, а также аналитика по деньгам и загрузке инвентаря.
 
-**Возможности:** мультитенантность, CRM и инвентарь, биллинг и аналитика, GPS и телематика, интеграции (SMS, сервис автомобильных штрафов, Wazzup и др.), склад, воронка продаж и заявок.
+**Что умеет платформа:** аренда и бронирование, каталог инвентаря и комплектов, база клиентов и программа лояльности, оплаты и финансовый учёт, документы и подписание, мастерская и обслуживание, склад и продажи, воронка заявок, аналитика и отчёты, GPS-контроль транспорта, подписка и оплата самой платформы.
+
+**Интеграции:** оплата через Kaspi, мессенджеры (Wazzup), телефония (Ringostat), GPS-телематика (Wialon), рассылка SMS, проверка контрагентов и сервис автомобильных штрафов.
 
 <Tip>
-  Откройте **поиск по документации** (**⌘K** на Mac или **Ctrl\+K** на Windows и Linux) и введите название раздела или эндпоинта — как в вики.
+  Откройте **поиск по документации** (**⌘K** на Mac или **Ctrl\+K** на Windows и Linux) и введите название раздела — как в вики.
 </Tip>
 
-## Популярные разделы
+## С чего начать
 
 <CardGroup cols={3}>
-  <Card title="Быстрый старт" icon="rocket" href="/ru/quickstart">
-    Первый запрос к API
+  <Card title="Что такое Yume" icon="rocket" href="/ru/modules/what-is-yume">
+    Обзор платформы и её модулей
   </Card>
 
-  <Card title="Справочник API" icon="code" href="/ru/api-reference/overview">
-    Эндпоинты и OpenAPI
+  <Card title="Как это работает" icon="diagram-project" href="/ru/logic/overview">
+    Правила расчётов и логика по разделам
   </Card>
 
-  <Card title="Введение" icon="book-open" href="/ru/introduction">
-    Обзор платформы и API
+  <Card title="Вопросы и ответы" icon="circle-question" href="/ru/qa/general-questions">
+    Короткие ответы на частые вопросы
   </Card>
 </CardGroup>
 
@@ -36,61 +38,64 @@ hidden: true
   <Column>
     ### Начало работы
 
-    - [Введение](/ru/introduction) — обзор платформы и сценариев
-    - [Аутентификация](/ru/authentication) — логин, access и refresh
-    - [Быстрый старт](/ru/quickstart) — пример входа и запроса
+    - [Что такое Yume](/ru/modules/what-is-yume) — обзор платформы и сценариев
+    - [Первые шаги](/ru/qa/getting-started) — с чего начать в системе
+    - [Основные понятия](/ru/concepts/client) — клиент, инвентарь, точка проката
 
-    ### Основные понятия
+    ### Аренда и деньги
 
-    - [Аренда](/ru/concepts/rentals) — жизненный цикл проката
-    - [Транзакции](/ru/concepts/transactions) — платежи и записи
-    - [Биллинг](/ru/concepts/billing) — счета и оплата
+    - [Аренда и расчёты](/ru/logic/rent) — жизненный цикл заказа
+    - [Финансы и оплаты](/ru/logic/finances) — платежи, счета, возвраты
+    - [Метрики и аналитика](/ru/logic/metrics) — отчёты по деньгам и загрузке
 
     ### Руководства
 
-    - [Управление арендой](/ru/guides/managing-rentals)
-    - [Обработка платежей](/ru/guides/processing-payments)
-    - [GPS и трекинг](/ru/guides/gps-tracking)
-    - [Интеграции](/ru/guides/integrations)
+    - [Работа с арендой](/ru/guides/rent)
+    - [Клиенты](/ru/guides/client)
+    - [Товары и инвентарь](/ru/guides/product)
   </Column>
   <Column>
     ### Настройка
 
-    - [Настройки](/ru/configuration/settings)
-    - [Права доступа](/ru/configuration/access-rights)
+    - [Настройки компании](/ru/configuration/company)
+    - [Права доступа](/ru/configuration/access)
+    - [Статусы аренды](/ru/configuration/rent-status)
     - [Уведомления](/ru/configuration/notifications)
 
-    ### Справочник API — обзор
+    ### Разделы системы
 
-    - [Обзор API](/ru/api-reference/overview) — базовый URL, ошибки, пагинация
-    - [Аутентификация в API](/ru/api-reference/authentication)
+    - [Инвентарь и каталог](/ru/logic/inventory) · [Клиенты](/ru/logic/clients-loyalty)
+    - [Документы и подписание](/ru/logic/documents) · [Вложения](/ru/logic/attachments)
+    - [Мастерская](/ru/logic/workshop) · [Продажа товаров](/ru/logic/order-sale)
+    - [Продажи и воронки](/ru/logic/sales) · [Уведомления](/ru/logic/notifications)
+    - [Карты в Wallet](/ru/logic/wallet) · [Пользователи и доступ](/ru/logic/user)
 
-    ### Справочник API — ресурсы
+    ### Интеграции
 
-    - [Аренда](/ru/api-reference/rentals) · [Продажи](/ru/api-reference/sales) · [Транзакции](/ru/api-reference/transactions)
-    - [Аналитика](/ru/api-reference/analytics) · [Биллинг](/ru/api-reference/billing)
-    - [Документы](/ru/api-reference/documents) · [Вложения](/ru/api-reference/attachments)
-    - [GPS](/ru/api-reference/gps) · [Уведомления](/ru/api-reference/notifications)
-    - [Мастерская](/ru/api-reference/workshop) · [Склад](/ru/api-reference/store)
-    - [Интеграции](/ru/api-reference/integrations) · [Права доступа](/ru/api-reference/access-rights)
+    - [Kaspi — приём оплаты](/kaspi-payments) · [Wazzup — мессенджеры](/wazzup)
+    - [Ringostat — телефония](/ringostat) · [Wialon — GPS](/wialon)
   </Column>
 </Columns>
 
-## Краткий путь к API
+## Подключение по API
+
+Для интеграции со сторонними системами у платформы есть программный интерфейс. Порядок подключения такой:
 
 <Steps>
-  <Step title="Получите JWT">
-    Вызовите `POST /v1/auth/login/` с логином и паролем и сохраните `access` (и при необходимости `refresh`).
+  <Step title="Получите доступ">
+    Обратитесь к нам, чтобы получить данные для подключения и описание доступных операций.
   </Step>
-  <Step title="Добавьте заголовок Authorization">
-    Передавайте `Authorization: Bearer` и ваш access-токен во всех защищённых запросах.
+  <Step title="Войдите под своей учётной записью">
+    Подключение выполняется от имени пользователя вашей компании — с теми же правами, что у него в системе.
   </Step>
-  <Step title="Работайте с CRM и биллингом">
-    Клиенты, инвентарь, группы, сделки и счета — префикс `/v1/`; детали в OpenAPI.
+  <Step title="Работайте с данными">
+    Через программный интерфейс доступны клиенты, инвентарь, аренды, продажи и счета.
   </Step>
-  <Step title="Подключайте интеграции">
-    Телефония, мессенджеры, Wialon и другие — раздел `/v1/crm/integrations/...`.
+  <Step title="Подключите интеграции">
+    Мессенджеры, телефония и GPS настраиваются в разделе интеграций в самой системе, без программирования.
   </Step>
 </Steps>
 
-//
+<Note>
+Состав операций и правила подключения выдаются вместе с доступом — напишите нам через [страницу контактов](/contact).
+</Note>

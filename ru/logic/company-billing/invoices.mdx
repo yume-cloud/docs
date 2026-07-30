@@ -4,7 +4,7 @@ icon: "file-invoice-dollar"
 description: "Счета на оплату подписки и модулей: статусы платежа и типы позиций, расчёт суммы, оплата через FreedomPay, вебхук результата, провижининг лимитов/SMS/интеграций и выдача пакета документов при подтверждении, а также рекуррентное автопродление по сохранённой карте."
 ---
 
-Полный перечень полей — в [глоссарии](/ru/logic/tenant-billing/invoices-glossary).
+Полный перечень полей — в [глоссарии](/ru/logic/company-billing/invoices-glossary).
 
 Эта страница описывает, как в Yume устроены счета на оплату подписки и модулей, как проходит платёж через шлюз FreedomPay, что происходит после подтверждения оплаты и как работает автоматическое (рекуррентное) продление по сохранённой карте.
 
@@ -105,7 +105,7 @@ description: "Счета на оплату подписки и модулей: �
 Предварительная оценка возвращает не только итог, но и **построчную детализацию**: оплачиваемые единицы, цену за период, число оплачиваемых дней, сумму и дату окончания по каждой позиции, включая бесплатные связанные интеграции.
 
 <Info>
-Полное описание правил расчёта, обоих режимов тарификации, автоподбора прайса и защиты от подорожания — на странице [«Расчёт стоимости и регистрация оплаты»](/ru/logic/tenant-billing/pricing).
+Полное описание правил расчёта, обоих режимов тарификации, автоподбора прайса и защиты от подорожания — на странице [«Расчёт стоимости и регистрация оплаты»](/ru/logic/company-billing/pricing).
 </Info>
 
 <Warning>
@@ -150,7 +150,7 @@ description: "Счета на оплату подписки и модулей: �
 
 Ручные оплаты отличимы от эквайринговых везде, где показывается способ оплаты: в карточке счёта, в истории счетов клиента, в уведомлении администраторам и в счётчике «вручную» на дашборде.
 
-Сценарий работы оператора описан на странице [«Расчёт стоимости и регистрация оплаты»](/ru/logic/tenant-billing/pricing).
+Сценарий работы оператора описан на странице [«Расчёт стоимости и регистрация оплаты»](/ru/logic/company-billing/pricing).
 
 ## Вебхуки платежа: проверка и результат
 
@@ -246,31 +246,28 @@ FreedomPay обращается к двум публичным адресам (�
 ## Связанные страницы
 
 <CardGroup cols={2}>
-  <Card title="Глоссарий: Инвойсы и платежи" icon="book" href="/ru/logic/tenant-billing/invoices-glossary">
+  <Card title="Глоссарий: Инвойсы и платежи" icon="book" href="/ru/logic/company-billing/invoices-glossary">
     Полный перечень полей счёта, позиций, статусов и данных платежа.
   </Card>
-  <Card title="Расчёт стоимости и регистрация оплаты" icon="calculator" href="/ru/logic/tenant-billing/pricing">
+  <Card title="Расчёт стоимости и регистрация оплаты" icon="calculator" href="/ru/logic/company-billing/pricing">
     Единое ядро расчёта, два режима тарификации, детализация и регистрация офлайн-оплаты.
   </Card>
-  <Card title="Компании и биллинг (подписки, платежи)" icon="building" href="/ru/logic/tenant-billing">
+  <Card title="Компании и биллинг (подписки, платежи)" icon="building" href="/ru/logic/company-billing">
     Обзорная страница всего модуля компаний, подписок и платежей.
   </Card>
-  <Card title="Проблемы и логические ошибки" icon="bug" href="/ru/logic/tenant-billing/issues">
-    Сводка известных проблем, багов и логических нюансов всего модуля.
-  </Card>
-  <Card title="Компании и провижининг" icon="building" href="/ru/logic/tenant-billing/provisioning">
+  <Card title="Создание компании и её адрес" icon="building" href="/ru/logic/company-billing/setup">
     Модель компании и её домены, генерация новой компании и регистрация владельца.
   </Card>
-  <Card title="Карты и автосписания" icon="credit-card" href="/ru/logic/tenant-billing/cards">
+  <Card title="Карты и автосписания" icon="credit-card" href="/ru/logic/company-billing/cards">
     Сохранённые платёжные карты компании и их привязка к автоматическим списаниям.
   </Card>
-  <Card title="Платёжные шлюзы" icon="money-bill-transfer" href="/ru/logic/tenant-billing/gateways">
+  <Card title="Платёжные шлюзы" icon="money-bill-transfer" href="/ru/logic/company-billing/gateways">
     Интеграция с FreedomPay: подпись, инициация платежа, списание, возврат.
   </Card>
-  <Card title="Лимиты и тарификация" icon="gauge-high" href="/ru/logic/tenant-billing/limits">
+  <Card title="Лимиты и тарификация" icon="gauge-high" href="/ru/logic/company-billing/limits">
     Лимиты плана по ресурсам, их цены по периодам и пересчёт фактического потребления.
   </Card>
-  <Card title="Онбординг, новости и статистика" icon="chart-line" href="/ru/logic/tenant-billing/onboarding-news-stats">
+  <Card title="Онбординг, новости и статистика" icon="chart-line" href="/ru/logic/company-billing/onboarding-news-stats">
     Шаги онбординга компании, лента новостей и снапшоты системной статистики.
   </Card>
 </CardGroup>

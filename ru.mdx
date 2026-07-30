@@ -168,20 +168,18 @@ flowchart LR
 
 | Свойство | Значение |
 | --- | --- |
-| Протокол | REST по HTTPS |
+| Протокол | защищённое соединение по HTTPS |
 | Формат | JSON |
-| Префикс путей | **`/v1/`** |
-| Аутентификация | JWT: **access** / **refresh** после `POST /v1/auth/login/`; обновление — `POST /v1/auth/refresh/` |
-| Базовый URL | `https://api.yume.cloud` |
+| Авторизация | вход по учётной записи вашей компании, затем автоматическое продление сессии |
 
-В защищённых запросах передавайте **`Authorization: Bearer <access>`**. Подробнее — в разделе [Аутентификация](/ru/authentication).
+Состав операций, адреса и порядок авторизации выдаются вместе с доступом к программному интерфейсу — напишите нам через [страницу контактов](/contact).
 
 <CardGroup cols={2}>
-  <Card title="Справочник API" icon="code" href="/ru/api-reference/overview">
+  <Card title="Справочник API" icon="code" href="/ru/logic/overview">
     Базовый URL, пагинация и ошибки
   </Card>
 
-  <Card title="Руководства" icon="book-open" href="/ru/guides/managing-rentals">
+  <Card title="Руководства" icon="book-open" href="/ru/guides/rent">
     Типовые сценарии работы с API
   </Card>
 </CardGroup>
