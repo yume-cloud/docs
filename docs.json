@@ -605,11 +605,6 @@
             ]
           },
           {
-            "tab": "Справочник API",
-            "hidden": true,
-            "openapi": "api/open-api.json"
-          },
-          {
             "tab": "Контакты",
             "icon": "phone",
             "groups": [

@@ -1,7 +1,7 @@
 {
-  "projectType": "api-service",
+  "projectType": "saas-platform",
   "projectName": "Yume",
-  "projectDescription": "Yume — платформа для управления арендой и продажами.",
+  "projectDescription": "Yume — ИИ-платформа для управления арендным бизнесом: аренда и бронирование, инвентарь и каталог, клиенты, финансы, документы, мастерская, продажи и аналитика.",
   "theme": "aspen",
   "primaryColor": "#A165FD",
   "lightColor": "#EDE8FB",
@@ -9,69 +9,576 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Документация",
+        "tab": "Онбординг",
         "groups": [
           {
-            "group": "Начало работы",
+            "group": " Что такое Yume ?",
+            "root": "ru/modules/what-is-yume",
             "pages": [
-              "introduction",
-              "authentication",
-              "quickstart"
-            ]
-          },
-          {
-            "group": "Основные понятия",
-            "pages": [
-              "concepts/rentals",
-              "concepts/transactions",
-              "concepts/billing"
-            ]
-          },
-          {
-            "group": "Руководства",
-            "pages": [
-              "guides/managing-rentals",
-              "guides/processing-payments",
-              "guides/gps-tracking",
-              "guides/integrations"
-            ]
-          },
-          {
-            "group": "Настройка",
-            "pages": [
-              "configuration/settings",
-              "configuration/access-rights",
-              "configuration/notifications"
+              {
+                "group": "Управление арендами - Инвентари",
+                "root": "ru/inventory-overview",
+                "pages": [
+                  "ru/modules/inventory-rentals",
+                  "ru/modules/catalog",
+                  "ru/modules/clients",
+                  "ru/modules/inventory-analytics",
+                  "ru/modules/inventory-settings"
+                ]
+              },
+              {
+                "group": "Управление арендами - Транспорт",
+                "root": "ru/modules/transport-overview",
+                "pages": [
+                  "ru/modules/transport-rentals",
+                  "ru/modules/garage",
+                  "ru/models/drivers",
+                  "ru/modules/transport-analytics",
+                  "ru/modules/transport-settings"
+                ]
+              },
+              {
+                "group": "Маркет",
+                "root": "ru/concepts/market",
+                "pages": [
+                  "ru/modules/finance",
+                  "ru/modules/store",
+                  "ru/modules/workshop",
+                  "ru/modules/sms-center",
+                  "ru/modules/delivery",
+                  "ru/modules/sales-funnel",
+                  "ru/modules/counterparty-check",
+                  {
+                    "group": "Продажа",
+                    "hidden": true,
+                    "pages": [
+                      "warehouse",
+                      "analytics"
+                    ]
+                  },
+                  "ru/modules/dokumenty"
+                ]
+              },
+              {
+                "group": "Интеграции",
+                "root": "wazzup",
+                "pages": [
+                  "ringostat",
+                  "wialon",
+                  "kaspi-payments"
+                ]
+              },
+              {
+                "group": "Аренда",
+                "root": "ru/modules/rent",
+                "hidden": true,
+                "pages": []
+              }
             ]
           }
         ]
       },
       {
-        "tab": "Справочник API",
+        "tab": "Как это работает",
         "groups": [
           {
             "group": "Обзор",
             "pages": [
-              "api-reference/overview",
-              "api-reference/authentication"
+              "ru/logic/overview"
             ]
           },
           {
-            "group": "Ресурсы",
+            "group": "Аренда и расчёты",
             "pages": [
-              "api-reference/rentals",
-              "api-reference/sales",
-              "api-reference/transactions",
-              "api-reference/analytics",
-              "api-reference/billing",
-              "api-reference/documents",
-              "api-reference/attachments",
-              "api-reference/gps",
-              "api-reference/notifications",
-              "api-reference/workshop",
-              "api-reference/store",
-              "api-reference/integrations",
-              "api-reference/access-rights"
+              "ru/logic/rent",
+              "ru/logic/rent/lifecycle",
+              "ru/logic/rent/actions",
+              "ru/logic/rent/inventory-lines",
+              "ru/logic/rent/services-delivery",
+              "ru/logic/rent/pricing",
+              "ru/logic/rent/deposits-penalties",
+              "ru/logic/rent/schedule",
+              "ru/logic/rent/triggers"
+            ]
+          },
+          {
+            "group": "Финансы и оплаты",
+            "pages": [
+              "ru/logic/finances",
+              "ru/logic/finances/payments",
+              "ru/logic/finances/accounts",
+              "ru/logic/finances/distribution",
+              "ru/logic/finances/transfers-refunds",
+              "ru/logic/finances/schedule",
+              "ru/logic/finances/kaspi",
+              "ru/logic/finances/rentlink"
+            ]
+          },
+          {
+            "group": "Инвентарь и каталог",
+            "pages": [
+              "ru/logic/inventory",
+              "ru/logic/inventory/inventory-items",
+              "ru/logic/inventory/inventory-groups",
+              "ru/logic/inventory/inventory-sets",
+              "ru/logic/inventory/tariffs",
+              "ru/logic/inventory/availability",
+              "ru/logic/inventory/sublease",
+              "ru/logic/inventory/services",
+              "ru/logic/inventory/maintenance",
+              "ru/logic/inventory/inventorization"
+            ]
+          },
+          {
+            "group": "Клиенты",
+            "pages": [
+              "ru/logic/clients-loyalty",
+              "ru/logic/clients-loyalty/client",
+              "ru/logic/clients-loyalty/bonuses",
+              "ru/logic/clients-loyalty/loyalty-program",
+              "ru/logic/clients-loyalty/referrals"
+            ]
+          },
+          {
+            "group": "Метрики и аналитика",
+            "pages": [
+              "ru/logic/metrics",
+              "ru/logic/profit-payback",
+              "ru/logic/metrics/overview",
+              "ru/logic/metrics/finances",
+              "ru/logic/metrics/transactions",
+              "ru/logic/metrics/penalties",
+              "ru/logic/metrics/discounts",
+              "ru/logic/metrics/deposits",
+              "ru/logic/metrics/services",
+              "ru/logic/metrics/salaries-sublease",
+              "ru/logic/metrics/depreciation-payback",
+              "ru/logic/metrics/efficiency",
+              "ru/logic/metrics/referrals-clients",
+              "ru/logic/metrics/workshifts",
+              "ru/logic/metrics/modules",
+              "ru/logic/metrics/bonuses"
+            ]
+          },
+          {
+            "group": "Документы и подписание",
+            "pages": [
+              "ru/logic/documents",
+              "ru/logic/documents/crud",
+              "ru/logic/documents/templates",
+              "ru/logic/documents/generation",
+              "ru/logic/documents/placeholders",
+              "ru/logic/documents/signing",
+              "ru/logic/documents/packages"
+            ]
+          },
+          {
+            "group": "Вложения",
+            "pages": [
+              "ru/logic/attachments",
+              "ru/logic/attachments/comments",
+              "ru/logic/attachments/images",
+              "ru/logic/attachments/files",
+              "ru/logic/attachments/direct-upload",
+              "ru/logic/attachments/links"
+            ]
+          },
+          {
+            "group": "Уведомления",
+            "pages": [
+              "ru/logic/notifications",
+              "ru/logic/notifications/model-dispatch",
+              "ru/logic/notifications/creation-grouping",
+              "ru/logic/notifications/delivery-channels",
+              "ru/logic/notifications/read-archive",
+              "ru/logic/notifications/push-tokens",
+              "ru/logic/notifications/telegram-link",
+              "ru/logic/notifications/access-settings"
+            ]
+          },
+          {
+            "group": "Архив",
+            "pages": [
+              "ru/logic/disable-archiving"
+            ]
+          },
+          {
+            "group": "Инфраструктура",
+            "pages": [
+              "ru/logic/infrastructure",
+              "ru/logic/background-tasks"
+            ]
+          },
+          {
+            "group": "Мастерская",
+            "pages": [
+              "ru/logic/workshop",
+              "ru/logic/workshop/pipeline",
+              "ru/logic/workshop/resources",
+              "ru/logic/workshop/services",
+              "ru/logic/workshop/pricing",
+              "ru/logic/workshop/profit",
+              "ru/logic/workshop/inventory-state"
+            ]
+          },
+          {
+            "group": "Продажи и воронки",
+            "pages": [
+              "ru/logic/sales",
+              "ru/logic/sales/funnels-stages",
+              "ru/logic/sales/leads",
+              "ru/logic/sales/lead-tasks",
+              "ru/logic/sales/triggers",
+              "ru/logic/sales/logs-bulk",
+              "ru/logic/sales/lead-intake"
+            ]
+          },
+          {
+            "group": "Пользователи и доступ",
+            "pages": [
+              "ru/logic/user",
+              "ru/logic/user/model",
+              "ru/logic/user/login",
+              "ru/logic/user/sessions",
+              "ru/logic/user/active-company",
+              "ru/logic/user/profile",
+              "ru/logic/user/password-reset",
+              "ru/logic/user/google-login",
+              "ru/logic/user/loyalty"
+            ]
+          },
+          {
+            "group": "Кошельки и карты",
+            "pages": [
+              "ru/logic/wallet",
+              "ru/logic/wallet/model",
+              "ru/logic/wallet/issue",
+              "ru/logic/wallet/apple-card",
+              "ru/logic/wallet/google",
+              "ru/logic/wallet/card-refresh",
+              "ru/logic/wallet/card-updates",
+              "ru/logic/wallet/change-dispatch"
+            ]
+          },
+          {
+            "group": "Компании и биллинг",
+            "pages": [
+              "ru/logic/company-billing",
+              "ru/logic/company-billing/setup",
+              "ru/logic/company-billing/invoices",
+              "ru/logic/company-billing/pricing",
+              "ru/logic/company-billing/cards",
+              "ru/logic/company-billing/gateways",
+              "ru/logic/company-billing/limits",
+              "ru/logic/company-billing/onboarding-news-stats"
+            ]
+          },
+          {
+            "group": "Продажа товаров",
+            "pages": [
+              "ru/logic/order-sale"
+            ]
+          },
+          {
+            "group": "Интеграции",
+            "pages": [
+              "ru/logic/auto-penalties",
+              "ru/logic/auto-penalties/models",
+              "ru/logic/auto-penalties/car-sync",
+              "ru/logic/auto-penalties/company-api",
+              "ru/logic/auto-penalties/notifications"
+            ]
+          },
+          {
+            "group": "Известные особенности и ограничения",
+            "hidden": true,
+            "pages": [
+              "ru/logic/known-issues",
+              "ru/logic/rent/issues",
+              "ru/logic/finances/issues",
+              "ru/logic/inventory/issues",
+              "ru/logic/metrics/issues",
+              "ru/logic/documents/issues",
+              "ru/logic/attachments/issues",
+              "ru/logic/notifications/issues",
+              "ru/logic/infrastructure/issues",
+              "ru/logic/workshop/issues",
+              "ru/logic/sales/issues",
+              "ru/logic/user/issues",
+              "ru/logic/wallet/issues",
+              "ru/logic/company-billing/issues",
+              "ru/logic/order-sale/issues",
+              "ru/logic/auto-penalties/issues"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Глоссарии",
+        "groups": [
+          {
+            "group": "Финансы и оплаты",
+            "pages": [
+              "ru/logic/finances/payments-glossary",
+              "ru/logic/finances/accounts-glossary",
+              "ru/logic/finances/distribution-glossary",
+              "ru/logic/finances/transfers-refunds-glossary",
+              "ru/logic/finances/schedule-glossary",
+              "ru/logic/finances/kaspi-glossary",
+              "ru/logic/finances/rentlink-glossary"
+            ]
+          },
+          {
+            "group": "Документы и подписание",
+            "pages": [
+              "ru/logic/documents/crud-glossary",
+              "ru/logic/documents/templates-glossary",
+              "ru/logic/documents/placeholders-glossary",
+              "ru/logic/documents/signing-glossary",
+              "ru/logic/documents/packages-glossary"
+            ]
+          },
+          {
+            "group": "Вложения",
+            "pages": [
+              "ru/logic/attachments/comments-glossary",
+              "ru/logic/attachments/images-glossary",
+              "ru/logic/attachments/files-glossary",
+              "ru/logic/attachments/links-glossary"
+            ]
+          },
+          {
+            "group": "Архив",
+            "pages": [
+              "ru/logic/disable-archiving-glossary"
+            ]
+          },
+          {
+            "group": "Уведомления",
+            "pages": [
+              "ru/logic/notifications/model-dispatch-glossary",
+              "ru/logic/notifications/creation-grouping-glossary",
+              "ru/logic/notifications/delivery-channels-glossary",
+              "ru/logic/notifications/read-archive-glossary",
+              "ru/logic/notifications/push-tokens-glossary",
+              "ru/logic/notifications/telegram-link-glossary",
+              "ru/logic/notifications/access-settings-glossary"
+            ]
+          },
+          {
+            "group": "Метрики и аналитика",
+            "pages": [
+              "ru/logic/metrics/overview-glossary",
+              "ru/logic/metrics/finances-glossary",
+              "ru/logic/metrics/transactions-glossary",
+              "ru/logic/metrics/penalties-glossary",
+              "ru/logic/metrics/discounts-glossary",
+              "ru/logic/metrics/deposits-glossary",
+              "ru/logic/metrics/services-glossary",
+              "ru/logic/metrics/salaries-sublease-glossary",
+              "ru/logic/metrics/depreciation-payback-glossary",
+              "ru/logic/metrics/efficiency-glossary",
+              "ru/logic/metrics/referrals-clients-glossary",
+              "ru/logic/metrics/workshifts-glossary",
+              "ru/logic/metrics/modules-glossary",
+              "ru/logic/metrics/bonuses-glossary"
+            ]
+          },
+          {
+            "group": "Мастерская",
+            "pages": [
+              "ru/logic/workshop/pipeline-glossary",
+              "ru/logic/workshop/resources-glossary",
+              "ru/logic/workshop/services-glossary",
+              "ru/logic/workshop/pricing-glossary",
+              "ru/logic/workshop/profit-glossary",
+              "ru/logic/workshop/inventory-state-glossary"
+            ]
+          },
+          {
+            "group": "Продажи и воронки",
+            "pages": [
+              "ru/logic/sales/funnels-stages-glossary",
+              "ru/logic/sales/leads-glossary",
+              "ru/logic/sales/lead-tasks-glossary",
+              "ru/logic/sales/triggers-glossary",
+              "ru/logic/sales/logs-bulk-glossary",
+              "ru/logic/sales/lead-intake-glossary"
+            ]
+          },
+          {
+            "group": "Пользователи и доступ",
+            "pages": [
+              "ru/logic/user/model-glossary",
+              "ru/logic/user/login-glossary",
+              "ru/logic/user/sessions-glossary",
+              "ru/logic/user/active-company-glossary",
+              "ru/logic/user/profile-glossary",
+              "ru/logic/user/password-reset-glossary",
+              "ru/logic/user/google-login-glossary",
+              "ru/logic/user/loyalty-glossary"
+            ]
+          },
+          {
+            "group": "Кошельки и карты",
+            "pages": [
+              "ru/logic/wallet/model-glossary",
+              "ru/logic/wallet/issue-glossary",
+              "ru/logic/wallet/apple-card-glossary",
+              "ru/logic/wallet/google-glossary",
+              "ru/logic/wallet/card-refresh-glossary",
+              "ru/logic/wallet/card-updates-glossary",
+              "ru/logic/wallet/change-dispatch-glossary"
+            ]
+          },
+          {
+            "group": "Компании и биллинг",
+            "pages": [
+              "ru/logic/company-billing/setup-glossary",
+              "ru/logic/company-billing/invoices-glossary",
+              "ru/logic/company-billing/pricing-glossary",
+              "ru/logic/company-billing/cards-glossary",
+              "ru/logic/company-billing/gateways-glossary",
+              "ru/logic/company-billing/limits-glossary",
+              "ru/logic/company-billing/onboarding-news-stats-glossary"
+            ]
+          },
+          {
+            "group": "Инвентарь и каталог",
+            "pages": [
+              "ru/logic/inventory/inventory-items-glossary",
+              "ru/logic/inventory/inventory-groups-glossary",
+              "ru/logic/inventory/inventory-sets-glossary",
+              "ru/logic/inventory/tariffs-glossary",
+              "ru/logic/inventory/availability-glossary",
+              "ru/logic/inventory/sublease-glossary",
+              "ru/logic/inventory/services-glossary",
+              "ru/logic/inventory/maintenance-glossary",
+              "ru/logic/inventory/inventorization-glossary"
+            ]
+          },
+          {
+            "group": "Аренда и расчёты",
+            "pages": [
+              "ru/logic/rent/lifecycle-glossary",
+              "ru/logic/rent/actions-glossary",
+              "ru/logic/rent/inventory-lines-glossary",
+              "ru/logic/rent/services-delivery-glossary",
+              "ru/logic/rent/pricing-glossary",
+              "ru/logic/rent/deposits-penalties-glossary",
+              "ru/logic/rent/schedule-glossary",
+              "ru/logic/rent/triggers-glossary"
+            ]
+          },
+          {
+            "group": "Продажа товаров",
+            "pages": [
+              "ru/logic/order-sale/glossary"
+            ]
+          },
+          {
+            "group": "Интеграции",
+            "pages": [
+              "ru/logic/auto-penalties/models-glossary",
+              "ru/logic/auto-penalties/car-sync-glossary",
+              "ru/logic/auto-penalties/company-api-glossary",
+              "ru/logic/auto-penalties/notifications-glossary"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Q/A",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "ru/qa/general-questions",
+              "ru/qa/getting-started",
+              "ru/qa/rentals-and-orders",
+              "ru/qa/inventory-and-transport",
+              "ru/qa/workshop-and-maintenance",
+              "ru/qa/payments-and-finance",
+              "ru/qa/analytics",
+              "ru/qa/users-and-access",
+              "ru/qa/settings-and-customization",
+              "ru/qa/store",
+              "ru/qa/integrations"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Документация",
+        "hidden": true,
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "ru/main",
+              "ru"
+            ]
+          },
+          {
+            "group": "Основные понятия",
+            "hidden": true,
+            "pages": [
+              "ru/concepts/client",
+              "ru/concepts/rental-point",
+              "ru/concepts/category",
+              "ru/concepts/inventory",
+              "ru/concepts/service",
+              "ru/concepts/product",
+              "ru/concepts/set",
+              "ru/concepts/custom-fields"
+            ]
+          },
+          {
+            "group": "Настройка",
+            "hidden": true,
+            "pages": [
+              "ru/configuration/company",
+              "ru/configuration/rent-status",
+              "ru/configuration/labels",
+              "ru/configuration/access",
+              "ru/configuration/notifications"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Гайды",
+        "hidden": true,
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "ru/guides/integrations",
+              "ru/guides/client",
+              "ru/guides/product",
+              "ru/guides/rent"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Контакты",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "contact"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "История изменений",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "changelog"
             ]
           }
         ]
@@ -80,38 +587,23 @@
     "language": "ru"
   },
   "keyFeatures": [
-    "Управление арендой с отслеживанием полного жизненного цикла",
-    "Операции продаж и точек продаж",
-    "Управление транзакциями и биллингом",
-    "GPS и отслеживание местоположения",
-    "Аналитика и отчётность",
-    "Управление мастерской и инвентарём",
-    "Генерация и управление документами",
-    "Интеграция со сторонними сервисами",
-    "Ролевая модель доступа",
-    "Уведомления и оповещения"
+    "Аренда и бронирование: жизненный цикл, действия, расписание и триггеры",
+    "Ценообразование: тарифы, скидки, депозиты и штрафы",
+    "Инвентарь и каталог: позиции, группы, комплекты, доступность, субаренда, обслуживание и инвентаризация",
+    "Транспорт: гараж, водители, GPS-контроль и автоматические штрафы",
+    "Клиенты: база, бонусы, программа лояльности и рефералы",
+    "Финансы: платежи, счета, распределение, переводы и возвраты",
+    "Документы: шаблоны, генерация, плейсхолдеры, подписание и пакеты",
+    "Вложения: комментарии, изображения, файлы, ссылки и прямая загрузка",
+    "Уведомления: каналы доставки, push-токены, Telegram и настройки доступа",
+    "Метрики и аналитика: деньги, загрузка, амортизация, окупаемость и эффективность",
+    "Мастерская: пайплайн, ресурсы, услуги, ценообразование и прибыль",
+    "Продажи и воронки: лиды, задачи, триггеры и приём заявок",
+    "Склад и продажа товаров",
+    "Кошельки и карты: Apple Wallet, Google Wallet и обновление карт",
+    "Пользователи и доступ: вход, сессии, активная компания, Google-вход и сброс пароля",
+    "Биллинг компаний: тарифы, счета, привязанные карты, платёжные шлюзы и лимиты",
+    "Интеграции: Kaspi, Wazzup, Ringostat, Wialon, SMS-центр и проверка контрагентов"
   ],
-  "publicApiSurface": [
-    "POST /v1/auth/login/",
-    "POST /v1/auth/refresh/",
-    "GET /v1/rentals/",
-    "POST /v1/rentals/",
-    "GET /v1/rentals/{id}/",
-    "PUT /v1/rentals/{id}/",
-    "GET /v1/transactions/",
-    "POST /v1/transactions/",
-    "GET /v1/analytics/",
-    "GET /v1/billing/",
-    "POST /v1/billing/payments/",
-    "GET /v1/gps/locations/",
-    "GET /v1/notifications/",
-    "POST /v1/integrations/",
-    "GET /v1/documents/",
-    "POST /v1/attachments/",
-    "GET /v1/sales/",
-    "POST /v1/sales/",
-    "GET /v1/access-rights/",
-    "GET /v1/workshop/",
-    "GET /v1/store/"
-  ]
+  "publicApiSurface": []
 }
