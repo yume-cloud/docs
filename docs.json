@@ -68,10 +68,7 @@
                       {
                         "group": "Продажа",
                         "hidden": true,
-                        "pages": [
-                          "warehouse",
-                          "analytics"
-                        ]
+                        "pages": ["warehouse", "analytics"]
                       },
                       "ru/modules/dokumenty"
                     ]
@@ -79,11 +76,7 @@
                   {
                     "group": "Интеграции",
                     "root": "wazzup",
-                    "pages": [
-                      "ringostat",
-                      "wialon",
-                      "kaspi-payments"
-                    ]
+                    "pages": ["ringostat", "wialon", "kaspi-payments"]
                   },
                   {
                     "group": "Аренда",
@@ -102,9 +95,7 @@
               {
                 "group": "Обзор",
                 "public": true,
-                "pages": [
-                  "ru/logic/overview"
-                ]
+                "pages": ["ru/logic/overview"]
               },
               {
                 "group": "Аренда и расчёты",
@@ -226,9 +217,7 @@
               {
                 "group": "Архив",
                 "public": true,
-                "pages": [
-                  "ru/logic/disable-archiving"
-                ]
+                "pages": ["ru/logic/disable-archiving"]
               },
               {
                 "group": "Инфраструктура",
@@ -303,10 +292,22 @@
                 ]
               },
               {
-                "group": "Продажа товаров",
+                "group": "Настройки компании",
                 "pages": [
-                  "ru/logic/order-sale"
+                  "ru/logic/settings",
+                  "ru/logic/settings/config",
+                  "ru/logic/settings/storage-cache",
+                  "ru/logic/settings/custom-fields",
+                  "ru/logic/settings/labels",
+                  "ru/logic/settings/tables",
+                  "ru/logic/settings/promo",
+                  "ru/logic/settings/counters",
+                  "ru/logic/settings/admin"
                 ]
+              },
+              {
+                "group": "Продажа товаров",
+                "pages": ["ru/logic/order-sale"]
               },
               {
                 "group": "Интеграции",
@@ -320,7 +321,7 @@
               },
               {
                 "group": "Известные особенности и ограничения",
-                "hidden": true,
+                "hidden": false,
                 "pages": [
                   "ru/logic/known-issues",
                   "ru/logic/rent/issues",
@@ -383,9 +384,7 @@
               {
                 "group": "Архив",
                 "public": true,
-                "pages": [
-                  "ru/logic/disable-archiving-glossary"
-                ]
+                "pages": ["ru/logic/disable-archiving-glossary"]
               },
               {
                 "group": "Уведомления",
@@ -508,9 +507,7 @@
               },
               {
                 "group": "Продажа товаров",
-                "pages": [
-                  "ru/logic/order-sale/glossary"
-                ]
+                "pages": ["ru/logic/order-sale/glossary"]
               },
               {
                 "group": "Интеграции",
@@ -519,6 +516,19 @@
                   "ru/logic/auto-penalties/car-sync-glossary",
                   "ru/logic/auto-penalties/company-api-glossary",
                   "ru/logic/auto-penalties/notifications-glossary"
+                ]
+              },
+              {
+                "group": "Настройки компании",
+                "pages": [
+                  "ru/logic/settings/config-glossary",
+                  "ru/logic/settings/storage-cache-glossary",
+                  "ru/logic/settings/custom-fields-glossary",
+                  "ru/logic/settings/labels-glossary",
+                  "ru/logic/settings/tables-glossary",
+                  "ru/logic/settings/promo-glossary",
+                  "ru/logic/settings/counters-glossary",
+                  "ru/logic/settings/admin-glossary"
                 ]
               }
             ]
@@ -553,10 +563,7 @@
               {
                 "group": " ",
                 "public": true,
-                "pages": [
-                  "ru/main",
-                  "ru"
-                ]
+                "pages": ["ru/main", "ru"]
               },
               {
                 "group": "Основные понятия",
@@ -611,9 +618,7 @@
               {
                 "group": " ",
                 "public": true,
-                "pages": [
-                  "contact"
-                ]
+                "pages": ["contact"]
               }
             ]
           },
@@ -624,9 +629,7 @@
               {
                 "group": " ",
                 "public": true,
-                "pages": [
-                  "changelog"
-                ]
+                "pages": ["changelog"]
               }
             ]
           }
