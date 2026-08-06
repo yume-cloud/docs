@@ -321,7 +321,7 @@
               },
               {
                 "group": "Известные особенности и ограничения",
-                "hidden": false,
+                "hidden": true,
                 "pages": [
                   "ru/logic/known-issues",
                   "ru/logic/rent/issues",
