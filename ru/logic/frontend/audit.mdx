@@ -1,0 +1,221 @@
+---
+title: "Аудит фронтенда"
+sidebarTitle: "Аудит фронтенда"
+description: "Автоматические находки по коду фронтенда и целостности документации"
+icon: "bug"
+noindex: true
+---
+
+{/* GENERATED — scripts/docs-audit.mjs в yume-cloud/frontend. Не редактировать вручную:
+    страница перезаписывается целиком при следующем запуске scripts/docs-sync.mjs. */}
+
+<Info>
+  Страница собрана автоматически из кода фронтенда на коммите
+  [`b45ac1c`](https://github.com/yume-cloud/frontend/commit/b45ac1cac962306f92bf244929fc3141693a7f1a) от 2026-08-06.
+  Ссылки на файлы закреплены за этим коммитом и не устаревают.
+</Info>
+
+## Сводка
+
+| Приоритет | Находка | Вхождений | Проверка |
+| --- | --- | --- | --- |
+| 🟠 логическая | Проверки запускаются, но не блокируют сборку | 2 | `ci-gates` |
+| 🟠 логическая | Цвета в обход дизайн-токенов | 1095 | `design-tokens` |
+| 🟠 логическая | docs.json ссылается на отсутствующую OpenAPI-спецификацию | 1 | `docs-integrity` |
+| 🟠 логическая | Ссылки на несуществующие якоря | 1 | `docs-integrity` |
+| 🟠 логическая | Неиспользуемые изображения в репозитории | 60 | `docs-integrity` |
+| 🟠 логическая | Пустые страницы и страницы без frontmatter | 3 | `docs-integrity` |
+| 🟠 логическая | Закрытые задачи всё ещё числятся открытыми в документации | 3 | `docs-issue-state` |
+| 🟠 логическая | Страницы навигации отсутствуют в llms.txt | 9 | `docs-llms` |
+| 🔴 критично | docs.json ссылается на несуществующие страницы | 1 | `docs-nav` |
+| 🔴 критично | Страницы не подключены к навигации | 1 | `docs-nav` |
+| 🟠 логическая | Сырые поля ввода в обход src/shared/inputs | 43 | `raw-inputs` |
+| 🔴 критично | Идентификаторы таблиц используются в обход реестра | 57 | `table-registry` |
+| 🔴 критично | Тип TableId вырождается в string и ничего не проверяет | 1 | `table-registry` |
+
+## Требуют исправления
+
+Эти находки нарушают правила, у которых нет накопленного долга — любое вхождение является регрессией.
+
+<AccordionGroup>
+<Accordion title="🔴 критично — docs.json ссылается на несуществующие страницы">
+  **Последствие:** 1 запись(ей) навигации указывают на отсутствующие .mdx — это ошибка сборки Mintlify и 404 в сайдбаре: ru/guides/integrations.
+
+  **Где:** `docs.json`
+
+  **Как чинить:** создать страницы или удалить записи из навигации.
+</Accordion>
+<Accordion title="🔴 критично — Страницы не подключены к навигации">
+  **Последствие:** 1 страниц(ы) существуют на диске, но не встречаются в docs.json — они собираются и публикуются, но недостижимы из сайдбара.
+
+  **Где:** `ru/modules/desktop.mdx`
+
+  **Как чинить:** подключить к навигации или удалить.
+</Accordion>
+<Accordion title="🔴 критично — Идентификаторы таблиц используются в обход реестра">
+  **Последствие:** в коде используется 57 идентификатор(ов) таблиц, из них 57 не объявлены в реестре. Каждый tableId — ключ пользовательских настроек колонок (settingService.createTableConfig), поэтому опечатка молча создаёт новый пустой набор настроек вместо ошибки компиляции, и пользователь теряет свою раскладку колонок.
+
+  **Где:** [`src/utils/table-registry.tsx`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/utils/table-registry.tsx); [`src/pages/integration/binotel/history.tsx:191`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/integration/binotel/history.tsx#L191); [`src/pages/catalog/group/list/index.tsx:469`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/catalog/group/list/index.tsx#L469); [`src/pages/catalog/inventory/list/index.tsx:822`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/catalog/inventory/list/index.tsx#L822); [`src/pages/clients/detail/client-bonuses.tsx:210`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/clients/detail/client-bonuses.tsx#L210); [`src/pages/metrics/bonuses/history.tsx:156`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/metrics/bonuses/history.tsx#L156)
+
+  **Как чинить:** объявить все 57 идентификаторов в TableIdList и передавать их через константы, а не строковыми литералами.
+
+  <Expandable title="Все вхождения (57)">
+    - `binotel.history`
+    - `catalog.groups`
+    - `catalog.inventory`
+    - `client.bonus`
+    - `client.bonus.history`
+    - `client.list`
+    - `clients.balance`
+    - `clients.conditions`
+    - `config.attraction`
+    - `config.duration`
+    - `config.payment`
+    - `config.point`
+  </Expandable>
+</Accordion>
+<Accordion title="🔴 критично — Тип TableId вырождается в string и ничего не проверяет">
+  **Последствие:** аннотация `Record<string, string>` затирает `as const`, поэтому `type TableId = (typeof TableIdList)[keyof typeof TableIdList]` вычисляется в `string`. Проп `tableId: TableId` принимает любую строку — реестр не даёт никакой защиты даже после того, как в него добавят все идентификаторы.
+
+  **Где:** [`src/utils/table-registry.tsx:1`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/utils/table-registry.tsx#L1)
+
+  **Как чинить:** убрать аннотацию `: Record<string, string>` и оставить только `as const`.
+</Accordion>
+</AccordionGroup>
+## Накопленный долг
+
+Эти находки существуют давно и не чинятся одним заходом. Проверка следит за тем, чтобы их
+количество не росло: baseline зафиксирован в `scripts/audit/baseline.json`.
+
+<AccordionGroup>
+<Accordion title="🟠 логическая — Проверки запускаются, но не блокируют сборку">
+  **Последствие:** `typecheck`, `lint` помечены `continue-on-error: true`, поэтому их падение не останавливает merge. Это временное состояние на время расчистки накопленных ошибок tsc и eslint.
+
+  **Где:** [`.github/workflows/deploy-mobile.yml`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/.github/workflows/deploy-mobile.yml); [`.github/workflows/deploy-prod.yml`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/.github/workflows/deploy-prod.yml); [`.github/workflows/deploy-stage.yml`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/.github/workflows/deploy-stage.yml); [`.github/workflows/deploy.yml`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/.github/workflows/deploy.yml); [`.github/workflows/quality.yml`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/.github/workflows/quality.yml)
+
+  **Как чинить:** убрать `continue-on-error`, когда соответствующий baseline дойдёт до нуля.
+</Accordion>
+<Accordion title="🟠 логическая — Цвета в обход дизайн-токенов">
+  **Последствие:** 906 использований сырых палитр Tailwind и 189 произвольных hex-значений в 130 файлах. Такие цвета не следуют теме и не имеют парного мягкого состояния `bg-x/10 text-x`, поэтому элементы одного смысла выглядят по-разному на соседних экранах.
+
+  **Где:** [`src/pages/integration/egov-debtors/index.tsx:89`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/integration/egov-debtors/index.tsx#L89); [`src/pages/integration/sto/landing.tsx:47`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/integration/sto/landing.tsx#L47); [`src/pages/onboarding/dashboard.tsx:42`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/onboarding/dashboard.tsx#L42); [`src/pages/integration/kaspi-pay/index.tsx:29`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/integration/kaspi-pay/index.tsx#L29); [`src/pages/integration/kaspi-payments/index.tsx:27`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/integration/kaspi-payments/index.tsx#L27); [`src/pages/integration/finance/landing.tsx:58`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/integration/finance/landing.tsx#L58) (и ещё 4)
+
+  **Как чинить:** заменить на семантические токены (`primary`, `accept`, `alert`, `warn`, `link`, `gray-*`) из tailwind.config.js; мягкие состояния — парой `bg-x/10 text-x`.
+
+  <Expandable title="Все вхождения (1095)">
+    - `src/pages/integration/egov-debtors/index.tsx (69)`
+    - `src/pages/integration/sto/landing.tsx (50)`
+    - `src/pages/onboarding/dashboard.tsx (45)`
+    - `src/pages/integration/kaspi-pay/index.tsx (39)`
+    - `src/pages/integration/kaspi-payments/index.tsx (37)`
+    - `src/pages/integration/finance/landing.tsx (36)`
+    - `src/pages/integration/wialon/landing.tsx (36)`
+    - `src/pages/integration/delivery/landing.tsx (35)`
+    - `src/pages/integration/market-config.ts (33)`
+    - `src/pages/integration/shop/landing.tsx (33)`
+  </Expandable>
+</Accordion>
+<Accordion title="🟠 логическая — docs.json ссылается на отсутствующую OpenAPI-спецификацию">
+  **Последствие:** `"openapi": "api-reference/yume-cloud-openapi.yaml"` указывает на файл, которого нет в репозитории, поэтому справочник API не генерируется, а сборка Mintlify сообщает об ошибке.
+
+  **Где:** `docs.json`
+
+  **Как чинить:** положить спецификацию в репозиторий, заменить путь на URL или убрать ключ.
+</Accordion>
+<Accordion title="🟠 логическая — Ссылки на несуществующие якоря">
+  **Последствие:** 1 ссылок(ки) указывают на заголовок, которого больше нет на целевой странице — переход открывает страницу в начале, молча теряя контекст.
+
+  **Где:** `ru/logic/clients-loyalty/client.mdx`
+
+  **Как чинить:** обновить якорь под текущий заголовок.
+</Accordion>
+<Accordion title="🟠 логическая — Неиспользуемые изображения в репозитории">
+  **Последствие:** 60 файл(ов) в images/ не упоминаются ни на одной странице. Они попадают в деплой и увеличивают его вес.
+
+  **Где:** `images/`
+
+  **Как чинить:** удалить после проверки, что на них не ссылаются из веб-редактора Mintlify (он пишет в репозиторий напрямую).
+
+  <Expandable title="Все вхождения (60)">
+    - `/images/Screenshot-2026-04-14-at-22.18.15.webp`
+    - `/images/Screenshot-2026-04-14-at-22.31.27.webp`
+    - `/images/Screenshot-2026-04-14-at-22.32.19.webp`
+    - `/images/Screenshot-2026-04-14-at-22.33.45.webp`
+    - `/images/Screenshot-2026-04-14-at-22.35.27.webp`
+    - `/images/Screenshot-2026-04-14-at-22.39.33.webp`
+    - `/images/Screenshot-2026-04-14-at-23.29.51.webp`
+    - `/images/Screenshot-2026-04-14-at-23.32.27.webp`
+    - `/images/Screenshot-2026-04-14-at-23.32.56.webp`
+    - `/images/Screenshot-2026-04-14-at-23.40.16-1.webp`
+    - `/images/Screenshot-2026-04-14-at-23.40.16.webp`
+    - `/images/Screenshot-2026-04-14-at-23.41.26.webp`
+  </Expandable>
+</Accordion>
+<Accordion title="🟠 логическая — Пустые страницы и страницы без frontmatter">
+  **Последствие:** 3 страниц(ы) пусты или не имеют `title` во frontmatter. Mintlify показывает такую страницу без заголовка — в сайдбаре появляется пустой пункт.
+
+  **Где:** `ru/guides/client.mdx`; `ru/guides/product.mdx`; `ru/guides/rent.mdx`
+
+  **Как чинить:** заполнить содержимым, добавить frontmatter или удалить вместе с записью в навигации.
+</Accordion>
+<Accordion title="🟠 логическая — Закрытые задачи всё ещё числятся открытыми в документации">
+  **Последствие:** 3 из 50 задач, на которые ссылается «Сводка находок», уже закрыты в трекере, но страница по-прежнему подаёт их как незакрытые. Опубликованная документация завышает число известных проблем.
+
+  **Где:** `ru/logic/known-issues.mdx`
+
+  **Как чинить:** перенести их в раздел «Исправлено» на ru/logic/known-issues.mdx.
+</Accordion>
+<Accordion title="🟠 логическая — Страницы навигации отсутствуют в llms.txt">
+  **Последствие:** 9 страниц(ы) есть в навигации, но не перечислены в llms.txt. llms.txt поддерживается вручную, поэтому расхождение накапливается с каждым изменением навигации.
+
+  **Где:** `llms.txt`
+
+  **Как чинить:** дописать недостающие разделы или, если исключение намеренное, зафиксировать правило исключения в самом llms.txt.
+
+  <Expandable title="Все вхождения (9)">
+    - `ru/logic/settings`
+    - `ru/logic/settings/admin`
+    - `ru/logic/settings/config`
+    - `ru/logic/settings/counters`
+    - `ru/logic/settings/custom-fields`
+    - `ru/logic/settings/labels`
+    - `ru/logic/settings/promo`
+    - `ru/logic/settings/storage-cache`
+    - `ru/logic/settings/tables`
+  </Expandable>
+</Accordion>
+<Accordion title="🟠 логическая — Сырые поля ввода в обход src/shared/inputs">
+  **Последствие:** 43 поле(й) отрисованы напрямую, минуя src/shared/inputs. Такое поле не читает контекст react-hook-form: валидация его не видит, текст ошибки и звёздочка обязательности не отрисовываются, и форма молча принимает некорректное значение.
+
+  **Где:** [`src/pages/assistant/components/chat-input.tsx:319`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/assistant/components/chat-input.tsx#L319); [`src/pages/clients/detail/mobile/client-tab-search.tsx:23`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/clients/detail/mobile/client-tab-search.tsx#L23); [`src/pages/documents/drafts.tsx:118`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/documents/drafts.tsx#L118); [`src/pages/documents/sign-modal.tsx:100`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/documents/sign-modal.tsx#L100); [`src/pages/documents/template/settings.tsx:156`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/documents/template/settings.tsx#L156); [`src/pages/documents/template/settings.tsx:173`](https://github.com/yume-cloud/frontend/blob/b45ac1cac962306f92bf244929fc3141693a7f1a/src/pages/documents/template/settings.tsx#L173) (и ещё 37)
+
+  **Как чинить:** перевести на компоненты из src/shared/inputs — `<select>` на `FormSelect` (обязателен `getOptionValue`), чекбокс на `FormControlCheckbox`, цвет на `FormControlColor`.
+
+  <Expandable title="Все вхождения (43)">
+    - `src/pages/assistant/components/chat-input.tsx:319 <textarea>`
+    - `src/pages/clients/detail/mobile/client-tab-search.tsx:23 <input>`
+    - `src/pages/documents/drafts.tsx:118 <input>`
+    - `src/pages/documents/sign-modal.tsx:100 <input>`
+    - `src/pages/documents/template/settings.tsx:156 <input>`
+    - `src/pages/documents/template/settings.tsx:173 <input>`
+    - `src/pages/documents/template/settings.tsx:204 <input>`
+    - `src/pages/documents/template/settings.tsx:221 <input>`
+    - `src/pages/finance/modal/add-mobile.tsx:462 <select>`
+    - `src/pages/finance/settings/categories.tsx:61 <input>`
+    - `src/pages/finance/settings/categories.tsx:356 <input>`
+    - `src/pages/funnel/list/lead.column.tsx:290 <input>`
+  </Expandable>
+</Accordion>
+</AccordionGroup>
+
+## Как это устроено
+
+Проверки живут в `scripts/audit/checks/` в репозитории фронтенда и запускаются
+командой `npm run audit`. Каждая проверка описывает одно машинно-проверяемое правило:
+часть смотрит на код (`src/`), часть — на целостность самой документации
+(`docs.json`, ссылки, изображения, `llms.txt`).
+
+Проверки, которые нельзя сделать надёжно, сознательно не добавлены — например, сопоставление
+маршрутов с `PAGE_TITLES`: `resolveDocumentTitle` использует `matchPath({end: false})`,
+то есть заголовок подхватывается по префиксу, а часть маршрутов генерируется из массивов,
+а не объявляется литералами. Любая регулярка здесь даёт ложные срабатывания.

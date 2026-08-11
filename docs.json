@@ -338,7 +338,8 @@
                   "ru/logic/wallet/issues",
                   "ru/logic/company-billing/issues",
                   "ru/logic/order-sale/issues",
-                  "ru/logic/auto-penalties/issues"
+                  "ru/logic/auto-penalties/issues",
+                  "ru/logic/frontend/audit"
                 ]
               }
             ]
