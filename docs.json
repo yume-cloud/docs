@@ -288,7 +288,8 @@
                   "ru/logic/company-billing/cards",
                   "ru/logic/company-billing/gateways",
                   "ru/logic/company-billing/limits",
-                  "ru/logic/company-billing/onboarding-news-stats"
+                  "ru/logic/company-billing/onboarding-news-stats",
+                  "ru/logic/company-billing/deletion"
                 ]
               },
               {
@@ -475,7 +476,8 @@
                   "ru/logic/company-billing/cards-glossary",
                   "ru/logic/company-billing/gateways-glossary",
                   "ru/logic/company-billing/limits-glossary",
-                  "ru/logic/company-billing/onboarding-news-stats-glossary"
+                  "ru/logic/company-billing/onboarding-news-stats-glossary",
+                  "ru/logic/company-billing/deletion-glossary"
                 ]
               },
               {
