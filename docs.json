@@ -266,6 +266,19 @@
                 ]
               },
               {
+                "group": "История действий",
+                "pages": [
+                  "ru/logic/audit",
+                  "ru/logic/audit/event",
+                  "ru/logic/audit/recording",
+                  "ru/logic/audit/tracking",
+                  "ru/logic/audit/actions",
+                  "ru/logic/audit/diff",
+                  "ru/logic/audit/labels",
+                  "ru/logic/audit/access"
+                ]
+              },
+              {
                 "group": "Кошельки и карты",
                 "pages": [
                   "ru/logic/wallet",
@@ -339,7 +352,8 @@
                   "ru/logic/wallet/issues",
                   "ru/logic/company-billing/issues",
                   "ru/logic/order-sale/issues",
-                  "ru/logic/auto-penalties/issues"
+                  "ru/logic/auto-penalties/issues",
+                  "ru/logic/audit/issues"
                 ]
               }
             ]
@@ -453,6 +467,18 @@
                   "ru/logic/user/password-reset-glossary",
                   "ru/logic/user/google-login-glossary",
                   "ru/logic/user/loyalty-glossary"
+                ]
+              },
+              {
+                "group": "История действий",
+                "pages": [
+                  "ru/logic/audit/event-glossary",
+                  "ru/logic/audit/recording-glossary",
+                  "ru/logic/audit/tracking-glossary",
+                  "ru/logic/audit/actions-glossary",
+                  "ru/logic/audit/diff-glossary",
+                  "ru/logic/audit/labels-glossary",
+                  "ru/logic/audit/access-glossary"
                 ]
               },
               {
