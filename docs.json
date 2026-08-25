@@ -1,6 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Yume",
+  "description": "Документация Yume — облачной платформы для арендного бизнеса: аренда и бронирование, каталог инвентаря, клиенты и лояльность, оплаты и финансовый учёт, документы, мастерская и аналитика.",
   "theme": "aspen",
   "openapi": "api-reference/yume-cloud-openapi.yaml",
   "colors": {
@@ -65,11 +66,6 @@
                       "ru/modules/delivery",
                       "ru/modules/sales-funnel",
                       "ru/modules/counterparty-check",
-                      {
-                        "group": "Продажа",
-                        "hidden": true,
-                        "pages": ["warehouse", "analytics"]
-                      },
                       "ru/modules/dokumenty"
                     ]
                   },
@@ -599,13 +595,7 @@
                 "public": true,
                 "pages": [
                   "ru/concepts/client",
-                  "ru/concepts/rental-point",
-                  "ru/concepts/category",
-                  "ru/concepts/inventory",
-                  "ru/concepts/service",
-                  "ru/concepts/product",
-                  "ru/concepts/set",
-                  "ru/concepts/custom-fields"
+                  "ru/concepts/rental-point"
                 ]
               },
               {
@@ -614,27 +604,7 @@
                 "hidden": true,
                 "public": true,
                 "pages": [
-                  "ru/configuration/company",
-                  "ru/configuration/rent-status",
-                  "ru/configuration/labels",
-                  "ru/configuration/access",
-                  "ru/configuration/notifications"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "Гайды",
-            "hidden": true,
-            "groups": [
-              {
-                "group": " ",
-                "public": true,
-                "pages": [
-                  "ru/guides/integrations",
-                  "ru/guides/client",
-                  "ru/guides/product",
-                  "ru/guides/rent"
+                  "ru/configuration/access"
                 ]
               }
             ]
@@ -670,6 +640,15 @@
   },
   "interaction": {
     "drilldown": true
+  },
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "perplexity"]
+  },
+  "seo": {
+    "indexing": "navigable"
+  },
+  "search": {
+    "prompt": "Поиск по документации Yume"
   },
   "redirects": [
     {
@@ -718,7 +697,7 @@
     },
     {
       "source": "/ru/logic/feature-flags",
-      "destination": "/ru/configuration/company"
+      "destination": "/ru/logic/settings/config"
     },
     {
       "source": "/ru/logic/infrastructure/celery",
@@ -782,7 +761,7 @@
     },
     {
       "source": "/ru/configuration/tenant",
-      "destination": "/ru/configuration/company"
+      "destination": "/ru/logic/settings/config"
     },
     {
       "source": "/ru/logic/user/tenant-middleware",
@@ -863,6 +842,70 @@
     {
       "source": "/ru/logic/tenant-billing/provisioning-glossary",
       "destination": "/ru/logic/company-billing/setup-glossary"
+    },
+    {
+      "source": "/warehouse",
+      "destination": "/ru/modules/store"
+    },
+    {
+      "source": "/analytics",
+      "destination": "/ru/logic/metrics"
+    },
+    {
+      "source": "/ru/concepts/category",
+      "destination": "/ru/logic/inventory/inventory-groups"
+    },
+    {
+      "source": "/ru/concepts/inventory",
+      "destination": "/ru/logic/inventory/inventory-items"
+    },
+    {
+      "source": "/ru/concepts/service",
+      "destination": "/ru/logic/inventory/services"
+    },
+    {
+      "source": "/ru/concepts/product",
+      "destination": "/ru/logic/inventory/inventory-groups"
+    },
+    {
+      "source": "/ru/concepts/set",
+      "destination": "/ru/logic/inventory/inventory-sets"
+    },
+    {
+      "source": "/ru/concepts/custom-fields",
+      "destination": "/ru/logic/settings/custom-fields"
+    },
+    {
+      "source": "/ru/configuration/company",
+      "destination": "/ru/logic/settings/config"
+    },
+    {
+      "source": "/ru/configuration/rent-status",
+      "destination": "/ru/logic/rent/lifecycle"
+    },
+    {
+      "source": "/ru/configuration/labels",
+      "destination": "/ru/logic/settings/labels"
+    },
+    {
+      "source": "/ru/configuration/notifications",
+      "destination": "/ru/logic/notifications"
+    },
+    {
+      "source": "/ru/guides/integrations",
+      "destination": "/ru/qa/integrations"
+    },
+    {
+      "source": "/ru/guides/client",
+      "destination": "/ru/modules/clients"
+    },
+    {
+      "source": "/ru/guides/product",
+      "destination": "/ru/modules/catalog"
+    },
+    {
+      "source": "/ru/guides/rent",
+      "destination": "/ru/modules/inventory-rentals"
     }
   ],
   "errors": {
