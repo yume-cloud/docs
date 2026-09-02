@@ -325,8 +325,7 @@
                   "ru/logic/auto-penalties",
                   "ru/logic/auto-penalties/models",
                   "ru/logic/auto-penalties/car-sync",
-                  "ru/logic/auto-penalties/company-api",
-                  "ru/logic/auto-penalties/notifications"
+                  "ru/logic/auto-penalties/penalties"
                 ]
               },
               {
@@ -538,8 +537,7 @@
                 "pages": [
                   "ru/logic/auto-penalties/models-glossary",
                   "ru/logic/auto-penalties/car-sync-glossary",
-                  "ru/logic/auto-penalties/company-api-glossary",
-                  "ru/logic/auto-penalties/notifications-glossary"
+                  "ru/logic/auto-penalties/penalties-glossary"
                 ]
               },
               {
@@ -829,11 +827,35 @@
     },
     {
       "source": "/ru/logic/auto-penalties/tenant-api",
-      "destination": "/ru/logic/auto-penalties/company-api"
+      "destination": "/ru/logic/auto-penalties/penalties"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/company-api",
+      "destination": "/ru/logic/auto-penalties/penalties"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/company-api-glossary",
+      "destination": "/ru/logic/auto-penalties/penalties-glossary"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/erap-checkup",
+      "destination": "/ru/logic/auto-penalties/penalties"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/erap-checkup-glossary",
+      "destination": "/ru/logic/auto-penalties/penalties-glossary"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/notifications",
+      "destination": "/ru/logic/auto-penalties/penalties"
+    },
+    {
+      "source": "/ru/logic/auto-penalties/notifications-glossary",
+      "destination": "/ru/logic/auto-penalties/penalties-glossary"
     },
     {
       "source": "/ru/logic/auto-penalties/tenant-api-glossary",
-      "destination": "/ru/logic/auto-penalties/company-api-glossary"
+      "destination": "/ru/logic/auto-penalties/penalties-glossary"
     },
     {
       "source": "/ru/logic/tenant-billing/provisioning",
