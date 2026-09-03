@@ -72,7 +72,7 @@
                   {
                     "group": "Интеграции",
                     "root": "wazzup",
-                    "pages": ["ringostat", "wialon", "kaspi-payments"]
+                    "pages": ["ringostat", "binotel", "wialon", "kaspi-payments"]
                   },
                   {
                     "group": "Аренда",
@@ -325,7 +325,8 @@
                   "ru/logic/auto-penalties",
                   "ru/logic/auto-penalties/models",
                   "ru/logic/auto-penalties/car-sync",
-                  "ru/logic/auto-penalties/penalties"
+                  "ru/logic/auto-penalties/penalties",
+                  "ru/logic/binotel"
                 ]
               },
               {
@@ -537,7 +538,8 @@
                 "pages": [
                   "ru/logic/auto-penalties/models-glossary",
                   "ru/logic/auto-penalties/car-sync-glossary",
-                  "ru/logic/auto-penalties/penalties-glossary"
+                  "ru/logic/auto-penalties/penalties-glossary",
+                  "ru/logic/binotel-glossary"
                 ]
               },
               {

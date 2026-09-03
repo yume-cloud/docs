@@ -49,6 +49,7 @@
 
 - [Wazzup](https://docs.yume.cloud/wazzup)
 - [Ringostat](https://docs.yume.cloud/ringostat)
+- [Binotel](https://docs.yume.cloud/binotel)
 - [Wialon интеграция](https://docs.yume.cloud/wialon)
 - [Kaspi платежи](https://docs.yume.cloud/kaspi-payments)
 
@@ -224,6 +225,7 @@
 - [Модель данных](https://docs.yume.cloud/ru/logic/auto-penalties/models): Все сущности сервиса автоштрафов и их связи: авто, водители, компании-нарушители, штрафы со всеми реквизитами…
 - [Синхронизация автомобилей](https://docs.yume.cloud/ru/logic/auto-penalties/car-sync): Полная выгрузка авто из сервиса автоштрафов с созданием и обновлением записей, отключением исчезнувших и…
 - [ПДД штрафы](https://docs.yume.cloud/ru/logic/auto-penalties/penalties): Штрафы ПДД по машинам компании: подключение автомобилей, какие данные собираются по каждому штрафу, связь с арендой и клиентом, сверка оплаты с государственным реестром и уведомления…
+- [Телефония Binotel](https://docs.yume.cloud/ru/logic/binotel): Интеграция с телефонией Binotel: откуда берутся звонки (синхронизация, импорт истории и вебхук), как они сливаются и сопоставляются с клиентами, дашборд и история, записи…
 
 ## Q/A
 - [Общие вопросы](https://docs.yume.cloud/ru/qa/general-questions)
