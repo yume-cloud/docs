@@ -1,0 +1,548 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Аудит",
+    "version": "1.0.0",
+    "description": "Журнал действий и история изменений."
+  },
+  "paths": {
+    "/v1/audit/actions/": {
+      "get": {
+        "operationId": "actions_retrieve",
+        "tags": [
+          "actions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get actions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/audit/events/": {
+      "get": {
+        "operationId": "events_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "action",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "actor",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "actor_type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "anonymous",
+                "client",
+                "integration",
+                "platform",
+                "system",
+                "user"
+              ]
+            },
+            "description": "* `user` - Пользователь\n* `client` - Клиент\n* `anonymous` - Анонимно\n* `system` - Система\n* `integration` - Интеграция\n* `platform` - Платформа"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "auth",
+                "billing",
+                "client",
+                "document",
+                "finance",
+                "integration",
+                "inventory",
+                "order",
+                "report",
+                "settings",
+                "staff",
+                "storefront",
+                "task"
+              ]
+            },
+            "description": "* `order` - Аренда\n* `inventory` - Инвентарь\n* `client` - Клиент\n* `finance` - Финансы\n* `auth` - Доступ\n* `staff` - Сотрудники\n* `settings` - Настройки\n* `integration` - Интеграция\n* `document` - Документ\n* `billing` - Подписка\n* `storefront` - Витрина\n* `report` - Отчёты\n* `task` - Задачи"
+          },
+          {
+            "in": "query",
+            "name": "content_type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "The pagination cursor value.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "object_id",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "request_id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "role",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "parent",
+                "primary",
+                "related"
+              ]
+            },
+            "description": "* `primary` - Основной\n* `parent` - Родительский\n* `related` - Связанный"
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "events"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedAuditEventList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get events"
+      }
+    },
+    "/v1/audit/events/{id}/": {
+      "get": {
+        "operationId": "events_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "events"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditEvent"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get events"
+      }
+    },
+    "/v1/audit/exports/": {
+      "post": {
+        "operationId": "exports_create",
+        "tags": [
+          "exports"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AuditExport"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditExport"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create exports",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActorTypeEnum": {
+        "enum": [
+          "user",
+          "client",
+          "anonymous",
+          "system",
+          "integration",
+          "platform"
+        ],
+        "type": "string",
+        "description": "* `user` - Пользователь\n* `client` - Клиент\n* `anonymous` - Анонимно\n* `system` - Система\n* `integration` - Интеграция\n* `platform` - Платформа"
+      },
+      "AuditEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "action": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "action_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "category": {
+            "$ref": "#/components/schemas/CategoryEnum"
+          },
+          "category_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "actor": {
+            "type": "integer",
+            "nullable": true
+          },
+          "actor_type": {
+            "$ref": "#/components/schemas/ActorTypeEnum"
+          },
+          "actor_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "actor_label": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "subject_repr": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "targets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditTarget"
+            },
+            "readOnly": true
+          },
+          "changes": {
+            "type": "object",
+            "additionalProperties": {},
+            "readOnly": true
+          },
+          "extra": {},
+          "request_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "ip": {
+            "type": "string",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "action",
+          "action_label",
+          "actor_type_label",
+          "category",
+          "category_label",
+          "changes",
+          "created_at",
+          "id",
+          "targets"
+        ]
+      },
+      "AuditExport": {
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "uri",
+            "writeOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "format": {
+            "$ref": "#/components/schemas/FormatEnum"
+          },
+          "source": {
+            "type": "string",
+            "default": "",
+            "maxLength": 255
+          },
+          "title": {
+            "type": "string",
+            "default": "",
+            "maxLength": 255
+          },
+          "rows": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+          },
+          "columns": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "maxItems": 200
+          }
+        },
+        "required": [
+          "file",
+          "format",
+          "name"
+        ]
+      },
+      "AuditTarget": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели",
+            "readOnly": true
+          },
+          "content_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64"
+          },
+          "role": {
+            "$ref": "#/components/schemas/RoleEnum"
+          },
+          "role_label": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "content_type",
+          "content_type_label",
+          "object_id",
+          "role_label"
+        ]
+      },
+      "CategoryEnum": {
+        "enum": [
+          "order",
+          "inventory",
+          "client",
+          "finance",
+          "auth",
+          "staff",
+          "settings",
+          "integration",
+          "document",
+          "billing",
+          "storefront",
+          "report",
+          "task"
+        ],
+        "type": "string",
+        "description": "* `order` - Аренда\n* `inventory` - Инвентарь\n* `client` - Клиент\n* `finance` - Финансы\n* `auth` - Доступ\n* `staff` - Сотрудники\n* `settings` - Настройки\n* `integration` - Интеграция\n* `document` - Документ\n* `billing` - Подписка\n* `storefront` - Витрина\n* `report` - Отчёты\n* `task` - Задачи"
+      },
+      "FormatEnum": {
+        "enum": [
+          "xlsx",
+          "csv",
+          "tsv"
+        ],
+        "type": "string",
+        "description": "* `xlsx` - xlsx\n* `csv` - csv\n* `tsv` - tsv"
+      },
+      "PaginatedAuditEventList": {
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?cursor=cD00ODY%3D\""
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?cursor=cj0xJnA9NDg3"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditEvent"
+            }
+          }
+        }
+      },
+      "RoleEnum": {
+        "enum": [
+          "primary",
+          "parent",
+          "related"
+        ],
+        "type": "string",
+        "description": "* `primary` - Основной\n* `parent` - Родительский\n* `related` - Связанный"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

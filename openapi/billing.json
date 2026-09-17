@@ -1,0 +1,1988 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Биллинг",
+    "version": "1.0.0",
+    "description": "Подписки, счета и тарификация."
+  },
+  "paths": {
+    "/v1/billing/cards/": {
+      "get": {
+        "operationId": "cards_list",
+        "tags": [
+          "cards"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantCard"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get cards",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "cards_create",
+        "tags": [
+          "cards"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantCardInit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantCardInit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantCardInit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantCardInit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create cards",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/cards/{id}/": {
+      "put": {
+        "operationId": "cards_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "cards"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantCard"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantCard"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantCard"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantCard"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update cards"
+      },
+      "patch": {
+        "operationId": "cards_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "cards"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantCard"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantCard"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantCard"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantCard"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch cards"
+      },
+      "delete": {
+        "operationId": "cards_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "cards"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete cards"
+      }
+    },
+    "/v1/billing/cards/create/": {
+      "post": {
+        "operationId": "cards_create_create",
+        "tags": [
+          "cards"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create create",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/invoices/": {
+      "get": {
+        "operationId": "invoices_list",
+        "description": "Turn a Kaspi outage into an honest status code instead of a 500.\n\nA dead platform session is a 409 (the same shape the per-company integration answers\nwith), Kaspi refusing the request is a 400, and the service being unreachable is a 502 —\nthe payer can retry that one.",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedTenantInvoiceList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get invoices"
+      },
+      "post": {
+        "operationId": "invoices_create",
+        "description": "Turn a Kaspi outage into an honest status code instead of a 500.\n\nA dead platform session is a 409 (the same shape the per-company integration answers\nwith), Kaspi refusing the request is a 400, and the service being unreachable is a 502 —\nthe payer can retry that one.",
+        "tags": [
+          "invoices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceDetail"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoiceDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create invoices",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/invoices/{id}/": {
+      "get": {
+        "operationId": "invoices_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoice"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get invoices"
+      },
+      "put": {
+        "operationId": "invoices_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceDetail"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoiceDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update invoices"
+      },
+      "patch": {
+        "operationId": "invoices_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantInvoiceDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantInvoiceDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantInvoiceDetail"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoiceDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch invoices"
+      },
+      "delete": {
+        "operationId": "invoices_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete invoices"
+      }
+    },
+    "/v1/billing/invoices/{id}/kaspi/": {
+      "post": {
+        "operationId": "invoices_kaspi_create",
+        "description": "Turn a Kaspi outage into an honest status code instead of a 500.\n\nA dead platform session is a 409 (the same shape the per-company integration answers\nwith), Kaspi refusing the request is a 400, and the service being unreachable is a 502 —\nthe payer can retry that one.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceKaspi"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceKaspi"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceKaspi"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoiceKaspi"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create kaspi"
+      }
+    },
+    "/v1/billing/invoices/{id}/manual/": {
+      "post": {
+        "operationId": "invoices_manual_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invoices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceManual"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceManual"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceManual"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoiceManual"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create manual"
+      }
+    },
+    "/v1/billing/invoices/calculate/": {
+      "post": {
+        "operationId": "invoices_calculate_create",
+        "tags": [
+          "invoices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceCalculation"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceCalculation"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantInvoiceCalculation"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantInvoiceCalculation"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create calculate",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/invoices/check/": {
+      "post": {
+        "operationId": "invoices_check_create",
+        "tags": [
+          "invoices"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create check",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/invoices/result/": {
+      "post": {
+        "operationId": "invoices_result_create",
+        "tags": [
+          "invoices"
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create result",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/kaspi/": {
+      "get": {
+        "operationId": "kaspi_retrieve",
+        "description": "Whether the Kaspi button should be offered at all.",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get kaspi",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/billing/kaspi/webhook/": {
+      "post": {
+        "operationId": "kaspi_webhook_create",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {}
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create webhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CurrencyEnum": {
+        "enum": [
+          "KZT",
+          "USD",
+          "RUB",
+          "EUR",
+          "UZS",
+          "KGS",
+          "AED",
+          "SAR"
+        ],
+        "type": "string",
+        "description": "* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+      },
+      "IntegrationInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "code": {
+            "type": "string",
+            "title": "Код",
+            "description": "Код интеграции",
+            "maxLength": 64
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255,
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "description": "Название интеграции",
+            "maxLength": 512
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "slogan": {
+            "type": "string",
+            "nullable": true,
+            "title": "Слоган",
+            "description": "Слоган интеграции"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationInfoTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "description": "Тип интеграции\n\n* `integration` - Интеграция\n* `module` - Модуль"
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true,
+            "title": "Описание",
+            "description": "Описание интеграции"
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Иконка",
+            "description": "Иконка интеграции"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение",
+            "description": "Изображение интеграции"
+          },
+          "image_alt": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Альтернативное изображение",
+            "description": "Альтернативное изображение интеграции"
+          },
+          "disabled": {
+            "type": "boolean",
+            "title": "Отключено",
+            "description": "Отключено интеграцию"
+          },
+          "extra": {
+            "nullable": true
+          },
+          "demo_duration": {
+            "type": "string",
+            "title": "Демо период"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagsEnum"
+            }
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModulesEnum"
+            },
+            "title": "Модули",
+            "description": "Модули интеграции"
+          },
+          "visable": {
+            "type": "boolean",
+            "title": "Видимость",
+            "description": "Видимость интеграции для пользователей"
+          }
+        },
+        "required": [
+          "code",
+          "id",
+          "name"
+        ]
+      },
+      "IntegrationInfoTypeEnum": {
+        "enum": [
+          "integration",
+          "module"
+        ],
+        "type": "string",
+        "description": "* `integration` - Интеграция\n* `module` - Модуль"
+      },
+      "IntegrationPeriod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationVariant"
+              }
+            ],
+            "readOnly": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationPeriodTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "description": "Тип тарифа\n\n* `period` - period\n* `amount` - amount"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "KZT",
+            "title": "Валюта",
+            "description": "Валюта тарифа\n\n* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+          },
+          "months": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MonthsEnum"
+              }
+            ],
+            "default": 1,
+            "title": "Количество месяцев",
+            "description": "Длительность тарифа в месяцах\n\n* `1` - 1 месяц\n* `3` - 3 месяца\n* `6` - 6 месяцев\n* `12` - 12 месяцев",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Цена",
+            "description": "Цена тарифа"
+          },
+          "amount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Количество",
+            "description": "Количество"
+          },
+          "integration": {
+            "type": "integer",
+            "title": "Интеграция",
+            "description": "Интеграция"
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Компания",
+            "description": "Компания"
+          }
+        },
+        "required": [
+          "id",
+          "integration",
+          "type",
+          "variant"
+        ]
+      },
+      "IntegrationPeriodTypeEnum": {
+        "enum": [
+          "period",
+          "amount"
+        ],
+        "type": "string",
+        "description": "* `period` - period\n* `amount` - amount"
+      },
+      "IntegrationVariant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "KaspiMethodEnum": {
+        "enum": [
+          "qr",
+          "invoice"
+        ],
+        "type": "string",
+        "description": "* `qr` - qr\n* `invoice` - invoice"
+      },
+      "MethodEnum": {
+        "enum": [
+          "qr",
+          "invoice"
+        ],
+        "type": "string",
+        "description": "* `qr` - qr\n* `invoice` - invoice"
+      },
+      "ModulesEnum": {
+        "enum": [
+          "finance",
+          "sales",
+          "marketing",
+          "other",
+          "hr"
+        ],
+        "type": "string",
+        "description": "* `finance` - Финансы\n* `sales` - Продажи\n* `marketing` - Маркетинг\n* `other` - Другое\n* `hr` - HR"
+      },
+      "MonthsEnum": {
+        "enum": [
+          1,
+          3,
+          6,
+          12
+        ],
+        "type": "integer",
+        "description": "* `1` - 1 месяц\n* `3` - 3 месяца\n* `6` - 6 месяцев\n* `12` - 12 месяцев"
+      },
+      "PaginatedTenantInvoiceList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantInvoice"
+            }
+          }
+        }
+      },
+      "PatchedTenantCard": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenantCardStatusEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "card_hash": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "bank_alias": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "brand_alias": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "expiry_year": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "expiry_month": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "recurring": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PatchedTenantInvoiceDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "card": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Карта"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Валюта"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status14dEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Статус"
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VariantEnum"
+              }
+            ],
+            "title": "Платёжный провайдер"
+          },
+          "total": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Итого"
+          },
+          "captured_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Списано"
+          },
+          "refund_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Возвращено"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Списано в"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Начало периода"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец периода"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantInvoiceItem"
+            }
+          },
+          "success_url": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "transaction_url": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Ссылка на транзакцию"
+          },
+          "kaspi_method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KaspiMethodEnum"
+              }
+            ],
+            "writeOnly": true,
+            "default": "qr"
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "writeOnly": true,
+            "pattern": "^7\\d{9}$"
+          }
+        }
+      },
+      "Status14dEnum": {
+        "enum": [
+          "waiting",
+          "confirmed",
+          "rejected",
+          "refunded"
+        ],
+        "type": "string",
+        "description": "* `waiting` - В ожидании\n* `confirmed` - Подтвержден\n* `rejected` - Отклонен\n* `refunded` - Возвращен"
+      },
+      "TagsEnum": {
+        "enum": [
+          "free",
+          "promo",
+          "popular",
+          "recommend"
+        ],
+        "type": "string",
+        "description": "* `free` - Бесплатно\n* `promo` - Акция\n* `popular` - Популярное\n* `recommend` - Рекомендуем"
+      },
+      "TenantCard": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenantCardStatusEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "card_hash": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "bank_alias": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "brand_alias": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "expiry_year": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "expiry_month": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "recurring": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "bank_alias",
+          "brand_alias",
+          "card_hash",
+          "created_at",
+          "expiry_month",
+          "expiry_year",
+          "id",
+          "status",
+          "tenant"
+        ]
+      },
+      "TenantCardInit": {
+        "type": "object",
+        "properties": {
+          "pg_redirect_url": {
+            "type": "string",
+            "readOnly": true
+          },
+          "pg_payment_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "link": {
+            "type": "string",
+            "format": "uri",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "link",
+          "pg_payment_id",
+          "pg_redirect_url"
+        ]
+      },
+      "TenantCardStatusEnum": {
+        "enum": [
+          "ok",
+          "approved",
+          "deleted"
+        ],
+        "type": "string",
+        "description": "* `ok` - Активна\n* `approved` - Подтверждена\n* `deleted` - Удалено"
+      },
+      "TenantInvoice": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "card": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Карта"
+          },
+          "card_detail": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenantCard"
+              }
+            ],
+            "readOnly": true
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Валюта"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status14dEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Статус"
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VariantEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Платёжный провайдер"
+          },
+          "total": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Итого"
+          },
+          "captured_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Списано"
+          },
+          "refund_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Возвращено"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Списано в"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Начало периода"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец периода"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantInvoiceItemInfo"
+            }
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantInvoiceError"
+            }
+          },
+          "transaction_url": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Ссылка на транзакцию"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "payment_details": {
+            "type": "string",
+            "readOnly": true
+          },
+          "kaspi": {
+            "type": "object",
+            "additionalProperties": {},
+            "nullable": true,
+            "description": "Which Kaspi rail raised the payment, so the payer sees the right screen again.",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "captured_amount",
+          "captured_at",
+          "card",
+          "card_detail",
+          "created_at",
+          "currency",
+          "end_at",
+          "errors",
+          "id",
+          "items",
+          "kaspi",
+          "payment_details",
+          "refund_amount",
+          "start_at",
+          "status",
+          "tenant",
+          "total",
+          "transaction_url",
+          "variant"
+        ]
+      },
+      "TenantInvoiceCalculation": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantInvoiceItem"
+            }
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date",
+            "writeOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "TenantInvoiceDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "card": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Карта"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Валюта"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status14dEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Статус"
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/VariantEnum"
+              }
+            ],
+            "title": "Платёжный провайдер"
+          },
+          "total": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Итого"
+          },
+          "captured_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Списано"
+          },
+          "refund_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "title": "Возвращено"
+          },
+          "captured_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Списано в"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Начало периода"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец периода"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantInvoiceItem"
+            }
+          },
+          "success_url": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "target_date": {
+            "type": "string",
+            "format": "date",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "transaction_url": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Ссылка на транзакцию"
+          },
+          "kaspi_method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KaspiMethodEnum"
+              }
+            ],
+            "writeOnly": true,
+            "default": "qr"
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "writeOnly": true,
+            "pattern": "^7\\d{9}$"
+          }
+        },
+        "required": [
+          "captured_amount",
+          "captured_at",
+          "card",
+          "currency",
+          "end_at",
+          "id",
+          "items",
+          "refund_amount",
+          "start_at",
+          "status",
+          "tenant",
+          "total",
+          "transaction_url"
+        ]
+      },
+      "TenantInvoiceError": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "code": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "description": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "invoice": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code",
+          "created_at",
+          "description",
+          "id",
+          "invoice"
+        ]
+      },
+      "TenantInvoiceItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/Type56aEnum"
+          },
+          "integration_period": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "count",
+          "price",
+          "type"
+        ]
+      },
+      "TenantInvoiceItemInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "integration": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationInfo"
+              }
+            ],
+            "readOnly": true
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationVariant"
+              }
+            ],
+            "readOnly": true
+          },
+          "period": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationPeriod"
+              }
+            ],
+            "readOnly": true
+          },
+          "label": {
+            "type": "string",
+            "description": "Same human label the purchase breakdown uses, so history and cart read alike.",
+            "readOnly": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Type56aEnum"
+              }
+            ],
+            "default": "integration"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "maximum": 32767,
+            "minimum": 0
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "invoice": {
+            "type": "integer"
+          },
+          "integration_period": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "integration",
+          "invoice",
+          "label",
+          "period",
+          "variant"
+        ]
+      },
+      "TenantInvoiceKaspi": {
+        "type": "object",
+        "description": "Raise a Kaspi Pay payment for an existing subscription invoice.\n\n`qr` answers with a `pay.kaspi.kz` link to render as a QR or open on a phone; `invoice`\npushes a confirmation into the Kaspi app of `phone` instead. Either way the invoice is\nonly marked paid by the webhook — never by this response.",
+        "properties": {
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodEnum"
+              }
+            ],
+            "writeOnly": true,
+            "default": "qr"
+          },
+          "phone": {
+            "type": "string",
+            "writeOnly": true,
+            "pattern": "^7\\d{9}$"
+          },
+          "payment_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "payment_url": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "expire_at": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "expire_at",
+          "payment_id",
+          "payment_url",
+          "status"
+        ]
+      },
+      "TenantInvoiceManual": {
+        "type": "object",
+        "properties": {
+          "success_url": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "failure_url": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "transaction_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "transaction_url": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "failure_url",
+          "success_url",
+          "transaction_id",
+          "transaction_url"
+        ]
+      },
+      "Type56aEnum": {
+        "enum": [
+          "staff",
+          "rental_point",
+          "inventory_car",
+          "inventory_scooter",
+          "inventory_motorcycle",
+          "module",
+          "integration"
+        ],
+        "type": "string",
+        "description": "* `staff` - Пользовательские места\n* `rental_point` - Точки аренды\n* `inventory_car` - Автомобили\n* `inventory_scooter` - Самокаты\n* `inventory_motorcycle` - Мотоциклы\n* `module` - Модуль\n* `integration` - Интеграция"
+      },
+      "VariantEnum": {
+        "enum": [
+          "freedom",
+          "kaspi"
+        ],
+        "type": "string",
+        "description": "* `freedom` - Freedom\n* `kaspi` - Kaspi Pay"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

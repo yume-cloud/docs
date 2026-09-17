@@ -1,0 +1,1406 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Компании",
+    "version": "1.0.0",
+    "description": "Управление компаниями-арендаторами."
+  },
+  "paths": {
+    "/v1/tenant/": {
+      "get": {
+        "operationId": "root_list",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantAccount"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tenant",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "root_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAccount"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create tenant",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/account/": {
+      "get": {
+        "operationId": "account_retrieve",
+        "tags": [
+          "account"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get account",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "account_update",
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAccount"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update account",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "account_partial_update",
+        "tags": [
+          "account"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTenantAccount"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch account",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/company_types/": {
+      "get": {
+        "operationId": "company_types_list",
+        "tags": [
+          "company_types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantCompanyType"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get company types",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/delete/": {
+      "get": {
+        "operationId": "delete_retrieve",
+        "tags": [
+          "delete"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantDeletion"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get delete",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "delete_create",
+        "tags": [
+          "delete"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDeletion"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDeletion"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDeletion"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantDeletion"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create delete",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "delete_destroy",
+        "tags": [
+          "delete"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete delete",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/demo/": {
+      "post": {
+        "operationId": "demo_create",
+        "tags": [
+          "demo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantNotify"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantNotify"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantNotify"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantNotify"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create demo",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/domains/": {
+      "post": {
+        "operationId": "domains_create",
+        "tags": [
+          "domains"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDomainCheck"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDomainCheck"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantDomainCheck"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantDomainCheck"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create domains",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/integrations/": {
+      "get": {
+        "operationId": "integrations_list",
+        "tags": [
+          "integrations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/IntegrationConnectionView"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get integrations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/onboarding/": {
+      "get": {
+        "operationId": "onboarding_list",
+        "tags": [
+          "onboarding"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TenantOnboarding"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get onboarding",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "onboarding_create",
+        "tags": [
+          "onboarding"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantOnboarding"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantOnboarding"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantOnboarding"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantOnboarding"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create onboarding",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/tenant/register/": {
+      "post": {
+        "operationId": "register_create",
+        "tags": [
+          "register"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantProfileEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantProfileEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantProfileEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantProfileEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create register",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BlankEnum": {
+        "enum": [
+          ""
+        ]
+      },
+      "BusinessEnum": {
+        "enum": [
+          "transport",
+          "inventory"
+        ],
+        "type": "string",
+        "description": "* `transport` - Аренда транспорта\n* `inventory` - Аренда инвентаря"
+      },
+      "CountryEnum": {
+        "enum": [
+          "KZ",
+          "KG",
+          "UZ",
+          "TR",
+          "SA",
+          "AE"
+        ],
+        "type": "string",
+        "description": "* `KZ` - Казахстан\n* `KG` - Кыргызстан\n* `UZ` - Узбекистан\n* `TR` - Турция\n* `SA` - Саудовская Аравия\n* `AE` - ОАЭ"
+      },
+      "CurrencyEnum": {
+        "enum": [
+          "KZT",
+          "USD",
+          "RUB",
+          "EUR",
+          "UZS",
+          "KGS",
+          "AED",
+          "SAR"
+        ],
+        "type": "string",
+        "description": "* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+      },
+      "IntegrationConnectionView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "is_demo": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "integration_period": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationPeriod"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец",
+            "description": "Конец подключения интеграции"
+          },
+          "connected": {
+            "type": "boolean",
+            "title": "Подключено",
+            "description": "Подключено интеграция"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Дополнительно",
+            "description": "Дополнительные данные"
+          },
+          "demo_end_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец демо",
+            "description": "Конец демо-периода"
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Компания",
+            "description": "Компания"
+          },
+          "integration": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Интеграция",
+            "description": "Интеграция"
+          }
+        },
+        "required": [
+          "created_at",
+          "demo_end_at",
+          "end_at",
+          "id",
+          "integration",
+          "integration_period",
+          "is_demo",
+          "tenant",
+          "updated_at"
+        ]
+      },
+      "IntegrationPeriod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationVariant"
+              }
+            ],
+            "readOnly": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationPeriodTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "description": "Тип тарифа\n\n* `period` - period\n* `amount` - amount"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "KZT",
+            "title": "Валюта",
+            "description": "Валюта тарифа\n\n* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+          },
+          "months": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MonthsEnum"
+              }
+            ],
+            "default": 1,
+            "title": "Количество месяцев",
+            "description": "Длительность тарифа в месяцах\n\n* `1` - 1 месяц\n* `3` - 3 месяца\n* `6` - 6 месяцев\n* `12` - 12 месяцев",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Цена",
+            "description": "Цена тарифа"
+          },
+          "amount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Количество",
+            "description": "Количество"
+          },
+          "integration": {
+            "type": "integer",
+            "title": "Интеграция",
+            "description": "Интеграция"
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Компания",
+            "description": "Компания"
+          }
+        },
+        "required": [
+          "id",
+          "integration",
+          "type",
+          "variant"
+        ]
+      },
+      "IntegrationPeriodTypeEnum": {
+        "enum": [
+          "period",
+          "amount"
+        ],
+        "type": "string",
+        "description": "* `period` - period\n* `amount` - amount"
+      },
+      "IntegrationVariant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "MonthsEnum": {
+        "enum": [
+          1,
+          3,
+          6,
+          12
+        ],
+        "type": "integer",
+        "description": "* `1` - 1 месяц\n* `3` - 3 месяца\n* `6` - 6 месяцев\n* `12` - 12 месяцев"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "PatchedTenantAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Владелец"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название компании",
+            "maxLength": 255
+          },
+          "address": {
+            "type": "string",
+            "title": "Адрес",
+            "maxLength": 255
+          },
+          "domain": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Логотип"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Вид деятельности"
+          },
+          "type_code": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "default": "KZT"
+          },
+          "country": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CountryEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "link": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantLimit"
+            },
+            "readOnly": true
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "business": {
+            "writeOnly": true,
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BusinessEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "writeOnly": true
+          }
+        }
+      },
+      "StatusEnum": {
+        "enum": [
+          "pending",
+          "running",
+          "done",
+          "failed",
+          "cancelled"
+        ],
+        "type": "string",
+        "description": "* `pending` - Ожидает удаления\n* `running` - Удаляется\n* `done` - Удалена\n* `failed` - Ошибка\n* `cancelled` - Отменено"
+      },
+      "TenantAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Владелец"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название компании",
+            "maxLength": 255
+          },
+          "address": {
+            "type": "string",
+            "title": "Адрес",
+            "maxLength": 255
+          },
+          "domain": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Логотип"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Вид деятельности"
+          },
+          "type_code": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "currency": {
+            "type": "string",
+            "default": "KZT"
+          },
+          "country": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CountryEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "link": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantLimit"
+            },
+            "readOnly": true
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "business": {
+            "writeOnly": true,
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BusinessEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "limits",
+          "link",
+          "type_code",
+          "user"
+        ]
+      },
+      "TenantCompanyType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "country": {
+            "$ref": "#/components/schemas/CountryEnum"
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "TenantDeletion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "status_display": {
+            "type": "string",
+            "readOnly": true
+          },
+          "rows": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "cancellable": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "scheduled_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "cancellable",
+          "created_at",
+          "finished_at",
+          "id",
+          "rows",
+          "scheduled_at",
+          "started_at",
+          "status",
+          "status_display"
+        ]
+      },
+      "TenantDomainCheck": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "exists": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "domain",
+          "exists"
+        ]
+      },
+      "TenantLimit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenantLimitTypeEnum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Тип"
+          },
+          "limit": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Лимит"
+          },
+          "limit_free": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Бесплатный лимит"
+          },
+          "count": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "title": "Конец периода"
+          }
+        },
+        "required": [
+          "count",
+          "end_at",
+          "id",
+          "limit",
+          "limit_free",
+          "price",
+          "type"
+        ]
+      },
+      "TenantLimitTypeEnum": {
+        "enum": [
+          "staff",
+          "rental_point",
+          "inventory_car",
+          "inventory_scooter",
+          "inventory_motorcycle"
+        ],
+        "type": "string",
+        "description": "* `staff` - Сотрудники\n* `rental_point` - Точки аренды\n* `inventory_car` - Автомобили\n* `inventory_scooter` - Самокаты\n* `inventory_motorcycle` - Мотоциклы"
+      },
+      "TenantNotify": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TenantNotifyTypeEnum"
+              }
+            ],
+            "writeOnly": true
+          },
+          "phone": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "name": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "company_type": {
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "company_type",
+          "name",
+          "phone",
+          "type"
+        ]
+      },
+      "TenantNotifyTypeEnum": {
+        "enum": [
+          "demo"
+        ],
+        "type": "string",
+        "description": "* `demo` - Demo"
+      },
+      "TenantOnboarding": {
+        "type": "object",
+        "properties": {
+          "step": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "step"
+        ]
+      },
+      "TenantProfileEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "phone": {
+            "type": "string",
+            "pattern": "^\\+?\\d{9,15}$"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "email",
+          "id",
+          "password",
+          "phone"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

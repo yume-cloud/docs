@@ -3,7 +3,6 @@
   "name": "Yume",
   "description": "Документация Yume — облачной платформы для арендного бизнеса: аренда и бронирование, каталог инвентаря, клиенты и лояльность, оплаты и финансовый учёт, документы, мастерская и аналитика.",
   "theme": "aspen",
-  "openapi": "api-reference/yume-cloud-openapi.yaml",
   "colors": {
     "primary": "#A165FD",
     "light": "#EDE8FB",
@@ -29,9 +28,8 @@
             "icon": "person-chalkboard",
             "groups": [
               {
-                "group": " Что такое Yume ?",
+                "group": "Что такое Yume?",
                 "root": "ru/modules/what-is-yume",
-                "public": true,
                 "pages": [
                   {
                     "group": "Управление арендами - Инвентари",
@@ -73,12 +71,6 @@
                     "group": "Интеграции",
                     "root": "wazzup",
                     "pages": ["ringostat", "binotel", "wialon", "kaspi-payments"]
-                  },
-                  {
-                    "group": "Аренда",
-                    "root": "ru/modules/rent",
-                    "pages": [],
-                    "hidden": true
                   }
                 ]
               }
@@ -91,12 +83,11 @@
             "groups": [
               {
                 "group": "Обзор",
-                "public": true,
+                "root": "ru/logic/overview",
                 "pages": ["ru/logic/overview"]
               },
               {
                 "group": "Аренда и расчёты",
-                "public": true,
                 "pages": [
                   "ru/logic/rent",
                   "ru/logic/rent/lifecycle",
@@ -111,7 +102,6 @@
               },
               {
                 "group": "Финансы и оплаты",
-                "public": true,
                 "pages": [
                   "ru/logic/finances",
                   "ru/logic/finances/payments",
@@ -125,7 +115,6 @@
               },
               {
                 "group": "Инвентарь и каталог",
-                "public": true,
                 "pages": [
                   "ru/logic/inventory",
                   "ru/logic/inventory/inventory-items",
@@ -141,7 +130,6 @@
               },
               {
                 "group": "Клиенты",
-                "public": true,
                 "pages": [
                   "ru/logic/clients-loyalty",
                   "ru/logic/clients-loyalty/client",
@@ -152,7 +140,6 @@
               },
               {
                 "group": "Метрики и аналитика",
-                "public": true,
                 "pages": [
                   "ru/logic/metrics",
                   "ru/logic/profit-payback",
@@ -174,7 +161,6 @@
               },
               {
                 "group": "Документы и подписание",
-                "public": true,
                 "pages": [
                   "ru/logic/documents",
                   "ru/logic/documents/crud",
@@ -187,7 +173,6 @@
               },
               {
                 "group": "Вложения",
-                "public": true,
                 "pages": [
                   "ru/logic/attachments",
                   "ru/logic/attachments/comments",
@@ -199,7 +184,6 @@
               },
               {
                 "group": "Уведомления",
-                "public": true,
                 "pages": [
                   "ru/logic/notifications",
                   "ru/logic/notifications/model-dispatch",
@@ -213,12 +197,10 @@
               },
               {
                 "group": "Архив",
-                "public": true,
                 "pages": ["ru/logic/disable-archiving"]
               },
               {
                 "group": "Инфраструктура",
-                "public": true,
                 "pages": [
                   "ru/logic/infrastructure",
                   "ru/logic/background-tasks"
@@ -332,7 +314,6 @@
               },
               {
                 "group": "Известные особенности и ограничения",
-                "hidden": true,
                 "pages": [
                   "ru/logic/known-issues",
                   "ru/logic/rent/issues",
@@ -362,7 +343,6 @@
             "groups": [
               {
                 "group": "Финансы и оплаты",
-                "public": true,
                 "pages": [
                   "ru/logic/finances/payments-glossary",
                   "ru/logic/finances/accounts-glossary",
@@ -375,7 +355,6 @@
               },
               {
                 "group": "Документы и подписание",
-                "public": true,
                 "pages": [
                   "ru/logic/documents/crud-glossary",
                   "ru/logic/documents/templates-glossary",
@@ -386,7 +365,6 @@
               },
               {
                 "group": "Вложения",
-                "public": true,
                 "pages": [
                   "ru/logic/attachments/comments-glossary",
                   "ru/logic/attachments/images-glossary",
@@ -396,12 +374,10 @@
               },
               {
                 "group": "Архив",
-                "public": true,
                 "pages": ["ru/logic/disable-archiving-glossary"]
               },
               {
                 "group": "Уведомления",
-                "public": true,
                 "pages": [
                   "ru/logic/notifications/model-dispatch-glossary",
                   "ru/logic/notifications/creation-grouping-glossary",
@@ -414,7 +390,6 @@
               },
               {
                 "group": "Метрики и аналитика",
-                "public": true,
                 "pages": [
                   "ru/logic/metrics/overview-glossary",
                   "ru/logic/metrics/finances-glossary",
@@ -564,7 +539,6 @@
             "groups": [
               {
                 "group": " ",
-                "public": true,
                 "pages": [
                   "ru/qa/general-questions",
                   "ru/qa/getting-started",
@@ -582,32 +556,260 @@
             ]
           },
           {
-            "tab": "Документация",
-            "icon": "file-lines",
-            "hidden": true,
-            "pages": [
+            "tab": "API",
+            "icon": "code",
+            "groups": [
               {
-                "group": " ",
-                "public": true,
-                "pages": ["ru/main", "ru"]
+                "group": "Начало работы",
+                "pages": ["ru/api/overview"]
               },
               {
-                "group": "Основные понятия",
-                "hidden": true,
-                "public": true,
-                "pages": [
-                  "ru/concepts/client",
-                  "ru/concepts/rental-point"
-                ]
+                "group": "Аутентификация",
+                "icon": "lock",
+                "openapi": {
+                  "source": "openapi/auth.json",
+                  "directory": "api-reference/auth"
+                }
               },
               {
-                "group": "Настройка",
+                "group": "Конфигурация",
+                "icon": "sliders",
+                "openapi": {
+                  "source": "openapi/config.json",
+                  "directory": "api-reference/config"
+                }
+              },
+              {
+                "group": "Настройки",
                 "icon": "gear",
-                "hidden": true,
-                "public": true,
-                "pages": [
-                  "ru/configuration/access"
-                ]
+                "openapi": {
+                  "source": "openapi/settings.json",
+                  "directory": "api-reference/settings"
+                }
+              },
+              {
+                "group": "Основное",
+                "icon": "briefcase",
+                "openapi": {
+                  "source": "openapi/main.json",
+                  "directory": "api-reference/main"
+                }
+              },
+              {
+                "group": "Аренда",
+                "icon": "clipboard-list",
+                "openapi": {
+                  "source": "openapi/orders.json",
+                  "directory": "api-reference/orders"
+                }
+              },
+              {
+                "group": "Транзакции",
+                "icon": "money-bill-transfer",
+                "openapi": {
+                  "source": "openapi/finances.json",
+                  "directory": "api-reference/finances"
+                }
+              },
+              {
+                "group": "Аналитика",
+                "icon": "chart-line",
+                "openapi": {
+                  "source": "openapi/metrics.json",
+                  "directory": "api-reference/metrics"
+                }
+              },
+              {
+                "group": "Дашборд",
+                "icon": "gauge",
+                "openapi": {
+                  "source": "openapi/dashboard.json",
+                  "directory": "api-reference/dashboard"
+                }
+              },
+              {
+                "group": "Права доступа",
+                "icon": "user-shield",
+                "openapi": {
+                  "source": "openapi/permissions.json",
+                  "directory": "api-reference/permissions"
+                }
+              },
+              {
+                "group": "Биллинг",
+                "icon": "receipt",
+                "openapi": {
+                  "source": "openapi/billing.json",
+                  "directory": "api-reference/billing"
+                }
+              },
+              {
+                "group": "Уведомления",
+                "icon": "bell",
+                "openapi": {
+                  "source": "openapi/notification.json",
+                  "directory": "api-reference/notification"
+                }
+              },
+              {
+                "group": "GPS",
+                "icon": "location-dot",
+                "openapi": {
+                  "source": "openapi/geolocation.json",
+                  "directory": "api-reference/geolocation"
+                }
+              },
+              {
+                "group": "Продажи",
+                "icon": "cash-register",
+                "openapi": {
+                  "source": "openapi/sales.json",
+                  "directory": "api-reference/sales"
+                }
+              },
+              {
+                "group": "Мастерская",
+                "icon": "screwdriver-wrench",
+                "openapi": {
+                  "source": "openapi/workshop.json",
+                  "directory": "api-reference/workshop"
+                }
+              },
+              {
+                "group": "Магазин",
+                "icon": "store",
+                "openapi": {
+                  "source": "openapi/shop.json",
+                  "directory": "api-reference/shop"
+                }
+              },
+              {
+                "group": "Документы",
+                "icon": "file-lines",
+                "openapi": {
+                  "source": "openapi/document.json",
+                  "directory": "api-reference/document"
+                }
+              },
+              {
+                "group": "Интеграции",
+                "icon": "plug",
+                "openapi": {
+                  "source": "openapi/integrations.json",
+                  "directory": "api-reference/integrations"
+                }
+              },
+              {
+                "group": "Вложения",
+                "icon": "paperclip",
+                "openapi": {
+                  "source": "openapi/attachments.json",
+                  "directory": "api-reference/attachments"
+                }
+              },
+              {
+                "group": "Компании",
+                "icon": "building",
+                "openapi": {
+                  "source": "openapi/tenant.json",
+                  "directory": "api-reference/tenant"
+                }
+              },
+              {
+                "group": "Новости",
+                "icon": "newspaper",
+                "openapi": {
+                  "source": "openapi/news.json",
+                  "directory": "api-reference/news"
+                }
+              },
+              {
+                "group": "Каталог",
+                "icon": "boxes-stacked",
+                "openapi": {
+                  "source": "openapi/shared.json",
+                  "directory": "api-reference/shared"
+                }
+              },
+              {
+                "group": "Plus",
+                "icon": "puzzle-piece",
+                "openapi": {
+                  "source": "openapi/plus.json",
+                  "directory": "api-reference/plus"
+                }
+              },
+              {
+                "group": "Автопарк",
+                "icon": "truck",
+                "openapi": {
+                  "source": "openapi/fleet.json",
+                  "directory": "api-reference/fleet"
+                }
+              },
+              {
+                "group": "ERAP",
+                "icon": "car",
+                "openapi": {
+                  "source": "openapi/cars.json",
+                  "directory": "api-reference/cars"
+                }
+              },
+              {
+                "group": "Wallet",
+                "icon": "wallet",
+                "openapi": {
+                  "source": "openapi/wallet.json",
+                  "directory": "api-reference/wallet"
+                }
+              },
+              {
+                "group": "SMS",
+                "icon": "comment-dots",
+                "openapi": {
+                  "source": "openapi/sms.json",
+                  "directory": "api-reference/sms"
+                }
+              },
+              {
+                "group": "Чёрный список",
+                "icon": "ban",
+                "openapi": {
+                  "source": "openapi/blacklist.json",
+                  "directory": "api-reference/blacklist"
+                }
+              },
+              {
+                "group": "AI Ассистент",
+                "icon": "robot",
+                "openapi": {
+                  "source": "openapi/assistant.json",
+                  "directory": "api-reference/assistant"
+                }
+              },
+              {
+                "group": "Аудит",
+                "icon": "clipboard-check",
+                "openapi": {
+                  "source": "openapi/audit.json",
+                  "directory": "api-reference/audit"
+                }
+              },
+              {
+                "group": "Вебхуки",
+                "icon": "bolt",
+                "openapi": {
+                  "source": "openapi/webhooks.json",
+                  "directory": "api-reference/webhooks"
+                }
+              },
+              {
+                "group": "Задачи",
+                "icon": "list-check",
+                "openapi": {
+                  "source": "openapi/todo.json",
+                  "directory": "api-reference/todo"
+                }
               }
             ]
           },
@@ -617,7 +819,6 @@
             "groups": [
               {
                 "group": " ",
-                "public": true,
                 "pages": ["contact"]
               }
             ]
@@ -628,7 +829,6 @@
             "groups": [
               {
                 "group": " ",
-                "public": true,
                 "pages": ["changelog"]
               }
             ]

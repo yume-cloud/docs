@@ -1,0 +1,726 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Автопарк",
+    "version": "1.0.0",
+    "description": "Управление автопарком."
+  },
+  "paths": {
+    "/v1/fleet/cars/": {
+      "get": {
+        "operationId": "cars_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "inventory",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inventory__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "cars"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedFleetCarList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get cars"
+      }
+    },
+    "/v1/fleet/drivers/": {
+      "get": {
+        "operationId": "drivers_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "client",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "drivers"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedFleetDriverList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get drivers"
+      }
+    },
+    "/v1/fleet/sync/": {
+      "post": {
+        "operationId": "sync_create",
+        "tags": [
+          "sync"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create sync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AmenitiesEnum": {
+        "enum": [
+          "conditioner",
+          "no_smoking",
+          "child_chair",
+          "animal_transport",
+          "universal",
+          "wifi",
+          "check",
+          "card",
+          "yamoney",
+          "newspaper",
+          "coupon",
+          "creditcard",
+          "dont_call",
+          "smoking",
+          "delivery",
+          "vip_event",
+          "woman_driver",
+          "post_terminal",
+          "bicycle",
+          "skiing",
+          "passenger_plus",
+          "cargo_clean",
+          "door_to_door",
+          "sticker",
+          "lightbox"
+        ],
+        "type": "string",
+        "description": "* `conditioner` - Кондиционер\n* `no_smoking` - Не курить\n* `child_chair` - Детское кресло\n* `animal_transport` - Перевозка животных\n* `universal` - Универсал\n* `wifi` - Wi-Fi\n* `check` - Безналичный расчёт\n* `card` - Карта\n* `yamoney` - ЮMoney\n* `newspaper` - Газеты\n* `coupon` - Купон\n* `creditcard` - Оплата картой\n* `dont_call` - Не звонить\n* `smoking` - Можно курить\n* `delivery` - Доставка\n* `vip_event` - VIP-мероприятие\n* `woman_driver` - Водитель-женщина\n* `post_terminal` - Почтомат\n* `bicycle` - Перевозка велосипеда\n* `skiing` - Перевозка лыж\n* `passenger_plus` - Пассажир плюс\n* `cargo_clean` - Чистый кузов\n* `door_to_door` - От двери до двери\n* `sticker` - Наклейка\n* `lightbox` - Лайтбокс"
+      },
+      "BlankEnum": {
+        "enum": [
+          ""
+        ]
+      },
+      "CategoryEnum": {
+        "enum": [
+          "econom",
+          "comfort",
+          "comfort_plus",
+          "business",
+          "minivan",
+          "vip",
+          "wagon",
+          "pool",
+          "start",
+          "standart",
+          "ultimate",
+          "maybach",
+          "promo",
+          "premium_van",
+          "premium_suv",
+          "suv",
+          "personal_driver",
+          "express",
+          "cargo"
+        ],
+        "type": "string",
+        "description": "* `econom` - эконом\n* `comfort` - комфорт\n* `comfort_plus` - комфорт+\n* `business` - бизнес\n* `minivan` - минивен\n* `vip` - VIP\n* `wagon` - универсальный\n* `pool` - pool\n* `start` - старт\n* `standart` - стандарт\n* `ultimate` - премьер\n* `maybach` - elite\n* `promo` - промо\n* `premium_van` - круиз\n* `premium_suv` - премиум внедорожник\n* `suv` - внедорожник\n* `personal_driver` - персональный водитель\n* `express` - доставка\n* `cargo` - грузовой"
+      },
+      "CurrentStatusEnum": {
+        "enum": [
+          "offline",
+          "busy",
+          "free",
+          "in_order_free",
+          "in_order_busy"
+        ],
+        "type": "string",
+        "description": "* `offline` - Не в сети\n* `busy` - Занят\n* `free` - Свободно\n* `in_order_free` - На заказе, свободен\n* `in_order_busy` - На заказе, занят"
+      },
+      "FleetCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "yandex_id": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "park_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "callsign": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "year": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "color": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "vin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "registration_cert": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "status": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "amenities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AmenitiesEnum"
+            }
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryEnum"
+            }
+          },
+          "is_rental": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "is_readonly": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "synced_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "inventory": {
+            "type": "integer"
+          },
+          "inventory_car": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "inventory_car",
+          "updated_at",
+          "yandex_id"
+        ]
+      },
+      "FleetDriver": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "yandex_id": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "park_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "created_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "middle_name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "phones": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 32
+            }
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "work_rule_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "work_status": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WorkStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "providers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            }
+          },
+          "hire_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fire_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "deaf": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "has_contract_issue": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "license_number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "license_country": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8
+          },
+          "license_issue_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "license_expiration_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "license_birth_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "current_status": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/CurrentStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "current_status_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "account_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 64
+          },
+          "account_type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "account_balance": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "account_balance_limit": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "account_currency": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8
+          },
+          "account_last_transaction_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "yandex_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "synced_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "client": {
+            "type": "integer"
+          },
+          "car": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "client",
+          "created_at",
+          "id",
+          "updated_at",
+          "yandex_id"
+        ]
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "PaginatedFleetCarList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FleetCar"
+            }
+          }
+        }
+      },
+      "PaginatedFleetDriverList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FleetDriver"
+            }
+          }
+        }
+      },
+      "StatusEnum": {
+        "enum": [
+          "working",
+          "not_working",
+          "repairing",
+          "no_driver",
+          "pending",
+          "unknown"
+        ],
+        "type": "string",
+        "description": "* `working` - На линии\n* `not_working` - Не на линии\n* `repairing` - В ремонте\n* `no_driver` - Без водителя\n* `pending` - Ожидает\n* `unknown` - Неизвестно"
+      },
+      "TypeEnum": {
+        "enum": [
+          "selfemployed",
+          "park_employee",
+          "individual_entrepreneur"
+        ],
+        "type": "string",
+        "description": "* `selfemployed` - Самозанятый\n* `park_employee` - Сотрудник парка\n* `individual_entrepreneur` - ИП"
+      },
+      "WorkStatusEnum": {
+        "enum": [
+          "working",
+          "not_working",
+          "fired"
+        ],
+        "type": "string",
+        "description": "* `working` - На линии\n* `not_working` - Не на линии\n* `fired` - Уволен"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

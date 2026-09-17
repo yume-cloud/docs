@@ -1,0 +1,2938 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Настройки",
+    "version": "1.0.0",
+    "description": "Настройки приложения и пользовательские предпочтения."
+  },
+  "paths": {
+    "/v1/crm/settings/": {
+      "get": {
+        "operationId": "root_retrieve",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingsConfig"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "root_update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsConfig"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsConfig"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/SettingsConfig"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingsConfig"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "root_partial_update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSettingsConfig"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSettingsConfig"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSettingsConfig"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SettingsConfig"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/custom_fields/": {
+      "put": {
+        "operationId": "custom_fields_update",
+        "tags": [
+          "custom_fields"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomFieldUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomFieldUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomFieldUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomFieldUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update custom fields",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "custom_fields_partial_update",
+        "tags": [
+          "custom_fields"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCustomFieldUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCustomFieldUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCustomFieldUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomFieldUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch custom fields",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/custom_fields/{id}/": {
+      "get": {
+        "operationId": "custom_fields_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "custom_fields"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomField"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get custom fields"
+      },
+      "put": {
+        "operationId": "custom_fields_update_2",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "custom_fields"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomField"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomField"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomField"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomField"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update custom fields"
+      },
+      "patch": {
+        "operationId": "custom_fields_partial_update_2",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "custom_fields"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCustomField"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCustomField"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCustomField"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomField"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch custom fields"
+      },
+      "delete": {
+        "operationId": "custom_fields_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "custom_fields"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete custom fields"
+      }
+    },
+    "/v1/crm/settings/custom_fields_list/": {
+      "get": {
+        "operationId": "custom_fields_list_list",
+        "tags": [
+          "custom_fields_list"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CustomField"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get custom fields list",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "custom_fields_list_create",
+        "tags": [
+          "custom_fields_list"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomField"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomField"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomField"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CustomField"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create custom fields list",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/labels/": {
+      "get": {
+        "operationId": "labels_list",
+        "tags": [
+          "labels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Label"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get labels",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "labels_create",
+        "tags": [
+          "labels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Label"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Label"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Label"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create labels",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/labels/{id}/": {
+      "get": {
+        "operationId": "labels_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "labels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get labels"
+      },
+      "put": {
+        "operationId": "labels_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "labels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Label"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Label"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Label"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update labels"
+      },
+      "patch": {
+        "operationId": "labels_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "labels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLabel"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLabel"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLabel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Label"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch labels"
+      },
+      "delete": {
+        "operationId": "labels_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "labels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete labels"
+      }
+    },
+    "/v1/crm/settings/labels/options/": {
+      "get": {
+        "operationId": "labels_options_list",
+        "tags": [
+          "labels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Label"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get options",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/promo/": {
+      "get": {
+        "operationId": "promo_retrieve",
+        "tags": [
+          "promo"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Promo"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get promo",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/promo/{id}/": {
+      "post": {
+        "operationId": "promo_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "promo"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Promo"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Promo"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Promo"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Promo"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create promo"
+      }
+    },
+    "/v1/crm/settings/tables/": {
+      "get": {
+        "operationId": "tables_list",
+        "tags": [
+          "tables"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TableSettings"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tables",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "tables_create",
+        "tags": [
+          "tables"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TableSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TableSettings"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TableSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create tables",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/settings/tables/{name}/": {
+      "get": {
+        "operationId": "tables_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tables"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TableSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tables"
+      },
+      "put": {
+        "operationId": "tables_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tables"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TableSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TableSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TableSettings"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TableSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update tables"
+      },
+      "patch": {
+        "operationId": "tables_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tables"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTableSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTableSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTableSettings"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TableSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch tables"
+      },
+      "delete": {
+        "operationId": "tables_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tables"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete tables"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CustomField": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "key": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldKeyEnum"
+              }
+            ],
+            "title": "Ключ поля"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "label": {
+            "type": "string",
+            "title": "Подпись",
+            "maxLength": 255
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true,
+            "title": "Подсказка",
+            "maxLength": 255
+          },
+          "required": {
+            "type": "boolean",
+            "title": "Обязательное"
+          },
+          "table": {
+            "type": "boolean",
+            "title": "Показывать в таблице"
+          },
+          "filter": {
+            "type": "boolean",
+            "title": "Показывать в фильтрах"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldTypeEnum"
+              }
+            ],
+            "title": "Тип"
+          },
+          "options": {
+            "title": "Варианты"
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "label",
+          "name",
+          "type"
+        ]
+      },
+      "CustomFieldKeyEnum": {
+        "enum": [
+          "client",
+          "service",
+          "inventory",
+          "inventory_car",
+          "inventory_scooter",
+          "inventory_motorcycle",
+          "inventory_set",
+          "inventory_group",
+          "rental_point",
+          "category",
+          "order",
+          "order_inventory",
+          "order_service",
+          "funnel_lead",
+          "workshop",
+          "document",
+          "template"
+        ],
+        "type": "string",
+        "description": "* `client` - Клиент\n* `service` - Услуга\n* `inventory` - Инвентарь\n* `inventory_car` - Автомобиль\n* `inventory_scooter` - Самокат\n* `inventory_motorcycle` - Мотоцикл\n* `inventory_set` - Комплект\n* `inventory_group` - Группа инвентаря\n* `rental_point` - Точка проката\n* `category` - Категория\n* `order` - Аренда\n* `order_inventory` - Позиция аренды\n* `order_service` - Позиция услуги\n* `funnel_lead` - Лид\n* `workshop` - Сервис\n* `document` - Документ\n* `template` - Шаблон"
+      },
+      "CustomFieldList": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "default": ""
+          },
+          "placeholder": {
+            "type": "string",
+            "default": ""
+          },
+          "required": {
+            "type": "boolean",
+            "default": false
+          },
+          "table": {
+            "type": "boolean",
+            "default": false
+          },
+          "filter": {
+            "type": "boolean",
+            "default": false
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldListTypeEnum"
+              }
+            ],
+            "default": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "CustomFieldListTypeEnum": {
+        "enum": [
+          "string",
+          "html",
+          "integer",
+          "decimal",
+          "boolean",
+          "date",
+          "datetime",
+          "color",
+          "client",
+          "inventory",
+          "product",
+          "set"
+        ],
+        "type": "string",
+        "description": "* `string` - string\n* `html` - html\n* `integer` - integer\n* `decimal` - decimal\n* `boolean` - boolean\n* `date` - date\n* `datetime` - datetime\n* `color` - color\n* `client` - client\n* `inventory` - inventory\n* `product` - product\n* `set` - set"
+      },
+      "CustomFieldTypeEnum": {
+        "enum": [
+          "string",
+          "html",
+          "integer",
+          "decimal",
+          "boolean",
+          "date",
+          "datetime",
+          "color",
+          "client",
+          "inventory",
+          "inventory_group",
+          "inventory_set",
+          "service",
+          "workshop",
+          "document",
+          "template"
+        ],
+        "type": "string",
+        "description": "* `string` - Строка\n* `html` - HTML-текст\n* `integer` - Целое число\n* `decimal` - Дробное число\n* `boolean` - Да / нет\n* `date` - Дата\n* `datetime` - Дата и время\n* `color` - Цвет\n* `client` - Клиент\n* `inventory` - Инвентарь\n* `inventory_group` - Группа инвентаря\n* `inventory_set` - Комплект\n* `service` - Услуга\n* `workshop` - Сервис\n* `document` - Документ\n* `template` - Шаблон"
+      },
+      "CustomFieldUpdate": {
+        "type": "object",
+        "properties": {
+          "inventory_group": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "inventory_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "inventory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "service": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "client": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "client_document": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "rental_point": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "order": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "order_inventory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "order_service": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "funnel_lead": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          }
+        }
+      },
+      "Label": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "key": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LabelKeyEnum"
+              }
+            ],
+            "title": "Ключ",
+            "description": "Ключ\n\n* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
+          },
+          "language": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LanguageEnum"
+              }
+            ],
+            "title": "Язык",
+            "description": "Язык\n\n* `ru` - Русский\n* `en` - English"
+          },
+          "nominative_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Именительный падеж (ед. ч.)",
+            "description": "Nominative singular form (e.g., \"Инвентарь\")",
+            "maxLength": 255
+          },
+          "nominative_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Именительный падеж (мн. ч.)",
+            "description": "Nominative plural form (e.g., \"Инвентари\")",
+            "maxLength": 255
+          },
+          "genitive_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Родительный падеж (ед. ч.)",
+            "description": "Genitive singular (e.g., \"инвентаря\")",
+            "maxLength": 255
+          },
+          "dative_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Дательный падеж (ед. ч.)",
+            "description": "Dative singular (e.g., \"инвентарю\")",
+            "maxLength": 255
+          },
+          "accusative_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Винительный падеж (ед. ч.)",
+            "description": "Accusative singular (e.g., \"инвентарь\")",
+            "maxLength": 255
+          },
+          "instrumental_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Творительный падеж (ед. ч.)",
+            "description": "Instrumental singular (e.g., \"инвентарем\")",
+            "maxLength": 255
+          },
+          "prepositional_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Предложный падеж (ед. ч.)",
+            "description": "Prepositional singular (e.g., \"об инвентаре\")",
+            "maxLength": 255
+          },
+          "genitive_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Родительный падеж (мн. ч.)",
+            "description": "Genitive plural (e.g., \"инвентарей\")",
+            "maxLength": 255
+          },
+          "dative_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Дательный падеж (мн. ч.)",
+            "description": "Dative plural (e.g., \"инвентарям\")",
+            "maxLength": 255
+          },
+          "accusative_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Винительный падеж (мн. ч.)",
+            "description": "Accusative plural (e.g., \"инвентари\")",
+            "maxLength": 255
+          },
+          "instrumental_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Творительный падеж (мн. ч.)",
+            "description": "Instrumental plural (e.g., \"инвентарями\")",
+            "maxLength": 255
+          },
+          "prepositional_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Предложный падеж (мн. ч.)",
+            "description": "Prepositional plural (e.g., \"об инвентарях\")",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "id",
+          "key",
+          "language"
+        ]
+      },
+      "LabelKeyEnum": {
+        "enum": [
+          "inventory",
+          "inventory_set",
+          "inventory_group",
+          "rental_point",
+          "service",
+          "client",
+          "deposit",
+          "workshop",
+          "request",
+          "reserve",
+          "inrent",
+          "canceled",
+          "completed",
+          "debtor",
+          "exceed",
+          "deleted"
+        ],
+        "type": "string",
+        "description": "* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
+      },
+      "LanguageEnum": {
+        "enum": [
+          "ru",
+          "en"
+        ],
+        "type": "string",
+        "description": "* `ru` - Русский\n* `en` - English"
+      },
+      "PatchedCustomField": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "key": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldKeyEnum"
+              }
+            ],
+            "title": "Ключ поля"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "label": {
+            "type": "string",
+            "title": "Подпись",
+            "maxLength": 255
+          },
+          "placeholder": {
+            "type": "string",
+            "nullable": true,
+            "title": "Подсказка",
+            "maxLength": 255
+          },
+          "required": {
+            "type": "boolean",
+            "title": "Обязательное"
+          },
+          "table": {
+            "type": "boolean",
+            "title": "Показывать в таблице"
+          },
+          "filter": {
+            "type": "boolean",
+            "title": "Показывать в фильтрах"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldTypeEnum"
+              }
+            ],
+            "title": "Тип"
+          },
+          "options": {
+            "title": "Варианты"
+          }
+        }
+      },
+      "PatchedCustomFieldUpdate": {
+        "type": "object",
+        "properties": {
+          "inventory_group": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "inventory_set": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "inventory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "service": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "client": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "client_document": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "rental_point": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "order": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "order_inventory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "order_service": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "funnel_lead": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          },
+          "category": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomFieldList"
+            }
+          }
+        }
+      },
+      "PatchedLabel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "key": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LabelKeyEnum"
+              }
+            ],
+            "title": "Ключ",
+            "description": "Ключ\n\n* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
+          },
+          "language": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LanguageEnum"
+              }
+            ],
+            "title": "Язык",
+            "description": "Язык\n\n* `ru` - Русский\n* `en` - English"
+          },
+          "nominative_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Именительный падеж (ед. ч.)",
+            "description": "Nominative singular form (e.g., \"Инвентарь\")",
+            "maxLength": 255
+          },
+          "nominative_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Именительный падеж (мн. ч.)",
+            "description": "Nominative plural form (e.g., \"Инвентари\")",
+            "maxLength": 255
+          },
+          "genitive_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Родительный падеж (ед. ч.)",
+            "description": "Genitive singular (e.g., \"инвентаря\")",
+            "maxLength": 255
+          },
+          "dative_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Дательный падеж (ед. ч.)",
+            "description": "Dative singular (e.g., \"инвентарю\")",
+            "maxLength": 255
+          },
+          "accusative_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Винительный падеж (ед. ч.)",
+            "description": "Accusative singular (e.g., \"инвентарь\")",
+            "maxLength": 255
+          },
+          "instrumental_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Творительный падеж (ед. ч.)",
+            "description": "Instrumental singular (e.g., \"инвентарем\")",
+            "maxLength": 255
+          },
+          "prepositional_singular": {
+            "type": "string",
+            "nullable": true,
+            "title": "Предложный падеж (ед. ч.)",
+            "description": "Prepositional singular (e.g., \"об инвентаре\")",
+            "maxLength": 255
+          },
+          "genitive_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Родительный падеж (мн. ч.)",
+            "description": "Genitive plural (e.g., \"инвентарей\")",
+            "maxLength": 255
+          },
+          "dative_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Дательный падеж (мн. ч.)",
+            "description": "Dative plural (e.g., \"инвентарям\")",
+            "maxLength": 255
+          },
+          "accusative_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Винительный падеж (мн. ч.)",
+            "description": "Accusative plural (e.g., \"инвентари\")",
+            "maxLength": 255
+          },
+          "instrumental_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Творительный падеж (мн. ч.)",
+            "description": "Instrumental plural (e.g., \"инвентарями\")",
+            "maxLength": 255
+          },
+          "prepositional_plural": {
+            "type": "string",
+            "nullable": true,
+            "title": "Предложный падеж (мн. ч.)",
+            "description": "Prepositional plural (e.g., \"об инвентарях\")",
+            "maxLength": 255
+          }
+        }
+      },
+      "PatchedSettingsConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "company_iin": {
+            "type": "string"
+          },
+          "company_bin": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "currency_prefix": {
+            "type": "boolean",
+            "default": true
+          },
+          "language": {
+            "type": "string"
+          },
+          "company_bank": {
+            "type": "string"
+          },
+          "company_iban": {
+            "type": "string"
+          },
+          "company_bic": {
+            "type": "string"
+          },
+          "company_account_number": {
+            "type": "string"
+          },
+          "feature_point_clean": {
+            "type": "boolean",
+            "default": false
+          },
+          "collection_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "feature_delivery_sms": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_delivery_wazzup": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_inventorization_duration": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "feature_inventory_buffer": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "feature_transaction_schedule_initial_fee": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "order_autoweekday": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "order_filter_type": {
+            "type": "string",
+            "readOnly": true
+          },
+          "feature_group": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_group_available": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_set": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_set_alternative": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_service": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_inventory": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventory_car": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_unique_id": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventorization_before": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventorization_after": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_inventorization_media": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventorization_media_desktop": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_inventorization_request": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_order_recipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_sublease": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_wallet": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_erap": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_transaction_date": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_transaction_overpay": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_transaction_schedule": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_debt_current": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_delivery_confirm": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_delivery_rent_start": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_delivery_rent_end": {
+            "type": "boolean",
+            "default": false
+          },
+          "request": {
+            "type": "string"
+          },
+          "reserve": {
+            "type": "string"
+          },
+          "debtor": {
+            "type": "string"
+          },
+          "inrent": {
+            "type": "string"
+          },
+          "cancel": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "string"
+          },
+          "exceed": {
+            "type": "string"
+          },
+          "reservation": {
+            "type": "boolean"
+          },
+          "collection": {
+            "type": "boolean"
+          },
+          "order_draft": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_flex": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_agent": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_client": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_client_tick_filter": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "order_inventory": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_group": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_service": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_penalty_rounding": {
+            "type": "integer",
+            "default": 1
+          },
+          "order_penalty_buffer_duration": {
+            "type": "string"
+          },
+          "order_deposit": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_pause": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_inventory_detail": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_agent_percent": {
+            "type": "integer",
+            "default": 10
+          },
+          "order_table_expanded": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_inventory_occupation": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_inventory_discount": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_duration": {
+            "type": "string"
+          },
+          "order_archive_auto": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_archive_buffer_duration": {
+            "type": "string"
+          },
+          "order_default_filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "order_rental_point": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_rental_point_return": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_period": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_merge_inrent_exceed": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_single_inventory": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_autorenewal": {
+            "type": "boolean",
+            "default": false
+          },
+          "penalty": {
+            "type": "boolean"
+          },
+          "penalty_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "penalty_after": {
+            "type": "boolean"
+          },
+          "penalty_manager_access": {
+            "type": "boolean"
+          },
+          "penalty_default": {
+            "type": "string"
+          },
+          "rent_inventory_priority": {
+            "type": "string"
+          },
+          "creation_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "reservation_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "issue_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "recievement_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "delivery_order_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "single_issue": {
+            "type": "boolean"
+          },
+          "single_recievement": {
+            "type": "boolean"
+          },
+          "workshift": {
+            "type": "boolean",
+            "default": false
+          },
+          "metrics_order_statuses": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "metrics_order_payment_statuses": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "rent_product_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "penalty_options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PenaltyOption"
+            }
+          },
+          "custom_fields": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldUpdate"
+              }
+            ],
+            "readOnly": true
+          },
+          "feature_bonus": {
+            "type": "boolean",
+            "default": false
+          },
+          "bonus_default_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "bonus_default_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "bonus_default_usage": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "tax": {
+            "type": "boolean",
+            "default": true
+          },
+          "tax_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "tax_included": {
+            "type": "boolean",
+            "default": true
+          },
+          "phone_format": {
+            "type": "string"
+          },
+          "order_layout_left": {},
+          "order_layout_right_v2": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "client_debt_limit": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "client_passport": {
+            "type": "boolean",
+            "default": true
+          },
+          "client_passport_scan": {
+            "type": "boolean",
+            "default": false
+          },
+          "client_passport_iin_length": {
+            "type": "integer",
+            "default": 12
+          },
+          "client_kaspi_balance": {
+            "type": "boolean",
+            "default": false
+          },
+          "document_billing_mode": {
+            "type": "string",
+            "readOnly": true
+          },
+          "whapi": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      },
+      "PatchedTableSettings": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TableSettingsField"
+            }
+          }
+        }
+      },
+      "PenaltyOption": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "duration",
+          "name"
+        ]
+      },
+      "Promo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "icon": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "link": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "gif": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        },
+        "required": [
+          "description",
+          "id",
+          "title"
+        ]
+      },
+      "SettingsConfig": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "company_iin": {
+            "type": "string"
+          },
+          "company_bin": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "currency_prefix": {
+            "type": "boolean",
+            "default": true
+          },
+          "language": {
+            "type": "string"
+          },
+          "company_bank": {
+            "type": "string"
+          },
+          "company_iban": {
+            "type": "string"
+          },
+          "company_bic": {
+            "type": "string"
+          },
+          "company_account_number": {
+            "type": "string"
+          },
+          "feature_point_clean": {
+            "type": "boolean",
+            "default": false
+          },
+          "collection_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "feature_delivery_sms": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_delivery_wazzup": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_inventorization_duration": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "feature_inventory_buffer": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "feature_transaction_schedule_initial_fee": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "order_autoweekday": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "order_filter_type": {
+            "type": "string",
+            "readOnly": true
+          },
+          "feature_group": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_group_available": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_set": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_set_alternative": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_service": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_inventory": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventory_car": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_unique_id": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventorization_before": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventorization_after": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_inventorization_media": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_inventorization_media_desktop": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_inventorization_request": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_order_recipe": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_sublease": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_wallet": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_erap": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_transaction_date": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_transaction_overpay": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_transaction_schedule": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_debt_current": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_delivery_confirm": {
+            "type": "boolean",
+            "default": true
+          },
+          "feature_delivery_rent_start": {
+            "type": "boolean",
+            "default": false
+          },
+          "feature_delivery_rent_end": {
+            "type": "boolean",
+            "default": false
+          },
+          "request": {
+            "type": "string"
+          },
+          "reserve": {
+            "type": "string"
+          },
+          "debtor": {
+            "type": "string"
+          },
+          "inrent": {
+            "type": "string"
+          },
+          "cancel": {
+            "type": "string"
+          },
+          "completed": {
+            "type": "string"
+          },
+          "exceed": {
+            "type": "string"
+          },
+          "reservation": {
+            "type": "boolean"
+          },
+          "collection": {
+            "type": "boolean"
+          },
+          "order_draft": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_flex": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_agent": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_client": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_client_tick_filter": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "order_inventory": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_group": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_service": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_penalty_rounding": {
+            "type": "integer",
+            "default": 1
+          },
+          "order_penalty_buffer_duration": {
+            "type": "string"
+          },
+          "order_deposit": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_pause": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_inventory_detail": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_agent_percent": {
+            "type": "integer",
+            "default": 10
+          },
+          "order_table_expanded": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_inventory_occupation": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_inventory_discount": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_duration": {
+            "type": "string"
+          },
+          "order_archive_auto": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_archive_buffer_duration": {
+            "type": "string"
+          },
+          "order_default_filter": {
+            "type": "string",
+            "nullable": true
+          },
+          "order_rental_point": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_rental_point_return": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_period": {
+            "type": "boolean",
+            "default": true
+          },
+          "order_merge_inrent_exceed": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_single_inventory": {
+            "type": "boolean",
+            "default": false
+          },
+          "order_autorenewal": {
+            "type": "boolean",
+            "default": false
+          },
+          "penalty": {
+            "type": "boolean"
+          },
+          "penalty_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "penalty_after": {
+            "type": "boolean"
+          },
+          "penalty_manager_access": {
+            "type": "boolean"
+          },
+          "penalty_default": {
+            "type": "string"
+          },
+          "rent_inventory_priority": {
+            "type": "string"
+          },
+          "creation_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "reservation_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "issue_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "recievement_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "delivery_order_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "single_issue": {
+            "type": "boolean"
+          },
+          "single_recievement": {
+            "type": "boolean"
+          },
+          "workshift": {
+            "type": "boolean",
+            "default": false
+          },
+          "metrics_order_statuses": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "metrics_order_payment_statuses": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "rent_product_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "penalty_options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PenaltyOption"
+            }
+          },
+          "custom_fields": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CustomFieldUpdate"
+              }
+            ],
+            "readOnly": true
+          },
+          "feature_bonus": {
+            "type": "boolean",
+            "default": false
+          },
+          "bonus_default_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "bonus_default_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "bonus_default_usage": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "tax": {
+            "type": "boolean",
+            "default": true
+          },
+          "tax_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "tax_included": {
+            "type": "boolean",
+            "default": true
+          },
+          "phone_format": {
+            "type": "string"
+          },
+          "order_layout_left": {},
+          "order_layout_right_v2": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "client_debt_limit": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "client_passport": {
+            "type": "boolean",
+            "default": true
+          },
+          "client_passport_scan": {
+            "type": "boolean",
+            "default": false
+          },
+          "client_passport_iin_length": {
+            "type": "integer",
+            "default": 12
+          },
+          "client_kaspi_balance": {
+            "type": "boolean",
+            "default": false
+          },
+          "document_billing_mode": {
+            "type": "string",
+            "readOnly": true
+          },
+          "whapi": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "address",
+          "cancel",
+          "collection",
+          "collection_percent",
+          "company_account_number",
+          "company_bank",
+          "company_bic",
+          "company_bin",
+          "company_iban",
+          "company_iin",
+          "completed",
+          "currency",
+          "custom_fields",
+          "debtor",
+          "document_billing_mode",
+          "exceed",
+          "feature_delivery_sms",
+          "feature_delivery_wazzup",
+          "feature_inventorization_duration",
+          "feature_inventory_buffer",
+          "feature_transaction_schedule_initial_fee",
+          "inrent",
+          "language",
+          "metrics_order_payment_statuses",
+          "metrics_order_statuses",
+          "name",
+          "order_archive_buffer_duration",
+          "order_autoweekday",
+          "order_client_tick_filter",
+          "order_duration",
+          "order_filter_type",
+          "order_layout_left",
+          "order_layout_right_v2",
+          "order_penalty_buffer_duration",
+          "penalty",
+          "penalty_after",
+          "penalty_default",
+          "penalty_manager_access",
+          "penalty_options",
+          "phone_format",
+          "rent_inventory_priority",
+          "rent_product_types",
+          "request",
+          "reservation",
+          "reserve",
+          "single_issue",
+          "single_recievement"
+        ]
+      },
+      "TableSettings": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TableSettingsField"
+            }
+          }
+        },
+        "required": [
+          "fields",
+          "id",
+          "name"
+        ]
+      },
+      "TableSettingsField": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "active",
+          "key"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

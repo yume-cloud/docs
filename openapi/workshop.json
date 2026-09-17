@@ -1,0 +1,4197 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Мастерская",
+    "version": "1.0.0",
+    "description": "Работы, ремонт и сервисное обслуживание."
+  },
+  "paths": {
+    "/v1/workshop/pipelines/": {
+      "get": {
+        "operationId": "pipelines_list",
+        "tags": [
+          "pipelines"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkshopPipeline"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get pipelines",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "pipelines_create",
+        "tags": [
+          "pipelines"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopPipeline"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopPipeline"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopPipeline"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopPipeline"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create pipelines",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/workshop/pipelines/{id}/": {
+      "get": {
+        "operationId": "pipelines_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "pipelines"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopPipeline"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get pipelines"
+      },
+      "put": {
+        "operationId": "pipelines_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "pipelines"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopPipeline"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopPipeline"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopPipeline"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopPipeline"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update pipelines"
+      },
+      "patch": {
+        "operationId": "pipelines_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "pipelines"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopPipeline"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopPipeline"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopPipeline"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopPipeline"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch pipelines"
+      },
+      "delete": {
+        "operationId": "pipelines_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "pipelines"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete pipelines"
+      }
+    },
+    "/v1/workshop/resources/": {
+      "get": {
+        "operationId": "resources_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "count",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "price",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Количество\n* `1` - Сумма"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "resources"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedResourceList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get resources"
+      },
+      "post": {
+        "operationId": "resources_create",
+        "tags": [
+          "resources"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ResourceCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create resources",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/workshop/resources/{id}/": {
+      "get": {
+        "operationId": "resources_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "resources"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get resources"
+      },
+      "put": {
+        "operationId": "resources_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "resources"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Resource"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Resource"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Resource"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update resources"
+      },
+      "patch": {
+        "operationId": "resources_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "resources"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedResource"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedResource"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedResource"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Resource"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch resources"
+      },
+      "delete": {
+        "operationId": "resources_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "resources"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete resources"
+      }
+    },
+    "/v1/workshop/stages/": {
+      "get": {
+        "operationId": "stages_list",
+        "tags": [
+          "stages"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkshopStage"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get stages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "stages_create",
+        "tags": [
+          "stages"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopStage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create stages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/workshop/stages/{stage_id}/": {
+      "put": {
+        "operationId": "stages_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "stages"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateStage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopUpdateStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update stages"
+      },
+      "patch": {
+        "operationId": "stages_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "stages"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopUpdateStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopUpdateStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopUpdateStage"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopUpdateStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch stages"
+      },
+      "delete": {
+        "operationId": "stages_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "stages"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete stages"
+      }
+    },
+    "/v1/workshop/tasks/": {
+      "get": {
+        "operationId": "tasks_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "client",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_by",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inventory",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inventory__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "name__icontains",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "number",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "number__icontains",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "payment_status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "resource",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "service",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stage",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stage__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "description": "* `0` - Новый\n* `1` - В работе\n* `2` - Завершено\n* `3` - Архив"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Внутренняя\n* `1` - Внешняя"
+          },
+          {
+            "in": "query",
+            "name": "worker",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedWorkshopTaskList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tasks"
+      },
+      "post": {
+        "operationId": "tasks_create",
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopTaskUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopTaskUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopTaskUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopTaskUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create tasks",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/workshop/tasks/{task_id}/": {
+      "get": {
+        "operationId": "tasks_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopTask"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tasks"
+      },
+      "put": {
+        "operationId": "tasks_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopTaskUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopTaskUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopTaskUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopTaskUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update tasks"
+      },
+      "patch": {
+        "operationId": "tasks_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopTaskUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopTaskUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopTaskUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopTaskUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch tasks"
+      },
+      "delete": {
+        "operationId": "tasks_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete tasks"
+      }
+    },
+    "/v1/workshop/tasks/{task_id}/resources/": {
+      "get": {
+        "operationId": "tasks_resources_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkshopResource"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get resources"
+      },
+      "post": {
+        "operationId": "tasks_resources_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopResourceEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopResourceEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopResourceEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopResourceEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create resources"
+      }
+    },
+    "/v1/workshop/tasks/{task_id}/resources/{id}/": {
+      "get": {
+        "operationId": "tasks_resources_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopResource"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get resources"
+      },
+      "put": {
+        "operationId": "tasks_resources_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopResourceEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopResourceEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopResourceEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopResourceEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update resources"
+      },
+      "patch": {
+        "operationId": "tasks_resources_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopResourceEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopResourceEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopResourceEdit"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopResourceEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch resources"
+      },
+      "delete": {
+        "operationId": "tasks_resources_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete resources"
+      }
+    },
+    "/v1/workshop/tasks/{task_id}/services/": {
+      "get": {
+        "operationId": "tasks_services_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkshopService"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get services"
+      },
+      "post": {
+        "operationId": "tasks_services_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopServiceEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopServiceEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopServiceEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopServiceEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create services"
+      }
+    },
+    "/v1/workshop/tasks/{task_id}/services/{id}/": {
+      "get": {
+        "operationId": "tasks_services_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopService"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get services"
+      },
+      "put": {
+        "operationId": "tasks_services_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopServiceEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopServiceEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopServiceEdit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopServiceEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update services"
+      },
+      "patch": {
+        "operationId": "tasks_services_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopServiceEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopServiceEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopServiceEdit"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopServiceEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch services"
+      },
+      "delete": {
+        "operationId": "tasks_services_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete services"
+      }
+    },
+    "/v1/workshop/tasks/stages/": {
+      "get": {
+        "operationId": "tasks_stages_list",
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkshopStage"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get stages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "tasks_stages_create",
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopStage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create stages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/workshop/tasks/stages/{stage_id}/": {
+      "put": {
+        "operationId": "tasks_stages_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshopUpdateStage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopUpdateStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update stages"
+      },
+      "patch": {
+        "operationId": "tasks_stages_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopUpdateStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopUpdateStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWorkshopUpdateStage"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshopUpdateStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch stages"
+      },
+      "delete": {
+        "operationId": "tasks_stages_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "stage_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete stages"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseClient": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 512
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseClientTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "avatar": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Фото"
+          },
+          "agreement_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "signed": {
+            "type": "boolean"
+          },
+          "sign_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "sign_expires": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "title": "Телефон",
+            "maxLength": 32
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 254
+          },
+          "legal_type": {
+            "nullable": true,
+            "title": "Форма организации",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/LegalTypeEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        },
+        "required": [
+          "agreement_id",
+          "id",
+          "name",
+          "phone"
+        ]
+      },
+      "BaseClientTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Физ. лицо\n* `1` - Юр. лицо"
+      },
+      "BaseInventory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Группа инвентаря"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "subleases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventorySublease"
+            },
+            "readOnly": true
+          },
+          "state": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Состояние"
+          },
+          "disabled": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DisabledEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Точка проката"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "subleases"
+        ]
+      },
+      "BaseInventoryGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название",
+            "maxLength": 512
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "unit_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Цена за единицу"
+          },
+          "unit_count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Количество единиц"
+          },
+          "unit_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UnitTypeEnum"
+              }
+            ],
+            "title": "Единица измерения"
+          },
+          "unit_sum": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Итого за единицы"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "barcode": {
+            "type": "string",
+            "nullable": true,
+            "title": "Штрихкод",
+            "maxLength": 255
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "nullable": true,
+            "title": "Фильтры"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "maximum": 2147483647,
+              "minimum": -2147483648
+            },
+            "title": "Баллы"
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Опубликовано"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseInventoryGroupTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": 0,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "lifetime": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Срок службы, дней"
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "updated_at"
+        ]
+      },
+      "BaseInventoryGroupTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Аренда\n* `1` - Продажа"
+      },
+      "CarInventory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Группа инвентаря"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "subleases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventorySublease"
+            },
+            "readOnly": true
+          },
+          "state": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Состояние"
+          },
+          "disabled": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DisabledEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Точка проката"
+          },
+          "car": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryCar"
+              }
+            ],
+            "readOnly": true
+          }
+        },
+        "required": [
+          "car",
+          "id",
+          "name",
+          "subleases"
+        ]
+      },
+      "DisabledEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - удалить\n* `1` - Архив\n* `2` - Списано"
+      },
+      "ImageAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "thumb": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "content_type",
+          "created_at",
+          "created_by",
+          "extension",
+          "hash",
+          "id",
+          "name",
+          "object_id",
+          "thumb"
+        ]
+      },
+      "InventoryCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/InventoryCarTypeEnum"
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "tech_passport": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "serial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "vin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18
+          },
+          "extra": {}
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "InventoryCarTypeEnum": {
+        "enum": [
+          "CAR",
+          "SCOOTER",
+          "MOTORCYCLE"
+        ],
+        "type": "string",
+        "description": "* `CAR` - Автомобиль\n* `SCOOTER` - Электросамокат\n* `MOTORCYCLE` - Мотоцикл/Мопед"
+      },
+      "InventorySublease": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "type": "integer",
+            "title": "Инвентарь"
+          },
+          "user": {
+            "type": "integer",
+            "title": "Владелец субаренды"
+          },
+          "percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "title": "Процент субаренды"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Начало периода"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец периода"
+          },
+          "is_current": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "is_current",
+          "percent",
+          "user"
+        ]
+      },
+      "LegalTypeEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "description": "* `0` - ИП\n* `1` - ТОО\n* `2` - АО\n* `3` - ПК"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "PaginatedResourceList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            }
+          }
+        }
+      },
+      "PaginatedWorkshopTaskList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkshopTask"
+            }
+          }
+        }
+      },
+      "PatchedResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEadEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count_left": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        }
+      },
+      "PatchedWorkshopPipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        }
+      },
+      "PatchedWorkshopResourceEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "inventory_group_count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "inventory_group": {
+            "type": "integer",
+            "nullable": true
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true
+          },
+          "task": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "resource": {
+            "type": "integer",
+            "nullable": true
+          },
+          "approved_by": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedWorkshopServiceEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "tarif_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "tarif_duration": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "task": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "service": {
+            "type": "integer"
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedWorkshopTaskUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeB28Enum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "statement_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatementTypeEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "service_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "resource_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "stage": {
+            "type": "integer",
+            "nullable": true
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "worker": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request_inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedWorkshopUpdateStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "pipeline": {
+            "type": "integer",
+            "nullable": true
+          },
+          "post_state": {
+            "type": "integer",
+            "nullable": true
+          },
+          "blocking": {
+            "type": "boolean",
+            "title": "Занимать инвентарь"
+          }
+        }
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEadEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count_left": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "ResourceCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEadEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count_left": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "Service": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "disabled": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DisabledEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "tarifs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceTarifs"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ServiceTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "bonus": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true,
+            "title": "Бонусы"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "title": "Адрес страницы",
+            "maxLength": 50,
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Опубликовано"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "discount": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Скидка"
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "tarifs",
+          "updated_at"
+        ]
+      },
+      "ServiceTarifs": {
+        "type": "object",
+        "description": "Тарифы услуг переехали в общую таблицу, но интерфейс услуги знает поле `duriation`.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "service": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "duriation": {
+            "type": "integer",
+            "nullable": true
+          },
+          "one_time_payment": {
+            "type": "boolean",
+            "title": "Разовая оплата"
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Опубликовано"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Порядок"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "service",
+          "updated_at"
+        ]
+      },
+      "ServiceTypeEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "description": "* `0` - Доставка\n* `1` - Не выбрано\n* `2` - Доставка обратно\n* `3` - Доставка туда и обратно\n* `4` - Сервис"
+      },
+      "StatementTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Расход\n* `1` - Приход"
+      },
+      "StatusEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "description": "* `0` - Новый\n* `1` - В работе\n* `2` - Завершено\n* `3` - Архив"
+      },
+      "TypeB28Enum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Внутренняя\n* `1` - Внешняя"
+      },
+      "TypeEadEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Количество\n* `1` - Сумма"
+      },
+      "UnitTypeEnum": {
+        "enum": [
+          "litre",
+          "kg",
+          "g",
+          "ml",
+          "piece",
+          "m3"
+        ],
+        "type": "string",
+        "description": "* `litre` - Литр\n* `kg` - Килограмм\n* `g` - Грамм\n* `ml` - Миллилитр\n* `piece` - Штука\n* `m3` - Кубический метр"
+      },
+      "WorkshopPipeline": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "WorkshopResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseInventory"
+              }
+            ],
+            "readOnly": true
+          },
+          "inventory_group": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseInventoryGroup"
+              }
+            ],
+            "readOnly": true
+          },
+          "resource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Resource"
+              }
+            ],
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "inventory_group_count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true
+          },
+          "task": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "approved_by": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "inventory_group",
+          "resource",
+          "task",
+          "updated_at"
+        ]
+      },
+      "WorkshopResourceEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "inventory_group_count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "inventory_group": {
+            "type": "integer",
+            "nullable": true
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true
+          },
+          "task": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "resource": {
+            "type": "integer",
+            "nullable": true
+          },
+          "approved_by": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory_group_count",
+          "task",
+          "updated_at"
+        ]
+      },
+      "WorkshopService": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "service": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Service"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "tarif_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "tarif_duration": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "task": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "service",
+          "task",
+          "updated_at"
+        ]
+      },
+      "WorkshopServiceEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "tarif_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "tarif_duration": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "task": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "service": {
+            "type": "integer"
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "service",
+          "task",
+          "updated_at"
+        ]
+      },
+      "WorkshopStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 7
+          },
+          "blocking": {
+            "type": "boolean",
+            "title": "Занимать инвентарь"
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "pipeline": {
+            "type": "integer",
+            "nullable": true
+          },
+          "post_state": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "WorkshopTask": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "client": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseClient"
+              }
+            ],
+            "readOnly": true
+          },
+          "inventory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CarInventory"
+              }
+            ],
+            "readOnly": true
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkshopResource"
+            },
+            "readOnly": true
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkshopService"
+            },
+            "readOnly": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageAttachment"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeB28Enum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "statement_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatementTypeEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "service_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "resource_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "stage": {
+            "type": "integer",
+            "nullable": true
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "worker": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request_inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "client",
+          "created_at",
+          "created_by",
+          "id",
+          "images",
+          "inventory",
+          "name",
+          "price",
+          "rental_point",
+          "resource_price",
+          "resources",
+          "service_price",
+          "services",
+          "updated_at"
+        ]
+      },
+      "WorkshopTaskUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeB28Enum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "statement_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatementTypeEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "service_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "resource_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "stage": {
+            "type": "integer",
+            "nullable": true
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "worker": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request_inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "inventory": {
+            "type": "integer",
+            "nullable": true
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_by",
+          "id",
+          "name",
+          "price",
+          "rental_point",
+          "resource_price",
+          "service_price",
+          "updated_at"
+        ]
+      },
+      "WorkshopUpdateStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "pipeline": {
+            "type": "integer",
+            "nullable": true
+          },
+          "post_state": {
+            "type": "integer",
+            "nullable": true
+          },
+          "blocking": {
+            "type": "boolean",
+            "title": "Занимать инвентарь"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

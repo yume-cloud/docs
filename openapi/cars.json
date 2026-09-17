@@ -1,0 +1,1527 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — ERAP",
+    "version": "1.0.0",
+    "description": "Интеграция с ЕРАП: автомобили и синхронизация."
+  },
+  "paths": {
+    "/v1/cars/": {
+      "get": {
+        "operationId": "root_list",
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ErapTenantCar"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get cars",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "root_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapTenantCar"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapTenantCar"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapTenantCar"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapTenantCar"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create cars",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/cars/{id}/": {
+      "get": {
+        "operationId": "root_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapTenantCar"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get cars"
+      },
+      "delete": {
+        "operationId": "root_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete cars"
+      }
+    },
+    "/v1/cars/penalties/": {
+      "get": {
+        "operationId": "penalties_list",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedErapPenaltyList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get penalties"
+      }
+    },
+    "/v1/cars/penalties/{id}/": {
+      "get": {
+        "operationId": "penalties_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapPenalty"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get penalties"
+      },
+      "put": {
+        "operationId": "penalties_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "penalties"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapPenalty"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapPenalty"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapPenalty"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapPenalty"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update penalties"
+      },
+      "patch": {
+        "operationId": "penalties_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "penalties"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedErapPenalty"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedErapPenalty"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedErapPenalty"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapPenalty"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch penalties"
+      }
+    },
+    "/v1/cars/penalties/checkup/": {
+      "get": {
+        "operationId": "penalties_checkup_retrieve",
+        "description": "Сверка штрафов одной компании с ЕРАП по кнопке на странице штрафов.\n\nЕРАП отвечает по БИН, а `ErapCompany` не привязана к компании Yume, поэтому БИН и дату его\nрегистрации вводит пользователь: сверяется ровно одна компания, а не весь справочник.",
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get checkup",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "penalties_checkup_create",
+        "description": "Сверка штрафов одной компании с ЕРАП по кнопке на странице штрафов.\n\nЕРАП отвечает по БИН, а `ErapCompany` не привязана к компании Yume, поэтому БИН и дату его\nрегистрации вводит пользователь: сверяется ровно одна компания, а не весь справочник.",
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create checkup",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/cars/penalties/count/": {
+      "get": {
+        "operationId": "penalties_count_retrieve",
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get count",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/cars/penalties/general/": {
+      "get": {
+        "operationId": "penalties_general_retrieve",
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapPenaltyGeneral"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get general",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/cars/penalties/refresh/": {
+      "post": {
+        "operationId": "penalties_refresh_create",
+        "tags": [
+          "penalties"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create refresh",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/cars/states/": {
+      "get": {
+        "operationId": "states_list",
+        "tags": [
+          "states"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ErapState"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get states",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "states_create",
+        "tags": [
+          "states"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapState"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapState"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapState"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create states",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/cars/states/{id}/": {
+      "put": {
+        "operationId": "states_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "states"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapState"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapState"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ErapState"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update states"
+      },
+      "patch": {
+        "operationId": "states_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "states"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedErapState"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedErapState"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedErapState"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErapState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch states"
+      },
+      "delete": {
+        "operationId": "states_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "states"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete states"
+      }
+    },
+    "/v1/cars/sync/webhook/": {
+      "post": {
+        "operationId": "sync_webhook_create",
+        "tags": [
+          "sync"
+        ],
+        "security": [
+          {}
+        ],
+        "responses": {
+          "201": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create webhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErapCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "title": "ID в ЕРАП"
+          },
+          "number": {
+            "type": "string",
+            "title": "Номер автомобиля",
+            "maxLength": 20
+          },
+          "tech_passport": {
+            "type": "string",
+            "title": "Номер техпаспорта",
+            "maxLength": 255
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата активации"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "number",
+          "outer_id",
+          "tech_passport",
+          "updated_at"
+        ]
+      },
+      "ErapCompany": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true,
+            "title": "ID в ЕРАП"
+          },
+          "bin_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "БИН",
+            "maxLength": 12
+          },
+          "bin_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Дата регистрации БИН"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название компании",
+            "maxLength": 255
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "updated_at"
+        ]
+      },
+      "ErapDriver": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "title": "ID в ЕРАП"
+          },
+          "iin_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "ИИН",
+            "maxLength": 12
+          },
+          "doc_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Номер удостоверения",
+            "maxLength": 255
+          },
+          "doc_issue_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Дата выдачи удостоверения"
+          },
+          "first_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Имя",
+            "maxLength": 255
+          },
+          "last_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Фамилия",
+            "maxLength": 255
+          },
+          "middle_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Отчество",
+            "maxLength": 255
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "outer_id",
+          "updated_at"
+        ]
+      },
+      "ErapPenalty": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID в ЕРАП"
+          },
+          "protocol_number": {
+            "type": "string",
+            "title": "Номер протокола",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Описание нарушения"
+          },
+          "department_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Орган, выявивший правонарушение",
+            "maxLength": 255
+          },
+          "punishment_main": {
+            "type": "string",
+            "nullable": true,
+            "title": "Основная мера наказания",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true,
+            "title": "Сумма штрафа"
+          },
+          "violation_address": {
+            "type": "string",
+            "nullable": true,
+            "title": "Адрес нарушения"
+          },
+          "violated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "violation_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Дата нарушения"
+          },
+          "violation_time": {
+            "type": "string",
+            "format": "time",
+            "nullable": true,
+            "title": "Время нарушения"
+          },
+          "paid": {
+            "type": "boolean",
+            "title": "Оплачен"
+          },
+          "payment_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата оплаты"
+          },
+          "discount_expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата истечения скидки"
+          },
+          "payment_kno": {
+            "type": "string",
+            "nullable": true,
+            "title": "КНО",
+            "maxLength": 255
+          },
+          "payment_kbk": {
+            "type": "string",
+            "nullable": true,
+            "title": "КБК",
+            "maxLength": 255
+          },
+          "payment_knp": {
+            "type": "string",
+            "nullable": true,
+            "title": "КНП",
+            "maxLength": 255
+          },
+          "beneficiary_tax_office_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название налогового органа",
+            "maxLength": 255
+          },
+          "beneficiary_tax_iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN налогового органа",
+            "maxLength": 255
+          },
+          "beneficiary_tax_bin_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "БИН налогового органа",
+            "maxLength": 255
+          },
+          "pdf": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "PDF протокола"
+          },
+          "photo_urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 200
+            },
+            "title": "Ссылки на фото нарушения"
+          },
+          "car": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapCar"
+              }
+            ],
+            "readOnly": true
+          },
+          "driver": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapDriver"
+              }
+            ],
+            "readOnly": true
+          },
+          "company": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapCompany"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "state": {
+            "type": "integer",
+            "nullable": true
+          },
+          "inventory": {
+            "type": "string",
+            "readOnly": true
+          },
+          "request": {
+            "type": "string",
+            "readOnly": true
+          },
+          "client": {
+            "type": "string",
+            "readOnly": true
+          },
+          "noted": {
+            "type": "boolean",
+            "title": "Просмотрен"
+          }
+        },
+        "required": [
+          "car",
+          "client",
+          "company",
+          "created_at",
+          "driver",
+          "id",
+          "inventory",
+          "outer_id",
+          "protocol_number",
+          "request",
+          "updated_at",
+          "violated_at"
+        ]
+      },
+      "ErapPenaltyGeneral": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "paid_count": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "pending_count": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "total_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "pending_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "count",
+          "paid_amount",
+          "paid_count",
+          "pending_amount",
+          "pending_count",
+          "total_amount"
+        ]
+      },
+      "ErapState": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 9
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "ErapTenantCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64"
+          },
+          "car": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapCar"
+              }
+            ],
+            "readOnly": true
+          },
+          "inventory": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "car",
+          "created_at",
+          "id",
+          "inventory",
+          "outer_id",
+          "updated_at"
+        ]
+      },
+      "PaginatedErapPenaltyList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ErapPenalty"
+            }
+          }
+        }
+      },
+      "PatchedErapPenalty": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "ID в ЕРАП"
+          },
+          "protocol_number": {
+            "type": "string",
+            "title": "Номер протокола",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "title": "Описание нарушения"
+          },
+          "department_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Орган, выявивший правонарушение",
+            "maxLength": 255
+          },
+          "punishment_main": {
+            "type": "string",
+            "nullable": true,
+            "title": "Основная мера наказания",
+            "maxLength": 255
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true,
+            "title": "Сумма штрафа"
+          },
+          "violation_address": {
+            "type": "string",
+            "nullable": true,
+            "title": "Адрес нарушения"
+          },
+          "violated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "violation_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Дата нарушения"
+          },
+          "violation_time": {
+            "type": "string",
+            "format": "time",
+            "nullable": true,
+            "title": "Время нарушения"
+          },
+          "paid": {
+            "type": "boolean",
+            "title": "Оплачен"
+          },
+          "payment_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата оплаты"
+          },
+          "discount_expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата истечения скидки"
+          },
+          "payment_kno": {
+            "type": "string",
+            "nullable": true,
+            "title": "КНО",
+            "maxLength": 255
+          },
+          "payment_kbk": {
+            "type": "string",
+            "nullable": true,
+            "title": "КБК",
+            "maxLength": 255
+          },
+          "payment_knp": {
+            "type": "string",
+            "nullable": true,
+            "title": "КНП",
+            "maxLength": 255
+          },
+          "beneficiary_tax_office_name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название налогового органа",
+            "maxLength": 255
+          },
+          "beneficiary_tax_iban": {
+            "type": "string",
+            "nullable": true,
+            "title": "IBAN налогового органа",
+            "maxLength": 255
+          },
+          "beneficiary_tax_bin_number": {
+            "type": "string",
+            "nullable": true,
+            "title": "БИН налогового органа",
+            "maxLength": 255
+          },
+          "pdf": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "PDF протокола"
+          },
+          "photo_urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri",
+              "maxLength": 200
+            },
+            "title": "Ссылки на фото нарушения"
+          },
+          "car": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapCar"
+              }
+            ],
+            "readOnly": true
+          },
+          "driver": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapDriver"
+              }
+            ],
+            "readOnly": true
+          },
+          "company": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ErapCompany"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "state": {
+            "type": "integer",
+            "nullable": true
+          },
+          "inventory": {
+            "type": "string",
+            "readOnly": true
+          },
+          "request": {
+            "type": "string",
+            "readOnly": true
+          },
+          "client": {
+            "type": "string",
+            "readOnly": true
+          },
+          "noted": {
+            "type": "boolean",
+            "title": "Просмотрен"
+          }
+        }
+      },
+      "PatchedErapState": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 9
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

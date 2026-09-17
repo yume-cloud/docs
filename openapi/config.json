@@ -1,0 +1,4257 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Конфигурация",
+    "version": "1.0.0",
+    "description": "Управление настройками и конфигурацией CRM."
+  },
+  "paths": {
+    "/v1/crm/agents/": {
+      "get": {
+        "operationId": "agents_list",
+        "tags": [
+          "agents"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Referral"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get agents",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "agents_create",
+        "tags": [
+          "agents"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Referral"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Referral"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Referral"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Referral"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create agents",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/attraction_methods/": {
+      "get": {
+        "operationId": "attraction_methods_list",
+        "tags": [
+          "attraction_methods"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttractionMethod"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get attraction methods",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "attraction_methods_create",
+        "tags": [
+          "attraction_methods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttractionMethod"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AttractionMethod"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AttractionMethod"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttractionMethod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create attraction methods",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/attraction_methods/{id}/": {
+      "get": {
+        "operationId": "attraction_methods_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "attraction_methods"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttractionMethod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get attraction methods"
+      },
+      "put": {
+        "operationId": "attraction_methods_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "attraction_methods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttractionMethod"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AttractionMethod"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AttractionMethod"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttractionMethod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update attraction methods"
+      },
+      "patch": {
+        "operationId": "attraction_methods_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "attraction_methods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedAttractionMethod"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedAttractionMethod"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedAttractionMethod"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttractionMethod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch attraction methods"
+      },
+      "delete": {
+        "operationId": "attraction_methods_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "attraction_methods"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete attraction methods"
+      }
+    },
+    "/v1/crm/categories/": {
+      "get": {
+        "operationId": "categories_list",
+        "tags": [
+          "categories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Category"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "categories_create",
+        "tags": [
+          "categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/categories/{id}/": {
+      "get": {
+        "operationId": "categories_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories"
+      },
+      "put": {
+        "operationId": "categories_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Category"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update categories"
+      },
+      "patch": {
+        "operationId": "categories_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCategory"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCategory"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCategory"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Category"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch categories"
+      },
+      "delete": {
+        "operationId": "categories_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete categories"
+      }
+    },
+    "/v1/crm/clients/ticks/": {
+      "get": {
+        "operationId": "clients_ticks_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedClientTickList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get ticks"
+      },
+      "post": {
+        "operationId": "clients_ticks_create",
+        "tags": [
+          "clients"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientTick"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientTick"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientTick"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientTick"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create ticks",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/clients/ticks/{id}/": {
+      "get": {
+        "operationId": "clients_ticks_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientTick"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get ticks"
+      },
+      "put": {
+        "operationId": "clients_ticks_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "clients"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientTick"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientTick"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientTick"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientTick"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update ticks"
+      },
+      "patch": {
+        "operationId": "clients_ticks_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "clients"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedClientTick"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedClientTick"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedClientTick"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientTick"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch ticks"
+      },
+      "delete": {
+        "operationId": "clients_ticks_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "clients"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete ticks"
+      }
+    },
+    "/v1/crm/constants/": {
+      "get": {
+        "operationId": "constants_retrieve",
+        "tags": [
+          "constants"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManagerConstants"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get constants",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/discounts/": {
+      "get": {
+        "operationId": "discounts_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "disable__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "title": "Тип",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - Скидка\n* `1` - Промокод\n* `2` - Сумма"
+          },
+          {
+            "in": "query",
+            "name": "type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "discounts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Discount"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get discounts"
+      },
+      "post": {
+        "operationId": "discounts_create",
+        "tags": [
+          "discounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Discount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Discount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Discount"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create discounts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/discounts/{id}/": {
+      "get": {
+        "operationId": "discounts_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "discounts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Discount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get discounts"
+      },
+      "put": {
+        "operationId": "discounts_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "discounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DiscountUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscountUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update discounts"
+      },
+      "patch": {
+        "operationId": "discounts_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "discounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedDiscountUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedDiscountUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedDiscountUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DiscountUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch discounts"
+      },
+      "delete": {
+        "operationId": "discounts_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "discounts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete discounts"
+      }
+    },
+    "/v1/crm/filters/": {
+      "get": {
+        "operationId": "filters_retrieve",
+        "tags": [
+          "filters"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedFilter"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get filters",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "filters_create",
+        "tags": [
+          "filters"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CachedFilter"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CachedFilter"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CachedFilter"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedFilter"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create filters",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/filters/{key}/": {
+      "get": {
+        "operationId": "filters_retrieve_2",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "filters"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedFilter"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get filters"
+      },
+      "post": {
+        "operationId": "filters_create_2",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "key",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "filters"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CachedFilter"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CachedFilter"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CachedFilter"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CachedFilter"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create filters"
+      }
+    },
+    "/v1/crm/inventories/states/": {
+      "get": {
+        "operationId": "inventories_states_list",
+        "tags": [
+          "inventories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InventoryState"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get states",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "inventories_states_create",
+        "tags": [
+          "inventories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryState"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryState"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryState"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create states",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/inventories/states/{id}/": {
+      "get": {
+        "operationId": "inventories_states_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "inventories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get states"
+      },
+      "put": {
+        "operationId": "inventories_states_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "inventories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryState"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryState"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryState"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update states"
+      },
+      "patch": {
+        "operationId": "inventories_states_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "inventories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedInventoryState"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedInventoryState"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedInventoryState"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryState"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch states"
+      },
+      "delete": {
+        "operationId": "inventories_states_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "inventories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete states"
+      }
+    },
+    "/v1/crm/rental_points/": {
+      "get": {
+        "operationId": "rental_points_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedRentalPointList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get rental points"
+      },
+      "post": {
+        "operationId": "rental_points_create",
+        "tags": [
+          "rental_points"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPoint"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPoint"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPoint"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create rental points",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/rental_points/{id}/": {
+      "get": {
+        "operationId": "rental_points_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get rental points"
+      },
+      "put": {
+        "operationId": "rental_points_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPoint"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPoint"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RentalPoint"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update rental points"
+      },
+      "patch": {
+        "operationId": "rental_points_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedRentalPoint"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedRentalPoint"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedRentalPoint"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch rental points"
+      },
+      "delete": {
+        "operationId": "rental_points_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete rental points"
+      }
+    },
+    "/v1/crm/rental_points/{rental_id}/users/": {
+      "get": {
+        "operationId": "rental_points_users_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "path",
+            "name": "rental_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedUserRentalPointList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get users"
+      },
+      "post": {
+        "operationId": "rental_points_users_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rental_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRentalPoint"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRentalPoint"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRentalPoint"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create users"
+      }
+    },
+    "/v1/crm/rental_points/{rental_id}/users/{id}/": {
+      "get": {
+        "operationId": "rental_points_users_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "rental_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get users"
+      },
+      "put": {
+        "operationId": "rental_points_users_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "rental_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRentalPoint"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRentalPoint"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRentalPoint"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update users"
+      },
+      "patch": {
+        "operationId": "rental_points_users_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "rental_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedUserRentalPoint"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedUserRentalPoint"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedUserRentalPoint"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRentalPoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch users"
+      },
+      "delete": {
+        "operationId": "rental_points_users_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "rental_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "rental_points"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete users"
+      }
+    },
+    "/v1/crm/tags/": {
+      "get": {
+        "operationId": "tags_list",
+        "tags": [
+          "tags"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Tag"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tags",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "tags_create",
+        "tags": [
+          "tags"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create tags",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/tags/{id}/": {
+      "get": {
+        "operationId": "tags_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tags"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tags"
+      },
+      "put": {
+        "operationId": "tags_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tags"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Tag"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update tags"
+      },
+      "patch": {
+        "operationId": "tags_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tags"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTag"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTag"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTag"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tag"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch tags"
+      },
+      "delete": {
+        "operationId": "tags_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tags"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete tags"
+      }
+    },
+    "/v1/crm/time_periods/": {
+      "get": {
+        "operationId": "time_periods_list",
+        "tags": [
+          "time_periods"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TariffTimePeriod"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get time periods",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "time_periods_create",
+        "tags": [
+          "time_periods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TariffTimePeriod"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TariffTimePeriod"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TariffTimePeriod"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TariffTimePeriod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create time periods",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/time_periods/{id}/": {
+      "get": {
+        "operationId": "time_periods_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "time_periods"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TariffTimePeriod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get time periods"
+      },
+      "put": {
+        "operationId": "time_periods_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "time_periods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TariffTimePeriod"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TariffTimePeriod"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TariffTimePeriod"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TariffTimePeriod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update time periods"
+      },
+      "patch": {
+        "operationId": "time_periods_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "time_periods"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTariffTimePeriod"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTariffTimePeriod"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTariffTimePeriod"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TariffTimePeriod"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch time periods"
+      },
+      "delete": {
+        "operationId": "time_periods_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "time_periods"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete time periods"
+      }
+    },
+    "/v1/crm/workshift/": {
+      "get": {
+        "operationId": "workshift_retrieve",
+        "tags": [
+          "workshift"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshiftDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get workshift",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/workshift/{id}/": {
+      "get": {
+        "operationId": "workshift_retrieve_2",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "workshift"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshiftDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get workshift"
+      }
+    },
+    "/v1/crm/workshift/end/": {
+      "get": {
+        "operationId": "workshift_end_retrieve",
+        "tags": [
+          "workshift"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workshift"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get end",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/workshift/start/": {
+      "get": {
+        "operationId": "workshift_start_retrieve",
+        "tags": [
+          "workshift"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workshift"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get start",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AttractionMethod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "CachedFilter": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "filter": {}
+        },
+        "required": [
+          "filter",
+          "key"
+        ]
+      },
+      "Category": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          },
+          "lifetime": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "ClientTick": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+            "maxLength": 9
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "blacklist": {
+            "type": "boolean"
+          },
+          "request_count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "request_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "debt_limit": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "Discount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "discount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Размер скидки"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Начало Акции"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец Акции"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "discount_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DiscountTypeEnum"
+              }
+            ],
+            "title": "Тип скидки",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "promocode": {
+            "type": "string",
+            "nullable": true,
+            "title": "Промокод",
+            "maxLength": 255
+          },
+          "usage_limit": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Лимит использований"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Активна"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "created_by": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Создал"
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "DiscountTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Процент\n* `1` - Сумма"
+      },
+      "DiscountUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "discount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Размер скидки"
+          },
+          "discount_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DiscountTypeEnum"
+              }
+            ],
+            "title": "Тип скидки",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Активна"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Начало Акции"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец Акции"
+          },
+          "usage_limit": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Лимит использований"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "InventoryState": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "disable": {
+            "type": "boolean"
+          },
+          "workshop": {
+            "type": "boolean"
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 9
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "ManagerConstants": {
+        "type": "object",
+        "properties": {
+          "INVENTORY_CATEGORIES": {
+            "type": "array",
+            "items": {}
+          },
+          "SERVICE_TYPE": {
+            "type": "array",
+            "items": {}
+          },
+          "CLIENT_ATTRACTION_METHOD": {
+            "type": "array",
+            "items": {}
+          },
+          "CLIENT_LEGAL_TYPE": {
+            "type": "array",
+            "items": {}
+          },
+          "CLIENT_TICKS": {
+            "type": "array",
+            "items": {}
+          },
+          "RENTAL_POINTS": {
+            "type": "array",
+            "items": {}
+          },
+          "APPLICATION_READY": {
+            "type": "boolean"
+          },
+          "INVENTORY_GROUP_TYPE": {
+            "type": "array",
+            "items": {}
+          },
+          "TARIF_TIME_PERIODS": {
+            "type": "array",
+            "items": {}
+          },
+          "ORDER_REQUEST_STATUS": {
+            "type": "array",
+            "items": {}
+          },
+          "PAYMENT_TYPES": {
+            "type": "array",
+            "items": {}
+          },
+          "INVENTORY_STATE_STATUS": {
+            "type": "array",
+            "items": {}
+          },
+          "EXPENSE_CATEGORY": {
+            "type": "array",
+            "items": {}
+          },
+          "EXPENSE_COUNTERPARTY": {
+            "type": "array",
+            "items": {}
+          },
+          "PASSPORT_ISSUERS": {
+            "type": "array",
+            "items": {}
+          }
+        },
+        "required": [
+          "APPLICATION_READY",
+          "CLIENT_ATTRACTION_METHOD",
+          "CLIENT_LEGAL_TYPE",
+          "CLIENT_TICKS",
+          "EXPENSE_CATEGORY",
+          "EXPENSE_COUNTERPARTY",
+          "INVENTORY_CATEGORIES",
+          "INVENTORY_GROUP_TYPE",
+          "INVENTORY_STATE_STATUS",
+          "ORDER_REQUEST_STATUS",
+          "PASSPORT_ISSUERS",
+          "PAYMENT_TYPES",
+          "RENTAL_POINTS",
+          "SERVICE_TYPE",
+          "TARIF_TIME_PERIODS"
+        ]
+      },
+      "PaginatedClientTickList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClientTick"
+            }
+          }
+        }
+      },
+      "PaginatedRentalPointList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RentalPoint"
+            }
+          }
+        }
+      },
+      "PaginatedUserRentalPointList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRentalPoint"
+            }
+          }
+        }
+      },
+      "PatchedAttractionMethod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 50,
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          },
+          "lifetime": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedClientTick": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$",
+            "maxLength": 9
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "blacklist": {
+            "type": "boolean"
+          },
+          "request_count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "request_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "debt_limit": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedDiscountUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "discount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Размер скидки"
+          },
+          "discount_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DiscountTypeEnum"
+              }
+            ],
+            "title": "Тип скидки",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Активна"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Начало Акции"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец Акции"
+          },
+          "usage_limit": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Лимит использований"
+          }
+        }
+      },
+      "PatchedInventoryState": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "disable": {
+            "type": "boolean"
+          },
+          "workshop": {
+            "type": "boolean"
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 9
+          }
+        }
+      },
+      "PatchedRentalPoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "address": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedTag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 7
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedTariffTimePeriod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        }
+      },
+      "PatchedUserRentalPoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "point": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PaymentGroup": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "amount",
+          "count",
+          "name",
+          "type"
+        ]
+      },
+      "Referral": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "extra": {}
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "RentalPoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "address": {
+            "type": "string",
+            "maxLength": 512
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "address",
+          "created_at",
+          "deleted",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "ServiceGroup": {
+        "type": "object",
+        "properties": {
+          "service": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "count",
+          "name",
+          "price",
+          "service"
+        ]
+      },
+      "Tag": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 7
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "TariffTimePeriod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "time": {
+            "type": "string"
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "deleted",
+          "id",
+          "time"
+        ]
+      },
+      "TypeEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - Скидка\n* `1` - Промокод\n* `2` - Сумма"
+      },
+      "UserRentalPoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "point": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "updated_at",
+          "user"
+        ]
+      },
+      "Workshift": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Начало смены"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец смены"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "rental_point": {
+            "type": "integer"
+          },
+          "extra": {}
+        },
+        "required": [
+          "id",
+          "rental_point",
+          "start_at",
+          "user"
+        ]
+      },
+      "WorkshiftDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Начало смены"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец смены"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "rental_point": {
+            "type": "integer"
+          },
+          "extra": {},
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentGroup"
+            },
+            "readOnly": true
+          },
+          "refunds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PaymentGroup"
+            },
+            "readOnly": true
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceGroup"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "id",
+          "payments",
+          "refunds",
+          "rental_point",
+          "services",
+          "start_at",
+          "user"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

@@ -1,0 +1,5662 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Plus",
+    "version": "1.0.0",
+    "description": "Подключаемые продукты тарифа Plus."
+  },
+  "paths": {
+    "/v1/plus/articles/": {
+      "get": {
+        "operationId": "articles_list",
+        "tags": [
+          "articles"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusArticle"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get articles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/bonuses/": {
+      "get": {
+        "operationId": "bonuses_retrieve",
+        "tags": [
+          "bonuses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusBonus"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get bonuses",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/bonuses/history/": {
+      "get": {
+        "operationId": "bonuses_history_list",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "bonuses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPlusBonusTransactionList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get history"
+      }
+    },
+    "/v1/plus/carts/": {
+      "get": {
+        "operationId": "carts_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "company",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "payment_status",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+          },
+          {
+            "in": "query",
+            "name": "payment_status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "price__gt",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "price__lte",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start_at__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "status__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyCart"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get carts"
+      },
+      "post": {
+        "operationId": "carts_create",
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCart"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCart"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCart"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCart"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create carts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/carts/{id}/": {
+      "get": {
+        "operationId": "carts_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCart"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get carts"
+      },
+      "put": {
+        "operationId": "carts_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCart"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCart"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCart"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCart"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update carts"
+      },
+      "patch": {
+        "operationId": "carts_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCompanyCart"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCompanyCart"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCompanyCart"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCart"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch carts"
+      },
+      "delete": {
+        "operationId": "carts_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete carts"
+      }
+    },
+    "/v1/plus/carts/{id}/items/": {
+      "get": {
+        "operationId": "carts_items_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CompanyCartItemDetail"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get items"
+      },
+      "post": {
+        "operationId": "carts_items_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCartItem"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCartItem"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCartItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCartItem"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create items"
+      }
+    },
+    "/v1/plus/carts/{id}/items/{item_id}/": {
+      "get": {
+        "operationId": "carts_items_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCartItem"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get items"
+      },
+      "put": {
+        "operationId": "carts_items_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCartItem"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCartItem"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CompanyCartItem"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCartItem"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update items"
+      },
+      "patch": {
+        "operationId": "carts_items_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCompanyCartItem"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCompanyCartItem"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCompanyCartItem"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompanyCartItem"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch items"
+      },
+      "delete": {
+        "operationId": "carts_items_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "item_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete items"
+      }
+    },
+    "/v1/plus/carts/{id}/order/": {
+      "post": {
+        "operationId": "carts_order_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "carts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusOrderCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusOrderCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusOrderCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusOrderCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create order"
+      }
+    },
+    "/v1/plus/companies/": {
+      "get": {
+        "operationId": "companies_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "companies"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusCompany"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get companies"
+      }
+    },
+    "/v1/plus/companies/categories/": {
+      "get": {
+        "operationId": "companies_categories_list",
+        "tags": [
+          "companies"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusCompanyCategory"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/company/": {
+      "get": {
+        "operationId": "company_retrieve",
+        "tags": [
+          "company"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusTenant"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get company",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/articles/": {
+      "get": {
+        "operationId": "manage_articles_list",
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusArticle"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get articles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "manage_articles_create",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusArticle"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusArticle"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusArticle"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusArticle"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create articles",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/articles/{id}/": {
+      "get": {
+        "operationId": "manage_articles_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusArticle"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get articles"
+      },
+      "put": {
+        "operationId": "manage_articles_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusArticle"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusArticle"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusArticle"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusArticle"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update articles"
+      },
+      "patch": {
+        "operationId": "manage_articles_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusArticle"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusArticle"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusArticle"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusArticle"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch articles"
+      },
+      "delete": {
+        "operationId": "manage_articles_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete articles"
+      }
+    },
+    "/v1/plus/manage/categories/": {
+      "get": {
+        "operationId": "manage_categories_list",
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "manage_categories_create",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/categories/{id}/": {
+      "get": {
+        "operationId": "manage_categories_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories"
+      },
+      "put": {
+        "operationId": "manage_categories_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update categories"
+      },
+      "patch": {
+        "operationId": "manage_categories_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductCategoryUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductCategoryUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductCategoryUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCategoryUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch categories"
+      },
+      "delete": {
+        "operationId": "manage_categories_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete categories"
+      }
+    },
+    "/v1/plus/manage/companies/": {
+      "get": {
+        "operationId": "manage_companies_list",
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusCompanyCreate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get companies",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "manage_companies_create",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusCompanyCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusCompanyCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusCompanyCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusCompanyCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create companies",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/companies/{id}/": {
+      "get": {
+        "operationId": "manage_companies_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusCompanyCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get companies"
+      },
+      "put": {
+        "operationId": "manage_companies_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusCompanyCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusCompanyCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusCompanyCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusCompanyCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update companies"
+      },
+      "patch": {
+        "operationId": "manage_companies_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusCompanyCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusCompanyCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusCompanyCreate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusCompanyCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch companies"
+      },
+      "delete": {
+        "operationId": "manage_companies_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete companies"
+      }
+    },
+    "/v1/plus/manage/domain/": {
+      "get": {
+        "operationId": "manage_domain_retrieve",
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusDomain"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get domain",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "manage_domain_create",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusDomain"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusDomain"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusDomain"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusDomain"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create domain",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "manage_domain_destroy",
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete domain",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/products/": {
+      "get": {
+        "operationId": "manage_products_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "group_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group_id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "service_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "service_id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "set_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "set_id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPlusProductViewList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get products"
+      },
+      "post": {
+        "operationId": "manage_products_create",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create products",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/products/{id}/": {
+      "get": {
+        "operationId": "manage_products_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductView"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get products"
+      },
+      "put": {
+        "operationId": "manage_products_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update products"
+      },
+      "patch": {
+        "operationId": "manage_products_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch products"
+      },
+      "delete": {
+        "operationId": "manage_products_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete products"
+      }
+    },
+    "/v1/plus/manage/products/{id}/companies/": {
+      "get": {
+        "operationId": "manage_products_companies_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get companies"
+      },
+      "post": {
+        "operationId": "manage_products_companies_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create companies"
+      }
+    },
+    "/v1/plus/manage/products/{id}/companies/{company_id}/": {
+      "get": {
+        "operationId": "manage_products_companies_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "company_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get companies"
+      },
+      "put": {
+        "operationId": "manage_products_companies_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "company_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update companies"
+      },
+      "patch": {
+        "operationId": "manage_products_companies_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "company_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductCompanyUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductCompanyUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductCompanyUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch companies"
+      },
+      "delete": {
+        "operationId": "manage_products_companies_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "company_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete companies"
+      }
+    },
+    "/v1/plus/manage/products/{id}/images/": {
+      "get": {
+        "operationId": "manage_products_images_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusProductImageUpdate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get images"
+      },
+      "post": {
+        "operationId": "manage_products_images_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductImageUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductImageUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductImageUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductImageUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create images"
+      }
+    },
+    "/v1/plus/manage/products/{id}/images/{image_id}/": {
+      "get": {
+        "operationId": "manage_products_images_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "image_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductImageUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get images"
+      },
+      "put": {
+        "operationId": "manage_products_images_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "image_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductImageUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductImageUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductImageUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductImageUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update images"
+      },
+      "patch": {
+        "operationId": "manage_products_images_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "image_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductImageUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductImageUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductImageUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductImageUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch images"
+      },
+      "delete": {
+        "operationId": "manage_products_images_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "image_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete images"
+      }
+    },
+    "/v1/plus/manage/products/{id}/prices/": {
+      "get": {
+        "operationId": "manage_products_prices_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusProductPriceUpdate"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get prices"
+      },
+      "post": {
+        "operationId": "manage_products_prices_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductPriceUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductPriceUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductPriceUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductPriceUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create prices"
+      }
+    },
+    "/v1/plus/manage/products/{id}/prices/{price_id}/": {
+      "get": {
+        "operationId": "manage_products_prices_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "price_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductPriceUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get prices"
+      },
+      "put": {
+        "operationId": "manage_products_prices_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "price_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductPriceUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductPriceUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusProductPriceUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductPriceUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update prices"
+      },
+      "patch": {
+        "operationId": "manage_products_prices_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "price_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductPriceUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductPriceUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusProductPriceUpdate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProductPriceUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch prices"
+      },
+      "delete": {
+        "operationId": "manage_products_prices_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "price_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete prices"
+      }
+    },
+    "/v1/plus/manage/settings/": {
+      "get": {
+        "operationId": "manage_settings_retrieve",
+        "tags": [
+          "manage"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusTenantSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "manage_settings_update",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusTenantSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusTenantSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusTenantSettings"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusTenantSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "manage_settings_partial_update",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusTenantSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusTenantSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPlusTenantSettings"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusTenantSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/manage/sync/": {
+      "post": {
+        "operationId": "manage_sync_create",
+        "tags": [
+          "manage"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusFullSync"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusFullSync"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PlusFullSync"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusFullSync"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create sync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/plus/products/": {
+      "get": {
+        "operationId": "products_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "companies__company",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "companies__company__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "companies__count__gte",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "products"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedPlusProductList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get products"
+      }
+    },
+    "/v1/plus/products/{id}/": {
+      "get": {
+        "operationId": "products_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "products"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlusProduct"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get products"
+      }
+    },
+    "/v1/plus/products/{id}/{company_id}/tariffs/": {
+      "get": {
+        "operationId": "products_tariffs_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "company_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "products"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusProductPriceSeriliazer"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tariffs"
+      }
+    },
+    "/v1/plus/products/categories/": {
+      "get": {
+        "operationId": "products_categories_list",
+        "tags": [
+          "products"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PlusProductCategory"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CompanyCart": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyCartItem"
+            },
+            "readOnly": true
+          },
+          "company_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "company_address": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "status": {
+            "readOnly": true,
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "payment_type": {
+            "$ref": "#/components/schemas/PaymentTypeEnum"
+          },
+          "payment_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentStatusEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "payment_invoice_url": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true
+          },
+          "bonus": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fact_start_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "fact_end_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2048
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "company": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "company_address",
+          "company_name",
+          "created_at",
+          "fact_end_at",
+          "fact_start_at",
+          "id",
+          "items",
+          "outer_id",
+          "payment_invoice_url",
+          "payment_status",
+          "price",
+          "status",
+          "updated_at",
+          "user"
+        ]
+      },
+      "CompanyCartItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "product_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "cart": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "product": {
+            "type": "integer"
+          },
+          "product_company": {
+            "type": "integer",
+            "nullable": true
+          },
+          "product_price": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "cart",
+          "created_at",
+          "id",
+          "price",
+          "product",
+          "product_name",
+          "quantity",
+          "updated_at"
+        ]
+      },
+      "CompanyCartItemDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "product": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlusProductInfo"
+              }
+            ],
+            "readOnly": true
+          },
+          "product_company": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlusProductCompanyInfo"
+              }
+            ],
+            "readOnly": true
+          },
+          "product_price": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlusProductPriceSeriliazer"
+              }
+            ],
+            "readOnly": true
+          },
+          "prices": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PlusProductPriceSeriliazer"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "quantity": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "cart": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "cart",
+          "created_at",
+          "id",
+          "price",
+          "prices",
+          "product",
+          "product_company",
+          "product_price",
+          "updated_at"
+        ]
+      },
+      "CountryEnum": {
+        "enum": [
+          "KZ",
+          "KG",
+          "UZ",
+          "TR",
+          "SA",
+          "AE"
+        ],
+        "type": "string",
+        "description": "* `KZ` - Казахстан\n* `KG` - Кыргызстан\n* `UZ` - Узбекистан\n* `TR` - Турция\n* `SA` - Саудовская Аравия\n* `AE` - ОАЭ"
+      },
+      "CurrencyEnum": {
+        "enum": [
+          "KZT",
+          "USD",
+          "RUB",
+          "EUR",
+          "UZS",
+          "KGS",
+          "AED",
+          "SAR"
+        ],
+        "type": "string",
+        "description": "* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "PaginatedPlusBonusTransactionList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusBonusTransaction"
+            }
+          }
+        }
+      },
+      "PaginatedPlusProductList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusProduct"
+            }
+          }
+        }
+      },
+      "PaginatedPlusProductViewList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusProductView"
+            }
+          }
+        }
+      },
+      "PatchedCompanyCart": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CompanyCartItem"
+            },
+            "readOnly": true
+          },
+          "company_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "company_address": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "status": {
+            "readOnly": true,
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "payment_type": {
+            "$ref": "#/components/schemas/PaymentTypeEnum"
+          },
+          "payment_status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PaymentStatusEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "payment_invoice_url": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true
+          },
+          "bonus": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fact_start_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "fact_end_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 2048
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "company": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedCompanyCartItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "product_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "cart": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "product": {
+            "type": "integer"
+          },
+          "product_company": {
+            "type": "integer",
+            "nullable": true
+          },
+          "product_price": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedPlusArticle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 5196
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "expire_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extra": {}
+        }
+      },
+      "PatchedPlusCompanyCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "rental_point_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "extra": {}
+        }
+      },
+      "PatchedPlusProductCategoryUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "PatchedPlusProductCompanyUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "extra": {},
+          "company": {
+            "type": "integer",
+            "title": "Компания"
+          }
+        }
+      },
+      "PatchedPlusProductImageUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          }
+        }
+      },
+      "PatchedPlusProductPriceUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          }
+        }
+      },
+      "PatchedPlusProductUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extra": {},
+          "set_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "service_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "category": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedPlusTenantSettings": {
+        "type": "object",
+        "properties": {
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Логотип"
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Фон"
+          },
+          "brand_color": {
+            "type": "string",
+            "title": "Фирменный цвет",
+            "maxLength": 7
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        }
+      },
+      "PaymentStatusEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+      },
+      "PaymentTypeEnum": {
+        "enum": [
+          "card",
+          "cash"
+        ],
+        "type": "string",
+        "description": "* `card` - Карта\n* `cash` - Наличные"
+      },
+      "PlusArticle": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 5196
+          },
+          "body": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "expire_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extra": {}
+        },
+        "required": [
+          "created_at",
+          "id",
+          "title",
+          "updated_at"
+        ]
+      },
+      "PlusBonus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "user": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "updated_at",
+          "user"
+        ]
+      },
+      "PlusBonusTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "bonus": {
+            "type": "integer"
+          },
+          "cart": {
+            "type": "integer",
+            "nullable": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "integer",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "amount",
+          "bonus",
+          "created_at",
+          "id",
+          "type"
+        ]
+      },
+      "PlusCompany": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "price_from": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "worktimes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Worktime"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "rental_point_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "address_url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "maxLength": 200
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extra": {},
+          "payment": {
+            "type": "boolean"
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "user": {
+            "type": "integer",
+            "nullable": true
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "updated_at",
+          "worktimes"
+        ]
+      },
+      "PlusCompanyCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "nullable": true
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "country": {
+            "$ref": "#/components/schemas/CountryEnum"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "PlusCompanyCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "rental_point_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "extra": {}
+        },
+        "required": [
+          "id",
+          "name",
+          "tenant"
+        ]
+      },
+      "PlusDomain": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "verified_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "domain",
+          "verified",
+          "verified_at"
+        ]
+      },
+      "PlusFullSync": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "default": []
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "default": []
+          },
+          "sets": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "default": []
+          },
+          "services": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "default": []
+          }
+        }
+      },
+      "PlusOrderCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "bonus": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": true
+          },
+          "name": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "phone": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "request_id": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "phone",
+          "request_id"
+        ]
+      },
+      "PlusProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "integer"
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "companies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusProductCompanyInfo"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "category",
+          "companies",
+          "id",
+          "name",
+          "price"
+        ]
+      },
+      "PlusProductCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "companies": {
+            "type": "string",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "companies",
+          "id",
+          "name"
+        ]
+      },
+      "PlusProductCategoryUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "PlusProductCompanyInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "company": {
+            "type": "integer",
+            "title": "Компания"
+          }
+        },
+        "required": [
+          "company",
+          "id"
+        ]
+      },
+      "PlusProductCompanyUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "extra": {},
+          "company": {
+            "type": "integer",
+            "title": "Компания"
+          }
+        },
+        "required": [
+          "company",
+          "id",
+          "price"
+        ]
+      },
+      "PlusProductImageUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "PlusProductInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "category": {
+            "type": "integer"
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        },
+        "required": [
+          "category",
+          "id",
+          "name"
+        ]
+      },
+      "PlusProductPriceSeriliazer": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "maximum": 6,
+              "minimum": 0
+            }
+          },
+          "start": {
+            "type": "string",
+            "format": "time",
+            "nullable": true
+          },
+          "end": {
+            "type": "string",
+            "format": "time",
+            "nullable": true
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true
+          },
+          "product": {
+            "type": "integer",
+            "nullable": true
+          },
+          "product_company": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "duration",
+          "id",
+          "name"
+        ]
+      },
+      "PlusProductPriceUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "duration": {
+            "type": "string"
+          },
+          "outer_id": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          }
+        },
+        "required": [
+          "duration",
+          "id",
+          "name"
+        ]
+      },
+      "PlusProductUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extra": {},
+          "set_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "service_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "category": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "category",
+          "id",
+          "name"
+        ]
+      },
+      "PlusProductView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusProductPriceUpdate"
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusProductImageUpdate"
+            }
+          },
+          "companies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusProductCompanyUpdate"
+            }
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "thumbnail": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "extra": {},
+          "set_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "group_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "service_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "published": {
+            "type": "boolean"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "category": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "category",
+          "companies",
+          "id",
+          "images",
+          "name",
+          "prices"
+        ]
+      },
+      "PlusTenant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название компании",
+            "maxLength": 255
+          },
+          "address": {
+            "type": "string",
+            "title": "Адрес",
+            "maxLength": 255
+          },
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Логотип"
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Фон"
+          },
+          "brand_color": {
+            "type": "string",
+            "title": "Фирменный цвет",
+            "maxLength": 7
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "title": "Валюта"
+          },
+          "country": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CountryEnum"
+              }
+            ],
+            "title": "Страна"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "companies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PlusCompany"
+            }
+          },
+          "public": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "companies",
+          "created_at",
+          "id",
+          "public"
+        ]
+      },
+      "PlusTenantSettings": {
+        "type": "object",
+        "properties": {
+          "logo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Логотип"
+          },
+          "background": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Фон"
+          },
+          "brand_color": {
+            "type": "string",
+            "title": "Фирменный цвет",
+            "maxLength": 7
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        }
+      },
+      "StatusEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+      },
+      "TypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Списание бонусов\n* `1` - Начисление бонусов"
+      },
+      "Worktime": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "start": {
+            "type": "string",
+            "format": "time"
+          },
+          "end": {
+            "type": "string",
+            "format": "time"
+          },
+          "weekdays": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "end",
+          "id",
+          "start",
+          "weekdays"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

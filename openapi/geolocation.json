@@ -1,0 +1,666 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — GPS",
+    "version": "1.0.0",
+    "description": "Местоположение, треки и карты."
+  },
+  "paths": {
+    "/v1/geolocation/devices/": {
+      "get": {
+        "operationId": "devices_list",
+        "tags": [
+          "devices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Device"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get devices",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "devices_create",
+        "tags": [
+          "devices"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create devices",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/geolocation/devices/{device_id}/positions/": {
+      "get": {
+        "operationId": "devices_positions_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "device_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "devices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Position"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get positions"
+      }
+    },
+    "/v1/geolocation/devices/{id}/": {
+      "get": {
+        "operationId": "devices_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "devices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get devices"
+      },
+      "delete": {
+        "operationId": "devices_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "devices"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete devices"
+      }
+    },
+    "/v1/geolocation/trips/": {
+      "get": {
+        "operationId": "trips_retrieve",
+        "tags": [
+          "trips"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get trips",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/geolocation/users/": {
+      "get": {
+        "operationId": "users_list",
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TraccarUser"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get users",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "users_create",
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TraccarUserCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TraccarUserCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TraccarUserCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TraccarUserCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create users",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Device": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "uniqueid": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 8
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "lastupdate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "position": {
+            "type": "string",
+            "readOnly": true
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "contact": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "category": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "attributes": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4000
+          },
+          "inventory": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "id",
+          "inventory",
+          "name",
+          "position",
+          "uniqueid"
+        ]
+      },
+      "DeviceUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "uniqueid": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "inventory_id": {
+            "type": "integer",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "id",
+          "inventory_id",
+          "name",
+          "uniqueid"
+        ]
+      },
+      "Position": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "device": {
+            "type": "integer"
+          },
+          "protocol": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "devicetime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fixtime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "servertime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "valid": {
+            "type": "boolean"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "altitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "speed": {
+            "type": "number",
+            "format": "double"
+          },
+          "course": {
+            "type": "number",
+            "format": "double"
+          },
+          "address": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "accuracy": {
+            "type": "number",
+            "format": "double"
+          },
+          "network": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4000
+          },
+          "geofenceids": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "attributes": {
+            "nullable": true
+          }
+        },
+        "required": [
+          "altitude",
+          "course",
+          "device",
+          "devicetime",
+          "fixtime",
+          "id",
+          "latitude",
+          "longitude",
+          "protocol",
+          "speed",
+          "valid"
+        ]
+      },
+      "TraccarUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 128
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "readonly": {
+            "type": "boolean"
+          },
+          "administrator": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "map": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "zoom": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "coordinateformat": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "disabled": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "expirationtime": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "devicelimit": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "userlimit": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "devicereadonly": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "limitcommands": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "fixedemail": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "poilayer": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "attributes": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 4000
+          }
+        },
+        "required": [
+          "email",
+          "id",
+          "name"
+        ]
+      },
+      "TraccarUserCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 128
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "email",
+          "id",
+          "name"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

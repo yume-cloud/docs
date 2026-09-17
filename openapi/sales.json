@@ -1,0 +1,2160 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Продажи",
+    "version": "1.0.0",
+    "description": "Касса и управление продажами."
+  },
+  "paths": {
+    "/v1/sales/funnels/": {
+      "get": {
+        "operationId": "funnels_list",
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Funnel"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get funnels",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "funnels_create",
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funnel"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Funnel"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Funnel"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funnel"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create funnels",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/sales/funnels/{funnel_id}/": {
+      "get": {
+        "operationId": "funnels_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funnel"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get funnels"
+      },
+      "put": {
+        "operationId": "funnels_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Funnel"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Funnel"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Funnel"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funnel"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update funnels"
+      },
+      "patch": {
+        "operationId": "funnels_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnel"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnel"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnel"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Funnel"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch funnels"
+      },
+      "delete": {
+        "operationId": "funnels_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete funnels"
+      }
+    },
+    "/v1/sales/funnels/{funnel_id}/stages/": {
+      "get": {
+        "operationId": "funnels_stages_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FunnelStage"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get stages"
+      },
+      "post": {
+        "operationId": "funnels_stages_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelStage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create stages"
+      }
+    },
+    "/v1/sales/funnels/{funnel_id}/stages/{id}/": {
+      "get": {
+        "operationId": "funnels_stages_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get stages"
+      },
+      "put": {
+        "operationId": "funnels_stages_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelStage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update stages"
+      },
+      "patch": {
+        "operationId": "funnels_stages_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnelStage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnelStage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnelStage"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelStage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch stages"
+      },
+      "delete": {
+        "operationId": "funnels_stages_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete stages"
+      }
+    },
+    "/v1/sales/funnels/{funnel_id}/webhook/": {
+      "post": {
+        "operationId": "funnels_webhook_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "funnel_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create webhook"
+      }
+    },
+    "/v1/sales/funnels/triggers/": {
+      "get": {
+        "operationId": "funnels_triggers_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "stages__funnel_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FunnelTrigger"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get triggers"
+      },
+      "post": {
+        "operationId": "funnels_triggers_create",
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelTrigger"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelTrigger"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelTrigger"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create triggers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/sales/funnels/triggers/{id}/": {
+      "get": {
+        "operationId": "funnels_triggers_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get triggers"
+      },
+      "put": {
+        "operationId": "funnels_triggers_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelTrigger"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelTrigger"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FunnelTrigger"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update triggers"
+      },
+      "patch": {
+        "operationId": "funnels_triggers_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnelTrigger"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnelTrigger"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFunnelTrigger"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FunnelTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch triggers"
+      },
+      "delete": {
+        "operationId": "funnels_triggers_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "funnels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete triggers"
+      }
+    },
+    "/v1/sales/leads/": {
+      "get": {
+        "operationId": "leads_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "has_no_tasks",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter leads that carry no task at all"
+          },
+          {
+            "in": "query",
+            "name": "has_overdue_tasks",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter leads with an unfinished task whose due date has passed"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "leads"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedLeadListList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get leads"
+      },
+      "post": {
+        "operationId": "leads_create",
+        "tags": [
+          "leads"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create leads",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/sales/leads/{lead_id}/": {
+      "get": {
+        "operationId": "leads_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lead_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "leads"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get leads"
+      },
+      "put": {
+        "operationId": "leads_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lead_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "leads"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update leads"
+      },
+      "patch": {
+        "operationId": "leads_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lead_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "leads"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLeadCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLeadCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLeadCreate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch leads"
+      },
+      "delete": {
+        "operationId": "leads_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lead_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "leads"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete leads"
+      }
+    },
+    "/v1/sales/leads/{lead_id}/request/": {
+      "post": {
+        "operationId": "leads_request_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "lead_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "leads"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create request"
+      }
+    },
+    "/v1/sales/leads/bulk_action/": {
+      "post": {
+        "operationId": "leads_bulk_action_create",
+        "tags": [
+          "leads"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadBulkOperation"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadBulkOperation"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadBulkOperation"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeadBulkOperation"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk action",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Funnel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "extra": {},
+          "created_by": {
+            "type": "integer",
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "stages"
+        ]
+      },
+      "FunnelStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "funnel": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 7
+          },
+          "extra": {},
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "created_at",
+          "funnel",
+          "id",
+          "name",
+          "type"
+        ]
+      },
+      "FunnelTrigger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "create_leads": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FunnelTriggerActionEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "message_source": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MessageSourceEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "task_deadline": {
+            "type": "string",
+            "nullable": true
+          },
+          "task_description": {
+            "type": "string",
+            "nullable": true
+          },
+          "order_status": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_source": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderSourceEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "maxLength": 200
+          },
+          "webhook_method": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WebhookMethodEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "slot": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "index": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "task_type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тип задачи"
+          },
+          "funnel": {
+            "type": "integer",
+            "nullable": true
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "action",
+          "created_at",
+          "id",
+          "stages",
+          "updated_at"
+        ]
+      },
+      "FunnelTriggerActionEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "type": "integer",
+        "description": "* `0` - Отправить сообщение\n* `1` - Создать задачу\n* `2` - Статус аренды\n* `3` - Воронка\n* `4` - Создать аренду\n* `5` - Источник аренды\n* `6` - Документ\n* `7` - Вебхук"
+      },
+      "LeadBulkOperation": {
+        "type": "object",
+        "properties": {
+          "stage": {
+            "type": "integer"
+          },
+          "action": {
+            "$ref": "#/components/schemas/LeadBulkOperationActionEnum"
+          },
+          "stage_move": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "action",
+          "stage"
+        ]
+      },
+      "LeadBulkOperationActionEnum": {
+        "enum": [
+          "move",
+          "delete",
+          "wazzup"
+        ],
+        "type": "string",
+        "description": "* `move` - Перемещено\n* `delete` - удалить\n* `wazzup` - Wazzup"
+      },
+      "LeadCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "cancel_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true
+          },
+          "stage": {
+            "type": "integer"
+          },
+          "funnel": {
+            "type": "integer"
+          },
+          "manager": {
+            "type": "integer",
+            "nullable": true
+          },
+          "source": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "funnel",
+          "id",
+          "stage",
+          "updated_at"
+        ]
+      },
+      "LeadList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "task_date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "request_status": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true,
+            "nullable": true
+          },
+          "client_phone": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "client_name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "cancel_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true
+          },
+          "stage": {
+            "type": "integer"
+          },
+          "funnel": {
+            "type": "integer"
+          },
+          "manager": {
+            "type": "integer",
+            "nullable": true
+          },
+          "source": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "client_name",
+          "client_phone",
+          "created_at",
+          "funnel",
+          "id",
+          "request_price",
+          "request_status",
+          "stage",
+          "task_date",
+          "updated_at"
+        ]
+      },
+      "MessageSourceEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - SMS\n* `1` - Wazzup"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "OrderSourceEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+      },
+      "OrderStatusEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+      },
+      "PaginatedLeadListList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LeadList"
+            }
+          }
+        }
+      },
+      "PatchedFunnel": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "extra": {},
+          "created_by": {
+            "type": "integer",
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "PatchedFunnelStage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "funnel": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "color": {
+            "type": "string",
+            "maxLength": 7
+          },
+          "extra": {},
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "PatchedFunnelTrigger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "create_leads": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "action": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/FunnelTriggerActionEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "message_source": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MessageSourceEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "task_deadline": {
+            "type": "string",
+            "nullable": true
+          },
+          "task_description": {
+            "type": "string",
+            "nullable": true
+          },
+          "order_status": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_source": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderSourceEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "webhook_url": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "maxLength": 200
+          },
+          "webhook_method": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WebhookMethodEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "slot": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "index": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "task_type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тип задачи"
+          },
+          "funnel": {
+            "type": "integer",
+            "nullable": true
+          },
+          "stages": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "PatchedLeadCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "cancel_reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "extra": {},
+          "tenant": {
+            "type": "integer"
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true
+          },
+          "stage": {
+            "type": "integer"
+          },
+          "funnel": {
+            "type": "integer"
+          },
+          "manager": {
+            "type": "integer",
+            "nullable": true
+          },
+          "source": {
+            "type": "integer",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true
+          }
+        }
+      },
+      "TypeEnum": {
+        "enum": [
+          "DEFAULT",
+          "SUCCESS",
+          "CANCEL"
+        ],
+        "type": "string",
+        "description": "* `DEFAULT` - По умолчанию\n* `SUCCESS` - Успешно\n* `CANCEL` - Отменено"
+      },
+      "WebhookMethodEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "description": "* `0` - post\n* `1` - get\n* `2` - put\n* `3` - patch\n* `4` - удалить"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

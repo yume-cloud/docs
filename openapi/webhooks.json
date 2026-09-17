@@ -1,0 +1,1169 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Вебхуки",
+    "version": "1.0.0",
+    "description": "Подписки на события и доставка вебхуков."
+  },
+  "paths": {
+    "/v1/webhooks/catalog/": {
+      "get": {
+        "operationId": "catalog_retrieve",
+        "tags": [
+          "catalog"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get catalog",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/webhooks/deliveries/": {
+      "get": {
+        "operationId": "deliveries_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "created_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "endpoint",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "event",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "order.created",
+                  "order.deleted",
+                  "order.inventory_changed",
+                  "order.price_changed",
+                  "order.status_changed",
+                  "order.updated",
+                  "product.component_changed",
+                  "product.created",
+                  "product.deleted",
+                  "product.price_changed",
+                  "product.published_changed",
+                  "product.tariff_changed",
+                  "product.updated",
+                  "webhook.ping"
+                ]
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "module",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "order",
+                "product",
+                "system"
+              ]
+            },
+            "description": "* `order` - Аренды\n* `product` - Продукты\n* `system` - Система"
+          },
+          {
+            "in": "query",
+            "name": "object_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "failed",
+                "pending",
+                "retrying",
+                "success"
+              ]
+            },
+            "description": "* `pending` - Ожидает\n* `retrying` - Повтор\n* `success` - Успешно\n* `failed` - Ошибка"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "deliveries"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedWebhookDeliveryList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get deliveries"
+      }
+    },
+    "/v1/webhooks/deliveries/{id}/": {
+      "get": {
+        "operationId": "deliveries_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "deliveries"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDeliveryDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get deliveries"
+      }
+    },
+    "/v1/webhooks/deliveries/{id}/redeliver/": {
+      "post": {
+        "operationId": "deliveries_redeliver_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "deliveries"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookDelivery"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookDelivery"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookDelivery"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookDelivery"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create redeliver"
+      }
+    },
+    "/v1/webhooks/endpoints/": {
+      "get": {
+        "operationId": "endpoints_list",
+        "tags": [
+          "endpoints"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WebhookEndpoint"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get endpoints",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "endpoints_create",
+        "tags": [
+          "endpoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookEndpointWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create endpoints",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/webhooks/endpoints/{id}/": {
+      "get": {
+        "operationId": "endpoints_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "endpoints"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookEndpoint"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get endpoints"
+      },
+      "put": {
+        "operationId": "endpoints_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "endpoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookEndpointWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update endpoints"
+      },
+      "patch": {
+        "operationId": "endpoints_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "endpoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWebhookEndpointWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWebhookEndpointWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWebhookEndpointWrite"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookEndpointWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch endpoints"
+      },
+      "delete": {
+        "operationId": "endpoints_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "endpoints"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete endpoints"
+      }
+    },
+    "/v1/webhooks/endpoints/{id}/secret/": {
+      "post": {
+        "operationId": "endpoints_secret_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "endpoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookEndpointWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create secret"
+      }
+    },
+    "/v1/webhooks/endpoints/{id}/test/": {
+      "post": {
+        "operationId": "endpoints_test_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "endpoints"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WebhookEndpointWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebhookEndpointWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create test"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EventEnum": {
+        "enum": [
+          "order.created",
+          "order.status_changed",
+          "order.price_changed",
+          "order.inventory_changed",
+          "order.updated",
+          "order.deleted",
+          "product.created",
+          "product.price_changed",
+          "product.published_changed",
+          "product.tariff_changed",
+          "product.component_changed",
+          "product.updated",
+          "product.deleted",
+          "webhook.ping"
+        ],
+        "type": "string",
+        "description": "* `order.created` - Аренда создана\n* `order.status_changed` - Статус аренды изменён\n* `order.price_changed` - Сумма аренды изменена\n* `order.inventory_changed` - Состав аренды изменён\n* `order.updated` - Аренда изменена\n* `order.deleted` - Аренда удалена\n* `product.created` - Продукт создан\n* `product.price_changed` - Цена продукта изменена\n* `product.published_changed` - Публикация продукта изменена\n* `product.tariff_changed` - Тарифы продукта изменены\n* `product.component_changed` - Состав продукта изменён\n* `product.updated` - Продукт изменён\n* `product.deleted` - Продукт удалён\n* `webhook.ping` - Тестовое событие"
+      },
+      "EventsEnum": {
+        "enum": [
+          "order.created",
+          "order.status_changed",
+          "order.price_changed",
+          "order.inventory_changed",
+          "order.updated",
+          "order.deleted",
+          "product.created",
+          "product.price_changed",
+          "product.published_changed",
+          "product.tariff_changed",
+          "product.component_changed",
+          "product.updated",
+          "product.deleted",
+          "webhook.ping"
+        ],
+        "type": "string",
+        "description": "* `order.created` - Аренда создана\n* `order.status_changed` - Статус аренды изменён\n* `order.price_changed` - Сумма аренды изменена\n* `order.inventory_changed` - Состав аренды изменён\n* `order.updated` - Аренда изменена\n* `order.deleted` - Аренда удалена\n* `product.created` - Продукт создан\n* `product.price_changed` - Цена продукта изменена\n* `product.published_changed` - Публикация продукта изменена\n* `product.tariff_changed` - Тарифы продукта изменены\n* `product.component_changed` - Состав продукта изменён\n* `product.updated` - Продукт изменён\n* `product.deleted` - Продукт удалён\n* `webhook.ping` - Тестовое событие"
+      },
+      "MethodEnum": {
+        "enum": [
+          "POST",
+          "PUT",
+          "PATCH"
+        ],
+        "type": "string",
+        "description": "* `POST` - POST\n* `PUT` - PUT\n* `PATCH` - PATCH"
+      },
+      "ModuleEnum": {
+        "enum": [
+          "order",
+          "product",
+          "system"
+        ],
+        "type": "string",
+        "description": "* `order` - Аренды\n* `product` - Продукты\n* `system` - Система"
+      },
+      "ModulesEnum": {
+        "enum": [
+          "order",
+          "product",
+          "system"
+        ],
+        "type": "string",
+        "description": "* `order` - Аренды\n* `product` - Продукты\n* `system` - Система"
+      },
+      "PaginatedWebhookDeliveryList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookDelivery"
+            }
+          }
+        }
+      },
+      "PatchedWebhookEndpointWrite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "title": "Адрес",
+            "maxLength": 1024
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodEnum"
+              }
+            ],
+            "title": "Способ"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModulesEnum"
+            },
+            "title": "Модули"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventsEnum"
+            },
+            "title": "Триггеры"
+          },
+          "headers": {
+            "title": "Заголовки"
+          },
+          "timeout": {
+            "type": "integer",
+            "maximum": 30,
+            "minimum": 1
+          },
+          "max_retries": {
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 0
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Активна"
+          }
+        }
+      },
+      "StatusEnum": {
+        "enum": [
+          "pending",
+          "retrying",
+          "success",
+          "failed"
+        ],
+        "type": "string",
+        "description": "* `pending` - Ожидает\n* `retrying` - Повтор\n* `success` - Успешно\n* `failed` - Ошибка"
+      },
+      "WebhookDelivery": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "endpoint": {
+            "type": "integer"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventEnum"
+          },
+          "module": {
+            "$ref": "#/components/schemas/ModuleEnum"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusEnum"
+          },
+          "attempt": {
+            "type": "integer",
+            "maximum": 32767,
+            "minimum": 0
+          },
+          "status_code": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "duration_ms": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "error": {
+            "type": "string"
+          },
+          "response": {
+            "type": "string"
+          },
+          "delivered_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "endpoint",
+          "event",
+          "id",
+          "module",
+          "updated_at"
+        ]
+      },
+      "WebhookDeliveryDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "endpoint": {
+            "type": "integer"
+          },
+          "event": {
+            "$ref": "#/components/schemas/EventEnum"
+          },
+          "module": {
+            "$ref": "#/components/schemas/ModuleEnum"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusEnum"
+          },
+          "attempt": {
+            "type": "integer",
+            "maximum": 32767,
+            "minimum": 0
+          },
+          "status_code": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true
+          },
+          "duration_ms": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "nullable": true
+          },
+          "error": {
+            "type": "string"
+          },
+          "response": {
+            "type": "string"
+          },
+          "delivered_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "payload": {}
+        },
+        "required": [
+          "created_at",
+          "endpoint",
+          "event",
+          "id",
+          "module",
+          "updated_at"
+        ]
+      },
+      "WebhookEndpoint": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "title": "Адрес",
+            "maxLength": 1024
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodEnum"
+              }
+            ],
+            "title": "Способ"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModulesEnum"
+            },
+            "title": "Модули"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventsEnum"
+            },
+            "title": "Триггеры"
+          },
+          "headers": {
+            "title": "Заголовки"
+          },
+          "timeout": {
+            "type": "integer",
+            "maximum": 30,
+            "minimum": 1,
+            "title": "Таймаут"
+          },
+          "max_retries": {
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 0,
+            "title": "Повторы"
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Активна"
+          },
+          "failure_count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "last_success_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "last_failure_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "disabled_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "secret_hint": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "secret_hint",
+          "updated_at",
+          "url"
+        ]
+      },
+      "WebhookEndpointWrite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "title": "Адрес",
+            "maxLength": 1024
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodEnum"
+              }
+            ],
+            "title": "Способ"
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModulesEnum"
+            },
+            "title": "Модули"
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventsEnum"
+            },
+            "title": "Триггеры"
+          },
+          "headers": {
+            "title": "Заголовки"
+          },
+          "timeout": {
+            "type": "integer",
+            "maximum": 30,
+            "minimum": 1
+          },
+          "max_retries": {
+            "type": "integer",
+            "maximum": 10,
+            "minimum": 0
+          },
+          "active": {
+            "type": "boolean",
+            "title": "Активна"
+          }
+        },
+        "required": [
+          "id",
+          "url"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

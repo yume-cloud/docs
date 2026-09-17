@@ -1,0 +1,1827 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Вложения",
+    "version": "1.0.0",
+    "description": "Загрузка и управление файлами."
+  },
+  "paths": {
+    "/v1/attachments/comments/": {
+      "get": {
+        "operationId": "comments_list",
+        "tags": [
+          "comments"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommentAttachment"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get comments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "comments_create",
+        "tags": [
+          "comments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentAttachmentWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentAttachmentWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentAttachmentWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentAttachmentWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create comments",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/comments/{id}/": {
+      "get": {
+        "operationId": "comments_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "comments"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get comments"
+      },
+      "put": {
+        "operationId": "comments_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "comments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentAttachmentWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentAttachmentWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/CommentAttachmentWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentAttachmentWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update comments"
+      },
+      "patch": {
+        "operationId": "comments_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "comments"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCommentAttachmentWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCommentAttachmentWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedCommentAttachmentWrite"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentAttachmentWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch comments"
+      },
+      "delete": {
+        "operationId": "comments_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "comments"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete comments"
+      }
+    },
+    "/v1/attachments/direct/complete/": {
+      "post": {
+        "operationId": "direct_complete_create",
+        "tags": [
+          "direct"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create complete",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/direct/init/": {
+      "post": {
+        "operationId": "direct_init_create",
+        "tags": [
+          "direct"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create init",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/files/": {
+      "get": {
+        "operationId": "files_list",
+        "tags": [
+          "files"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FileAttachment"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get files",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "files_create",
+        "tags": [
+          "files"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FileAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create files",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/files/{id}/": {
+      "get": {
+        "operationId": "files_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "files"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get files"
+      },
+      "put": {
+        "operationId": "files_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "files"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FileAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update files"
+      },
+      "patch": {
+        "operationId": "files_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "files"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedFileAttachment"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch files"
+      },
+      "delete": {
+        "operationId": "files_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "files"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete files"
+      }
+    },
+    "/v1/attachments/files/bulk_create/": {
+      "post": {
+        "operationId": "files_bulk_create_create",
+        "tags": [
+          "files"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileAttachmentBulkCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk create",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/images/": {
+      "get": {
+        "operationId": "images_list",
+        "tags": [
+          "images"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ImageAttachment"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get images",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "images_create",
+        "tags": [
+          "images"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create images",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/images/{id}/": {
+      "get": {
+        "operationId": "images_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "images"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get images"
+      },
+      "put": {
+        "operationId": "images_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "images"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update images"
+      },
+      "patch": {
+        "operationId": "images_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "images"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedImageAttachment"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch images"
+      },
+      "delete": {
+        "operationId": "images_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "images"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete images"
+      }
+    },
+    "/v1/attachments/images/bulk_create/": {
+      "get": {
+        "operationId": "images_bulk_create_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "images"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedImageAttachmentBulkCreateList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get bulk create"
+      },
+      "post": {
+        "operationId": "images_bulk_create_create",
+        "tags": [
+          "images"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImageAttachmentBulkCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk create",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/links/": {
+      "get": {
+        "operationId": "links_list",
+        "tags": [
+          "links"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LinkAttachment"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get links",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "links_create",
+        "tags": [
+          "links"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachment"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachment"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create links",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/attachments/links/{id}/": {
+      "put": {
+        "operationId": "links_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "links"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachment"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachment"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/LinkAttachment"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update links"
+      },
+      "patch": {
+        "operationId": "links_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "links"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLinkAttachment"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLinkAttachment"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedLinkAttachment"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkAttachment"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch links"
+      },
+      "delete": {
+        "operationId": "links_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "links"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete links"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CommentAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "context": {
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentLink"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "body",
+          "content_type",
+          "created_at",
+          "id",
+          "links",
+          "object_id",
+          "updated_at",
+          "user"
+        ]
+      },
+      "CommentAttachmentWrite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "context": {
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkWrite"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "body",
+          "content_type",
+          "created_at",
+          "id",
+          "object_id",
+          "updated_at",
+          "user"
+        ]
+      },
+      "CommentLink": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели",
+            "readOnly": true
+          },
+          "content_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64",
+            "title": "ID объекта"
+          },
+          "label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "content_type",
+          "content_type_label",
+          "label",
+          "object_id",
+          "url"
+        ]
+      },
+      "FileAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "file": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "content_type",
+          "created_at",
+          "created_by",
+          "extension",
+          "hash",
+          "id",
+          "name",
+          "object_id"
+        ]
+      },
+      "FileAttachmentBulkCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "writeOnly": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "content_type",
+          "files",
+          "object_id"
+        ]
+      },
+      "ImageAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "thumb": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "content_type",
+          "created_at",
+          "created_by",
+          "extension",
+          "hash",
+          "id",
+          "name",
+          "object_id",
+          "thumb"
+        ]
+      },
+      "ImageAttachmentBulkCreate": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "writeOnly": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "content_type",
+          "images",
+          "object_id"
+        ]
+      },
+      "LinkAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "link": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 200
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          }
+        },
+        "required": [
+          "content_type",
+          "created_at",
+          "created_by",
+          "id",
+          "link",
+          "object_id"
+        ]
+      },
+      "LinkWrite": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string"
+          },
+          "object_id": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "content_type",
+          "object_id"
+        ]
+      },
+      "PaginatedImageAttachmentBulkCreateList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageAttachmentBulkCreate"
+            }
+          }
+        }
+      },
+      "PatchedCommentAttachmentWrite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "context": {
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LinkWrite"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        }
+      },
+      "PatchedFileAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "file": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        }
+      },
+      "PatchedImageAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "thumb": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        }
+      },
+      "PatchedLinkAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "link": {
+            "type": "string",
+            "format": "uri",
+            "maxLength": 200
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

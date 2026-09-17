@@ -1,0 +1,3890 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Магазин",
+    "version": "1.0.0",
+    "description": "Витрина и публичные эндпоинты магазина."
+  },
+  "paths": {
+    "/v1/shop/sales/": {
+      "get": {
+        "operationId": "sales_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "agent",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "counterparty",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_by",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_by__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "payments__type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "payments__type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedOrderSaleListList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get sales"
+      },
+      "post": {
+        "operationId": "sales_create",
+        "tags": [
+          "sales"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSale"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSale"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSale"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSale"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create sales",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/shop/sales/{sale_id}/": {
+      "get": {
+        "operationId": "sales_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSale"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get sales"
+      },
+      "put": {
+        "operationId": "sales_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSale"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSale"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSale"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSale"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update sales"
+      },
+      "patch": {
+        "operationId": "sales_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedOrderSale"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedOrderSale"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedOrderSale"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSale"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch sales"
+      }
+    },
+    "/v1/shop/sales/{sale_id}/groups/": {
+      "get": {
+        "operationId": "sales_groups_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderSaleInventoryGroup"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get groups"
+      }
+    },
+    "/v1/shop/sales/{sale_id}/inventories/": {
+      "get": {
+        "operationId": "sales_inventories_list_2",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderSaleInventory"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get inventories"
+      }
+    },
+    "/v1/shop/sales/{sale_id}/inventories/bulk_create/": {
+      "post": {
+        "operationId": "sales_inventories_bulk_create_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSaleInventoryBulkCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk create"
+      }
+    },
+    "/v1/shop/sales/{sale_id}/inventories/bulk_delete/": {
+      "post": {
+        "operationId": "sales_inventories_bulk_delete_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkDelete"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkDelete"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkDelete"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSaleInventoryBulkDelete"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk delete"
+      }
+    },
+    "/v1/shop/sales/{sale_id}/inventories/bulk_update/": {
+      "post": {
+        "operationId": "sales_inventories_bulk_update_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "sale_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderSaleInventoryBulkUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderSaleInventoryBulkUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk update"
+      }
+    },
+    "/v1/shop/sales/inventories/": {
+      "get": {
+        "operationId": "sales_inventories_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "car__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "disable__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "disable__method",
+            "schema": {
+              "type": "integer",
+              "title": "Способ",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - удалить\n* `1` - Архив\n* `2` - Списано"
+          },
+          {
+            "in": "query",
+            "name": "disabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "exclude_ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "filter_key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fleet_status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "free",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "has_sublease",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rental_point",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rental_point__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "saleable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sold",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Filter inventories by sale status. `true` = sold, `false` = not sold"
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "state__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sublease_user",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sublease_user__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "sublease_user__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "unique_id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "unique_id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sales"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedInventoryForSaleList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get inventories"
+      }
+    },
+    "/v1/shop/warehouses/": {
+      "get": {
+        "operationId": "warehouses_list",
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Warehouse"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get warehouses",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "warehouses_create",
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Warehouse"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Warehouse"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Warehouse"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Warehouse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create warehouses",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/shop/warehouses/{id}/": {
+      "get": {
+        "operationId": "warehouses_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Warehouse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get warehouses"
+      },
+      "put": {
+        "operationId": "warehouses_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Warehouse"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Warehouse"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Warehouse"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Warehouse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update warehouses"
+      },
+      "patch": {
+        "operationId": "warehouses_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWarehouse"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWarehouse"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWarehouse"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Warehouse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch warehouses"
+      },
+      "delete": {
+        "operationId": "warehouses_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete warehouses"
+      }
+    },
+    "/v1/shop/warehouses/actions/": {
+      "get": {
+        "operationId": "warehouses_actions_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "approved",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from_counterparty",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from_counterparty__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "from_warehouse",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "from_warehouse__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "invoice_datetime__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "invoice_datetime__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "invoice_id__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "manager",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "manager__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "products__group",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "products__group__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "tax_included",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to_counterparty",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to_counterparty__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "to_warehouse",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "to_warehouse__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - Создано\n* `1` - Перемещено\n* `2` - удалить"
+          },
+          {
+            "in": "query",
+            "name": "type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedProductWarehouseActionList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get actions"
+      },
+      "post": {
+        "operationId": "warehouses_actions_create",
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseAction"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseAction"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseAction"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWarehouseAction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create actions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/shop/warehouses/actions/{id}/": {
+      "get": {
+        "operationId": "warehouses_actions_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWarehouseAction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get actions"
+      },
+      "put": {
+        "operationId": "warehouses_actions_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseAction"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseAction"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseAction"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWarehouseAction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update actions"
+      },
+      "patch": {
+        "operationId": "warehouses_actions_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedProductWarehouseAction"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedProductWarehouseAction"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedProductWarehouseAction"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWarehouseAction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch actions"
+      },
+      "delete": {
+        "operationId": "warehouses_actions_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete actions"
+      }
+    },
+    "/v1/shop/warehouses/actions/stats/": {
+      "get": {
+        "operationId": "warehouses_actions_stats_list",
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProductWarehouseActionStats"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get stats",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/shop/warehouses/inventories/": {
+      "post": {
+        "operationId": "warehouses_inventories_create",
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryWarehouse"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryWarehouse"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/InventoryWarehouse"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InventoryWarehouse"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create inventories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/shop/warehouses/products/": {
+      "get": {
+        "operationId": "warehouses_products_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "counterparty",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "counterparty__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "from_counterparty",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group__category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group__category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "group__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "warehouse",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "warehouse__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "warehouses"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedProductWarehouseDetailList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get products"
+      }
+    },
+    "/v1/shop/warehouses/products/withdraw/": {
+      "post": {
+        "operationId": "warehouses_products_withdraw_create",
+        "tags": [
+          "warehouses"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseWithdraw"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseWithdraw"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductWarehouseWithdraw"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductWarehouseWithdraw"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create withdraw",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseClient": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 512
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseClientTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": 0,
+            "maximum": 2147483647
+          },
+          "avatar": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Фото"
+          },
+          "agreement_id": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "signed": {
+            "type": "boolean"
+          },
+          "sign_date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "sign_expires": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "phone": {
+            "type": "string",
+            "title": "Телефон",
+            "maxLength": 32
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 254
+          },
+          "legal_type": {
+            "nullable": true,
+            "title": "Форма организации",
+            "minimum": 0,
+            "maximum": 2147483647,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/LegalTypeEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        },
+        "required": [
+          "agreement_id",
+          "id",
+          "name",
+          "phone"
+        ]
+      },
+      "BaseClientTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Физ. лицо\n* `1` - Юр. лицо"
+      },
+      "BaseInventory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Группа инвентаря"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "subleases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventorySublease"
+            },
+            "readOnly": true
+          },
+          "state": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Состояние"
+          },
+          "disabled": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DisabledEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Точка проката"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "subleases"
+        ]
+      },
+      "BaseTariff": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "time_period": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Период"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "BaseTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodEnum"
+              }
+            ],
+            "title": "Способ",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Сумма"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Способ оплаты"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Создал"
+          },
+          "account": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Счёт"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Статья"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseTransactionStatusEnum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Доп. данные"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "title": "Комментарий"
+          }
+        },
+        "required": [
+          "created_at",
+          "id"
+        ]
+      },
+      "BaseTransactionStatusEnum": {
+        "enum": [
+          "pending",
+          "success",
+          "failure",
+          "expired"
+        ],
+        "type": "string",
+        "description": "* `pending` - Ожидает оплаты\n* `success` - Успешно\n* `failure` - Ошибка\n* `expired` - Истёк срок"
+      },
+      "DisabledEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - удалить\n* `1` - Архив\n* `2` - Списано"
+      },
+      "InvenotoryWarehouse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseInventory"
+              }
+            ],
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "price_tax": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InvenotoryWarehouseStatusEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "product_warehouse": {
+            "type": "integer"
+          },
+          "created_by": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "product_warehouse",
+          "updated_at"
+        ]
+      },
+      "InvenotoryWarehouseStatusEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - На складе\n* `1` - Продано\n* `2` - Отключено"
+      },
+      "InventoryForSale": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Группа инвентаря"
+          },
+          "sell_date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата продажи"
+          },
+          "client_id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "client_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "client_phone": {
+            "type": "string",
+            "readOnly": true
+          },
+          "client_avatar": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "integer"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "counterparty": {
+            "type": "integer"
+          },
+          "warehouse": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "client_avatar",
+          "client_id",
+          "client_name",
+          "client_phone",
+          "counterparty",
+          "created_by",
+          "date",
+          "id",
+          "name",
+          "price",
+          "warehouse"
+        ]
+      },
+      "InventoryGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название",
+            "maxLength": 512
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Type9ddEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": 0,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "lifetime": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Срок службы, дней"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "barcode": {
+            "type": "string",
+            "nullable": true,
+            "title": "Штрихкод",
+            "maxLength": 255
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "nullable": true,
+            "title": "Фильтры"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "maximum": 2147483647,
+              "minimum": -2147483648
+            },
+            "title": "Баллы"
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Опубликовано"
+          },
+          "tarifs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseTariff"
+            }
+          },
+          "disabled": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DisabledEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "inventories_count": {
+            "type": "integer",
+            "readOnly": true,
+            "default": 0
+          },
+          "inventories_free": {
+            "type": "integer",
+            "readOnly": true,
+            "default": 0
+          },
+          "unit_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UnitTypeEnum"
+              }
+            ],
+            "title": "Единица измерения"
+          },
+          "unit_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Цена за единицу"
+          },
+          "unit_count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Количество единиц"
+          },
+          "unit_sum": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Итого за единицы"
+          },
+          "has_sublease": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "rent_count": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "has_sublease",
+          "id",
+          "inventories_count",
+          "inventories_free",
+          "rent_count",
+          "updated_at"
+        ]
+      },
+      "InventorySublease": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "type": "integer",
+            "title": "Инвентарь"
+          },
+          "user": {
+            "type": "integer",
+            "title": "Владелец субаренды"
+          },
+          "percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "title": "Процент субаренды"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Начало периода"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец периода"
+          },
+          "is_current": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "is_current",
+          "percent",
+          "user"
+        ]
+      },
+      "InventoryWarehouse": {
+        "type": "object",
+        "properties": {
+          "inventories": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "writeOnly": true
+          },
+          "group": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "warehouse": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "counterparty": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "unit_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "counterparty",
+          "group",
+          "inventories",
+          "unit_price",
+          "warehouse"
+        ]
+      },
+      "LegalTypeEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "description": "* `0` - ИП\n* `1` - ТОО\n* `2` - АО\n* `3` - ПК"
+      },
+      "MethodEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Приход\n* `1` - Расход"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "OrderSale": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Клиент"
+          },
+          "agent": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Агент"
+          },
+          "discount": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Скидка"
+          },
+          "additional_discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "discount_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "price_discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "integer"
+          },
+          "rental_point": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Точка проката"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status518Enum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Статус"
+          }
+        },
+        "required": [
+          "discount_amount",
+          "id",
+          "paid_amount",
+          "price",
+          "price_discount",
+          "rental_point",
+          "status"
+        ]
+      },
+      "OrderSaleInventory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseInventory"
+              }
+            ],
+            "readOnly": true
+          },
+          "inventory_group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Группа инвентаря"
+          },
+          "inventory_group_count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Количество"
+          },
+          "warehouse": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Склад"
+          },
+          "counterparty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Контрагент"
+          },
+          "tarif": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тариф"
+          },
+          "discount": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Скидка"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price_discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        },
+        "required": [
+          "id",
+          "inventory"
+        ]
+      },
+      "OrderSaleInventoryBulkCreate": {
+        "type": "object",
+        "properties": {
+          "inventories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderSaleInventoryCreate"
+            }
+          }
+        },
+        "required": [
+          "inventories"
+        ]
+      },
+      "OrderSaleInventoryBulkDelete": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "OrderSaleInventoryBulkUpdate": {
+        "type": "object",
+        "properties": {
+          "inventories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderSaleInventoryUpdate"
+            }
+          }
+        },
+        "required": [
+          "inventories"
+        ]
+      },
+      "OrderSaleInventoryCreate": {
+        "type": "object",
+        "properties": {
+          "inventory": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "inventory_group": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "inventory_group_count": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "warehouse": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "counterparty": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "tarif": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "discount": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "extra": {
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "inventory_group",
+          "inventory_group_count",
+          "warehouse"
+        ]
+      },
+      "OrderSaleInventoryGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true,
+            "title": "Название",
+            "maxLength": 512
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "unit_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Цена за единицу"
+          },
+          "unit_count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Количество единиц"
+          },
+          "unit_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/UnitTypeEnum"
+              }
+            ],
+            "title": "Единица измерения"
+          },
+          "unit_sum": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Итого за единицы"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "barcode": {
+            "type": "string",
+            "nullable": true,
+            "title": "Штрихкод",
+            "maxLength": 255
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "filters": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 32
+            },
+            "nullable": true,
+            "title": "Фильтры"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "maximum": 2147483647,
+              "minimum": -2147483648
+            },
+            "title": "Баллы"
+          },
+          "published": {
+            "type": "boolean",
+            "title": "Опубликовано"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Type9ddEnum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": 0,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "lifetime": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Срок службы, дней"
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "sales": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderSaleInventory"
+            }
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "sales",
+          "updated_at"
+        ]
+      },
+      "OrderSaleInventoryUpdate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "inventory": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "inventory_group_count": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "tarif": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "discount": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "extra": {
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "id",
+          "inventory_group_count"
+        ]
+      },
+      "OrderSaleList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "client": {
+            "$ref": "#/components/schemas/BaseClient"
+          },
+          "agent": {
+            "$ref": "#/components/schemas/Referral"
+          },
+          "discount": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Скидка"
+          },
+          "discount_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "price_discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Создал"
+          },
+          "rental_point": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Точка проката"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status518Enum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Статус"
+          },
+          "groups": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "payments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseTransaction"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "agent",
+          "client",
+          "created_at",
+          "created_by",
+          "groups",
+          "id",
+          "paid_amount",
+          "payments",
+          "price",
+          "price_discount",
+          "rental_point",
+          "status"
+        ]
+      },
+      "PaginatedInventoryForSaleList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventoryForSale"
+            }
+          }
+        }
+      },
+      "PaginatedOrderSaleListList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderSaleList"
+            }
+          }
+        }
+      },
+      "PaginatedProductWarehouseActionList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductWarehouseAction"
+            }
+          }
+        }
+      },
+      "PaginatedProductWarehouseDetailList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductWarehouseDetail"
+            }
+          }
+        }
+      },
+      "PatchedOrderSale": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "client": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Клиент"
+          },
+          "agent": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Агент"
+          },
+          "discount": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Скидка"
+          },
+          "additional_discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "discount_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "price_discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "paid_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "integer"
+          },
+          "rental_point": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Точка проката"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Status518Enum"
+              }
+            ],
+            "readOnly": true,
+            "title": "Статус"
+          }
+        }
+      },
+      "PatchedProductWarehouseAction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "invoice_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "invoice_datetime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductWarehouseActionTypeEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "from_warehouse": {
+            "type": "integer",
+            "nullable": true
+          },
+          "to_warehouse": {
+            "type": "integer"
+          },
+          "from_counterparty": {
+            "type": "integer",
+            "nullable": true
+          },
+          "to_counterparty": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "manager": {
+            "type": "integer"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductWarehouseActionItem"
+            }
+          },
+          "tax": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,2}(?:\\.\\d{0,2})?$"
+          },
+          "tax_included": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        }
+      },
+      "PatchedWarehouse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        }
+      },
+      "ProductWarehouseAction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "invoice_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "invoice_datetime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProductWarehouseActionTypeEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "from_warehouse": {
+            "type": "integer",
+            "nullable": true
+          },
+          "to_warehouse": {
+            "type": "integer"
+          },
+          "from_counterparty": {
+            "type": "integer",
+            "nullable": true
+          },
+          "to_counterparty": {
+            "type": "integer",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "manager": {
+            "type": "integer"
+          },
+          "approved": {
+            "type": "boolean"
+          },
+          "products": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProductWarehouseActionItem"
+            }
+          },
+          "tax": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,2}(?:\\.\\d{0,2})?$"
+          },
+          "tax_included": {
+            "type": "boolean"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "amount",
+          "created_at",
+          "id",
+          "invoice_datetime",
+          "manager",
+          "price",
+          "products",
+          "to_warehouse"
+        ]
+      },
+      "ProductWarehouseActionItem": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "action": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "group": {
+            "type": "integer"
+          },
+          "group_warehouse": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "amount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "unit_price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "discount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,2}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "action",
+          "group",
+          "group_warehouse",
+          "id",
+          "price"
+        ]
+      },
+      "ProductWarehouseActionStats": {
+        "type": "object",
+        "properties": {
+          "counterparty": {
+            "type": "integer"
+          },
+          "children": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "children",
+          "counterparty"
+        ]
+      },
+      "ProductWarehouseActionTypeEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - Создано\n* `1` - Перемещено\n* `2` - удалить"
+      },
+      "ProductWarehouseDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "group": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryGroup"
+              }
+            ],
+            "readOnly": true
+          },
+          "warehouse": {
+            "type": "integer"
+          },
+          "counterparty": {
+            "type": "integer",
+            "nullable": true
+          },
+          "amount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "unit_price_sum": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "inventories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvenotoryWarehouse"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "counterparty_unit_count": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "counterparty_unit_price": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "counterparty_unit_count",
+          "counterparty_unit_price",
+          "created_at",
+          "group",
+          "id",
+          "inventories",
+          "warehouse"
+        ]
+      },
+      "ProductWarehouseWithdraw": {
+        "type": "object",
+        "properties": {
+          "group": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "warehouse": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "counterparty": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "amount": {
+            "type": "integer",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "amount",
+          "counterparty",
+          "group",
+          "warehouse"
+        ]
+      },
+      "Referral": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "extra": {}
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "Status518Enum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - черновик\n* `1` - Продано\n* `2` - Отменено"
+      },
+      "Type9ddEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Аренда\n* `1` - Продажа"
+      },
+      "UnitTypeEnum": {
+        "enum": [
+          "litre",
+          "kg",
+          "g",
+          "ml",
+          "piece",
+          "m3"
+        ],
+        "type": "string",
+        "description": "* `litre` - Литр\n* `kg` - Килограмм\n* `g` - Грамм\n* `ml` - Миллилитр\n* `piece` - Штука\n* `m3` - Кубический метр"
+      },
+      "Warehouse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "deleted",
+          "id",
+          "name"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

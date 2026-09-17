@@ -1,0 +1,306 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Дашборд",
+    "version": "1.0.0",
+    "description": "Сводные виджеты и оперативная сводка."
+  },
+  "paths": {
+    "/v1/crm/dashboard/summary/": {
+      "get": {
+        "operationId": "v1_crm_dashboard_summary_retrieve",
+        "tags": [
+          "v1"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardSummary"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get summary",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CategoryUtilization": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "type": "integer"
+          },
+          "count": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "utilization_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,1})?$"
+          }
+        },
+        "required": [
+          "category_id",
+          "count",
+          "total",
+          "utilization_percent"
+        ]
+      },
+      "DashboardSummary": {
+        "type": "object",
+        "properties": {
+          "revenue_today": {
+            "$ref": "#/components/schemas/RevenueDelta"
+          },
+          "revenue_month": {
+            "$ref": "#/components/schemas/RevenueMonth"
+          },
+          "in_rent": {
+            "$ref": "#/components/schemas/InRentSummary"
+          },
+          "debts": {
+            "$ref": "#/components/schemas/DebtsSummary"
+          },
+          "debts_list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DebtEntry"
+            }
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryUtilization"
+            }
+          },
+          "revenue_chart": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RevenueChartPoint"
+            }
+          }
+        },
+        "required": [
+          "categories",
+          "debts",
+          "debts_list",
+          "in_rent",
+          "revenue_chart",
+          "revenue_month",
+          "revenue_today"
+        ]
+      },
+      "DebtEntry": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "client_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "overdue_days": {
+            "type": "integer"
+          },
+          "partial": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "amount",
+          "client_id",
+          "client_name",
+          "overdue_days",
+          "partial"
+        ]
+      },
+      "DebtsSummary": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "clients_count": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "amount",
+          "clients_count"
+        ]
+      },
+      "InRentSummary": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "integer"
+          },
+          "utilization_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,1})?$"
+          }
+        },
+        "required": [
+          "count",
+          "total",
+          "utilization_percent"
+        ]
+      },
+      "RevenueChartPoint": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "amount",
+          "date"
+        ]
+      },
+      "RevenueDelta": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "prev_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "change_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,7}(?:\\.\\d{0,1})?$",
+            "nullable": true
+          },
+          "trend": {
+            "$ref": "#/components/schemas/TrendEnum"
+          }
+        },
+        "required": [
+          "amount",
+          "change_percent",
+          "prev_amount",
+          "trend"
+        ]
+      },
+      "RevenueMonth": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "prev_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "change_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,7}(?:\\.\\d{0,1})?$",
+            "nullable": true
+          },
+          "trend": {
+            "$ref": "#/components/schemas/TrendEnum"
+          },
+          "month": {
+            "type": "integer"
+          },
+          "prev_month": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "amount",
+          "change_percent",
+          "month",
+          "prev_amount",
+          "prev_month",
+          "trend"
+        ]
+      },
+      "TrendEnum": {
+        "enum": [
+          "up",
+          "down",
+          "flat"
+        ],
+        "type": "string",
+        "description": "* `up` - up\n* `down` - down\n* `flat` - flat"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

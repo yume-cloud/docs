@@ -1,0 +1,1713 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — AI Ассистент",
+    "version": "1.0.0",
+    "description": "SSE чат-шлюз и инструменты ассистента."
+  },
+  "paths": {
+    "/v1/assistant/channels/sessions/": {
+      "get": {
+        "operationId": "channels_sessions_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "channels"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedChannelSessionList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get sessions"
+      }
+    },
+    "/v1/assistant/channels/sessions/{id}/handoff/": {
+      "post": {
+        "operationId": "channels_sessions_handoff_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "channels"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HandoffInput"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/HandoffInput"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/HandoffInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HandoffInput"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create handoff"
+      }
+    },
+    "/v1/assistant/chat/": {
+      "post": {
+        "operationId": "chat_create",
+        "description": "Concrete view for creating a model instance.",
+        "tags": [
+          "chat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatStreamInput"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatStreamInput"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ChatStreamInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChatStreamInput"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create chat",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/assistant/messages/{id}/feedback/": {
+      "post": {
+        "operationId": "messages_feedback_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "messages"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerFeedbackInput"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerFeedbackInput"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/AnswerFeedbackInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnswerFeedbackInput"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create feedback"
+      }
+    },
+    "/v1/assistant/quota/": {
+      "get": {
+        "operationId": "quota_retrieve",
+        "tags": [
+          "quota"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Quota"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get quota",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/assistant/quota/history/": {
+      "get": {
+        "operationId": "quota_history_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "quota"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedQuotaTopUpList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get history"
+      }
+    },
+    "/v1/assistant/runs/{run_id}/": {
+      "get": {
+        "operationId": "runs_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "runs"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get runs"
+      }
+    },
+    "/v1/assistant/runs/{run_id}/approve/": {
+      "post": {
+        "operationId": "runs_approve_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "runs"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create approve"
+      }
+    },
+    "/v1/assistant/runs/{run_id}/cancel/": {
+      "post": {
+        "operationId": "runs_cancel_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "run_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "runs"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create cancel"
+      }
+    },
+    "/v1/assistant/runs/{run_id}/stream/": {
+      "get": {
+        "operationId": "runs_stream_retrieve",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Last offset the subscriber received. Omit to read from the beginning. `offset` and the `Last-Event-ID` header are accepted equivalently."
+          },
+          {
+            "in": "path",
+            "name": "run_id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "runs"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "text/event-stream": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get stream"
+      }
+    },
+    "/v1/assistant/sessions/": {
+      "get": {
+        "operationId": "sessions_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedSessionList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get sessions"
+      },
+      "post": {
+        "operationId": "sessions_create",
+        "tags": [
+          "sessions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Session"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Session"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Session"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Session"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create sessions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/assistant/sessions/{id}/": {
+      "get": {
+        "operationId": "sessions_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get sessions"
+      },
+      "put": {
+        "operationId": "sessions_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionDetail"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update sessions"
+      },
+      "patch": {
+        "operationId": "sessions_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSessionDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSessionDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedSessionDetail"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SessionDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch sessions"
+      },
+      "delete": {
+        "operationId": "sessions_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete sessions"
+      }
+    },
+    "/v1/assistant/sessions/{id}/messages/": {
+      "get": {
+        "operationId": "sessions_messages_list",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SessionMessage"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get messages"
+      }
+    },
+    "/v1/assistant/sessions/{id}/regenerate/": {
+      "post": {
+        "operationId": "sessions_regenerate_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "sessions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Run"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Run"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Run"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Run"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create regenerate"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AnswerFeedbackInput": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "$ref": "#/components/schemas/RatingEnum"
+          },
+          "comment": {
+            "type": "string",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "rating"
+        ]
+      },
+      "ChannelEnum": {
+        "enum": [
+          "whatsapp",
+          "instagram",
+          "telegram"
+        ],
+        "type": "string",
+        "description": "* `whatsapp` - WhatsApp\n* `instagram` - Instagram\n* `telegram` - Telegram"
+      },
+      "ChannelSession": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "readOnly": true
+          },
+          "channel": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ChannelEnum"
+              }
+            ],
+            "readOnly": true,
+            "description": "Empty for staff conversations held in the Yume UI.\n\n* `whatsapp` - WhatsApp\n* `instagram` - Instagram\n* `telegram` - Telegram"
+          },
+          "external_chat_id": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Counterparty address on that channel (phone, instagram id, ...)."
+          },
+          "handoff": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HandoffEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "handoff_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "last_delivery_error": {
+            "type": "string",
+            "readOnly": true
+          },
+          "last_delivery_error_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "channel",
+          "created_at",
+          "external_chat_id",
+          "handoff",
+          "handoff_at",
+          "id",
+          "last_delivery_error",
+          "last_delivery_error_at",
+          "title",
+          "updated_at"
+        ]
+      },
+      "ChatStreamInput": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "session_id": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          },
+          "provider": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProviderEnum"
+              }
+            ],
+            "default": "anthropic"
+          },
+          "tier": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TierEnum"
+              }
+            ],
+            "default": "low"
+          },
+          "model": {
+            "type": "string"
+          },
+          "tools": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "thinking_effort": {
+            "$ref": "#/components/schemas/ThinkingEffortEnum"
+          },
+          "page_context": {
+            "type": "string"
+          },
+          "preset": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
+      "HandoffEnum": {
+        "enum": [
+          "agent",
+          "human"
+        ],
+        "type": "string",
+        "description": "* `agent` - Агент\n* `human` - Человек"
+      },
+      "HandoffInput": {
+        "type": "object",
+        "properties": {
+          "handoff": {
+            "$ref": "#/components/schemas/HandoffEnum"
+          }
+        },
+        "required": [
+          "handoff"
+        ]
+      },
+      "KindEnum": {
+        "enum": [
+          "system-prompt",
+          "user-prompt",
+          "tool-return",
+          "retry-prompt",
+          "text",
+          "thinking",
+          "compaction",
+          "tool-call",
+          "builtin-tool-call",
+          "builtin-tool-return",
+          "file"
+        ],
+        "type": "string",
+        "description": "* `system-prompt` - Системный промпт\n* `user-prompt` - Запрос пользователя\n* `tool-return` - Ответ инструмента\n* `retry-prompt` - Повторный запрос\n* `text` - Текст\n* `thinking` - Размышления\n* `compaction` - Сжатие контекста\n* `tool-call` - Вызов инструмента\n* `builtin-tool-call` - Вызов встроенного инструмента\n* `builtin-tool-return` - Ответ встроенного инструмента\n* `file` - Файл"
+      },
+      "PaginatedChannelSessionList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChannelSession"
+            }
+          }
+        }
+      },
+      "PaginatedQuotaTopUpList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuotaTopUp"
+            }
+          }
+        }
+      },
+      "PaginatedSessionList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Session"
+            }
+          }
+        }
+      },
+      "PatchedSessionDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true,
+            "readOnly": true
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderEnum"
+          },
+          "tier": {
+            "$ref": "#/components/schemas/TierEnum"
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "is_archived": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionMessage"
+            },
+            "readOnly": true
+          }
+        }
+      },
+      "ProviderEnum": {
+        "enum": [
+          "openai",
+          "anthropic"
+        ],
+        "type": "string",
+        "description": "* `openai` - OpenAI\n* `anthropic` - Anthropic"
+      },
+      "Quota": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,10}(?:\\.\\d{0,6})?$",
+            "readOnly": true
+          },
+          "used": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,10}(?:\\.\\d{0,6})?$",
+            "readOnly": true
+          },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,10}(?:\\.\\d{0,6})?$",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "balance",
+          "created_at",
+          "limit",
+          "updated_at",
+          "used"
+        ]
+      },
+      "QuotaTopUp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,10}(?:\\.\\d{0,6})?$",
+            "readOnly": true,
+            "title": "Начислено кредитов"
+          },
+          "price": {
+            "type": "string",
+            "readOnly": true
+          },
+          "currency": {
+            "type": "string",
+            "readOnly": true
+          },
+          "comment": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Комментарий"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "amount",
+          "comment",
+          "created_at",
+          "currency",
+          "id",
+          "price"
+        ]
+      },
+      "RatingEnum": {
+        "enum": [
+          "helpful",
+          "not_helpful"
+        ],
+        "type": "string",
+        "description": "* `helpful` - Помогло\n* `not_helpful` - Не помогло"
+      },
+      "ReasonEnum": {
+        "enum": [
+          "approval",
+          "cancelled",
+          "quota",
+          "error",
+          "tenant_unresolved",
+          "worker_lost"
+        ],
+        "type": "string",
+        "description": "* `approval` - ожидает подтверждения пользователя\n* `cancelled` - Отменён пользователем\n* `quota` - Исчерпан лимит\n* `error` - Ошибка выполнения\n* `tenant_unresolved` - Компания не определена\n* `worker_lost` - Воркер не отвечает"
+      },
+      "RoleEnum": {
+        "enum": [
+          "user",
+          "assistant",
+          "system",
+          "tool"
+        ],
+        "type": "string",
+        "description": "* `user` - Пользователь\n* `assistant` - Ассистент\n* `system` - Система\n* `tool` - Инструмент"
+      },
+      "Run": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "run_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "session_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "state": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StateEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReasonEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "source": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/SourceEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "input": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "output": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "cache_write": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "cache_read": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "cache_read",
+          "cache_write",
+          "created_at",
+          "finished_at",
+          "id",
+          "input",
+          "output",
+          "reason",
+          "run_id",
+          "session_id",
+          "source",
+          "started_at",
+          "state"
+        ]
+      },
+      "Session": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true,
+            "readOnly": true
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderEnum"
+          },
+          "tier": {
+            "$ref": "#/components/schemas/TierEnum"
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "is_archived": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "updated_at",
+          "user_id"
+        ]
+      },
+      "SessionDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true,
+            "readOnly": true
+          },
+          "provider": {
+            "$ref": "#/components/schemas/ProviderEnum"
+          },
+          "tier": {
+            "$ref": "#/components/schemas/TierEnum"
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 128
+          },
+          "is_archived": {
+            "type": "boolean"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionMessage"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "messages",
+          "updated_at",
+          "user_id"
+        ]
+      },
+      "SessionMessage": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "user_id": {
+            "type": "integer",
+            "nullable": true,
+            "readOnly": true
+          },
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RoleEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "provider_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "model_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "input": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "output": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "cache_write": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "cache_read": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "parts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionMessagePart"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "cache_read",
+          "cache_write",
+          "created_at",
+          "id",
+          "input",
+          "model_name",
+          "output",
+          "parts",
+          "provider_name",
+          "role",
+          "user_id"
+        ]
+      },
+      "SessionMessagePart": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "order": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "kind": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/KindEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "content": {
+            "type": "string",
+            "readOnly": true,
+            "description": "Text content for text/thinking/user-prompt/system-prompt parts, or the (JSON-encoded, if non-string) tool return/retry content."
+          },
+          "text": {
+            "type": "string",
+            "readOnly": true
+          },
+          "tool_call_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "tool_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "args": {
+            "readOnly": true,
+            "nullable": true,
+            "description": "Arguments of a tool-call part."
+          },
+          "attachments": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "args",
+          "attachments",
+          "content",
+          "created_at",
+          "id",
+          "kind",
+          "order",
+          "text",
+          "tool_call_id",
+          "tool_name"
+        ]
+      },
+      "SourceEnum": {
+        "enum": [
+          "web",
+          "channel"
+        ],
+        "type": "string",
+        "description": "* `web` - Веб\n* `channel` - Внешний канал"
+      },
+      "StateEnum": {
+        "enum": [
+          "queued",
+          "running",
+          "completed",
+          "cancelled",
+          "failed",
+          "awaiting_approval"
+        ],
+        "type": "string",
+        "description": "* `queued` - В очереди\n* `running` - Выполняется\n* `completed` - Завершено\n* `cancelled` - Отменено\n* `failed` - Ошибка\n* `awaiting_approval` - Ждёт подтверждения"
+      },
+      "ThinkingEffortEnum": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "type": "string",
+        "description": "* `low` - Низкое\n* `medium` - Среднее\n* `high` - Высокое"
+      },
+      "TierEnum": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "type": "string",
+        "description": "* `low` - Низкое\n* `medium` - Среднее\n* `high` - Высокое"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

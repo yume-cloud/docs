@@ -1,0 +1,1950 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Задачи",
+    "version": "1.0.0",
+    "description": "Задачи сотрудников, напоминания и связи с сущностями."
+  },
+  "paths": {
+    "/v1/todo/catalog/": {
+      "get": {
+        "operationId": "catalog_retrieve",
+        "tags": [
+          "catalog"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get catalog",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/todo/suggest/": {
+      "get": {
+        "operationId": "suggest_retrieve",
+        "description": "Поиск объектов для связи задачи: один эндпоинт вместо восьми списочных.\n\nСлэш-команда в редакторе выбирает тип из `catalog/`, а потом ищет здесь — подпись и ссылка\nприходят из того же реестра, которым `TaskLinkSerializer` рисует уже сохранённые связи,\nпоэтому выбранное в подсказке и показанное в задаче совпадают буквально.",
+        "tags": [
+          "suggest"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get suggest",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/todo/tasks/": {
+      "get": {
+        "operationId": "tasks_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "assignee",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "assignee__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "assignee__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "author",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "author__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "content_type",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "due_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "due_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "due_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "due_at__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "due_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "finished_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "is_done",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "link_role",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "main",
+                "secondary"
+              ]
+            },
+            "description": "* `main` - Основная\n* `secondary` - Дополнительная"
+          },
+          {
+            "in": "query",
+            "name": "mine",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "object_id",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "overdue",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "priority",
+            "schema": {
+              "type": "integer",
+              "nullable": true,
+              "title": "Приоритет",
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            "description": "* `1` - Низкий\n* `2` - Средний\n* `3` - Высокий\n* `4` - Срочный"
+          },
+          {
+            "in": "query",
+            "name": "priority__gte",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "priority__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "priority__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "remind_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "remind_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "remind_at__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "remind_at__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "remind_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "title": "Статус",
+              "enum": [
+                "cancelled",
+                "done",
+                "in_progress",
+                "open"
+              ]
+            },
+            "description": "* `open` - Открыто\n* `in_progress` - В работе\n* `done` - Выполнено\n* `cancelled` - Отменено"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "type__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedTaskList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tasks"
+      },
+      "post": {
+        "operationId": "tasks_create",
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create tasks",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/todo/tasks/{task_id}/": {
+      "get": {
+        "operationId": "tasks_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get tasks"
+      },
+      "put": {
+        "operationId": "tasks_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update tasks"
+      },
+      "patch": {
+        "operationId": "tasks_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskWrite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskWrite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskWrite"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskWrite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch tasks"
+      },
+      "delete": {
+        "operationId": "tasks_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "task_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "tasks"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete tasks"
+      }
+    },
+    "/v1/todo/tasks/bulk/": {
+      "patch": {
+        "operationId": "tasks_bulk_partial_update",
+        "description": "Пакетная смена статуса: PATCH со списком id.\n\nPATCH, а не POST: `CustomDjangoModelPermissions` спрашивает `todo.change_task`, а не право на\nсоздание. Права на конкретные задачи проверять отдельно не нужно — `get_queryset` уже оставляет\nтолько те, где пользователь автор или исполнитель, то есть то же правило, что и у карточки.",
+        "tags": [
+          "tasks"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskBulkStatus"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskBulkStatus"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskBulkStatus"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskBulkStatus"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch bulk",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/todo/types/": {
+      "get": {
+        "operationId": "types_list",
+        "tags": [
+          "types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TaskType"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get types",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "types_create",
+        "tags": [
+          "types"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskType"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskType"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskType"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create types",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/todo/types/{id}/": {
+      "get": {
+        "operationId": "types_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get types"
+      },
+      "put": {
+        "operationId": "types_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskType"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskType"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TaskType"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update types"
+      },
+      "patch": {
+        "operationId": "types_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskType"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskType"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTaskType"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TaskType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch types"
+      },
+      "delete": {
+        "operationId": "types_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete types"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CommentAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "context": {
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentLink"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "body",
+          "content_type",
+          "created_at",
+          "id",
+          "links",
+          "object_id",
+          "updated_at",
+          "user"
+        ]
+      },
+      "CommentLink": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели",
+            "readOnly": true
+          },
+          "content_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64",
+            "title": "ID объекта"
+          },
+          "label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "content_type",
+          "content_type_label",
+          "label",
+          "object_id",
+          "url"
+        ]
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "PaginatedTaskList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            }
+          }
+        }
+      },
+      "PatchedTaskBulkStatus": {
+        "type": "object",
+        "description": "Пакетная смена статуса. Сам набор задач сужает вид — здесь только форма запроса.",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxItems": 200
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "default": "done"
+          },
+          "result": {
+            "type": "string"
+          }
+        }
+      },
+      "PatchedTaskType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "title": "Цвет",
+            "maxLength": 7
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Порядок"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        }
+      },
+      "PatchedTaskWrite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "title": "Заголовок",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "title": "Описание"
+          },
+          "result": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Результат"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тип"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "priority": {
+            "nullable": true,
+            "title": "Приоритет",
+            "minimum": 0,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PriorityEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "assignee": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Исполнитель"
+          },
+          "due_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Срок выполнения"
+          },
+          "remind_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Напомнить"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskLinkWrite"
+            }
+          },
+          "comment": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "author": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Автор"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Дата завершения"
+          },
+          "reminded_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Напоминание отправлено"
+          },
+          "overdue_notified_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Уведомление о просрочке отправлено"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        }
+      },
+      "PriorityEnum": {
+        "enum": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "type": "integer",
+        "description": "* `1` - Низкий\n* `2` - Средний\n* `3` - Высокий\n* `4` - Срочный"
+      },
+      "RoleEnum": {
+        "enum": [
+          "main",
+          "secondary"
+        ],
+        "type": "string",
+        "description": "* `main` - Основная\n* `secondary` - Дополнительная"
+      },
+      "StatusEnum": {
+        "enum": [
+          "open",
+          "in_progress",
+          "done",
+          "cancelled"
+        ],
+        "type": "string",
+        "description": "* `open` - Открыто\n* `in_progress` - В работе\n* `done` - Выполнено\n* `cancelled` - Отменено"
+      },
+      "Task": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "title": "Заголовок",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "title": "Описание"
+          },
+          "result": {
+            "type": "string",
+            "title": "Результат"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тип"
+          },
+          "type_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "status_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "priority": {
+            "nullable": true,
+            "title": "Приоритет",
+            "minimum": 0,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PriorityEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "priority_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "author": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Автор"
+          },
+          "author_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "assignee": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Исполнитель"
+          },
+          "assignee_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "due_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Срок выполнения"
+          },
+          "remind_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Напомнить"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата завершения"
+          },
+          "reminded_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Напоминание отправлено"
+          },
+          "overdue_notified_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Уведомление о просрочке отправлено"
+          },
+          "is_overdue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskLink"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "assignee_name",
+          "author_name",
+          "created_at",
+          "id",
+          "is_overdue",
+          "links",
+          "priority_label",
+          "status_label",
+          "title",
+          "type_name",
+          "updated_at"
+        ]
+      },
+      "TaskBulkStatus": {
+        "type": "object",
+        "description": "Пакетная смена статуса. Сам набор задач сужает вид — здесь только форма запроса.",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxItems": 200
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "default": "done"
+          },
+          "result": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "ids"
+        ]
+      },
+      "TaskDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "title": "Заголовок",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "title": "Описание"
+          },
+          "result": {
+            "type": "string",
+            "title": "Результат"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тип"
+          },
+          "type_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "status_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "priority": {
+            "nullable": true,
+            "title": "Приоритет",
+            "minimum": 0,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PriorityEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "priority_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "author": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Автор"
+          },
+          "author_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "assignee": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Исполнитель"
+          },
+          "assignee_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "due_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Срок выполнения"
+          },
+          "remind_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Напомнить"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата завершения"
+          },
+          "reminded_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Напоминание отправлено"
+          },
+          "overdue_notified_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Уведомление о просрочке отправлено"
+          },
+          "is_overdue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskLink"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentAttachment"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "assignee_name",
+          "author_name",
+          "comments",
+          "created_at",
+          "id",
+          "is_overdue",
+          "links",
+          "priority_label",
+          "status_label",
+          "title",
+          "type_name",
+          "updated_at"
+        ]
+      },
+      "TaskLink": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели",
+            "readOnly": true
+          },
+          "content_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64",
+            "title": "ID объекта"
+          },
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RoleEnum"
+              }
+            ],
+            "title": "Роль"
+          },
+          "role_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "content_type",
+          "content_type_label",
+          "label",
+          "object_id",
+          "role_label",
+          "url"
+        ]
+      },
+      "TaskLinkWrite": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string"
+          },
+          "object_id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "role": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/RoleEnum"
+              }
+            ],
+            "default": "secondary"
+          }
+        },
+        "required": [
+          "content_type",
+          "object_id"
+        ]
+      },
+      "TaskType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "color": {
+            "type": "string",
+            "title": "Цвет",
+            "maxLength": 7
+          },
+          "ordering": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Порядок"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name"
+        ]
+      },
+      "TaskWrite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "title": {
+            "type": "string",
+            "title": "Заголовок",
+            "maxLength": 255
+          },
+          "description": {
+            "type": "string",
+            "title": "Описание"
+          },
+          "result": {
+            "type": "string",
+            "readOnly": true,
+            "title": "Результат"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тип"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusEnum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "priority": {
+            "nullable": true,
+            "title": "Приоритет",
+            "minimum": 0,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PriorityEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "assignee": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Исполнитель"
+          },
+          "due_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Срок выполнения"
+          },
+          "remind_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Напомнить"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaskLinkWrite"
+            }
+          },
+          "comment": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "author": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Автор"
+          },
+          "finished_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Дата завершения"
+          },
+          "reminded_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Напоминание отправлено"
+          },
+          "overdue_notified_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Уведомление о просрочке отправлено"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "author",
+          "created_at",
+          "finished_at",
+          "id",
+          "overdue_notified_at",
+          "reminded_at",
+          "result",
+          "title",
+          "updated_at"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

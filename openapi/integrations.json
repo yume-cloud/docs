@@ -1,0 +1,4267 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Интеграции",
+    "version": "1.0.0",
+    "description": "Подключение и управление внешними сервисами."
+  },
+  "paths": {
+    "/v1/crm/integrations/": {
+      "get": {
+        "operationId": "root_list",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "string",
+              "title": "Тип",
+              "enum": [
+                "integration",
+                "module"
+              ]
+            },
+            "description": "Тип интеграции\n\n* `integration` - Интеграция\n* `module` - Модуль"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Integration"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get integrations"
+      }
+    },
+    "/v1/crm/integrations/{slug}/": {
+      "get": {
+        "operationId": "root_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Integration"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get integrations"
+      }
+    },
+    "/v1/crm/integrations/{slug}/connect/": {
+      "post": {
+        "operationId": "connect_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "connect"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationConnection"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationConnection"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationConnection"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationConnection"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create connect"
+      }
+    },
+    "/v1/crm/integrations/{slug}/disconnect/": {
+      "post": {
+        "operationId": "disconnect_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "disconnect"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationDisconnection"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationDisconnection"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationDisconnection"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationDisconnection"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create disconnect"
+      }
+    },
+    "/v1/crm/integrations/binotel/calls/": {
+      "get": {
+        "operationId": "binotel_calls_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "call_type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "disposition",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "employee",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "missed",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBinotelCallList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get calls"
+      }
+    },
+    "/v1/crm/integrations/binotel/calls/daily/": {
+      "get": {
+        "operationId": "binotel_calls_daily_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "call_type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "disposition",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "employee",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "missed",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BinotelDaily"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get daily"
+      }
+    },
+    "/v1/crm/integrations/binotel/calls/employees/": {
+      "get": {
+        "operationId": "binotel_calls_employees_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "call_type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "disposition",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "employee",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "missed",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BinotelEmployeeStat"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get employees"
+      }
+    },
+    "/v1/crm/integrations/binotel/calls/general/": {
+      "get": {
+        "operationId": "binotel_calls_general_retrieve",
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinotelGeneral"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get general",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/binotel/employees/": {
+      "get": {
+        "operationId": "binotel_employees_list",
+        "description": "Employees for filter selects: the cached Binotel list plus whoever appears in calls.",
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BinotelEmployee"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get employees",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/binotel/outward_call/": {
+      "post": {
+        "operationId": "binotel_outward_call_create",
+        "tags": [
+          "binotel"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BinotelCall"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BinotelCall"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BinotelCall"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinotelCall"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create outward call",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/binotel/recording/": {
+      "post": {
+        "operationId": "binotel_recording_create",
+        "tags": [
+          "binotel"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BinotelRecording"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BinotelRecording"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BinotelRecording"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BinotelRecording"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create recording",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/binotel/status/": {
+      "get": {
+        "operationId": "binotel_status_retrieve",
+        "description": "Connection state, plus the webhook URL the company hands to Binotel support.",
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get status",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/binotel/sync/": {
+      "post": {
+        "operationId": "binotel_sync_create",
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create sync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/binotel/webhook/{token}/": {
+      "post": {
+        "operationId": "binotel_webhook_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "token",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "binotel"
+        ],
+        "security": [
+          {}
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create webhook"
+      }
+    },
+    "/v1/crm/integrations/bulk_connect/": {
+      "post": {
+        "operationId": "bulk_connect_create",
+        "tags": [
+          "bulk_connect"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationBulkConnection"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationBulkConnection"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/IntegrationBulkConnection"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IntegrationBulkConnection"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create bulk connect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/kaspi/connect/": {
+      "get": {
+        "operationId": "kaspi_connect_retrieve",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get connect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "kaspi_connect_create",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create connect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/kaspi/disconnect/": {
+      "post": {
+        "operationId": "kaspi_disconnect_create",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create disconnect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/kaspi/verify/": {
+      "post": {
+        "operationId": "kaspi_verify_create",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create verify",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/kaspi/webhook/": {
+      "post": {
+        "operationId": "kaspi_webhook_create",
+        "tags": [
+          "kaspi"
+        ],
+        "security": [
+          {}
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create webhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/ringostat/accounts/online/": {
+      "get": {
+        "operationId": "ringostat_accounts_online_retrieve",
+        "tags": [
+          "ringostat"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get online",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/ringostat/calls/": {
+      "get": {
+        "operationId": "ringostat_calls_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "phone",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Phone number to filter calls by"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Status to filter calls by"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "ringostat"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedRingostatResultList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get calls"
+      }
+    },
+    "/v1/crm/integrations/ringostat/clients/": {
+      "post": {
+        "operationId": "ringostat_clients_create",
+        "tags": [
+          "ringostat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatCreateClient"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatCreateClient"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatCreateClient"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RingostatCreateClient"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create clients",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/ringostat/connect/": {
+      "post": {
+        "operationId": "ringostat_connect_create",
+        "tags": [
+          "ringostat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatConnect"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatConnect"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatConnect"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RingostatConnect"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create connect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/ringostat/outward_call/": {
+      "post": {
+        "operationId": "ringostat_outward_call_create",
+        "tags": [
+          "ringostat"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatCall"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatCall"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/RingostatCall"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RingostatCall"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create outward call",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/ringostat/webhook/": {
+      "post": {
+        "operationId": "ringostat_webhook_create",
+        "tags": [
+          "ringostat"
+        ],
+        "responses": {
+          "201": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create webhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/connect/": {
+      "post": {
+        "operationId": "wazzup_connect_create",
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create connect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/iframe/": {
+      "post": {
+        "operationId": "wazzup_iframe_create",
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create iframe",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/message/": {
+      "post": {
+        "operationId": "wazzup_message_create",
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupMessage"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupMessage"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupMessage"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupMessage"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create message",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/settings/": {
+      "get": {
+        "operationId": "wazzup_settings_retrieve",
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "wazzup_settings_update",
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupSettings"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "wazzup_settings_partial_update",
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWazzupSettings"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWazzupSettings"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWazzupSettings"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupSettings"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch settings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/sync/": {
+      "post": {
+        "operationId": "wazzup_sync_create",
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create sync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/templates/": {
+      "get": {
+        "operationId": "wazzup_templates_retrieve",
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get templates",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/triggers/": {
+      "get": {
+        "operationId": "wazzup_triggers_list",
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WazzupTrigger"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get triggers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "wazzup_triggers_create",
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupTrigger"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupTrigger"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupTrigger"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create triggers",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wazzup/triggers/{id}/": {
+      "put": {
+        "operationId": "wazzup_triggers_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupTrigger"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupTrigger"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupTrigger"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update triggers"
+      },
+      "patch": {
+        "operationId": "wazzup_triggers_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWazzupTrigger"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWazzupTrigger"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWazzupTrigger"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupTrigger"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch triggers"
+      },
+      "delete": {
+        "operationId": "wazzup_triggers_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wazzup"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete triggers"
+      }
+    },
+    "/v1/crm/integrations/wazzup/webhook/": {
+      "post": {
+        "operationId": "wazzup_webhook_create",
+        "description": "Concrete view for creating a model instance.",
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupWebhook"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupWebhook"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupWebhook"
+              }
+            }
+          }
+        },
+        "security": [
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupWebhook"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create webhook",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wialon/accounts/": {
+      "get": {
+        "operationId": "wialon_accounts_list",
+        "tags": [
+          "wialon"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WialonAccount"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get accounts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "wialon_accounts_create",
+        "tags": [
+          "wialon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create accounts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wialon/accounts/{id}/": {
+      "get": {
+        "operationId": "wialon_accounts_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get accounts"
+      },
+      "put": {
+        "operationId": "wialon_accounts_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update accounts"
+      },
+      "patch": {
+        "operationId": "wialon_accounts_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWialonAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWialonAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWialonAccount"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch accounts"
+      },
+      "delete": {
+        "operationId": "wialon_accounts_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete accounts"
+      }
+    },
+    "/v1/crm/integrations/wialon/units/": {
+      "get": {
+        "operationId": "wialon_units_list",
+        "tags": [
+          "wialon"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WialonUnit"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get units",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "wialon_units_create",
+        "tags": [
+          "wialon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonUnit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonUnit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonUnit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonUnit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create units",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/integrations/wialon/units/{id}/": {
+      "put": {
+        "operationId": "wialon_units_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonUnit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonUnit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WialonUnit"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonUnit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update units"
+      },
+      "patch": {
+        "operationId": "wialon_units_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWialonUnit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWialonUnit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedWialonUnit"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WialonUnit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch units"
+      },
+      "delete": {
+        "operationId": "wialon_units_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wialon"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete units"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BinotelCall": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "general_call_id": {
+            "type": "string",
+            "title": "Идентификатор звонка",
+            "maxLength": 32
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Начало звонка"
+          },
+          "call_type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CallTypeEnum"
+              }
+            ],
+            "title": "Тип звонка",
+            "minimum": 0,
+            "maximum": 32767
+          },
+          "internal_number": {
+            "type": "string",
+            "title": "Внутренний номер",
+            "maxLength": 32
+          },
+          "external_number": {
+            "type": "string",
+            "title": "Номер клиента",
+            "maxLength": 32
+          },
+          "wait_sec": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Ожидание"
+          },
+          "bill_sec": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0,
+            "title": "Разговор"
+          },
+          "disposition": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/DispositionEnum"
+              }
+            ],
+            "title": "Состояние звонка"
+          },
+          "is_new_call": {
+            "type": "boolean",
+            "nullable": true,
+            "title": "Первый звонок"
+          },
+          "employee_name": {
+            "type": "string",
+            "title": "Сотрудник",
+            "maxLength": 255
+          },
+          "employee_email": {
+            "type": "string",
+            "title": "Email сотрудника",
+            "maxLength": 255
+          },
+          "pbx_number": {
+            "type": "string",
+            "title": "Номер АТС",
+            "maxLength": 32
+          },
+          "pbx_name": {
+            "type": "string",
+            "title": "Название номера АТС",
+            "maxLength": 255
+          },
+          "has_recording": {
+            "type": "boolean",
+            "title": "Есть запись"
+          },
+          "client": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "call_type",
+          "client",
+          "disposition",
+          "general_call_id",
+          "id",
+          "start_time"
+        ]
+      },
+      "BinotelDaily": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "incoming": {
+            "type": "integer"
+          },
+          "outgoing": {
+            "type": "integer"
+          },
+          "answered": {
+            "type": "integer"
+          },
+          "missed": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "answered",
+          "date",
+          "incoming",
+          "missed",
+          "outgoing"
+        ]
+      },
+      "BinotelEmployee": {
+        "type": "object",
+        "properties": {
+          "employee_email": {
+            "type": "string"
+          },
+          "employee_name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "employee_email",
+          "employee_name"
+        ]
+      },
+      "BinotelEmployeeStat": {
+        "type": "object",
+        "properties": {
+          "employee_email": {
+            "type": "string"
+          },
+          "employee_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "count": {
+            "type": "integer"
+          },
+          "answered": {
+            "type": "integer"
+          },
+          "missed": {
+            "type": "integer"
+          },
+          "avg_bill_sec": {
+            "type": "integer"
+          },
+          "total_bill_sec": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "answered",
+          "avg_bill_sec",
+          "count",
+          "employee_email",
+          "employee_name",
+          "missed",
+          "total_bill_sec"
+        ]
+      },
+      "BinotelGeneral": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "incoming": {
+            "type": "integer"
+          },
+          "outgoing": {
+            "type": "integer"
+          },
+          "answered": {
+            "type": "integer"
+          },
+          "missed": {
+            "type": "integer"
+          },
+          "avg_wait_sec": {
+            "type": "integer"
+          },
+          "avg_bill_sec": {
+            "type": "integer"
+          },
+          "total_bill_sec": {
+            "type": "integer"
+          },
+          "unique_numbers": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "answered",
+          "avg_bill_sec",
+          "avg_wait_sec",
+          "count",
+          "incoming",
+          "missed",
+          "outgoing",
+          "total_bill_sec",
+          "unique_numbers"
+        ]
+      },
+      "BinotelRecording": {
+        "type": "object",
+        "properties": {
+          "general_call_id": {
+            "type": "string"
+          },
+          "call_id": {
+            "type": "string"
+          }
+        }
+      },
+      "CallTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Входящий\n* `1` - Исходящий"
+      },
+      "ChatTypeEnum": {
+        "enum": [
+          "whatsapp",
+          "whatsgroup",
+          "instagram",
+          "telegram",
+          "telegroup"
+        ],
+        "type": "string",
+        "description": "* `whatsapp` - whatsapp\n* `whatsgroup` - whatsgroup\n* `instagram` - instagram\n* `telegram` - telegram\n* `telegroup` - telegroup"
+      },
+      "Contact": {
+        "type": "object",
+        "description": "Base serializer class.",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "avatarUri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "username": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "quotedMessage": {},
+          "sentFromApp": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CurrencyEnum": {
+        "enum": [
+          "KZT",
+          "USD",
+          "RUB",
+          "EUR",
+          "UZS",
+          "KGS",
+          "AED",
+          "SAR"
+        ],
+        "type": "string",
+        "description": "* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+      },
+      "DeliveryStatusEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "description": "* `0` - Ожидает\n* `1` - В работе\n* `2` - Доставлено\n* `3` - Отменено"
+      },
+      "DeliveryTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Доставка\n* `1` - Самовывоз"
+      },
+      "DispositionEnum": {
+        "enum": [
+          "ANSWER",
+          "TRANSFER",
+          "ONLINE",
+          "BUSY",
+          "NOANSWER",
+          "CANCEL",
+          "CONGESTION",
+          "CHANUNAVAIL",
+          "VM",
+          "VM-SUCCESS",
+          "SMS-SENDING",
+          "SMS-SUCCESS",
+          "SMS-FAILED",
+          "SUCCESS",
+          "FAILED"
+        ],
+        "type": "string",
+        "description": "* `ANSWER` - ANSWER\n* `TRANSFER` - TRANSFER\n* `ONLINE` - ONLINE\n* `BUSY` - BUSY\n* `NOANSWER` - NOANSWER\n* `CANCEL` - CANCEL\n* `CONGESTION` - CONGESTION\n* `CHANUNAVAIL` - CHANUNAVAIL\n* `VM` - VM\n* `VM-SUCCESS` - VM-SUCCESS\n* `SMS-SENDING` - SMS-SENDING\n* `SMS-SUCCESS` - SMS-SUCCESS\n* `SMS-FAILED` - SMS-FAILED\n* `SUCCESS` - SUCCESS\n* `FAILED` - FAILED"
+      },
+      "Integration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "code": {
+            "type": "string",
+            "title": "Код",
+            "description": "Код интеграции",
+            "maxLength": 64
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255,
+            "pattern": "^[-a-zA-Z0-9_]+$"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "description": "Название интеграции",
+            "maxLength": 512
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "slogan": {
+            "type": "string",
+            "nullable": true,
+            "title": "Слоган",
+            "description": "Слоган интеграции"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "description": "Тип интеграции\n\n* `integration` - Интеграция\n* `module` - Модуль"
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationPeriod"
+            },
+            "readOnly": true
+          },
+          "variants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationVariant"
+            }
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true,
+            "title": "Описание",
+            "description": "Описание интеграции"
+          },
+          "icon": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Иконка",
+            "description": "Иконка интеграции"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение",
+            "description": "Изображение интеграции"
+          },
+          "image_alt": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Альтернативное изображение",
+            "description": "Альтернативное изображение интеграции"
+          },
+          "disabled": {
+            "type": "boolean",
+            "title": "Отключено",
+            "description": "Отключено интеграцию"
+          },
+          "extra": {
+            "$ref": "#/components/schemas/IntegrationExtra"
+          },
+          "demo_duration": {
+            "type": "string",
+            "title": "Демо период"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TagsEnum"
+            }
+          },
+          "modules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModulesEnum"
+            },
+            "title": "Модули",
+            "description": "Модули интеграции"
+          },
+          "visable": {
+            "type": "boolean",
+            "title": "Видимость",
+            "description": "Видимость интеграции для пользователей"
+          }
+        },
+        "required": [
+          "code",
+          "extra",
+          "id",
+          "name",
+          "prices",
+          "variants"
+        ]
+      },
+      "IntegrationBulkConnection": {
+        "type": "object",
+        "description": "Connect several integrations in one request — one admin message for the lot.\n\nItems that can't be connected unattended are skipped; the response lists what\nwas actually attached. New companies get their bundle from `POST /v1/tenant/`.",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationBulkConnectionItem"
+            }
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "IntegrationBulkConnectionItem": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "demo": {
+            "type": "boolean",
+            "default": false
+          },
+          "extra": {},
+          "integration_period": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "slug"
+        ]
+      },
+      "IntegrationConnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "is_demo": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "integration_period": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "demo": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец",
+            "description": "Конец подключения интеграции"
+          },
+          "connected": {
+            "type": "boolean",
+            "title": "Подключено",
+            "description": "Подключено интеграция"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Дополнительно",
+            "description": "Дополнительные данные"
+          },
+          "demo_end_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец демо",
+            "description": "Конец демо-периода"
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Компания",
+            "description": "Компания"
+          },
+          "integration": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Интеграция",
+            "description": "Интеграция"
+          }
+        },
+        "required": [
+          "created_at",
+          "demo_end_at",
+          "end_at",
+          "id",
+          "integration",
+          "is_demo",
+          "tenant",
+          "updated_at"
+        ]
+      },
+      "IntegrationDisconnection": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "IntegrationExtra": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "specs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IntegrationSpecs"
+            }
+          },
+          "is_yume_cloud": {
+            "type": "boolean",
+            "default": false
+          },
+          "link": {
+            "type": "string"
+          },
+          "manual": {
+            "type": "boolean",
+            "default": true
+          }
+        }
+      },
+      "IntegrationPeriod": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "variant": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationVariant"
+              }
+            ],
+            "readOnly": true
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IntegrationPeriodTypeEnum"
+              }
+            ],
+            "title": "Тип",
+            "description": "Тип тарифа\n\n* `period` - period\n* `amount` - amount"
+          },
+          "currency": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CurrencyEnum"
+              }
+            ],
+            "default": "KZT",
+            "title": "Валюта",
+            "description": "Валюта тарифа\n\n* `KZT` - KZT\n* `USD` - USD\n* `RUB` - RUB\n* `EUR` - EUR\n* `UZS` - UZS\n* `KGS` - KGS\n* `AED` - AED\n* `SAR` - SAR"
+          },
+          "months": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MonthsEnum"
+              }
+            ],
+            "default": 1,
+            "title": "Количество месяцев",
+            "description": "Длительность тарифа в месяцах\n\n* `1` - 1 месяц\n* `3` - 3 месяца\n* `6` - 6 месяцев\n* `12` - 12 месяцев",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Цена",
+            "description": "Цена тарифа"
+          },
+          "amount": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "title": "Количество",
+            "description": "Количество"
+          },
+          "integration": {
+            "type": "integer",
+            "title": "Интеграция",
+            "description": "Интеграция"
+          },
+          "tenant": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Компания",
+            "description": "Компания"
+          }
+        },
+        "required": [
+          "id",
+          "integration",
+          "type",
+          "variant"
+        ]
+      },
+      "IntegrationPeriodTypeEnum": {
+        "enum": [
+          "period",
+          "amount"
+        ],
+        "type": "string",
+        "description": "* `period` - period\n* `amount` - amount"
+      },
+      "IntegrationSpecs": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "params": {}
+        },
+        "required": [
+          "label",
+          "name",
+          "params"
+        ]
+      },
+      "IntegrationTypeEnum": {
+        "enum": [
+          "integration",
+          "module"
+        ],
+        "type": "string",
+        "description": "* `integration` - Интеграция\n* `module` - Модуль"
+      },
+      "IntegrationVariant": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "code": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "limits": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "ModulesEnum": {
+        "enum": [
+          "finance",
+          "sales",
+          "marketing",
+          "other",
+          "hr"
+        ],
+        "type": "string",
+        "description": "* `finance` - Финансы\n* `sales` - Продажи\n* `marketing` - Маркетинг\n* `other` - Другое\n* `hr` - HR"
+      },
+      "MonthsEnum": {
+        "enum": [
+          1,
+          3,
+          6,
+          12
+        ],
+        "type": "integer",
+        "description": "* `1` - 1 месяц\n* `3` - 3 месяца\n* `6` - 6 месяцев\n* `12` - 12 месяцев"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "OrderPaymentStatusFromEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+      },
+      "OrderPaymentStatusToEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+      },
+      "OrderStatusFromEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+      },
+      "OrderStatusToEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "type": "integer",
+        "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+      },
+      "PaginatedBinotelCallList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BinotelCall"
+            }
+          }
+        }
+      },
+      "PaginatedRingostatResultList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RingostatResult"
+            }
+          }
+        }
+      },
+      "PatchedWazzupSettings": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "type": "string"
+          },
+          "funnel_id": {
+            "type": "integer"
+          },
+          "stage_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedWazzupTrigger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WazzupTriggerTypeEnum"
+              }
+            ],
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "order_status_from": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusFromEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_status_to": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusToEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_payment_status_from": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderPaymentStatusFromEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_payment_status_to": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderPaymentStatusToEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "sale_status_from": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SaleStatusFromEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "sale_status_to": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SaleStatusToEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "delivery_type": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryTypeEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "delivery_status": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "template_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "template_keys": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "nullable": true
+          },
+          "timeout": {
+            "type": "string"
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          }
+        }
+      },
+      "PatchedWialonAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "host": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Сервер",
+            "maxLength": 200
+          },
+          "token": {
+            "type": "string",
+            "title": "Токен",
+            "maxLength": 255
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        }
+      },
+      "PatchedWialonUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "inventory": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64"
+          },
+          "unit_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64"
+          },
+          "mileage": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "x": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,8})?$",
+            "nullable": true
+          },
+          "y": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,8})?$",
+            "nullable": true
+          }
+        }
+      },
+      "RingostatCall": {
+        "type": "object",
+        "properties": {
+          "destination": {
+            "type": "string",
+            "writeOnly": true,
+            "maxLength": 255
+          },
+          "extension": {
+            "type": "string",
+            "writeOnly": true,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "destination",
+          "extension"
+        ]
+      },
+      "RingostatConnect": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Конец",
+            "description": "Конец подключения интеграции"
+          },
+          "connected": {
+            "type": "boolean",
+            "title": "Подключено",
+            "description": "Подключено интеграция"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Дополнительно",
+            "description": "Дополнительные данные"
+          },
+          "demo_end_at": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Конец демо",
+            "description": "Конец демо-периода"
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Компания",
+            "description": "Компания"
+          },
+          "integration": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Интеграция",
+            "description": "Интеграция"
+          },
+          "integration_period": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Тариф",
+            "description": "Тариф интеграции"
+          }
+        },
+        "required": [
+          "created_at",
+          "end_at",
+          "id",
+          "integration",
+          "tenant",
+          "updated_at"
+        ]
+      },
+      "RingostatCreateClient": {
+        "type": "object",
+        "properties": {
+          "client_id": {
+            "type": "string",
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "client_id"
+        ]
+      },
+      "RingostatResult": {
+        "type": "object",
+        "properties": {
+          "caller": {
+            "type": "string",
+            "readOnly": true
+          },
+          "dst": {
+            "type": "string",
+            "readOnly": true
+          },
+          "pool_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "disposition": {
+            "type": "string",
+            "readOnly": true
+          },
+          "calldate": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "category_mark": {
+            "type": "string",
+            "readOnly": true
+          },
+          "duration": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "call_type": {
+            "type": "string",
+            "readOnly": true
+          },
+          "waittime": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "billsec": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "connected_with": {
+            "type": "string",
+            "readOnly": true
+          },
+          "call_counter": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "proper_flag": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "repeated_flag": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "utm_source": {
+            "type": "string",
+            "readOnly": true
+          },
+          "utm_medium": {
+            "type": "string",
+            "readOnly": true
+          },
+          "utm_campaign": {
+            "type": "string",
+            "readOnly": true
+          },
+          "utm_content": {
+            "type": "string",
+            "readOnly": true
+          },
+          "utm_term": {
+            "type": "string",
+            "readOnly": true
+          },
+          "uniqueid": {
+            "type": "string",
+            "readOnly": true
+          },
+          "category_number": {
+            "type": "string",
+            "readOnly": true
+          },
+          "employee_number": {
+            "type": "string",
+            "readOnly": true
+          },
+          "employee_mark": {
+            "type": "string",
+            "readOnly": true
+          },
+          "client_id": {
+            "type": "string",
+            "readOnly": true
+          },
+          "remote_ip": {
+            "type": "string",
+            "readOnly": true
+          },
+          "refferrer": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true
+          },
+          "landing": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true
+          },
+          "call_card": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true
+          },
+          "additional_number": {
+            "type": "string",
+            "readOnly": true
+          },
+          "has_recording": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "scheme_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "duration_ms": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "employee_fio": {
+            "type": "string",
+            "readOnly": true
+          },
+          "department": {
+            "type": "string",
+            "readOnly": true
+          },
+          "caller_number": {
+            "type": "string",
+            "readOnly": true
+          },
+          "recording": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true
+          },
+          "recording_wav": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true
+          },
+          "yume_client_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "yume_client_id": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "additional_number",
+          "billsec",
+          "call_card",
+          "call_counter",
+          "call_type",
+          "calldate",
+          "caller",
+          "caller_number",
+          "category_mark",
+          "category_number",
+          "client_id",
+          "connected_with",
+          "department",
+          "disposition",
+          "dst",
+          "duration",
+          "duration_ms",
+          "employee_fio",
+          "employee_mark",
+          "employee_number",
+          "has_recording",
+          "landing",
+          "pool_name",
+          "proper_flag",
+          "recording",
+          "recording_wav",
+          "refferrer",
+          "remote_ip",
+          "repeated_flag",
+          "scheme_name",
+          "uniqueid",
+          "utm_campaign",
+          "utm_content",
+          "utm_medium",
+          "utm_source",
+          "utm_term",
+          "waittime",
+          "yume_client_id",
+          "yume_client_name"
+        ]
+      },
+      "SaleStatusFromEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - черновик\n* `1` - Продано\n* `2` - Отменено"
+      },
+      "SaleStatusToEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - черновик\n* `1` - Продано\n* `2` - Отменено"
+      },
+      "TagsEnum": {
+        "enum": [
+          "free",
+          "promo",
+          "popular",
+          "recommend"
+        ],
+        "type": "string",
+        "description": "* `free` - Бесплатно\n* `promo` - Акция\n* `popular` - Популярное\n* `recommend` - Рекомендуем"
+      },
+      "WazzupMessage": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "message": {
+            "type": "string",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            },
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "phone"
+        ]
+      },
+      "WazzupSettings": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "type": "string"
+          },
+          "funnel_id": {
+            "type": "integer"
+          },
+          "stage_id": {
+            "type": "integer"
+          }
+        }
+      },
+      "WazzupTrigger": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "documents": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/WazzupTriggerTypeEnum"
+              }
+            ],
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "order_status_from": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusFromEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_status_to": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderStatusToEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_payment_status_from": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderPaymentStatusFromEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "order_payment_status_to": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/OrderPaymentStatusToEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "sale_status_from": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SaleStatusFromEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "sale_status_to": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SaleStatusToEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "delivery_type": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryTypeEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "delivery_status": {
+            "nullable": true,
+            "minimum": -32768,
+            "maximum": 32767,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DeliveryStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "text": {
+            "type": "string",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648
+          },
+          "template_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "template_keys": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "maxLength": 255
+            },
+            "nullable": true
+          },
+          "timeout": {
+            "type": "string"
+          },
+          "tenant": {
+            "type": "integer",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "tenant",
+          "updated_at"
+        ]
+      },
+      "WazzupTriggerTypeEnum": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "description": "* `0` - Аренда\n* `1` - Оплата аренды\n* `2` - Продажа\n* `3` - Доставка"
+      },
+      "WazzupWebhook": {
+        "type": "object",
+        "description": "Base serializer class.",
+        "properties": {
+          "messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WazzupWebhookMessage"
+            }
+          },
+          "statuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WazzupWebhookMessageStatus"
+            }
+          },
+          "createDeal": {},
+          "createContact": {}
+        }
+      },
+      "WazzupWebhookInstagramPost": {
+        "type": "object",
+        "description": "Base serializer class.",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "src": {
+            "type": "string",
+            "format": "uri"
+          },
+          "sha1": {
+            "type": "string"
+          },
+          "likes": {
+            "type": "integer"
+          },
+          "author": {
+            "type": "string"
+          },
+          "comments": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "updatedAt": {
+            "type": "integer"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "previewSha1": {
+            "type": "string"
+          },
+          "imageSrc": {
+            "type": "string",
+            "format": "uri"
+          },
+          "previewSrc": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "WazzupWebhookMessage": {
+        "type": "object",
+        "description": "Base serializer class.",
+        "properties": {
+          "messageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "channelId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "chatType": {
+            "$ref": "#/components/schemas/ChatTypeEnum"
+          },
+          "chatId": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/WazzupWebhookMessageTypeEnum"
+          },
+          "isEcho": {
+            "type": "boolean"
+          },
+          "contact": {
+            "$ref": "#/components/schemas/Contact"
+          },
+          "text": {
+            "type": "string"
+          },
+          "contentUri": {
+            "type": "string",
+            "format": "uri"
+          },
+          "authorName": {
+            "type": "string"
+          },
+          "authorId": {
+            "type": "string"
+          },
+          "instPost": {
+            "$ref": "#/components/schemas/WazzupWebhookInstagramPost"
+          },
+          "status": {
+            "$ref": "#/components/schemas/WazzupWebhookMessageStatusEnum"
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "WazzupWebhookMessageStatus": {
+        "type": "object",
+        "description": "Base serializer class.",
+        "properties": {
+          "messageId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/WazzupWebhookMessageStatusStatusEnum"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "error": {}
+        }
+      },
+      "WazzupWebhookMessageStatusEnum": {
+        "enum": [
+          "sent",
+          "delivered",
+          "read",
+          "error",
+          "inbound"
+        ],
+        "type": "string",
+        "description": "* `sent` - sent\n* `delivered` - delivered\n* `read` - read\n* `error` - error\n* `inbound` - inbound"
+      },
+      "WazzupWebhookMessageStatusStatusEnum": {
+        "enum": [
+          "sent",
+          "delivered",
+          "read",
+          "error"
+        ],
+        "type": "string",
+        "description": "* `sent` - sent\n* `delivered` - delivered\n* `read` - read\n* `error` - error"
+      },
+      "WazzupWebhookMessageTypeEnum": {
+        "enum": [
+          "text",
+          "image",
+          "audio",
+          "video",
+          "document",
+          "vcard",
+          "geo",
+          "wapi_template",
+          "unsupported",
+          "missing_call",
+          "unknown"
+        ],
+        "type": "string",
+        "description": "* `text` - text\n* `image` - image\n* `audio` - audio\n* `video` - video\n* `document` - document\n* `vcard` - vcard\n* `geo` - geo\n* `wapi_template` - wapi_template\n* `unsupported` - unsupported\n* `missing_call` - missing_call\n* `unknown` - unknown"
+      },
+      "WialonAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "host": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Сервер",
+            "maxLength": 200
+          },
+          "token": {
+            "type": "string",
+            "title": "Токен",
+            "maxLength": 255
+          },
+          "extra": {
+            "title": "Доп. данные"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "token",
+          "updated_at"
+        ]
+      },
+      "WialonUnit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "inventory": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64"
+          },
+          "unit_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": -9223372036854775808,
+            "format": "int64"
+          },
+          "mileage": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "x": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,8})?$",
+            "nullable": true
+          },
+          "y": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,4}(?:\\.\\d{0,8})?$",
+            "nullable": true
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "unit_id",
+          "updated_at"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

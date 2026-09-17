@@ -1,0 +1,5039 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Транзакции",
+    "version": "1.0.0",
+    "description": "Финансовые транзакции и обработка платежей."
+  },
+  "paths": {
+    "/v1/finances/accounts/": {
+      "get": {
+        "operationId": "accounts_list",
+        "tags": [
+          "accounts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentAccount"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get accounts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "accounts_create",
+        "tags": [
+          "accounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create accounts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/accounts/{id}/": {
+      "get": {
+        "operationId": "accounts_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "accounts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get accounts"
+      },
+      "put": {
+        "operationId": "accounts_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "accounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentAccount"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update accounts"
+      },
+      "patch": {
+        "operationId": "accounts_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "accounts"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentAccount"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentAccount"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentAccount"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentAccount"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch accounts"
+      },
+      "delete": {
+        "operationId": "accounts_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "accounts"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete accounts"
+      }
+    },
+    "/v1/finances/categories/": {
+      "get": {
+        "operationId": "categories_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "title": "Тип",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Приход\n* `1` - Расход"
+          },
+          {
+            "in": "query",
+            "name": "type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentCategory"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories"
+      },
+      "post": {
+        "operationId": "categories_create",
+        "tags": [
+          "categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCategory"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCategory"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCategory"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentCategory"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create categories",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/categories/{id}/": {
+      "get": {
+        "operationId": "categories_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentCategory"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get categories"
+      },
+      "put": {
+        "operationId": "categories_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCategory"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCategory"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentCategory"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentCategory"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update categories"
+      },
+      "patch": {
+        "operationId": "categories_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentCategory"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentCategory"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentCategory"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentCategory"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch categories"
+      },
+      "delete": {
+        "operationId": "categories_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "categories"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete categories"
+      }
+    },
+    "/v1/finances/exchanges/": {
+      "post": {
+        "operationId": "exchanges_create",
+        "tags": [
+          "exchanges"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementExchange"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementExchange"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementExchange"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementExchange"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create exchanges",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/exchanges/{id}/": {
+      "put": {
+        "operationId": "exchanges_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "exchanges"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementExchangeEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementExchangeEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementExchangeEdit"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementExchangeEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update exchanges"
+      },
+      "patch": {
+        "operationId": "exchanges_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "exchanges"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransactionStatementExchangeEdit"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransactionStatementExchangeEdit"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransactionStatementExchangeEdit"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementExchangeEdit"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch exchanges"
+      }
+    },
+    "/v1/finances/refunds/": {
+      "post": {
+        "operationId": "refunds_create",
+        "tags": [
+          "refunds"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionRefundCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionRefundCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionRefundCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionRefundCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create refunds",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/schedules/": {
+      "get": {
+        "operationId": "schedules_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "weekend",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "schedules"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/OrderRequestSchedule"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get schedules"
+      },
+      "post": {
+        "operationId": "schedules_create",
+        "tags": [
+          "schedules"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequestSchedule"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequestSchedule"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequestSchedule"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderRequestSchedule"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create schedules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/schedules/{schedule_id}/": {
+      "put": {
+        "operationId": "schedules_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "schedules"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequestSchedule"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequestSchedule"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/OrderRequestSchedule"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderRequestSchedule"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update schedules"
+      },
+      "patch": {
+        "operationId": "schedules_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "schedule_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "schedules"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedOrderRequestSchedule"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedOrderRequestSchedule"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedOrderRequestSchedule"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderRequestSchedule"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch schedules"
+      }
+    },
+    "/v1/finances/statements/": {
+      "get": {
+        "operationId": "statements_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "counterparty",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "counterparty__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inventory",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inventory__group",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "inventory__group__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "inventory__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__account",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__account__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__created_by",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__created_by__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__method",
+            "schema": {
+              "type": "integer",
+              "title": "Способ",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Приход\n* `1` - Расход"
+          },
+          {
+            "in": "query",
+            "name": "transaction__method__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__request",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__request__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__sale",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__sale__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "transaction__workshop",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transaction__workshop__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "title": "Тип",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Приход\n* `1` - Расход"
+          },
+          {
+            "in": "query",
+            "name": "type__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "statements"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedTransactionStatementList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get statements"
+      },
+      "post": {
+        "operationId": "statements_create",
+        "tags": [
+          "statements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create statements",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/statements/{id}/": {
+      "get": {
+        "operationId": "statements_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "statements"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatement"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get statements"
+      },
+      "put": {
+        "operationId": "statements_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "statements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TransactionStatementCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update statements"
+      },
+      "patch": {
+        "operationId": "statements_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "statements"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransactionStatementCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransactionStatementCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransactionStatementCreate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch statements"
+      },
+      "delete": {
+        "operationId": "statements_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "statements"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete statements"
+      }
+    },
+    "/v1/finances/statements/general/": {
+      "get": {
+        "operationId": "statements_general_retrieve",
+        "tags": [
+          "statements"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionStatementGeneral"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get general",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/transactions/": {
+      "get": {
+        "operationId": "transactions_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "account",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "account__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__gte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__date__lte",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_by",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "deposit",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "deposit__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "maintenance",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "maintenance__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "method",
+            "schema": {
+              "type": "integer",
+              "title": "Способ",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Приход\n* `1` - Расход"
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "refund",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "refund__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "request__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "sale",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sale__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "statement",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "statement__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "title": "Статус",
+              "enum": [
+                "expired",
+                "failure",
+                "pending",
+                "success"
+              ]
+            },
+            "description": "* `pending` - Ожидает оплаты\n* `success` - Успешно\n* `failure` - Ошибка\n* `expired` - Истёк срок"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "workshop",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "workshop__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "transactions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedTransactionViewList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get transactions"
+      },
+      "post": {
+        "operationId": "transactions_create",
+        "tags": [
+          "transactions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create transactions",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/transactions/{transaction_id}/": {
+      "get": {
+        "operationId": "transactions_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "transactions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get transactions"
+      },
+      "put": {
+        "operationId": "transactions_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "transactions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update transactions"
+      },
+      "patch": {
+        "operationId": "transactions_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "transactions"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransaction"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransaction"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedTransaction"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch transactions"
+      },
+      "delete": {
+        "operationId": "transactions_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "transaction_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "transactions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete transactions"
+      }
+    },
+    "/v1/finances/transactions/export/": {
+      "get": {
+        "operationId": "transactions_export_retrieve",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xlsx"
+              ]
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "transactions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionExport"
+                }
+              },
+              "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionExport"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get export"
+      }
+    },
+    "/v1/finances/transactions/general/": {
+      "get": {
+        "operationId": "transactions_general_retrieve",
+        "tags": [
+          "transactions"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionGeneral"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get general",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/types/": {
+      "get": {
+        "operationId": "types_list",
+        "tags": [
+          "types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PaymentType"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get types",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "types_create",
+        "tags": [
+          "types"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentType"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentType"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentType"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create types",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/finances/types/{id}/": {
+      "get": {
+        "operationId": "types_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get types"
+      },
+      "put": {
+        "operationId": "types_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentType"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentType"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentType"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update types"
+      },
+      "patch": {
+        "operationId": "types_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentType"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentType"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedPaymentType"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaymentType"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch types"
+      },
+      "delete": {
+        "operationId": "types_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "types"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete types"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BaseTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              }
+            ],
+            "title": "Способ",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Сумма"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Способ оплаты"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "title": "Комментарий"
+          },
+          "created_by": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Создал"
+          },
+          "deposit": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Залог"
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Продажа"
+          },
+          "workshop": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Задача сервиса"
+          },
+          "maintenance": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Обслуживание"
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Аренда"
+          },
+          "request_status": {
+            "type": "integer"
+          },
+          "account": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Счёт"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Статья"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusE73Enum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Доп. данные"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "request_status"
+        ]
+      },
+      "BlankEnum": {
+        "enum": [
+          ""
+        ]
+      },
+      "CarInventory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Группа инвентаря"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "unique_id": {
+            "type": "string",
+            "nullable": true,
+            "title": "Артикул",
+            "maxLength": 255
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Категория"
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "title": "Изображение"
+          },
+          "extra": {
+            "title": "Доп. данные"
+          },
+          "subleases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InventorySublease"
+            },
+            "readOnly": true
+          },
+          "state": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Состояние"
+          },
+          "disabled": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DisabledEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "rental_point": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Точка проката"
+          },
+          "car": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/InventoryCar"
+              }
+            ],
+            "readOnly": true
+          }
+        },
+        "required": [
+          "car",
+          "id",
+          "name",
+          "subleases"
+        ]
+      },
+      "CommentAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "user": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "context": {
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentLink"
+            },
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "body",
+          "content_type",
+          "created_at",
+          "id",
+          "links",
+          "object_id",
+          "updated_at",
+          "user"
+        ]
+      },
+      "CommentLink": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели",
+            "readOnly": true
+          },
+          "content_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64",
+            "title": "ID объекта"
+          },
+          "label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "content_type",
+          "content_type_label",
+          "label",
+          "object_id",
+          "url"
+        ]
+      },
+      "DirectionEnum": {
+        "enum": [
+          "in",
+          "out"
+        ],
+        "type": "string",
+        "description": "* `in` - in\n* `out` - out"
+      },
+      "DisabledEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "description": "* `0` - удалить\n* `1` - Архив\n* `2` - Списано"
+      },
+      "FileAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "file": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "content_type",
+          "created_at",
+          "created_by",
+          "extension",
+          "hash",
+          "id",
+          "name",
+          "object_id"
+        ]
+      },
+      "ImageAttachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "image": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "thumb": {
+            "type": "string",
+            "format": "uri",
+            "readOnly": true,
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "extension": {
+            "type": "string",
+            "readOnly": true
+          },
+          "hash": {
+            "type": "string",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели"
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "content_type",
+          "created_at",
+          "created_by",
+          "extension",
+          "hash",
+          "id",
+          "name",
+          "object_id",
+          "thumb"
+        ]
+      },
+      "InventoryCar": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "type": {
+            "$ref": "#/components/schemas/InventoryCarTypeEnum"
+          },
+          "brand": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "model": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "tech_passport": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "serial": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "vin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 18
+          },
+          "extra": {}
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "InventoryCarTypeEnum": {
+        "enum": [
+          "CAR",
+          "SCOOTER",
+          "MOTORCYCLE"
+        ],
+        "type": "string",
+        "description": "* `CAR` - Автомобиль\n* `SCOOTER` - Электросамокат\n* `MOTORCYCLE` - Мотоцикл/Мопед"
+      },
+      "InventorySublease": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "type": "integer",
+            "title": "Инвентарь"
+          },
+          "user": {
+            "type": "integer",
+            "title": "Владелец субаренды"
+          },
+          "percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,3}(?:\\.\\d{0,2})?$",
+            "title": "Процент субаренды"
+          },
+          "start_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Начало периода"
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Конец периода"
+          },
+          "is_current": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "inventory",
+          "is_current",
+          "percent",
+          "user"
+        ]
+      },
+      "MethodD33Enum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Приход\n* `1` - Расход"
+      },
+      "NullEnum": {
+        "enum": [
+          null
+        ]
+      },
+      "OrderRequestSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "request": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_penalty": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_inventory": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_service": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "amount_paid": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "amount_transaction": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "weekend": {
+            "type": "boolean"
+          },
+          "custom": {
+            "type": "boolean"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderRequestScheduleTransaction"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "amount",
+          "amount_paid",
+          "amount_transaction",
+          "date",
+          "id",
+          "request",
+          "request_inventory",
+          "request_penalty",
+          "request_service",
+          "transactions"
+        ]
+      },
+      "OrderRequestScheduleTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "transaction": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "amount",
+          "id",
+          "transaction"
+        ]
+      },
+      "PaginatedTransactionStatementList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionStatement"
+            }
+          }
+        }
+      },
+      "PaginatedTransactionViewList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionView"
+            }
+          }
+        }
+      },
+      "PatchedOrderRequestSchedule": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "request": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_penalty": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_inventory": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "request_service": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "amount_paid": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "amount_transaction": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "weekend": {
+            "type": "boolean"
+          },
+          "custom": {
+            "type": "boolean"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrderRequestScheduleTransaction"
+            },
+            "readOnly": true
+          }
+        }
+      },
+      "PatchedPaymentAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "default": {
+            "type": "boolean",
+            "title": "По умолчанию"
+          },
+          "initial": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Начальный остаток"
+          },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "format": "int64"
+            },
+            "title": "Способы оплаты"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Порядок"
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedPaymentCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Порядок"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeD33Enum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Включена"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Родительская статья"
+          }
+        }
+      },
+      "PatchedPaymentType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Порядок"
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "readOnly": true,
+            "default": "",
+            "title": "Телефон Kaspi"
+          },
+          "kaspi_organization_id": {
+            "type": "string",
+            "readOnly": true,
+            "default": "",
+            "title": "Организация Kaspi"
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        }
+      },
+      "PatchedTransaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "kaspi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionKaspi"
+              }
+            ],
+            "readOnly": true
+          },
+          "kaspi_pay": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": false
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "writeOnly": true,
+            "pattern": "^\\d{10}$"
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "writeOnly": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              }
+            ],
+            "title": "Способ",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Сумма"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusE73Enum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Доп. данные"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "title": "Комментарий"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "exchange": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Связанный перевод"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Способ оплаты"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Создал"
+          },
+          "account": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Счёт"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Статья"
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Продажа"
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Аренда"
+          },
+          "workshop": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Задача сервиса"
+          },
+          "maintenance": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Обслуживание"
+          },
+          "deposit": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Залог"
+          },
+          "penalty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Штраф"
+          },
+          "bonus": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Бонусная операция"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "PatchedTransactionStatementCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Инвентарь"
+          },
+          "counterparty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Контрагент"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "method": {
+            "writeOnly": true,
+            "nullable": true,
+            "default": 1,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "type": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "account": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "category": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "sale": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "maintenance": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "workshop": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "writeOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "PatchedTransactionStatementExchangeEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "account_from": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "account_to": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "writeOnly": true
+            },
+            "writeOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date-time",
+            "writeOnly": true
+          }
+        }
+      },
+      "PaymentAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "default": {
+            "type": "boolean",
+            "title": "По умолчанию"
+          },
+          "initial": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Начальный остаток"
+          },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "maximum": 9223372036854775807,
+              "minimum": -9223372036854775808,
+              "format": "int64"
+            },
+            "title": "Способы оплаты"
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Порядок"
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "balance",
+          "created_at",
+          "deleted",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "PaymentCategory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Порядок"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeD33Enum"
+              }
+            ],
+            "title": "Тип",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Включена"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Родительская статья"
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "name",
+          "updated_at"
+        ]
+      },
+      "PaymentType": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "deleted": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "name": {
+            "type": "string",
+            "title": "Название",
+            "maxLength": 255
+          },
+          "order": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": -2147483648,
+            "nullable": true,
+            "title": "Порядок"
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "readOnly": true,
+            "default": "",
+            "title": "Телефон Kaspi"
+          },
+          "kaspi_organization_id": {
+            "type": "string",
+            "readOnly": true,
+            "default": "",
+            "title": "Организация Kaspi"
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "created_at",
+          "deleted",
+          "id",
+          "kaspi_organization_id",
+          "kaspi_phone",
+          "name",
+          "updated_at"
+        ]
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ResourceTypeEnum"
+              }
+            ],
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "count_left": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "ResourceTypeEnum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Количество\n* `1` - Сумма"
+      },
+      "StatementMaintenanceResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "maintenance": {
+            "type": "integer"
+          },
+          "resource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Resource"
+              }
+            ],
+            "readOnly": true
+          },
+          "price": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "id",
+          "maintenance",
+          "resource"
+        ]
+      },
+      "StatusE73Enum": {
+        "enum": [
+          "pending",
+          "success",
+          "failure",
+          "expired"
+        ],
+        "type": "string",
+        "description": "* `pending` - Ожидает оплаты\n* `success` - Успешно\n* `failure` - Ошибка\n* `expired` - Истёк срок"
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "kaspi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionKaspi"
+              }
+            ],
+            "readOnly": true
+          },
+          "kaspi_pay": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": false
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "writeOnly": true,
+            "pattern": "^\\d{10}$"
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "writeOnly": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              }
+            ],
+            "title": "Способ",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Сумма"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusE73Enum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Доп. данные"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "title": "Комментарий"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "exchange": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Связанный перевод"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Способ оплаты"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Создал"
+          },
+          "account": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Счёт"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Статья"
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Продажа"
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Аренда"
+          },
+          "workshop": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Задача сервиса"
+          },
+          "maintenance": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Обслуживание"
+          },
+          "deposit": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Залог"
+          },
+          "penalty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Штраф"
+          },
+          "bonus": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Бонусная операция"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "created_by",
+          "id",
+          "kaspi",
+          "updated_at"
+        ]
+      },
+      "TransactionExport": {
+        "type": "object",
+        "properties": {
+          "overview": {
+            "$ref": "#/components/schemas/TransactionExportOverview"
+          },
+          "start_balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "end_balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransactionExportRow"
+            }
+          }
+        },
+        "required": [
+          "end_balance",
+          "overview",
+          "start_balance",
+          "transactions"
+        ]
+      },
+      "TransactionExportAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "TransactionExportExchange": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "$ref": "#/components/schemas/DirectionEnum"
+          },
+          "from_account": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionExportAccount"
+              }
+            ],
+            "nullable": true
+          },
+          "to_account": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionExportAccount"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "direction",
+          "from_account",
+          "to_account"
+        ]
+      },
+      "TransactionExportOverview": {
+        "type": "object",
+        "properties": {
+          "start_at": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "end_at": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "account": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionExportAccount"
+              }
+            ],
+            "nullable": true
+          },
+          "count": {
+            "type": "integer"
+          },
+          "income": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "expense": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "exchange": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "net": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "account",
+          "count",
+          "end_at",
+          "exchange",
+          "expense",
+          "income",
+          "net",
+          "start_at"
+        ]
+      },
+      "TransactionExportRow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "method": {
+            "$ref": "#/components/schemas/MethodD33Enum"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true
+          },
+          "account": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionExportAccount"
+              }
+            ],
+            "nullable": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,16}(?:\\.\\d{0,2})?$"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "exchange": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionExportExchange"
+              }
+            ],
+            "nullable": true
+          }
+        },
+        "required": [
+          "account",
+          "amount",
+          "balance",
+          "category",
+          "comment",
+          "created_at",
+          "exchange",
+          "id",
+          "method",
+          "type"
+        ]
+      },
+      "TransactionGeneral": {
+        "type": "object",
+        "properties": {
+          "income": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "expense": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "profit": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "expense",
+          "income",
+          "profit"
+        ]
+      },
+      "TransactionKaspi": {
+        "type": "object",
+        "properties": {
+          "method": {
+            "$ref": "#/components/schemas/TransactionKaspiMethodEnum"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "payment_id": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "status": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/TransactionKaspiStatusEnum"
+              },
+              {
+                "$ref": "#/components/schemas/BlankEnum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "qr_token": {
+            "type": "string",
+            "nullable": true
+          },
+          "receipt_url": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "payment_id"
+        ]
+      },
+      "TransactionKaspiMethodEnum": {
+        "enum": [
+          "qr",
+          "invoice"
+        ],
+        "type": "string",
+        "description": "* `qr` - QR\n* `invoice` - Invoice"
+      },
+      "TransactionKaspiStatusEnum": {
+        "enum": [
+          "Processed",
+          "RemotePaymentRejected",
+          "CancelledByUser",
+          "NotConfirmedByUser",
+          "CancelledByExternalSource",
+          "ProcessingFailed",
+          "Error",
+          "InsufficientFunds",
+          "InsufficientFundsError",
+          "QrTokenDiscarded",
+          "IrisSrcBlockCode3",
+          "IrisSrcBlockCode1",
+          "IrisSrcBlockCode9",
+          "IrisDestBlockCode10",
+          "IrisDestBlockCode3",
+          "IrisDestBlockCode5",
+          "IrisDestBlockCode7",
+          "Default"
+        ],
+        "type": "string",
+        "description": "* `Processed` - Платеж успешно совершен\n* `RemotePaymentRejected` - Оплата отклонена\n* `CancelledByUser` - Клиент отменил покупку\n* `NotConfirmedByUser` - Покупатель не подтвердил покупку\n* `CancelledByExternalSource` - Отмена покупки, попробуйте еще раз\n* `ProcessingFailed` - Произошла ошибка\n* `Error` - Отмена покупки, попробуйте еще раз\n* `InsufficientFunds` - Недостаточно средств\n* `InsufficientFundsError` - Недостаточно средств\n* `QrTokenDiscarded` - Клиент не отсканировал QR\n* `IrisSrcBlockCode3` - Покупка отклонена, свяжемся с покупателем в течение 5 минут\n* `IrisSrcBlockCode1` - Покупка отклонена, покупатель может обратиться в поддержку 9999\n* `IrisSrcBlockCode9` - Покупка отклонена, покупателю отправлено сообщение в Kaspi.kz\n* `IrisDestBlockCode10` - Продажи с Kaspi Red и Kredit отключены\n* `IrisDestBlockCode3` - Оплата невозможна в связи с прекращением сотрудничества\n* `IrisDestBlockCode5` - Принятие оплаты временно приостановлено\n* `IrisDestBlockCode7` - Лимит оплаты руководителя в своей организации превышен\n* `Default` - Ошибка, проверьте историю транзакций"
+      },
+      "TransactionRefund": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "TransactionRefundCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "reason": {
+            "type": "string",
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "sale": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "payment_type": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "payment_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "deposit": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "payment_amount",
+          "payment_type"
+        ]
+      },
+      "TransactionStatement": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "transaction": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BaseTransaction"
+              }
+            ],
+            "readOnly": true
+          },
+          "inventory": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CarInventory"
+              }
+            ],
+            "readOnly": true
+          },
+          "counterparty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Контрагент"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата"
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              }
+            ],
+            "readOnly": true
+          },
+          "maintenance_resource": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatementMaintenanceResource"
+              }
+            ],
+            "readOnly": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageAttachment"
+            },
+            "readOnly": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileAttachment"
+            },
+            "readOnly": true
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommentAttachment"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "comments",
+          "files",
+          "id",
+          "images",
+          "inventory",
+          "maintenance_resource",
+          "method",
+          "transaction"
+        ]
+      },
+      "TransactionStatementCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "inventory": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Инвентарь"
+          },
+          "counterparty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Контрагент"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "title": "Дата"
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "method": {
+            "writeOnly": true,
+            "nullable": true,
+            "default": 1,
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              },
+              {
+                "$ref": "#/components/schemas/NullEnum"
+              }
+            ]
+          },
+          "type": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "account": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "category": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "sale": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "request": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "maintenance": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "workshop": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "writeOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "amount",
+          "id"
+        ]
+      },
+      "TransactionStatementExchange": {
+        "type": "object",
+        "properties": {
+          "account_from": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "account_to": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "writeOnly": true
+            },
+            "writeOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date-time",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "account_from",
+          "account_to",
+          "amount",
+          "datetime"
+        ]
+      },
+      "TransactionStatementExchangeEdit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "account_from": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "account_to": {
+            "type": "integer",
+            "writeOnly": true
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "writeOnly": true
+            },
+            "writeOnly": true
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "writeOnly": true
+          },
+          "datetime": {
+            "type": "string",
+            "format": "date-time",
+            "writeOnly": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "TransactionStatementGeneral": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer"
+          },
+          "sum": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          },
+          "avg": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$"
+          }
+        },
+        "required": [
+          "avg",
+          "count",
+          "sum"
+        ]
+      },
+      "TransactionView": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "kaspi": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionKaspi"
+              }
+            ],
+            "readOnly": true
+          },
+          "kaspi_pay": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": false
+          },
+          "kaspi_phone": {
+            "type": "string",
+            "writeOnly": true,
+            "pattern": "^\\d{10}$"
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "writeOnly": true
+          },
+          "refund": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionRefund"
+              }
+            ],
+            "readOnly": true
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImageAttachment"
+            },
+            "readOnly": true
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileAttachment"
+            }
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          },
+          "method": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/MethodD33Enum"
+              }
+            ],
+            "title": "Способ",
+            "minimum": -32768,
+            "maximum": 32767
+          },
+          "amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "title": "Сумма"
+          },
+          "status": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/StatusE73Enum"
+              }
+            ],
+            "title": "Статус"
+          },
+          "extra": {
+            "nullable": true,
+            "title": "Доп. данные"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "title": "Комментарий"
+          },
+          "tenant": {
+            "type": "integer"
+          },
+          "exchange": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Связанный перевод"
+          },
+          "type": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Способ оплаты"
+          },
+          "created_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true,
+            "title": "Создал"
+          },
+          "account": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Счёт"
+          },
+          "category": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Статья"
+          },
+          "sale": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Продажа"
+          },
+          "request": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Аренда"
+          },
+          "workshop": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Задача сервиса"
+          },
+          "maintenance": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Обслуживание"
+          },
+          "deposit": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Залог"
+          },
+          "penalty": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Штраф"
+          },
+          "bonus": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Бонусная операция"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        },
+        "required": [
+          "created_by",
+          "files",
+          "id",
+          "images",
+          "kaspi",
+          "refund",
+          "updated_at"
+        ]
+      },
+      "TypeD33Enum": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "description": "* `0` - Приход\n* `1` - Расход"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

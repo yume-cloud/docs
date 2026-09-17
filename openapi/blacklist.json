@@ -1,0 +1,1938 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Чёрный список",
+    "version": "1.0.0",
+    "description": "Внешний blacklist-сервис."
+  },
+  "paths": {
+    "/v1/blacklist/": {
+      "get": {
+        "operationId": "root_list",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBlacklistListList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get blacklist"
+      },
+      "post": {
+        "operationId": "root_create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create blacklist",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/blacklist/{blacklist_id}/": {
+      "get": {
+        "operationId": "root_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get blacklist"
+      },
+      "put": {
+        "operationId": "root_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update blacklist"
+      },
+      "patch": {
+        "operationId": "root_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCreate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch blacklist"
+      },
+      "delete": {
+        "operationId": "root_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete blacklist"
+      }
+    },
+    "/v1/blacklist/{blacklist_id}/disable/": {
+      "get": {
+        "operationId": "disable_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "disable"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistDisable"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get disable"
+      },
+      "post": {
+        "operationId": "disable_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "disable"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistDisable"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistDisable"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistDisable"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistDisable"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create disable"
+      }
+    },
+    "/v1/blacklist/check/": {
+      "get": {
+        "operationId": "check_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "check"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          },
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBlacklistIdentityList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get check"
+      }
+    },
+    "/v1/blacklist/collaborators/": {
+      "get": {
+        "operationId": "collaborators_list",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "disabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "collaborators"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBlacklistCollaboratorList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get collaborators"
+      },
+      "post": {
+        "operationId": "collaborators_create",
+        "tags": [
+          "collaborators"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCollaborator"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create collaborators",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/blacklist/collaborators/{collaborator_id}/": {
+      "get": {
+        "operationId": "collaborators_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collaborator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "collaborators"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCollaborator"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get collaborators"
+      },
+      "put": {
+        "operationId": "collaborators_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collaborator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "collaborators"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCollaborator"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update collaborators"
+      },
+      "patch": {
+        "operationId": "collaborators_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collaborator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "collaborators"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCollaborator"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCollaborator"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCollaborator"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCollaborator"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch collaborators"
+      },
+      "delete": {
+        "operationId": "collaborators_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collaborator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "collaborators"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete collaborators"
+      }
+    },
+    "/v1/blacklist/collaborators/{collaborator_id}/rotate_key/": {
+      "post": {
+        "operationId": "collaborators_rotate_key_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "collaborator_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "collaborators"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCollaborator"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCollaborator"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create rotate key"
+      }
+    },
+    "/v1/blacklist/external/": {
+      "get": {
+        "operationId": "external_list",
+        "parameters": [
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBlacklistListList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get external"
+      },
+      "post": {
+        "operationId": "external_create",
+        "tags": [
+          "external"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create external",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/blacklist/external/{blacklist_id}/": {
+      "get": {
+        "operationId": "external_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get external"
+      },
+      "put": {
+        "operationId": "external_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update external"
+      },
+      "patch": {
+        "operationId": "external_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedBlacklistCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch external"
+      },
+      "delete": {
+        "operationId": "external_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete external"
+      }
+    },
+    "/v1/blacklist/external/{blacklist_id}/disable/": {
+      "get": {
+        "operationId": "external_disable_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistDisable"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get disable"
+      },
+      "post": {
+        "operationId": "external_disable_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "blacklist_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistDisable"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistDisable"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistDisable"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistDisable"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create disable"
+      }
+    },
+    "/v1/blacklist/external/check/": {
+      "get": {
+        "operationId": "external_check_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "external"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedBlacklistIdentityList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get check"
+      }
+    },
+    "/v1/blacklist/external/me/": {
+      "get": {
+        "operationId": "external_me_retrieve",
+        "tags": [
+          "external"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistCollaboratorProfile"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get me",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/blacklist/identities/merge/": {
+      "post": {
+        "operationId": "identities_merge_create",
+        "tags": [
+          "identities"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistMerge"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistMerge"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/BlacklistMerge"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlacklistMerge"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create merge",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BlacklistCollaborator": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "api_key": {
+            "type": "string",
+            "readOnly": true
+          },
+          "contact_name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 254
+          },
+          "website": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "extra": {},
+          "disabled": {
+            "type": "boolean"
+          },
+          "disabled_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "api_key",
+          "created_at",
+          "disabled_at",
+          "id",
+          "name"
+        ]
+      },
+      "BlacklistCollaboratorProfile": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "contact_name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 254
+          },
+          "website": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "extra": {},
+          "records_count": {
+            "type": "string",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name",
+          "records_count"
+        ]
+      },
+      "BlacklistCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "photo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "iin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "bin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "extra": {},
+          "client_id": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ]
+      },
+      "BlacklistDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "photo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "iin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "bin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "extra": {},
+          "disabled": {
+            "type": "boolean"
+          },
+          "disabled_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "name"
+        ]
+      },
+      "BlacklistDisable": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "disabled_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "BlacklistIdentity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "canonical_name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "canonical_iin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12
+          },
+          "canonical_bin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 12
+          },
+          "canonical_phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "reports_count": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "needs_review": {
+            "type": "boolean"
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlacklistIdentityRecord"
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "canonical_name",
+          "id",
+          "records"
+        ]
+      },
+      "BlacklistIdentityRecord": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "company_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "company_type": {
+            "type": "string",
+            "readOnly": true
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "added_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "iin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "bin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "photo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          }
+        },
+        "required": [
+          "added_at",
+          "company_name",
+          "company_type",
+          "id",
+          "name"
+        ]
+      },
+      "BlacklistList": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "added_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "disabled": {
+            "type": "boolean"
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "photo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "iin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "bin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "identity": {
+            "type": "integer",
+            "nullable": true
+          }
+        },
+        "required": [
+          "added_at",
+          "id",
+          "name"
+        ]
+      },
+      "BlacklistMerge": {
+        "type": "object",
+        "properties": {
+          "primary_id": {
+            "type": "integer"
+          },
+          "secondary_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "primary_id",
+          "secondary_id"
+        ]
+      },
+      "PaginatedBlacklistCollaboratorList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlacklistCollaborator"
+            }
+          }
+        }
+      },
+      "PaginatedBlacklistIdentityList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlacklistIdentity"
+            }
+          }
+        }
+      },
+      "PaginatedBlacklistListList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BlacklistList"
+            }
+          }
+        }
+      },
+      "PatchedBlacklistCollaborator": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "api_key": {
+            "type": "string",
+            "readOnly": true
+          },
+          "contact_name": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 254
+          },
+          "website": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "extra": {},
+          "disabled": {
+            "type": "boolean"
+          },
+          "disabled_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          }
+        }
+      },
+      "PatchedBlacklistCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "photo": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "phone": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 32
+          },
+          "iin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "bin": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 16,
+            "minLength": 12
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 512
+          },
+          "extra": {},
+          "client_id": {
+            "type": "integer",
+            "writeOnly": true,
+            "nullable": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

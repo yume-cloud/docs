@@ -1,0 +1,914 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Уведомления",
+    "version": "1.0.0",
+    "description": "Push, email и SMS уведомления."
+  },
+  "paths": {
+    "/v1/notifications/": {
+      "get": {
+        "operationId": "root_list",
+        "parameters": [
+          {
+            "name": "cursor",
+            "required": false,
+            "in": "query",
+            "description": "The pagination cursor value.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedNotificationList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get notifications"
+      }
+    },
+    "/v1/notifications/access/": {
+      "get": {
+        "operationId": "access_list",
+        "tags": [
+          "access"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NotificationAccess"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get access",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "access_create",
+        "tags": [
+          "access"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationAccessBulkUpdate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationAccessBulkUpdate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationAccessBulkUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationAccessBulkUpdate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create access",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/archive/": {
+      "post": {
+        "operationId": "archive_create",
+        "tags": [
+          "archive"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationArchive"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationArchive"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationArchive"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create archive",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/count/": {
+      "get": {
+        "operationId": "count_retrieve",
+        "tags": [
+          "count"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get count",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/mobile/": {
+      "get": {
+        "operationId": "mobile_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "mobile"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedNotificationPushTokenList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get mobile"
+      },
+      "post": {
+        "operationId": "mobile_create",
+        "tags": [
+          "mobile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationPushToken"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationPushToken"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationPushToken"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationPushToken"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create mobile",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/mobile/unsubscribe/": {
+      "post": {
+        "operationId": "mobile_unsubscribe_create",
+        "tags": [
+          "mobile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationPushTokenUnsubscribe"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationPushTokenUnsubscribe"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationPushTokenUnsubscribe"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotificationPushTokenUnsubscribe"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create unsubscribe",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/read/": {
+      "post": {
+        "operationId": "read_create",
+        "tags": [
+          "read"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRead"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRead"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/NotificationRead"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create read",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/telegram/": {
+      "get": {
+        "operationId": "telegram_retrieve",
+        "tags": [
+          "telegram"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelegramBotLink"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get telegram",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "telegram_create",
+        "tags": [
+          "telegram"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TelegramBotLink"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TelegramBotLink"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/TelegramBotLink"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TelegramBotLink"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create telegram",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/notifications/telegram/disconnect/": {
+      "post": {
+        "operationId": "telegram_disconnect_create",
+        "tags": [
+          "telegram"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create disconnect",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DeviceTypeEnum": {
+        "enum": [
+          "ios",
+          "android",
+          "web"
+        ],
+        "type": "string",
+        "description": "* `ios` - iOS\n* `android` - Android\n* `web` - Web"
+      },
+      "Notification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "body": {
+            "type": "string"
+          },
+          "user": {
+            "type": "integer"
+          },
+          "type": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TypeEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "topic": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TopicEnum"
+              }
+            ],
+            "readOnly": true
+          },
+          "content_type": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 2147483647,
+            "minimum": 0
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "extra": {},
+          "claim_once": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "read_by": {
+            "type": "integer",
+            "readOnly": true,
+            "nullable": true
+          },
+          "read_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "nullable": true
+          }
+        },
+        "required": [
+          "body",
+          "claim_once",
+          "content_type",
+          "created_at",
+          "id",
+          "object_id",
+          "read_at",
+          "read_by",
+          "topic",
+          "type",
+          "user"
+        ]
+      },
+      "NotificationAccess": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceEnum"
+          },
+          "topic": {
+            "$ref": "#/components/schemas/TopicEnum"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "NotificationAccessBulkUpdate": {
+        "type": "object",
+        "properties": {
+          "accesses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationAccessBulkUpdateItem"
+            }
+          }
+        },
+        "required": [
+          "accesses"
+        ]
+      },
+      "NotificationAccessBulkUpdateItem": {
+        "type": "object",
+        "properties": {
+          "source": {
+            "$ref": "#/components/schemas/SourceEnum"
+          },
+          "topic": {
+            "$ref": "#/components/schemas/TopicEnum"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "enabled",
+          "source",
+          "topic"
+        ]
+      },
+      "NotificationArchive": {
+        "type": "object",
+        "properties": {
+          "notification_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "archive_all": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "notification_ids"
+        ]
+      },
+      "NotificationPushToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "token": {
+            "type": "string",
+            "maxLength": 255
+          },
+          "device_id": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 255
+          },
+          "device_type": {
+            "$ref": "#/components/schemas/DeviceTypeEnum"
+          },
+          "is_active": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "last_used": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Создан"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true,
+            "title": "Обновлен"
+          }
+        },
+        "required": [
+          "created_at",
+          "id",
+          "is_active",
+          "last_used",
+          "token",
+          "updated_at"
+        ]
+      },
+      "NotificationPushTokenUnsubscribe": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_id"
+        ]
+      },
+      "NotificationRead": {
+        "type": "object",
+        "properties": {
+          "notification_ids": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "read_all": {
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "required": [
+          "notification_ids"
+        ]
+      },
+      "PaginatedNotificationList": {
+        "type": "object",
+        "required": [
+          "results"
+        ],
+        "properties": {
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?cursor=cD00ODY%3D\""
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?cursor=cj0xJnA9NDg3"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Notification"
+            }
+          }
+        }
+      },
+      "PaginatedNotificationPushTokenList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NotificationPushToken"
+            }
+          }
+        }
+      },
+      "SourceEnum": {
+        "enum": [
+          "web",
+          "push",
+          "telegram"
+        ],
+        "type": "string",
+        "description": "* `web` - Веб\n* `push` - Push-уведомления\n* `telegram` - Telegram"
+      },
+      "TelegramBotLink": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "readOnly": true
+          },
+          "code": {
+            "type": "string",
+            "writeOnly": true,
+            "minLength": 6,
+            "maxLength": 10
+          }
+        },
+        "required": [
+          "code",
+          "username"
+        ]
+      },
+      "TopicEnum": {
+        "enum": [
+          "default",
+          "request_reserved",
+          "request_completed",
+          "request_time_exceed",
+          "request_payment_status_change",
+          "transaction_created",
+          "transaction_refund",
+          "transaction_delete",
+          "client_debt_limit_exceeded",
+          "client_blacklist_added",
+          "document_created",
+          "document_signed",
+          "inventorization_created",
+          "inventorization_checklist",
+          "delivery_assigned",
+          "delivery_status_change",
+          "delivery_completed",
+          "delivery_cancelled",
+          "maintenance_due",
+          "maintenance_assigned",
+          "maintenance_completed",
+          "task_assigned",
+          "task_reminder",
+          "task_overdue",
+          "task_completed",
+          "inventory_broken",
+          "sms_balance_low",
+          "sms_error",
+          "sms_refund",
+          "erap_penalty_created",
+          "erap_penalty_checkup",
+          "wazzup_message_received",
+          "integration_token_expired",
+          "integration_error"
+        ],
+        "type": "string",
+        "description": "* `default` - По умолчанию\n* `request_reserved` - Аренда забронирована\n* `request_completed` - Аренда завершена\n* `request_time_exceed` - Просрочка аренды\n* `request_payment_status_change` - Изменился статус оплаты аренды\n* `transaction_created` - Создан платёж\n* `transaction_refund` - Возврат платежа\n* `transaction_delete` - Удалён платёж\n* `client_debt_limit_exceeded` - Превышен лимит задолженности клиента\n* `client_blacklist_added` - Клиент добавлен в чёрный список\n* `document_created` - Создан документ\n* `document_signed` - Документ подписан\n* `inventorization_created` - Создана инвентаризация\n* `inventorization_checklist` - Чек-лист инвентаризации\n* `delivery_assigned` - Назначена доставка\n* `delivery_status_change` - Изменился статус доставки\n* `delivery_completed` - Доставка выполнена\n* `delivery_cancelled` - Доставка отменена\n* `maintenance_due` - Подошёл срок обслуживания\n* `maintenance_assigned` - Назначено обслуживание\n* `maintenance_completed` - Обслуживание завершено\n* `task_assigned` - Назначена задача\n* `task_reminder` - Напоминание о задаче\n* `task_overdue` - Задача просрочена\n* `task_completed` - Задача выполнена\n* `inventory_broken` - Инвентарь сломан\n* `sms_balance_low` - Заканчивается баланс SMS\n* `sms_error` - Ошибка отправки SMS\n* `sms_refund` - Возврат за SMS\n* `erap_penalty_created` - Получен автоштраф\n* `erap_penalty_checkup` - erap_penalty_checkup\n* `wazzup_message_received` - Получено сообщение Wazzup\n* `integration_token_expired` - Истёк ключ интеграции\n* `integration_error` - Ошибка интеграции"
+      },
+      "TypeEnum": {
+        "enum": [
+          "info",
+          "warning",
+          "alert"
+        ],
+        "type": "string",
+        "description": "* `info` - Информация\n* `warning` - Предупреждение\n* `alert` - Важное"
+      }
+    },
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

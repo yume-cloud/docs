@@ -12,6 +12,24 @@
 - Run `mint dev` to preview locally
 - Run `mint broken-links` to check links
 
+## Generated content
+
+`openapi/*.json` is generated, not written by hand. One file per API section,
+exported from the backend by `scripts/generate-openapi.py`:
+
+```
+../rental_tenant_back/.venv/bin/python scripts/generate-openapi.py
+```
+
+The section list comes from `swagger_groups` in the backend's `rental_tenant_back/urls.py`,
+and each section's name, description and icon from its `rental_tenant_back/api_docs.py`.
+A new section there needs an entry in both — the script refuses to run otherwise — and a
+group in the «API» tab of `docs.json`. Endpoint pages are built by Mintlify at build time;
+each group's `directory` keeps them in their own path, because tag names such as `actions`
+and `inventories` repeat across sections.
+
+Edit the backend, not these files: a change made here is gone on the next export.
+
 ## Terminology
 
 {/* Add product-specific terms and preferred usage */}
