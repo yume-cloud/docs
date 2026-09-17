@@ -79,7 +79,7 @@
           {
             "tab": "Как это работает",
             "icon": "diagram-project",
-            "hidden": false,
+            "hidden": true,
             "groups": [
               {
                 "group": "Обзор",
