@@ -79,11 +79,10 @@
           {
             "tab": "Как это работает",
             "icon": "diagram-project",
-            "hidden": true,
+            "hidden": false,
             "groups": [
               {
                 "group": "Обзор",
-                "root": "ru/logic/overview",
                 "pages": ["ru/logic/overview"]
               },
               {
@@ -201,6 +200,7 @@
               },
               {
                 "group": "Инфраструктура",
+                "hidden": true,
                 "pages": [
                   "ru/logic/infrastructure",
                   "ru/logic/background-tasks"
@@ -314,6 +314,7 @@
               },
               {
                 "group": "Известные особенности и ограничения",
+                "hidden": true,
                 "pages": [
                   "ru/logic/known-issues",
                   "ru/logic/rent/issues",

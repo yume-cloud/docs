@@ -396,18 +396,18 @@ flowchart TD
 | Path | Description |
 | --- | --- |
 | `crm/serializers/order_request/request_link.py` | OrderRequestLinkSendSerializer: validates phone (CharField via common.validate_phone.validate_phone) and channel choice ('sms'/'wazzup') for the delivery POST. |
-| `crm/views/order_requests/requests_link.py` | CRM-side OrderRequestLinkView (auth + 'rent' integration gated) at /v1/crm/requests/<request_id>/link/: GET returns/creates link, POST creates link and dispatches SMS/Wazzup delivery; builds URL from RENT_LINK_BASE_URL (frontend base). |
+| `crm/views/order_requests/requests_link.py` | CRM-side OrderRequestLinkView (auth + 'rent' integration gated) at `/v1/crm/requests/<request_id>/link/`: GET returns/creates link, POST creates link and dispatches SMS/Wazzup delivery; builds URL from RENT_LINK_BASE_URL (frontend base). |
 | `rentlink/apps.py` | RentlinkConfig; ready() imports rentlink.signals to connect the post_save signal. |
 | `rentlink/models.py` | Public-schema OrderRequestLink model (inherits AbstractModel) plus gen_link_code (secrets.token_hex(4)) and normalize_phone (digits-only, last 10) helpers; save() ensures unique code and recomputes phone_normalized. Meta: db_table orderrequestlink, unique_together (tenant, request_id), duplicate rentlink_phone_idx index. |
 | `rentlink/serializers.py` | Order/Client/Inventory/Schedule/Tenant serializers for cross-tenant display, and RentKaspiSerializer that computes budget/total (schedule vs amount mode) and creates Transaction (SUCCESS at creation) + OrderRequestScheduleTransaction + Kaspi QR TransactionKaspi in an atomic block. |
 | `rentlink/signals.py` | post_save receiver update_order_link on crm.OrderRequest that upserts the link row (keyed tenant+request_id) with the client's phone; returns early if no real tenant; swallows/logs errors via bare except. |
-| `rentlink/urls.py` | Public routes mounted at /v1/rents/: '' -> RentListView, '<str:code>/' -> RentDetailView, '<str:code>/kaspi/' -> RentKaspiView. |
+| `rentlink/urls.py` | Public routes mounted at `/v1/rents/`: `''` -> RentListView, `<str:code>/` -> RentDetailView, `<str:code>/kaspi/` -> RentKaspiView. |
 | `rentlink/views.py` | Public AllowAny views: RentMixin (get_orders/get_schedule), RentListView (phone fan-out across tenants via schema_context), RentDetailView (code->tenant via schema_context), RentKaspiView (120s per-code cache throttle, connection.set_tenant, create Kaspi QR via serializer). Contains duplicate/dead imports. |
 
 ### URL mounts
 
 - `/v1/rents/` -> rentlink.urls
-- `/v1/crm/` requests/<int:request_id>/link/ -> crm.views.order_requests.requests_link.OrderRequestLinkView (crm.urls.orders)
+- `/v1/crm/requests/<int:request_id>/link/` -> crm.views.order_requests.requests_link.OrderRequestLinkView (crm.urls.orders)
 
 ### Related
 
