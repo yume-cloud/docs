@@ -950,6 +950,15 @@
         "operationId": "ringostat_calls_list",
         "parameters": [
           {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "End of the period. A date (YYYY-MM-DD) or a timestamp. Defaults to the first of the next month."
+          },
+          {
             "name": "page",
             "required": false,
             "in": "query",
@@ -973,15 +982,27 @@
             "schema": {
               "type": "string"
             },
-            "description": "Phone number to filter calls by"
+            "description": "Outside number to filter the calls by."
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "description": "Start of the period, inclusive. A date (YYYY-MM-DD) or a timestamp. Defaults to the first of the current month."
           },
           {
             "in": "query",
             "name": "status",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             },
-            "description": "Status to filter calls by"
+            "description": "Call outcomes to keep, repeated once per value: ?status=ANSWERED&status=NO ANSWER."
           },
           {
             "$ref": "#/components/parameters/TenantId"

@@ -11,6 +11,138 @@
         "operationId": "root_list",
         "parameters": [
           {
+            "in": "query",
+            "name": "autorenewal",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "client__signed",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client__type",
+            "schema": {
+              "type": "integer",
+              "title": "Тип",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Физ. лицо\n* `1` - Юр. лицо"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "default_tarif_period",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "default_tarif_period__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "deleted",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Конец отчётного периода, включительно. Дата (ГГГГ-ММ-ДД) или момент времени, от которого берётся дата."
+          },
+          {
+            "in": "query",
+            "name": "group",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "has_delivery",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "inventory",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
             "name": "ordering",
             "required": false,
             "in": "query",
@@ -38,6 +170,79 @@
             }
           },
           {
+            "in": "query",
+            "name": "payment_status",
+            "schema": {
+              "type": "integer",
+              "title": "Статус оплаты",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+          },
+          {
+            "in": "query",
+            "name": "payment_status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "plus_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_end_from",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_end_to",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_start_from",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_start_to",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rental_point",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -45,6 +250,46 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Начало отчётного периода, включительно. Дата (ГГГГ-ММ-ДД) или момент времени, от которого берётся дата."
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer",
+              "title": "Статус",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -2111,19 +2356,257 @@
         "parameters": [
           {
             "in": "query",
+            "name": "autorenewal",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "client__signed",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client__type",
+            "schema": {
+              "type": "integer",
+              "title": "Тип",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Физ. лицо\n* `1` - Юр. лицо"
+          },
+          {
+            "in": "query",
+            "name": "date",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "default_tarif_period",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "default_tarif_period__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "deleted",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date"
             },
-            "required": true
+            "description": "Конец отчётного периода, включительно. Дата (ГГГГ-ММ-ДД) или момент времени, от которого берётся дата."
+          },
+          {
+            "in": "query",
+            "name": "group",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "has_delivery",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "inventory",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "payment_status",
+            "schema": {
+              "type": "integer",
+              "title": "Статус оплаты",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+          },
+          {
+            "in": "query",
+            "name": "payment_status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "plus_id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_end_from",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_end_to",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_start_from",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rent_start_to",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rental_point",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date"
             },
-            "required": true
+            "description": "Начало отчётного периода, включительно. Дата (ГГГГ-ММ-ДД) или момент времени, от которого берётся дата."
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer",
+              "title": "Статус",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -2460,27 +2943,6 @@
     "/v1/crm/requests/counts/": {
       "get": {
         "operationId": "counts_retrieve",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "end_at",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "in": "query",
-            "name": "start_at",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
-            "$ref": "#/components/parameters/TenantId"
-          }
-        ],
         "tags": [
           "counts"
         ],
@@ -2501,7 +2963,12 @@
             "description": ""
           }
         },
-        "summary": "Get counts"
+        "summary": "Get counts",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
       }
     },
     "/v1/crm/requests/deliveries/": {
@@ -3072,7 +3539,8 @@
             "schema": {
               "type": "string",
               "format": "date-time"
-            }
+            },
+            "description": "Конец окна. Момент времени или дата, от которой берётся полночь."
           },
           {
             "in": "query",
@@ -3135,7 +3603,8 @@
             "schema": {
               "type": "string",
               "format": "date-time"
-            }
+            },
+            "description": "Начало окна. Момент времени или дата, от которой берётся полночь."
           },
           {
             "in": "query",
@@ -4242,6 +4711,57 @@
         "operationId": "schedule_list",
         "parameters": [
           {
+            "in": "query",
+            "name": "autorenewal",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "deleted",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Конец отчётного периода, включительно. Дата (ГГГГ-ММ-ДД) или момент времени, от которого берётся дата.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "payment_status",
+            "schema": {
+              "type": "integer",
+              "title": "Статус оплаты",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - Ожидается оплата\n* `1` - Оплата произведена\n* `2` - Частичная оплата"
+          },
+          {
+            "in": "query",
+            "name": "payment_status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -4249,6 +4769,47 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Начало отчётного периода, включительно. Дата (ГГГГ-ММ-ДД) или момент времени, от которого берётся дата.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "integer",
+              "title": "Статус",
+              "enum": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6
+              ]
+            },
+            "description": "* `0` - Запрос\n* `1` - Забронировано\n* `2` - В аренде\n* `3` - Отменено\n* `4` - Завершено\n* `5` - Должник\n* `6` - Просрочка"
+          },
+          {
+            "in": "query",
+            "name": "status__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -8007,6 +8568,11 @@
             "items": {
               "$ref": "#/components/schemas/OrderRequestInventoryCreate"
             }
+          },
+          "force": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": false
           }
         },
         "required": [
@@ -8045,6 +8611,11 @@
             "items": {
               "$ref": "#/components/schemas/OrderRequestInventoryUpdate"
             }
+          },
+          "force": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": false
           }
         },
         "required": [

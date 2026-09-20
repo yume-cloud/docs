@@ -6,6 +6,215 @@
     "description": "Роли, права и контроль доступа."
   },
   "paths": {
+    "/v1/crm/invites/": {
+      "get": {
+        "operationId": "invites_list",
+        "tags": [
+          "invites"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StaffInvite"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get invites",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "invites_create",
+        "tags": [
+          "invites"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffInviteCreate"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffInviteCreate"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffInviteCreate"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffInviteCreate"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create invites",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/invites/{id}/": {
+      "get": {
+        "operationId": "invites_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invites"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffInvite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get invites"
+      },
+      "delete": {
+        "operationId": "invites_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invites"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete invites"
+      }
+    },
+    "/v1/crm/invites/{id}/resend/": {
+      "post": {
+        "operationId": "invites_resend_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "invites"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffInvite"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffInvite"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/StaffInvite"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffInvite"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create resend"
+      }
+    },
     "/v1/crm/permissions/": {
       "get": {
         "operationId": "permissions_list",
@@ -723,6 +932,57 @@
         },
         "summary": "Delete users"
       }
+    },
+    "/v1/crm/users/attach/": {
+      "post": {
+        "operationId": "users_attach_create",
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAttach"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAttach"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAttach"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAttach"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create attach",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -1076,6 +1336,181 @@
           "email",
           "id",
           "password"
+        ]
+      },
+      "StaffInvite": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "token": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true,
+            "title": "Токен"
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true,
+            "maxLength": 254
+          },
+          "status": {
+            "type": "string",
+            "readOnly": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Роль"
+          },
+          "group_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "is_staff": {
+            "type": "boolean",
+            "title": "Сотрудник"
+          },
+          "is_sublease": {
+            "type": "boolean",
+            "title": "Субаренда"
+          },
+          "points": {
+            "title": "Точки аренды"
+          },
+          "salary_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Истекает"
+          },
+          "sent_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "accepted_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "revoked_at": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "created_by": {
+            "type": "integer",
+            "nullable": true
+          },
+          "created_by_name": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "created_at",
+          "created_by_name",
+          "group_name",
+          "id",
+          "status",
+          "token",
+          "url"
+        ]
+      },
+      "StaffInviteCreate": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "nullable": true
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Роль"
+          },
+          "is_staff": {
+            "type": "boolean",
+            "title": "Сотрудник"
+          },
+          "is_sublease": {
+            "type": "boolean",
+            "title": "Субаренда"
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "salary_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "UserAttach": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "group": {
+            "type": "integer",
+            "nullable": true
+          },
+          "is_staff": {
+            "type": "boolean",
+            "default": true
+          },
+          "is_sublease": {
+            "type": "boolean",
+            "default": false
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          },
+          "salary_amount": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          }
+        },
+        "required": [
+          "email"
         ]
       },
       "UserDetail": {

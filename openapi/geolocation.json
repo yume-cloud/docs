@@ -94,6 +94,75 @@
         "operationId": "devices_positions_list",
         "parameters": [
           {
+            "in": "query",
+            "name": "accuracy__gte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "accuracy__lte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "address__icontains",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "address__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "altitude__gte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "altitude__lte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "course__gte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "course__lte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
             "in": "path",
             "name": "device_id",
             "schema": {
@@ -103,19 +172,248 @@
           },
           {
             "in": "query",
+            "name": "devicetime__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "devicetime__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна. Момент времени или дата, от которой берётся полночь."
+          },
+          {
+            "in": "query",
+            "name": "fixtime",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fixtime__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fixtime__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fixtime__lt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fixtime__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "geofenceids",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "geofenceids__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "geofenceids__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__gt",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "latitude__gte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "latitude__lte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "longitude__gte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "longitude__lte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "name": "ordering",
+            "required": false,
+            "in": "query",
+            "description": "Which field to use when ordering the results.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "protocol",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "protocol__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "servertime__gte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "servertime__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "speed",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "speed__gte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
+          },
+          {
+            "in": "query",
+            "name": "speed__lte",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            }
           },
           {
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна. Момент времени или дата, от которой берётся полночь."
+          },
+          {
+            "in": "query",
+            "name": "valid",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
             "$ref": "#/components/parameters/TenantId"

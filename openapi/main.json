@@ -1807,11 +1807,120 @@
         "parameters": [
           {
             "in": "query",
+            "name": "available",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "disable__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "disabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "discount",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "discount__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "free",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "has_sublease",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__exclude",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "name": "ordering",
@@ -1841,6 +1950,20 @@
             }
           },
           {
+            "in": "query",
+            "name": "rental_point",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "saleable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -1851,11 +1974,39 @@
           },
           {
             "in": "query",
+            "name": "shareable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "integer",
+              "title": "Тип",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "* `0` - Аренда\n* `1` - Продажа"
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -1940,9 +2091,10 @@
             "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
           },
           {
             "in": "path",
@@ -1956,9 +2108,10 @@
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -2253,14 +2406,6 @@
         "operationId": "inventories_list",
         "parameters": [
           {
-            "in": "query",
-            "name": "end_at",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
             "name": "ordering",
             "required": false,
             "in": "query",
@@ -2295,14 +2440,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "in": "query",
-            "name": "start_at",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -3071,20 +3208,22 @@
         "operationId": "inventories_general_retrieve",
         "parameters": [
           {
+            "name": "ordering",
+            "required": false,
             "in": "query",
-            "name": "end_at",
+            "description": "Which field to use when ordering the results.",
             "schema": {
               "type": "string"
-            },
-            "required": true
+            }
           },
           {
+            "name": "search",
+            "required": false,
             "in": "query",
-            "name": "start_at",
+            "description": "A search term.",
             "schema": {
               "type": "string"
-            },
-            "required": true
+            }
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -3160,11 +3299,149 @@
         "parameters": [
           {
             "in": "query",
+            "name": "car__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "disable__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "disable__method",
+            "schema": {
+              "type": "integer",
+              "title": "Способ",
+              "enum": [
+                0,
+                1,
+                2
+              ]
+            },
+            "description": "* `0` - удалить\n* `1` - Архив\n* `2` - Списано"
+          },
+          {
+            "in": "query",
+            "name": "disabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
+            "description": "Конец окна. Момент времени или дата, от которой берётся полночь.",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "exclude_ids",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "filter_key",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fleet_status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "free",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "group__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "has_sublease",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "name": "page",
@@ -3185,6 +3462,40 @@
             }
           },
           {
+            "in": "query",
+            "name": "rental_point",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "rental_point__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "saleable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "search",
             "required": false,
             "in": "query",
@@ -3197,9 +3508,92 @@
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
+            "description": "Начало окна. Момент времени или дата, от которой берётся полночь.",
             "required": true
+          },
+          {
+            "in": "query",
+            "name": "state",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "state__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sublease_user",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sublease_user__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "sublease_user__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "unique_id",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "unique_id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -3316,11 +3710,59 @@
         "parameters": [
           {
             "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "disabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
           },
           {
             "name": "ordering",
@@ -3360,11 +3802,26 @@
           },
           {
             "in": "query",
+            "name": "shareable",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "number"
+            }
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -3450,9 +3907,10 @@
             "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
           },
           {
             "in": "path",
@@ -3466,9 +3924,10 @@
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -3648,9 +4107,17 @@
             "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "rental_point",
+            "schema": {
+              "type": "number"
+            }
           },
           {
             "in": "path",
@@ -3664,9 +4131,10 @@
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -4198,19 +4666,91 @@
         "parameters": [
           {
             "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "disabled",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "end_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Конец окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "name": "search",
+            "required": false,
+            "in": "query",
+            "description": "A search term.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "shareable",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
             "in": "query",
             "name": "start_at",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
-            "required": true
+            "description": "Начало окна доступности. Момент времени или дата, от которой берётся полночь. По умолчанию — текущий момент."
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "number"
+            }
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -4301,6 +4841,7 @@
               "type": "string",
               "format": "date-time"
             },
+            "description": "Конец окна. Момент времени или дата, от которой берётся полночь.",
             "required": true
           },
           {
@@ -4317,6 +4858,7 @@
               "type": "string",
               "format": "date-time"
             },
+            "description": "Начало окна. Момент времени или дата, от которой берётся полночь.",
             "required": true
           },
           {
@@ -4463,6 +5005,38 @@
             "$ref": "#/components/parameters/TenantId"
           }
         ]
+      }
+    },
+    "/v1/crm/inventorizations/{id}/": {
+      "delete": {
+        "operationId": "inventorizations_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "inventorizations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete inventorizations"
       }
     },
     "/v1/crm/inventorizations/bulk_create/": {
