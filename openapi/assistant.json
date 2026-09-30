@@ -167,6 +167,96 @@
         ]
       }
     },
+    "/v1/assistant/mcp/consent/": {
+      "get": {
+        "operationId": "mcp_consent_retrieve",
+        "description": "The SPA's consent screen for an MCP client. `/authorize` sends the person there with a\nsigned `authorization`; the answer comes back here and leaves as the client's redirect.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "authorization",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "mcp"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConsentRequest"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get consent"
+      },
+      "post": {
+        "operationId": "mcp_consent_create",
+        "description": "The SPA's consent screen for an MCP client. `/authorize` sends the person there with a\nsigned `authorization`; the answer comes back here and leaves as the client's redirect.",
+        "tags": [
+          "mcp"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsentDecision"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsentDecision"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsentDecision"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/McpConsentRedirect"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create consent",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
     "/v1/assistant/messages/{id}/feedback/": {
       "post": {
         "operationId": "messages_feedback_create",
@@ -971,7 +1061,7 @@
                 "$ref": "#/components/schemas/ProviderEnum"
               }
             ],
-            "default": "anthropic"
+            "default": "deepseek"
           },
           "tier": {
             "allOf": [
@@ -979,7 +1069,7 @@
                 "$ref": "#/components/schemas/TierEnum"
               }
             ],
-            "default": "low"
+            "default": "medium"
           },
           "model": {
             "type": "string"
@@ -998,10 +1088,49 @@
           },
           "preset": {
             "type": "string"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         },
         "required": [
           "message"
+        ]
+      },
+      "ConsentDecision": {
+        "type": "object",
+        "properties": {
+          "authorization": {
+            "type": "string"
+          },
+          "allow": {
+            "type": "boolean"
+          },
+          "tenant": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "allow",
+          "authorization"
+        ]
+      },
+      "ConsentRequest": {
+        "type": "object",
+        "properties": {
+          "app": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "app",
+          "host"
         ]
       },
       "HandoffEnum": {
@@ -1039,6 +1168,17 @@
         ],
         "type": "string",
         "description": "* `system-prompt` - Системный промпт\n* `user-prompt` - Запрос пользователя\n* `tool-return` - Ответ инструмента\n* `retry-prompt` - Повторный запрос\n* `text` - Текст\n* `thinking` - Размышления\n* `compaction` - Сжатие контекста\n* `tool-call` - Вызов инструмента\n* `builtin-tool-call` - Вызов встроенного инструмента\n* `builtin-tool-return` - Ответ встроенного инструмента\n* `file` - Файл"
+      },
+      "McpConsentRedirect": {
+        "type": "object",
+        "properties": {
+          "redirect_to": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "redirect_to"
+        ]
       },
       "PaginatedChannelSessionList": {
         "type": "object",
@@ -1164,6 +1304,13 @@
           "is_archived": {
             "type": "boolean"
           },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionLink"
+            },
+            "readOnly": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -1188,10 +1335,11 @@
       "ProviderEnum": {
         "enum": [
           "openai",
-          "anthropic"
+          "anthropic",
+          "deepseek"
         ],
         "type": "string",
-        "description": "* `openai` - OpenAI\n* `anthropic` - Anthropic"
+        "description": "* `openai` - OpenAI\n* `anthropic` - Anthropic\n* `deepseek` - DeepSeek"
       },
       "Quota": {
         "type": "object",
@@ -1428,6 +1576,13 @@
           "is_archived": {
             "type": "boolean"
           },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionLink"
+            },
+            "readOnly": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -1444,6 +1599,7 @@
         "required": [
           "created_at",
           "id",
+          "links",
           "updated_at",
           "user_id"
         ]
@@ -1479,6 +1635,13 @@
           "is_archived": {
             "type": "boolean"
           },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SessionLink"
+            },
+            "readOnly": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -1502,9 +1665,46 @@
         "required": [
           "created_at",
           "id",
+          "links",
           "messages",
           "updated_at",
           "user_id"
+        ]
+      },
+      "SessionLink": {
+        "type": "object",
+        "properties": {
+          "content_type": {
+            "type": "string",
+            "title": "Имя класса модели",
+            "readOnly": true
+          },
+          "content_type_label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "object_id": {
+            "type": "integer",
+            "maximum": 9223372036854775807,
+            "minimum": 0,
+            "format": "int64",
+            "title": "ID объекта"
+          },
+          "label": {
+            "type": "string",
+            "readOnly": true
+          },
+          "url": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "content_type",
+          "content_type_label",
+          "label",
+          "object_id",
+          "url"
         ]
       },
       "SessionMessage": {

@@ -54,6 +54,7 @@
 - [Binotel](https://docs.yume.cloud/binotel)
 - [Wialon интеграция](https://docs.yume.cloud/wialon)
 - [Kaspi платежи](https://docs.yume.cloud/kaspi-payments)
+- [Yume в ИИ-ассистентах](https://docs.yume.cloud/ai-assistants)
 
 ## Q/A
 - [Общие вопросы](https://docs.yume.cloud/ru/qa/general-questions)

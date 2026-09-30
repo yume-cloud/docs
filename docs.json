@@ -70,7 +70,7 @@
                   {
                     "group": "Интеграции",
                     "root": "wazzup",
-                    "pages": ["ringostat", "binotel", "wialon", "kaspi-payments"]
+                    "pages": ["ringostat", "binotel", "wialon", "kaspi-payments", "ai-assistants"]
                   }
                 ]
               }
@@ -191,7 +191,8 @@
                   "ru/logic/notifications/read-archive",
                   "ru/logic/notifications/push-tokens",
                   "ru/logic/notifications/telegram-link",
-                  "ru/logic/notifications/access-settings"
+                  "ru/logic/notifications/access-settings",
+                  "ru/logic/notifications/emails"
                 ]
               },
               {
@@ -239,6 +240,7 @@
                   "ru/logic/user/sessions",
                   "ru/logic/user/active-company",
                   "ru/logic/user/profile",
+                  "ru/logic/user/invites",
                   "ru/logic/user/password-reset",
                   "ru/logic/user/google-login",
                   "ru/logic/user/loyalty"
@@ -386,7 +388,8 @@
                   "ru/logic/notifications/read-archive-glossary",
                   "ru/logic/notifications/push-tokens-glossary",
                   "ru/logic/notifications/telegram-link-glossary",
-                  "ru/logic/notifications/access-settings-glossary"
+                  "ru/logic/notifications/access-settings-glossary",
+                  "ru/logic/notifications/emails-glossary"
                 ]
               },
               {
@@ -438,6 +441,7 @@
                   "ru/logic/user/sessions-glossary",
                   "ru/logic/user/active-company-glossary",
                   "ru/logic/user/profile-glossary",
+                  "ru/logic/user/invites-glossary",
                   "ru/logic/user/password-reset-glossary",
                   "ru/logic/user/google-login-glossary",
                   "ru/logic/user/loyalty-glossary"

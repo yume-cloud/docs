@@ -1651,6 +1651,13 @@
           },
           {
             "in": "query",
+            "name": "bonus__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "category",
             "schema": {
               "type": "integer"
@@ -2703,7 +2710,8 @@
             "readOnly": true
           },
           "body": {
-            "type": "string"
+            "type": "string",
+            "title": "Текст"
           },
           "user": {
             "type": "integer",
@@ -2744,7 +2752,6 @@
           }
         },
         "required": [
-          "body",
           "content_type",
           "created_at",
           "id",
@@ -3302,6 +3309,12 @@
             "type": "boolean",
             "readOnly": true
           },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -3328,12 +3341,6 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
             "title": "Начальный остаток"
-          },
-          "balance": {
-            "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
-            "readOnly": true
           },
           "types": {
             "type": "array",
@@ -3752,6 +3759,12 @@
             "type": "boolean",
             "readOnly": true
           },
+          "balance": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "readOnly": true
+          },
           "created_at": {
             "type": "string",
             "format": "date-time",
@@ -3778,12 +3791,6 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
             "title": "Начальный остаток"
-          },
-          "balance": {
-            "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
-            "readOnly": true
           },
           "types": {
             "type": "array",

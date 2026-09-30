@@ -1407,7 +1407,7 @@
               }
             ],
             "title": "Ключ",
-            "description": "Ключ\n\n* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
+            "description": "Ключ\n\n* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `inventorization` - Инвентаризация\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
           },
           "language": {
             "allOf": [
@@ -1519,6 +1519,7 @@
           "client",
           "deposit",
           "workshop",
+          "inventorization",
           "request",
           "reserve",
           "inrent",
@@ -1529,7 +1530,7 @@
           "deleted"
         ],
         "type": "string",
-        "description": "* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
+        "description": "* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `inventorization` - Инвентаризация\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
       },
       "LanguageEnum": {
         "enum": [
@@ -1686,7 +1687,7 @@
               }
             ],
             "title": "Ключ",
-            "description": "Ключ\n\n* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
+            "description": "Ключ\n\n* `inventory` - Инвентарь\n* `inventory_set` - Комплект\n* `inventory_group` - Продукт\n* `rental_point` - Точка проката\n* `service` - Услуга\n* `client` - Клиент\n* `deposit` - Депозит\n* `workshop` - Мастерская\n* `inventorization` - Инвентаризация\n* `request` - Запрос\n* `reserve` - Забронировано\n* `inrent` - В прокате\n* `canceled` - Отменено\n* `completed` - Завершено\n* `debtor` - Должник\n* `exceed` - Просрочено\n* `deleted` - Удалено"
           },
           "language": {
             "allOf": [

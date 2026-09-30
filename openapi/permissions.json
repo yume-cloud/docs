@@ -1399,17 +1399,20 @@
           "sent_at": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "title": "Отправлено"
           },
           "accepted_at": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "title": "Принято"
           },
           "revoked_at": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "title": "Отозвано"
           },
           "created_at": {
             "type": "string",
@@ -1557,6 +1560,10 @@
             "type": "boolean",
             "readOnly": true
           },
+          "is_support": {
+            "type": "boolean",
+            "readOnly": true
+          },
           "password": {
             "type": "string",
             "writeOnly": true
@@ -1589,6 +1596,7 @@
           "is_staff",
           "is_sublease",
           "is_superuser",
+          "is_support",
           "password",
           "point",
           "ui_settings"

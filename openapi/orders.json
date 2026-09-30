@@ -6419,7 +6419,8 @@
             "readOnly": true
           },
           "body": {
-            "type": "string"
+            "type": "string",
+            "title": "Текст"
           },
           "user": {
             "type": "integer",
@@ -6460,7 +6461,6 @@
           }
         },
         "required": [
-          "body",
           "content_type",
           "created_at",
           "id",

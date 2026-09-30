@@ -64,11 +64,12 @@
                 "client",
                 "integration",
                 "platform",
+                "support",
                 "system",
                 "user"
               ]
             },
-            "description": "* `user` - Пользователь\n* `client` - Клиент\n* `anonymous` - Анонимно\n* `system` - Система\n* `integration` - Интеграция\n* `platform` - Платформа"
+            "description": "* `user` - Пользователь\n* `client` - Клиент\n* `anonymous` - Анонимно\n* `system` - Система\n* `integration` - Интеграция\n* `platform` - Платформа\n* `support` - Поддержка Yume"
           },
           {
             "in": "query",
@@ -287,10 +288,11 @@
           "anonymous",
           "system",
           "integration",
-          "platform"
+          "platform",
+          "support"
         ],
         "type": "string",
-        "description": "* `user` - Пользователь\n* `client` - Клиент\n* `anonymous` - Анонимно\n* `system` - Система\n* `integration` - Интеграция\n* `platform` - Платформа"
+        "description": "* `user` - Пользователь\n* `client` - Клиент\n* `anonymous` - Анонимно\n* `system` - Система\n* `integration` - Интеграция\n* `platform` - Платформа\n* `support` - Поддержка Yume"
       },
       "AuditEvent": {
         "type": "object",

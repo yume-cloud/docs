@@ -9,6 +9,29 @@
     "/v1/tenant/": {
       "get": {
         "operationId": "root_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
         "security": [
           {
             "jwtAuth": []
@@ -19,22 +42,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/TenantAccount"
-                  }
+                  "$ref": "#/components/schemas/PaginatedTenantAccountList"
                 }
               }
             },
             "description": ""
           }
         },
-        "summary": "Get tenant",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/TenantId"
-          }
-        ]
+        "summary": "Get tenant"
       },
       "post": {
         "operationId": "root_create",
@@ -872,6 +887,37 @@
           null
         ]
       },
+      "PaginatedTenantAccountList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TenantAccount"
+            }
+          }
+        }
+      },
       "PatchedTenantAccount": {
         "type": "object",
         "properties": {
@@ -1334,6 +1380,11 @@
           "step": {
             "type": "string",
             "maxLength": 255
+          },
+          "personal": {
+            "type": "boolean",
+            "writeOnly": true,
+            "default": false
           },
           "created_at": {
             "type": "string",

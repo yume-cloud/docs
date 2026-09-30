@@ -2422,6 +2422,13 @@
           },
           {
             "in": "query",
+            "name": "bonus__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "category",
             "schema": {
               "type": "integer"
@@ -2841,6 +2848,13 @@
           },
           {
             "in": "query",
+            "name": "bonus__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "category",
             "schema": {
               "type": "integer"
@@ -3232,6 +3246,13 @@
             "name": "account",
             "schema": {
               "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bonus__isnull",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -7755,7 +7776,8 @@
             "readOnly": true
           },
           "body": {
-            "type": "string"
+            "type": "string",
+            "title": "Текст"
           },
           "user": {
             "type": "integer",
@@ -7796,7 +7818,6 @@
           }
         },
         "required": [
-          "body",
           "content_type",
           "created_at",
           "id",
@@ -9591,6 +9612,11 @@
           "deposit_charge": {
             "type": "boolean",
             "readOnly": true
+          },
+          "bonus": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Бонусная операция"
           }
         },
         "required": [

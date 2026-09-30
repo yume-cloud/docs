@@ -230,7 +230,7 @@
           "cargo"
         ],
         "type": "string",
-        "description": "* `econom` - эконом\n* `comfort` - комфорт\n* `comfort_plus` - комфорт+\n* `business` - бизнес\n* `minivan` - минивен\n* `vip` - VIP\n* `wagon` - универсальный\n* `pool` - pool\n* `start` - старт\n* `standart` - стандарт\n* `ultimate` - премьер\n* `maybach` - elite\n* `promo` - промо\n* `premium_van` - круиз\n* `premium_suv` - премиум внедорожник\n* `suv` - внедорожник\n* `personal_driver` - персональный водитель\n* `express` - доставка\n* `cargo` - грузовой"
+        "description": "* `econom` - эконом\n* `comfort` - комфорт\n* `comfort_plus` - комфорт+\n* `business` - бизнес\n* `minivan` - минивен\n* `vip` - VIP\n* `wagon` - универсальный\n* `pool` - pool\n* `start` - старт\n* `standart` - стандарт\n* `ultimate` - премьер\n* `maybach` - элит\n* `promo` - промо\n* `premium_van` - круиз\n* `premium_suv` - премиум внедорожник\n* `suv` - внедорожник\n* `personal_driver` - персональный водитель\n* `express` - доставка\n* `cargo` - грузовой"
       },
       "CurrentStatusEnum": {
         "enum": [

@@ -839,6 +839,7 @@
           "request_completed",
           "request_time_exceed",
           "request_payment_status_change",
+          "request_action",
           "transaction_created",
           "transaction_refund",
           "transaction_delete",
@@ -859,6 +860,7 @@
           "task_reminder",
           "task_overdue",
           "task_completed",
+          "comment_mentioned",
           "inventory_broken",
           "sms_balance_low",
           "sms_error",
@@ -870,7 +872,7 @@
           "integration_error"
         ],
         "type": "string",
-        "description": "* `default` - По умолчанию\n* `request_reserved` - Аренда забронирована\n* `request_completed` - Аренда завершена\n* `request_time_exceed` - Просрочка аренды\n* `request_payment_status_change` - Изменился статус оплаты аренды\n* `transaction_created` - Создан платёж\n* `transaction_refund` - Возврат платежа\n* `transaction_delete` - Удалён платёж\n* `client_debt_limit_exceeded` - Превышен лимит задолженности клиента\n* `client_blacklist_added` - Клиент добавлен в чёрный список\n* `document_created` - Создан документ\n* `document_signed` - Документ подписан\n* `inventorization_created` - Создана инвентаризация\n* `inventorization_checklist` - Чек-лист инвентаризации\n* `delivery_assigned` - Назначена доставка\n* `delivery_status_change` - Изменился статус доставки\n* `delivery_completed` - Доставка выполнена\n* `delivery_cancelled` - Доставка отменена\n* `maintenance_due` - Подошёл срок обслуживания\n* `maintenance_assigned` - Назначено обслуживание\n* `maintenance_completed` - Обслуживание завершено\n* `task_assigned` - Назначена задача\n* `task_reminder` - Напоминание о задаче\n* `task_overdue` - Задача просрочена\n* `task_completed` - Задача выполнена\n* `inventory_broken` - Инвентарь сломан\n* `sms_balance_low` - Заканчивается баланс SMS\n* `sms_error` - Ошибка отправки SMS\n* `sms_refund` - Возврат за SMS\n* `erap_penalty_created` - Получен автоштраф\n* `erap_penalty_checkup` - erap_penalty_checkup\n* `wazzup_message_received` - Получено сообщение Wazzup\n* `integration_token_expired` - Истёк ключ интеграции\n* `integration_error` - Ошибка интеграции"
+        "description": "* `default` - По умолчанию\n* `request_reserved` - Аренда забронирована\n* `request_completed` - Аренда завершена\n* `request_time_exceed` - Просрочка аренды\n* `request_payment_status_change` - Изменился статус оплаты аренды\n* `request_action` - request_action\n* `transaction_created` - Создан платёж\n* `transaction_refund` - Возврат платежа\n* `transaction_delete` - Удалён платёж\n* `client_debt_limit_exceeded` - Превышен лимит задолженности клиента\n* `client_blacklist_added` - Клиент добавлен в чёрный список\n* `document_created` - Создан документ\n* `document_signed` - Документ подписан\n* `inventorization_created` - Создана инвентаризация\n* `inventorization_checklist` - Чек-лист инвентаризации\n* `delivery_assigned` - Назначена доставка\n* `delivery_status_change` - Изменился статус доставки\n* `delivery_completed` - Доставка выполнена\n* `delivery_cancelled` - Доставка отменена\n* `maintenance_due` - Подошёл срок обслуживания\n* `maintenance_assigned` - Назначено обслуживание\n* `maintenance_completed` - Обслуживание завершено\n* `task_assigned` - Назначена задача\n* `task_reminder` - Напоминание о задаче\n* `task_overdue` - Задача просрочена\n* `task_completed` - Задача выполнена\n* `comment_mentioned` - Упоминание в комментарии\n* `inventory_broken` - Инвентарь сломан\n* `sms_balance_low` - Заканчивается баланс SMS\n* `sms_error` - Ошибка отправки SMS\n* `sms_refund` - Возврат за SMS\n* `erap_penalty_created` - Получен автоштраф\n* `erap_penalty_checkup` - Сверка с ЕРАП\n* `wazzup_message_received` - Получено сообщение Wazzup\n* `integration_token_expired` - Истёк ключ интеграции\n* `integration_error` - Ошибка интеграции"
       },
       "TypeEnum": {
         "enum": [
