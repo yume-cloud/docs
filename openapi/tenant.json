@@ -1415,9 +1415,16 @@
           "password": {
             "type": "string",
             "writeOnly": true
+          },
+          "code": {
+            "type": "string",
+            "writeOnly": true,
+            "maxLength": 6,
+            "minLength": 6
           }
         },
         "required": [
+          "code",
           "email",
           "id",
           "password",

@@ -6081,6 +6081,11 @@
             "maxLength": 255
           },
           "extra": {},
+          "client": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Клиент"
+          },
           "period": {
             "type": "integer",
             "nullable": true
@@ -6318,6 +6323,11 @@
             "maxLength": 255
           },
           "extra": {},
+          "client": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Клиент"
+          },
           "period": {
             "type": "integer",
             "nullable": true

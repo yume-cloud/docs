@@ -676,6 +676,13 @@
             }
           },
           {
+            "in": "query",
+            "name": "staff_or_sublease",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "$ref": "#/components/parameters/TenantId"
           }
         ],
@@ -1262,11 +1269,18 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
             "nullable": true
+          },
+          "is_active": {
+            "type": "boolean",
+            "readOnly": true,
+            "title": "Активна",
+            "description": "Отметьте, если пользователь должен считаться активным. Уберите эту отметку вместо удаления учётной записи."
           }
         },
         "required": [
           "group",
           "id",
+          "is_active",
           "is_staff",
           "is_sublease",
           "is_superuser",

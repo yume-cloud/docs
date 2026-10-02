@@ -2409,6 +2409,135 @@
         "summary": "Get set"
       }
     },
+    "/v1/crm/metrics/exports/depreciation/": {
+      "get": {
+        "operationId": "exports_depreciation_retrieve",
+        "description": "Flat rows for the frontend's ExportCsv: one JSON array, unpaginated.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "exports"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get depreciation"
+      }
+    },
+    "/v1/crm/metrics/exports/orders/": {
+      "get": {
+        "operationId": "exports_orders_retrieve",
+        "description": "Flat rows for the frontend's ExportCsv: one JSON array, unpaginated.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "exports"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get orders"
+      }
+    },
+    "/v1/crm/metrics/exports/sales/": {
+      "get": {
+        "operationId": "exports_sales_retrieve",
+        "description": "Flat rows for the frontend's ExportCsv: one JSON array, unpaginated.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "end_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "start_at",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "exports"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get sales"
+      }
+    },
     "/v1/crm/metrics/finances/": {
       "get": {
         "operationId": "finances_list",
@@ -3701,6 +3830,13 @@
         "parameters": [
           {
             "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
             "name": "client",
             "schema": {
               "type": "number"
@@ -3728,6 +3864,13 @@
             "schema": {
               "type": "string",
               "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "first_day",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -3782,6 +3925,13 @@
               ]
             },
             "description": "* `request` - Аренда\n* `inventory` - Инвентарь\n* `service` - Услуга\n* `delivery` - Доставка\n* `penalty` - Штраф\n* `workshop` - Сервис\n* `workshop_expense` - Сервис (Расход)\n* `maintenance` - Обслуживание\n* `sale` - Продажа"
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "schema": {
+              "type": "number"
+            }
           },
           {
             "$ref": "#/components/parameters/TenantId"
@@ -3816,6 +3966,13 @@
         "parameters": [
           {
             "in": "query",
+            "name": "category",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
             "name": "client",
             "schema": {
               "type": "number"
@@ -3843,6 +4000,13 @@
             "schema": {
               "type": "string",
               "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "first_day",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -3897,6 +4061,13 @@
               ]
             },
             "description": "* `request` - Аренда\n* `inventory` - Инвентарь\n* `service` - Услуга\n* `delivery` - Доставка\n* `penalty` - Штраф\n* `workshop` - Сервис\n* `workshop_expense` - Сервис (Расход)\n* `maintenance` - Обслуживание\n* `sale` - Продажа"
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "schema": {
+              "type": "number"
+            }
           },
           {
             "$ref": "#/components/parameters/TenantId"

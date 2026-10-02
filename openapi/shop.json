@@ -68,6 +68,19 @@
             "style": "form"
           },
           {
+            "in": "query",
+            "name": "group",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
             "name": "ordering",
             "required": false,
             "in": "query",
