@@ -990,6 +990,293 @@
           }
         ]
       }
+    },
+    "/v1/crm/users/proxies/": {
+      "get": {
+        "operationId": "users_proxies_list",
+        "parameters": [
+          {
+            "name": "page",
+            "required": false,
+            "in": "query",
+            "description": "A page number within the paginated result set.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "required": false,
+            "in": "query",
+            "description": "Number of results to return per page.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedUserProxyDocumentList"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get proxies"
+      },
+      "post": {
+        "operationId": "users_proxies_create",
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProxyDocument"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProxyDocument"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProxyDocument"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProxyDocument"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create proxies",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/crm/users/proxies/{id}/": {
+      "get": {
+        "operationId": "users_proxies_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProxyDocument"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Get proxies"
+      },
+      "put": {
+        "operationId": "users_proxies_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProxyDocument"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProxyDocument"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/UserProxyDocument"
+              }
+            }
+          },
+          "required": true
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProxyDocument"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Update proxies"
+      },
+      "patch": {
+        "operationId": "users_proxies_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedUserProxyDocument"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedUserProxyDocument"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/PatchedUserProxyDocument"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserProxyDocument"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Patch proxies"
+      },
+      "delete": {
+        "operationId": "users_proxies_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "users"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete proxies"
+      }
     }
   },
   "components": {
@@ -1112,6 +1399,37 @@
           }
         }
       },
+      "PaginatedUserProxyDocumentList": {
+        "type": "object",
+        "required": [
+          "count",
+          "results"
+        ],
+        "properties": {
+          "count": {
+            "type": "integer",
+            "example": 123
+          },
+          "next": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=4"
+          },
+          "previous": {
+            "type": "string",
+            "nullable": true,
+            "format": "uri",
+            "example": "http://api.example.org/accounts/?page=2"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserProxyDocument"
+            }
+          }
+        }
+      },
       "PatchedGroupEdit": {
         "type": "object",
         "properties": {
@@ -1188,6 +1506,40 @@
             "format": "decimal",
             "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
             "nullable": true
+          }
+        }
+      },
+      "PatchedUserProxyDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "user": {
+            "type": "integer",
+            "title": "Пользователь"
+          },
+          "user_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Основная доверенность"
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Номер документа",
+            "maxLength": 255
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Дата"
           }
         }
       },
@@ -1614,6 +1966,45 @@
           "password",
           "point",
           "ui_settings"
+        ]
+      },
+      "UserProxyDocument": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "user": {
+            "type": "integer",
+            "title": "Пользователь"
+          },
+          "user_name": {
+            "type": "string",
+            "readOnly": true
+          },
+          "parent": {
+            "type": "integer",
+            "nullable": true,
+            "title": "Основная доверенность"
+          },
+          "number": {
+            "type": "string",
+            "nullable": true,
+            "title": "Номер документа",
+            "maxLength": 255
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "nullable": true,
+            "title": "Дата"
+          }
+        },
+        "required": [
+          "id",
+          "user",
+          "user_name"
         ]
       }
     },

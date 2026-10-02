@@ -1198,6 +1198,11 @@
           },
           "options": {
             "title": "Варианты"
+          },
+          "position": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Порядок"
           }
         },
         "required": [
@@ -1205,12 +1210,14 @@
           "key",
           "label",
           "name",
+          "position",
           "type"
         ]
       },
       "CustomFieldKeyEnum": {
         "enum": [
           "client",
+          "client_document",
           "service",
           "inventory",
           "inventory_car",
@@ -1229,7 +1236,7 @@
           "template"
         ],
         "type": "string",
-        "description": "* `client` - Клиент\n* `service` - Услуга\n* `inventory` - Инвентарь\n* `inventory_car` - Автомобиль\n* `inventory_scooter` - Самокат\n* `inventory_motorcycle` - Мотоцикл\n* `inventory_set` - Комплект\n* `inventory_group` - Группа инвентаря\n* `rental_point` - Точка проката\n* `category` - Категория\n* `order` - Аренда\n* `order_inventory` - Позиция аренды\n* `order_service` - Позиция услуги\n* `funnel_lead` - Лид\n* `workshop` - Сервис\n* `document` - Документ\n* `template` - Шаблон"
+        "description": "* `client` - Клиент\n* `client_document` - Документ клиента\n* `service` - Услуга\n* `inventory` - Инвентарь\n* `inventory_car` - Автомобиль\n* `inventory_scooter` - Самокат\n* `inventory_motorcycle` - Мотоцикл\n* `inventory_set` - Комплект\n* `inventory_group` - Группа инвентаря\n* `rental_point` - Точка проката\n* `category` - Категория\n* `order` - Аренда\n* `order_inventory` - Позиция аренды\n* `order_service` - Позиция услуги\n* `funnel_lead` - Лид\n* `workshop` - Сервис\n* `document` - Документ\n* `template` - Шаблон"
       },
       "CustomFieldList": {
         "type": "object",
@@ -1306,15 +1313,15 @@
           "color",
           "client",
           "inventory",
-          "inventory_group",
-          "inventory_set",
+          "product",
+          "set",
           "service",
           "workshop",
           "document",
           "template"
         ],
         "type": "string",
-        "description": "* `string` - Строка\n* `html` - HTML-текст\n* `integer` - Целое число\n* `decimal` - Дробное число\n* `boolean` - Да / нет\n* `date` - Дата\n* `datetime` - Дата и время\n* `color` - Цвет\n* `client` - Клиент\n* `inventory` - Инвентарь\n* `inventory_group` - Группа инвентаря\n* `inventory_set` - Комплект\n* `service` - Услуга\n* `workshop` - Сервис\n* `document` - Документ\n* `template` - Шаблон"
+        "description": "* `string` - Строка\n* `html` - HTML-текст\n* `integer` - Целое число\n* `decimal` - Дробное число\n* `boolean` - Да / нет\n* `date` - Дата\n* `datetime` - Дата и время\n* `color` - Цвет\n* `client` - Клиент\n* `inventory` - Инвентарь\n* `product` - Группа инвентаря\n* `set` - Комплект\n* `service` - Услуга\n* `workshop` - Сервис\n* `document` - Документ\n* `template` - Шаблон"
       },
       "CustomFieldUpdate": {
         "type": "object",
@@ -1540,6 +1547,15 @@
         "type": "string",
         "description": "* `ru` - Русский\n* `en` - English"
       },
+      "OrderFilterTypeEnum": {
+        "enum": [
+          "default",
+          "start",
+          "end"
+        ],
+        "type": "string",
+        "description": "* `default` - default\n* `start` - start\n* `end` - end"
+      },
       "PatchedCustomField": {
         "type": "object",
         "properties": {
@@ -1593,6 +1609,11 @@
           },
           "options": {
             "title": "Варианты"
+          },
+          "position": {
+            "type": "integer",
+            "readOnly": true,
+            "title": "Порядок"
           }
         }
       },
@@ -1787,18 +1808,6 @@
       "PatchedSettingsConfig": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "company_iin": {
-            "type": "string"
-          },
-          "company_bin": {
-            "type": "string"
-          },
           "currency": {
             "type": "string"
           },
@@ -1809,55 +1818,75 @@
           "language": {
             "type": "string"
           },
-          "company_bank": {
-            "type": "string"
-          },
-          "company_iban": {
-            "type": "string"
-          },
-          "company_bic": {
-            "type": "string"
-          },
-          "company_account_number": {
-            "type": "string"
-          },
           "feature_point_clean": {
             "type": "boolean",
             "default": false
           },
-          "collection_percent": {
+          "feature_inventory_car": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "order_single_inventory": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_erap": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_wallet": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "whapi": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_set": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_service": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_bonus": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_sublease": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "document_billing_mode": {
             "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
-            "readOnly": true
-          },
-          "feature_delivery_sms": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "feature_delivery_wazzup": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "feature_inventorization_duration": {
-            "type": "integer",
             "readOnly": true
           },
           "feature_inventory_buffer": {
             "type": "integer",
-            "readOnly": true
+            "minimum": 0,
+            "default": 0
+          },
+          "feature_inventorization_duration": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 7
           },
           "feature_transaction_schedule_initial_fee": {
             "type": "boolean",
-            "readOnly": true
+            "default": false
           },
           "order_autoweekday": {
             "type": "boolean",
-            "readOnly": true
+            "default": false
           },
           "order_filter_type": {
-            "type": "string",
-            "readOnly": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrderFilterTypeEnum"
+              }
+            ],
+            "default": "default"
           },
           "feature_group": {
             "type": "boolean",
@@ -1867,23 +1896,11 @@
             "type": "boolean",
             "default": false
           },
-          "feature_set": {
-            "type": "boolean",
-            "default": true
-          },
           "feature_set_alternative": {
             "type": "boolean",
             "default": false
           },
-          "feature_service": {
-            "type": "boolean",
-            "default": true
-          },
           "feature_inventory": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_inventory_car": {
             "type": "boolean",
             "default": false
           },
@@ -1915,18 +1932,6 @@
             "type": "boolean",
             "default": false
           },
-          "feature_sublease": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_wallet": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_erap": {
-            "type": "boolean",
-            "default": false
-          },
           "feature_transaction_date": {
             "type": "boolean",
             "default": false
@@ -1946,14 +1951,6 @@
           "feature_delivery_confirm": {
             "type": "boolean",
             "default": true
-          },
-          "feature_delivery_rent_start": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_delivery_rent_end": {
-            "type": "boolean",
-            "default": false
           },
           "request": {
             "type": "string"
@@ -2018,6 +2015,7 @@
           },
           "order_penalty_rounding": {
             "type": "integer",
+            "minimum": 1,
             "default": 1
           },
           "order_penalty_buffer_duration": {
@@ -2035,19 +2033,11 @@
             "type": "boolean",
             "default": true
           },
-          "order_agent_percent": {
-            "type": "integer",
-            "default": 10
-          },
           "order_table_expanded": {
             "type": "boolean",
             "default": false
           },
           "order_inventory_occupation": {
-            "type": "boolean",
-            "default": true
-          },
-          "order_inventory_discount": {
             "type": "boolean",
             "default": true
           },
@@ -2065,10 +2055,6 @@
             "type": "string",
             "nullable": true
           },
-          "order_rental_point": {
-            "type": "boolean",
-            "default": true
-          },
           "order_rental_point_return": {
             "type": "boolean",
             "default": false
@@ -2081,20 +2067,12 @@
             "type": "boolean",
             "default": false
           },
-          "order_single_inventory": {
-            "type": "boolean",
-            "default": false
-          },
           "order_autorenewal": {
             "type": "boolean",
             "default": false
           },
           "penalty": {
             "type": "boolean"
-          },
-          "penalty_type": {
-            "type": "string",
-            "nullable": true
           },
           "penalty_after": {
             "type": "boolean"
@@ -2127,6 +2105,12 @@
             "nullable": true
           },
           "recievement_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "collection_percent": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
@@ -2180,10 +2164,6 @@
             ],
             "readOnly": true
           },
-          "feature_bonus": {
-            "type": "boolean",
-            "default": false
-          },
           "bonus_default_percent": {
             "type": "string",
             "format": "decimal",
@@ -2216,9 +2196,6 @@
             "type": "boolean",
             "default": true
           },
-          "phone_format": {
-            "type": "string"
-          },
           "order_layout_left": {},
           "order_layout_right_v2": {
             "type": "array",
@@ -2236,23 +2213,12 @@
             "type": "boolean",
             "default": true
           },
-          "client_passport_scan": {
-            "type": "boolean",
-            "default": false
-          },
           "client_passport_iin_length": {
             "type": "integer",
+            "minimum": 1,
             "default": 12
           },
           "client_kaspi_balance": {
-            "type": "boolean",
-            "default": false
-          },
-          "document_billing_mode": {
-            "type": "string",
-            "readOnly": true
-          },
-          "whapi": {
             "type": "boolean",
             "default": false
           }
@@ -2342,18 +2308,6 @@
       "SettingsConfig": {
         "type": "object",
         "properties": {
-          "name": {
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "company_iin": {
-            "type": "string"
-          },
-          "company_bin": {
-            "type": "string"
-          },
           "currency": {
             "type": "string"
           },
@@ -2364,55 +2318,75 @@
           "language": {
             "type": "string"
           },
-          "company_bank": {
-            "type": "string"
-          },
-          "company_iban": {
-            "type": "string"
-          },
-          "company_bic": {
-            "type": "string"
-          },
-          "company_account_number": {
-            "type": "string"
-          },
           "feature_point_clean": {
             "type": "boolean",
             "default": false
           },
-          "collection_percent": {
+          "feature_inventory_car": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "order_single_inventory": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_erap": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_wallet": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "whapi": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_set": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_service": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_bonus": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "feature_sublease": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "document_billing_mode": {
             "type": "string",
-            "format": "decimal",
-            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
-            "readOnly": true
-          },
-          "feature_delivery_sms": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "feature_delivery_wazzup": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "feature_inventorization_duration": {
-            "type": "integer",
             "readOnly": true
           },
           "feature_inventory_buffer": {
             "type": "integer",
-            "readOnly": true
+            "minimum": 0,
+            "default": 0
+          },
+          "feature_inventorization_duration": {
+            "type": "integer",
+            "minimum": 1,
+            "default": 7
           },
           "feature_transaction_schedule_initial_fee": {
             "type": "boolean",
-            "readOnly": true
+            "default": false
           },
           "order_autoweekday": {
             "type": "boolean",
-            "readOnly": true
+            "default": false
           },
           "order_filter_type": {
-            "type": "string",
-            "readOnly": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/OrderFilterTypeEnum"
+              }
+            ],
+            "default": "default"
           },
           "feature_group": {
             "type": "boolean",
@@ -2422,23 +2396,11 @@
             "type": "boolean",
             "default": false
           },
-          "feature_set": {
-            "type": "boolean",
-            "default": true
-          },
           "feature_set_alternative": {
             "type": "boolean",
             "default": false
           },
-          "feature_service": {
-            "type": "boolean",
-            "default": true
-          },
           "feature_inventory": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_inventory_car": {
             "type": "boolean",
             "default": false
           },
@@ -2470,18 +2432,6 @@
             "type": "boolean",
             "default": false
           },
-          "feature_sublease": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_wallet": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_erap": {
-            "type": "boolean",
-            "default": false
-          },
           "feature_transaction_date": {
             "type": "boolean",
             "default": false
@@ -2501,14 +2451,6 @@
           "feature_delivery_confirm": {
             "type": "boolean",
             "default": true
-          },
-          "feature_delivery_rent_start": {
-            "type": "boolean",
-            "default": false
-          },
-          "feature_delivery_rent_end": {
-            "type": "boolean",
-            "default": false
           },
           "request": {
             "type": "string"
@@ -2573,6 +2515,7 @@
           },
           "order_penalty_rounding": {
             "type": "integer",
+            "minimum": 1,
             "default": 1
           },
           "order_penalty_buffer_duration": {
@@ -2590,19 +2533,11 @@
             "type": "boolean",
             "default": true
           },
-          "order_agent_percent": {
-            "type": "integer",
-            "default": 10
-          },
           "order_table_expanded": {
             "type": "boolean",
             "default": false
           },
           "order_inventory_occupation": {
-            "type": "boolean",
-            "default": true
-          },
-          "order_inventory_discount": {
             "type": "boolean",
             "default": true
           },
@@ -2620,10 +2555,6 @@
             "type": "string",
             "nullable": true
           },
-          "order_rental_point": {
-            "type": "boolean",
-            "default": true
-          },
           "order_rental_point_return": {
             "type": "boolean",
             "default": false
@@ -2636,20 +2567,12 @@
             "type": "boolean",
             "default": false
           },
-          "order_single_inventory": {
-            "type": "boolean",
-            "default": false
-          },
           "order_autorenewal": {
             "type": "boolean",
             "default": false
           },
           "penalty": {
             "type": "boolean"
-          },
-          "penalty_type": {
-            "type": "string",
-            "nullable": true
           },
           "penalty_after": {
             "type": "boolean"
@@ -2682,6 +2605,12 @@
             "nullable": true
           },
           "recievement_percent": {
+            "type": "string",
+            "format": "decimal",
+            "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
+            "nullable": true
+          },
+          "collection_percent": {
             "type": "string",
             "format": "decimal",
             "pattern": "^-?\\d{0,14}(?:\\.\\d{0,2})?$",
@@ -2735,10 +2664,6 @@
             ],
             "readOnly": true
           },
-          "feature_bonus": {
-            "type": "boolean",
-            "default": false
-          },
           "bonus_default_percent": {
             "type": "string",
             "format": "decimal",
@@ -2771,9 +2696,6 @@
             "type": "boolean",
             "default": true
           },
-          "phone_format": {
-            "type": "string"
-          },
           "order_layout_left": {},
           "order_layout_right_v2": {
             "type": "array",
@@ -2791,75 +2713,56 @@
             "type": "boolean",
             "default": true
           },
-          "client_passport_scan": {
-            "type": "boolean",
-            "default": false
-          },
           "client_passport_iin_length": {
             "type": "integer",
+            "minimum": 1,
             "default": 12
           },
           "client_kaspi_balance": {
             "type": "boolean",
             "default": false
-          },
-          "document_billing_mode": {
-            "type": "string",
-            "readOnly": true
-          },
-          "whapi": {
-            "type": "boolean",
-            "default": false
           }
         },
         "required": [
-          "address",
           "cancel",
           "collection",
-          "collection_percent",
-          "company_account_number",
-          "company_bank",
-          "company_bic",
-          "company_bin",
-          "company_iban",
-          "company_iin",
           "completed",
           "currency",
           "custom_fields",
           "debtor",
           "document_billing_mode",
           "exceed",
-          "feature_delivery_sms",
-          "feature_delivery_wazzup",
-          "feature_inventorization_duration",
-          "feature_inventory_buffer",
-          "feature_transaction_schedule_initial_fee",
+          "feature_bonus",
+          "feature_erap",
+          "feature_inventory_car",
+          "feature_service",
+          "feature_set",
+          "feature_sublease",
+          "feature_wallet",
           "inrent",
           "language",
           "metrics_order_payment_statuses",
           "metrics_order_statuses",
-          "name",
           "order_archive_buffer_duration",
-          "order_autoweekday",
           "order_client_tick_filter",
           "order_duration",
-          "order_filter_type",
           "order_layout_left",
           "order_layout_right_v2",
           "order_penalty_buffer_duration",
+          "order_single_inventory",
           "penalty",
           "penalty_after",
           "penalty_default",
           "penalty_manager_access",
           "penalty_options",
-          "phone_format",
           "rent_inventory_priority",
           "rent_product_types",
           "request",
           "reservation",
           "reserve",
           "single_issue",
-          "single_recievement"
+          "single_recievement",
+          "whapi"
         ]
       },
       "TableSettings": {
