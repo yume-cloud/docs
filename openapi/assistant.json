@@ -1110,7 +1110,8 @@
             "type": "boolean"
           },
           "tenant": {
-            "type": "integer"
+            "type": "integer",
+            "nullable": true
           }
         },
         "required": [
@@ -1845,10 +1846,11 @@
       "SourceEnum": {
         "enum": [
           "web",
-          "channel"
+          "channel",
+          "chat"
         ],
         "type": "string",
-        "description": "* `web` - Веб\n* `channel` - Внешний канал"
+        "description": "* `web` - Веб\n* `channel` - Внешний канал\n* `chat` - чат поддержки"
       },
       "StateEnum": {
         "enum": [

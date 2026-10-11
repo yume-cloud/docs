@@ -1,0 +1,414 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Yume API — Сообщения",
+    "version": "1.0.0",
+    "description": "Переписка сотрудников и чат с поддержкой Yume."
+  },
+  "paths": {
+    "/v1/chat/conversations/": {
+      "get": {
+        "operationId": "conversations_retrieve",
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get conversations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "conversations_create",
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create conversations",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    },
+    "/v1/chat/conversations/{id}/": {
+      "patch": {
+        "operationId": "conversations_partial_update",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Patch conversations"
+      },
+      "delete": {
+        "operationId": "conversations_destroy",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete conversations"
+      }
+    },
+    "/v1/chat/conversations/{id}/handoff/": {
+      "post": {
+        "operationId": "conversations_handoff_create",
+        "description": "Поддержка забирает диалог себе или возвращает ассистенту; у пользователя такой кнопки нет.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create handoff"
+      }
+    },
+    "/v1/chat/conversations/{id}/members/": {
+      "post": {
+        "operationId": "conversations_members_create",
+        "description": "Any member may add people, like in Telegram; the adder must already be in the group.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create members"
+      }
+    },
+    "/v1/chat/conversations/{id}/members/{user_id}/": {
+      "delete": {
+        "operationId": "conversations_members_destroy",
+        "description": "Leaving is always allowed; removing someone else needs the creator or an admin.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Delete members"
+      }
+    },
+    "/v1/chat/conversations/{id}/messages/": {
+      "get": {
+        "operationId": "conversations_messages_retrieve",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get messages"
+      },
+      "post": {
+        "operationId": "conversations_messages_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create messages"
+      }
+    },
+    "/v1/chat/conversations/{id}/messages/{message_id}/notify/": {
+      "post": {
+        "operationId": "conversations_messages_notify_create",
+        "description": "Сигнал после загрузки вложений: иначе собеседник успевает забрать сообщение без них.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "message_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create notify"
+      }
+    },
+    "/v1/chat/conversations/{id}/read/": {
+      "post": {
+        "operationId": "conversations_read_create",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "conversations"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Create read"
+      }
+    },
+    "/v1/chat/unread/": {
+      "get": {
+        "operationId": "unread_retrieve",
+        "tags": [
+          "unread"
+        ],
+        "security": [
+          {
+            "jwtAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "No response body"
+          }
+        },
+        "summary": "Get unread",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "jwtAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "TenantId": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": false,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "Компания, в контексте которой выполняется запрос — её id из `GET /v1/tenant/`. Пользователь должен состоять в этой компании: чужой id доступа к данным не даёт. Без заголовка компания определяется по домену запроса."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.yume.cloud",
+      "description": "Production"
+    },
+    {
+      "url": "https://api.stage.yume.cloud",
+      "description": "Stage"
+    }
+  ]
+}

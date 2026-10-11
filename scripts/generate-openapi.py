@@ -25,6 +25,9 @@ DOCS_ROOT = pathlib.Path(__file__).resolve().parent.parent
 BACKEND = pathlib.Path(os.environ.get("YUME_BACKEND", DOCS_ROOT.parent / "rental_tenant_back"))
 OUT_DIR = DOCS_ROOT / "openapi"
 
+# Sections the backend serves but the docs deliberately leave out.
+EXCLUDED = {"cars"}  # ERAP traffic fines
+
 SERVERS = [
     {"url": "https://api.yume.cloud", "description": "Production"},
     {"url": "https://api.stage.yume.cloud", "description": "Stage"},
@@ -64,6 +67,8 @@ def main() -> int:
     total = 0
 
     for key, patterns in swagger_groups.items():
+        if key in EXCLUDED:
+            continue
         section = SECTIONS[key]
         schema = SchemaGenerator(patterns=patterns).get_schema(request=None, public=True)
         schema["info"]["title"] = f"Yume API — {section['name']}"

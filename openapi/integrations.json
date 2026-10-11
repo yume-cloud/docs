@@ -1751,6 +1751,63 @@
         ]
       }
     },
+    "/v1/crm/integrations/wazzup/webhook/{id}/": {
+      "post": {
+        "operationId": "wazzup_webhook_create_2",
+        "description": "Concrete view for creating a model instance.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          },
+          {
+            "$ref": "#/components/parameters/TenantId"
+          }
+        ],
+        "tags": [
+          "wazzup"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupWebhook"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupWebhook"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/WazzupWebhook"
+              }
+            }
+          }
+        },
+        "security": [
+          {}
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WazzupWebhook"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "summary": "Create webhook"
+      }
+    },
     "/v1/crm/integrations/wialon/accounts/": {
       "get": {
         "operationId": "wialon_accounts_list",

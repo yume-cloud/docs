@@ -196,6 +196,10 @@
                 ]
               },
               {
+                "group": "Сообщения",
+                "pages": ["ru/logic/chat"]
+              },
+              {
                 "group": "Архив",
                 "pages": ["ru/logic/disable-archiving"]
               },
@@ -307,10 +311,6 @@
               {
                 "group": "Интеграции",
                 "pages": [
-                  "ru/logic/auto-penalties",
-                  "ru/logic/auto-penalties/models",
-                  "ru/logic/auto-penalties/car-sync",
-                  "ru/logic/auto-penalties/penalties",
                   "ru/logic/binotel"
                 ]
               },
@@ -333,7 +333,6 @@
                   "ru/logic/wallet/issues",
                   "ru/logic/company-billing/issues",
                   "ru/logic/order-sale/issues",
-                  "ru/logic/auto-penalties/issues",
                   "ru/logic/audit/issues"
                 ]
               }
@@ -391,6 +390,10 @@
                   "ru/logic/notifications/access-settings-glossary",
                   "ru/logic/notifications/emails-glossary"
                 ]
+              },
+              {
+                "group": "Сообщения",
+                "pages": ["ru/logic/chat-glossary"]
               },
               {
                 "group": "Метрики и аналитика",
@@ -518,9 +521,6 @@
               {
                 "group": "Интеграции",
                 "pages": [
-                  "ru/logic/auto-penalties/models-glossary",
-                  "ru/logic/auto-penalties/car-sync-glossary",
-                  "ru/logic/auto-penalties/penalties-glossary",
                   "ru/logic/binotel-glossary"
                 ]
               },
@@ -753,14 +753,6 @@
                 }
               },
               {
-                "group": "ERAP",
-                "icon": "car",
-                "openapi": {
-                  "source": "openapi/cars.json",
-                  "directory": "api-reference/cars"
-                }
-              },
-              {
                 "group": "Wallet",
                 "icon": "wallet",
                 "openapi": {
@@ -814,6 +806,14 @@
                 "openapi": {
                   "source": "openapi/todo.json",
                   "directory": "api-reference/todo"
+                }
+              },
+              {
+                "group": "Сообщения",
+                "icon": "comments",
+                "openapi": {
+                  "source": "openapi/chat.json",
+                  "directory": "api-reference/chat"
                 }
               }
             ]
@@ -1033,38 +1033,6 @@
     {
       "source": "/ru/logic/sales/webhook-sync-glossary",
       "destination": "/ru/logic/sales/lead-intake-glossary"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/tenant-api",
-      "destination": "/ru/logic/auto-penalties/penalties"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/company-api",
-      "destination": "/ru/logic/auto-penalties/penalties"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/company-api-glossary",
-      "destination": "/ru/logic/auto-penalties/penalties-glossary"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/erap-checkup",
-      "destination": "/ru/logic/auto-penalties/penalties"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/erap-checkup-glossary",
-      "destination": "/ru/logic/auto-penalties/penalties-glossary"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/notifications",
-      "destination": "/ru/logic/auto-penalties/penalties"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/notifications-glossary",
-      "destination": "/ru/logic/auto-penalties/penalties-glossary"
-    },
-    {
-      "source": "/ru/logic/auto-penalties/tenant-api-glossary",
-      "destination": "/ru/logic/auto-penalties/penalties-glossary"
     },
     {
       "source": "/ru/logic/tenant-billing/provisioning",

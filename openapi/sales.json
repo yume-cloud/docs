@@ -895,6 +895,56 @@
         "parameters": [
           {
             "in": "query",
+            "name": "client__phone",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "client__phone__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "created_at__gt",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "created_at__lte",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "in": "query",
+            "name": "funnel",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "funnel__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
             "name": "has_no_tasks",
             "schema": {
               "type": "boolean"
@@ -908,6 +958,40 @@
               "type": "boolean"
             },
             "description": "Filter leads with an unfinished task whose due date has passed"
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "id__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "manager",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "manager__isnull",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
             "name": "ordering",
@@ -937,12 +1021,95 @@
             }
           },
           {
+            "in": "query",
+            "name": "price",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "price__gt",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "price__lt",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "in": "query",
+            "name": "request",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "request__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sale",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sale__isnull",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "name": "search",
             "required": false,
             "in": "query",
             "description": "A search term.",
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source__in",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "description": "Несколько значений могут быть разделены запятыми.",
+            "explode": false,
+            "style": "form"
+          },
+          {
+            "in": "query",
+            "name": "stage",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "stage__isnull",
+            "schema": {
+              "type": "boolean"
             }
           },
           {
